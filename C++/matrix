@@ -1,0 +1,216 @@
+#include <iostream>
+#include <vector>
+#include <fraction>
+using namespace std;
+
+class Matrix {
+    private:
+        vector<vector<Fraction>> _matrix;
+        string _type;
+        int row, column;
+        bool _isSquare;
+        Matrix *initialize(Fraction);
+        Matrix *input();
+        Matrix *matType();
+        Matrix *operatorAddSub(string, Matrix&);
+        Matrix *operatorMul(string, Matrix&);
+        Matrix *operatorMul(string, Fraction&);
+    
+    public:
+        Matrix() {}
+        Matrix(int, int, string, vector<vector<Fraction>>);
+        Matrix(int, int, string, initializer_list<initializer_list<Fraction>>);
+        Matrix *identity() {return this->initialize(1);}
+        bool isSquare() {return this->_isSquare;}
+        bool isSkewSymmetric() {return *this == *this->transpose() * (-1);}
+        bool isSymmetric() {return *this == *this->transpose();}
+        vector<vector<Fraction>> matrix() {return this->_matrix;}
+        Matrix *null() {return this->initialize(0);}
+        Matrix &operator+(Matrix &matrix) {return *operatorAddSub("+", matrix);}
+        Matrix &operator-(Matrix &matrix) {return *operatorAddSub("-", matrix);}
+        Matrix &operator*(auto object) {return *operatorMul("*", object);}
+        Matrix &operator+=(Matrix &matrix) {return *operatorAddSub("+=", matrix);}
+        Matrix &operator-=(Matrix &matrix) {return *operatorAddSub("-=", matrix);}
+        Matrix &operator*=(auto object) {return *operatorMul("*=", object);}
+        bool operator==(Matrix);
+        bool operator!=(Matrix matrix) {return not operator==(matrix);}
+        friend ostream &operator<<(ostream&, Matrix&);
+        vector<Fraction> &operator[](int);
+        Matrix *transpose();
+        string type() {return _type;}
+};
+
+Matrix::Matrix(int rows, int columns, string method = "pass", vector<vector<Fraction>> matrix = {{}}) {
+    if (not (rows and columns)) throw invalid_argument("row or column cannot be 0");
+    this->row = rows;
+    this->column = columns;
+    this->_matrix = matrix;
+
+    if (method == "pass" and not(matrix.size() == rows and matrix[0].size() == columns)) throw invalid_argument("Invalid Matrix");
+    else {
+        if (method == "input") this->input();
+        else if (method == "null") this->null();
+        else if (method == "identity") this->identity();
+        else throw invalid_argument("invalid method");
+    }
+    this->_isSquare = (rows == columns);
+}
+Matrix::Matrix(int rows, int columns, string method = "pass", initializer_list<initializer_list<Fraction>> init = {{}}) {
+    this->row = rows;
+    this->column = columns;
+    int i = 0, j = 0;
+
+    for (initializer_list<Fraction> row: init) {
+        for (Fraction element: row) this->_matrix[i][j++] = element;
+        i++; j = 0;
+    }
+    Matrix(rows, columns, "pass", this->_matrix);
+}
+Matrix *Matrix::initialize(Fraction num = 0) {
+    for (int row = 0; row < this->row; row++)
+        for (int column = 0; column < this->column; column++)
+            this->_matrix[row][column] = num;
+    
+    switch ((int)num) {
+        case 0:
+            this->_type = "null";
+            break;
+        case 1:
+            this->_type = "identity";
+            break;
+        default:
+            this->_type = "scalar";
+    }
+    return this;
+}
+Matrix *Matrix::input() {
+    string inputRow, fracStr;
+    for (int row = 0; row < this->row; row++) {
+        cout << "Enter elements of " << row + 1 << " (space-separated values): ";
+        getline(cin, inputRow);
+        stringstream ss(inputRow);
+
+        for (int column = 0; column < this->column; column++) {
+            ss >> fracStr;
+            this->_matrix[row][column] = Fraction(fracStr);
+        }
+    }
+    return this->matType();
+}
+Matrix *Matrix::matType() {
+    if (this->row == 1 and this->column != 1) this->_type = "row";
+    else if (this->column == 1 and this->row != 1) this->_type = "column";
+    else if (this->row == this->column) {
+        this->_type = "square";
+        bool isScalar = true, isIdentity = true, isDiagonal = true;
+
+        for (int row = 0; row < this->row; row++) {
+            for (int column = 0; column < this->column; column++) {
+                if (row == column) {
+                    if (this->_matrix[row][column] != this->_matrix[0][0]) isScalar = false;
+                    else if ((double)this->_matrix[row][column] != 1) isIdentity = false;
+                } else if ((double)this->_matrix[row][column] != 0) isScalar = isIdentity = isDiagonal = false;
+            }
+            if (not(isScalar and isIdentity and isDiagonal)) break;
+        }
+        if (isIdentity) this->_type = "identity";
+        else if (isScalar) this->_type = "scalar";
+        else if (isDiagonal) this->_type = "diagonal";
+    } else if (this->row != this->column) this->_type = "rectangular";
+
+    bool isNull = true;
+
+    for (int row = 0; row < this->row; row++) {
+        for (int column = 0; column < this->column; column++)
+            if ((double)this->_matrix[row][column] != 0) {
+                isNull = false;
+                break;
+            }
+        if (not isNull) break;
+    }
+    if (isNull) this->_type = "null";
+    return this;
+}
+Matrix *Matrix::operatorAddSub(string opr, Matrix &matrix) {
+    Matrix *result;
+
+    if (this->row == matrix.row and this->column == matrix.column) {
+        if (opr == "+=" or opr == "-=") result = this;
+        else if (opr == "+" or opr == "-") result = new Matrix(this->row, matrix.column, "null", {{}});
+        
+        for (int row = 0; row < result->row; row++)
+            for (int column = 0; column < result->column; column++)
+                switch (opr[0]) {
+                    case '+':
+                        result->_matrix[row][column] = this->_matrix[row][column] + matrix[row][column];
+                        break;
+                    case '-':
+                        result->_matrix[row][column] = this->_matrix[row][column] - matrix[row][column];
+                        break;
+                    default:
+                        throw invalid_argument("Invalid operator");
+                }
+        return result->matType();
+    }
+    throw invalid_argument("Invalid matrix order for operation");
+}
+Matrix *Matrix::operatorMul(string opr, Matrix &matrix) {
+    Matrix *result;
+
+    if (this->column == matrix.row) {
+        if (opr == "*=") result = this;
+        else if (opr == "*") result = new Matrix(this->row, matrix.column, "null", {{}});
+
+        for (int k = 0; k < this->row; k++)
+            for (int i = 0; i < matrix.column; i++)
+                for (int j = 0; j < this->row; j++)
+                    result->_matrix[k][i] += this->_matrix[k][j] * matrix[j][i];
+
+        return result->matType();
+    }
+    throw invalid_argument("Invalid matrix order for operation");
+}
+Matrix *Matrix::operatorMul(string opr, Fraction &num) {
+    Matrix *result;
+    if (opr == "*=") result = this;
+    else if (opr == "*") result = new Matrix(this->row, this->column, "null", {{}});
+
+    for (int row = 0; row < result->row; row++)
+        for (int column = 0; column < result->column; column++)
+            result->_matrix[row][column] = this->_matrix[row][column] * num;
+
+    return result->matType();
+}
+bool Matrix::operator==(Matrix matrix) {
+    for (int row = 0; row < this->row; row++)
+        for (int column = 0; column < this->column; column++)
+            if (this->_matrix[row][column] != matrix[row][column])
+                return false;
+
+    return true;
+}
+ostream &operator<<(ostream &stream, Matrix &matrix) {
+    for (int row = 0; row < matrix.row; row++) {
+        stream << '[';
+
+        for (int column = 0; column < matrix.column; column++) {
+            stream << (double)matrix[row][column];
+            if (column + 1 != matrix.column)stream << ", ";
+        }
+        stream << ']' << endl;
+    } 
+    return stream; 
+}
+vector<Fraction> &Matrix::operator[](int index) {
+    if (index >= this->row or index < 0) throw invalid_argument("Index out of range");
+    return this->_matrix[index];
+}
+Matrix *Matrix::transpose() {
+    Matrix *result = new Matrix(this->row, this->column, "pass", {{}});
+
+    for (int row = 0; row < this->row; row++)
+        for (int column = 0; column < this->column; column++)
+            result->_matrix[column][row] = this->_matrix[row][column];
+    
+    return result->matType();
+}
