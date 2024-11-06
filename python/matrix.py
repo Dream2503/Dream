@@ -2,7 +2,10 @@ from typing import Literal, Callable, Any
 from fractions import Fraction
 from equation import Term
 from math import gcd, lcm
+
+
 class MatrixError(Exception): ...
+
 
 class Matrix:
     """
@@ -23,7 +26,7 @@ class Matrix:
 
         rows = 2
         columns = 3
-        matrix = [[1, 2, 3], [4, 5, 6]]
+        matrix = [[Fraction(1, 1), Fraction(2, 2), Fraction(3, 1)], [Frqction(4, 1), Fraction(5, 1), Fraction(6, 1)]]
 
     -> by providing a type of matrix to generate
         -> null matrix
@@ -32,7 +35,7 @@ class Matrix:
 
             rows = 3
             columns = 3
-            matrix = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+            matrix = [[Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)], [Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)], [Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)]]
 
         -> identity matrix
             >>> m = Matrix(3, 3, "identity")    # creating an identity matrix of order 3
@@ -40,8 +43,7 @@ class Matrix:
 
             rows = 3
             columns = 3
-            matrix = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
-            type = identity
+            matrix = [[Fraction(1, 1), Fraction(0, 1), Fraction(0, 1)], [Fraction(0, 1), Fraction(1, 1), Fraction(0, 1)], [Fraction(0, 1), Fraction(0, 1), Fraction(1, 1)]]
 
 # USING OPERATORS BETWEEN MATRIX AND NUMERIC TYPES
     -> consider the following matrices and one integer throughout the section
@@ -51,18 +53,17 @@ class Matrix:
 
         -> addition between matrix and numeric types
             >>> m1 + m2
-            Matrix(rows=2, columns=2, matrix=[[6, 8], [10, 12]])
+            Matrix(rows=2, columns=2, matrix=[[Fraction(6, 1), Fraction(8, 1)], [Fraction(10, 1), Fraction(12, 1)]])
 
         -> subtraction between matrix and numeric types
             >>> m1 - m2
-            Matrix(rows=2, columns=2, matrix=[[-4, -4], [-4, -4]])
+            Matrix(rows=2, columns=2, matrix=[[Fraction(-4, 1), Fraction(-4, 1)], [Fraction(-4, 1), Fraction(-4, 1)]])
 
         -> multiplication between matrix and numeric types
             >>> m1 * m2
-            Matrix(rows=2, columns=2, matrix=[[19, 22], [43, 50]])
-
+            Matrix(rows=2, columns=2, matrix=[[Fraction(19, 1), Fraction(22, 1)], [Fraction(43, 1), Fraction(50, 1)]])
             >>> m1 * num
-            Matrix(rows=2, columns=2, matrix=[[7, 14], [21, 28]])
+            Matrix(rows=2, columns=2, matrix=[[Fraction(7, 1), Fraction(14, 1)], [Fraction(21, 1), Fraction(28, 1)]])
 
 # USING IN-PLACE OPERATOR
     -> consider the following matrices and one integer throughout the section
@@ -74,21 +75,20 @@ class Matrix:
         -> in-place addition between matrix and numeric types
             >>> m1 += m2
             >>> m1
-            Matrix(rows=2, columns=2, matrix=[[6, 8], [10, 12]])
+            Matrix(rows=2, columns=2, matrix=[[Fraction(6, 1), Fraction(8, 1)], [Fraction(10, 1), Fraction(12, 1)]])
 
         -> in-place subtraction between matrix and numeric types
             >>> m1 -= m2
             >>> m1
-            Matrix(rows=2, columns=2, matrix=[[-4, -4], [-4, -4]])
+            Matrix(rows=2, columns=2, matrix=[[Fraction(-4, 1), Fraction(-4, 1)], [Fraction(-4, 1), Fraction(-4, 1)]])
 
         -> in-place multiplication between matrix and numeric types
             >>> m1 *= m2
             >>> m1
-            Matrix(rows=2, columns=2, matrix=[[30, 112], [90, 224]])
-
+            Matrix(rows=2, columns=2, matrix=[[Fraction(19, 1), Fraction(22, 1)], [Fraction(43, 1), Fraction(50, 1)]])
             >>> m1 *= num
             >>> m1
-            Matrix(rows=2, columns=2, matrix=[[7, 14], [21, 28]])
+            Matrix(rows=2, columns=2, matrix=[[Fraction(7, 1), Fraction(14, 1)], [Fraction(21, 1), Fraction(28, 1)]])
 
         -> checking equality between matrix
             >>> m1 == m2
@@ -97,7 +97,7 @@ class Matrix:
         -> absolute value of matrix         # making the matrix negative with multiplying with -1
             >>> m1 *= -1
             >>> abs(m1)
-            Matrix(rows=2, columns=2, matrix=[[1, 2], [3, 4]])
+            Matrix(rows=2, columns=2, matrix=[[Fraction(1, 1), Fraction(2, 1)], [Fraction(3, 1), Fraction(4, 1)]])
 
         -> checking if an element is in matrix
             >>> 4 in m1
@@ -120,54 +120,110 @@ class Matrix:
 
         -> using index
             >>> m[1]
-            [4, 5, 6]
+            [Fraction(4, 1), Fraction(5, 1), Fraction(6, 1)]
 
             >>> m[1][2]
-            6
+            Fraction(6, 1)
 
         -> iterating using for loop
             >>> for row in m:
             ...     print(row)
             ...
-            [1, 2, 3]
-            [4, 5, 6]
+            [Fraction(1, 1), Fraction(2, 1), Fraction(3, 1)]
+            [Fraction(4, 1), Fraction(5, 1), Fraction(6, 1)]
 
             >>> for row in m:
             ...     for element in row:
             ...         print(element, end=", ")
             ...
-            1, 2, 3, 4, 5, 6,
+            '1', '2', '3,' '4,' '5', '6',
 
-# CHECKING IF A MATRIX IS SYMMETRIC MATRIX
-    >>> m = Matrix(3, 3, matrix=[[1, 1, -1], [1, 2, 0], [-1, 0, 5]])
-    >>> m.is_symmetric()
+# FINDING THE SOLUTION TO A SET OF LINEAR EQUATION WITH SAME NO. OF EQUATIONS TO VARIABLES USING CRAMER'S RULE
+    >>> m = Matrix(3, 4, matrix=[[2, 1, -1, 8], [-3, -1, 2, -11], [-2, 1, 2, -3]])
+    >>> m.cramer_rule()
+    (Fraction(2, 1), Fraction(3, 1), Fraction(-1, 1))
+
+# CREATING A COPY OF THE MATRIX
+    >>> m = Matrix(3, 3, matrix=[[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    >>> m.copy()
+    Matrix(rows=3, columns=3, matrix=[[Fraction(1, 1), Fraction(2, 1), Fraction(3, 1)], [Fraction(4, 1), Fraction(5, 1), Fraction(6, 1)], [Fraction(7, 1), Fraction(8, 1), Fraction(9, 1)]])
+
+# FINDING DETERMINANT OF A SQUARE MATRIX
+    >>> m = Matrix(3, 3, matrix=[[2, 1, -1], [-3, -1, 2], [-2, 1, 2]])
+    >>> m.determinant()
+    Fraction(-1, 1)
+
+# CONVERTING A MATRIX TO ITS EQUIVALENT ECHELON FORM
+    >>> m = Matrix(3, 4, matrix=[[2, 1, -1, 8], [-3, -1, 2, -11], [-2, 1, 2, -3]])
+    >>> m.echelon_form()
+    Matrix(rows=3, columns=4, matrix=[[Fraction(2, 1), Fraction(1, 1), Fraction(-1, 1), Fraction(8, 1)], [Fraction(0, 1), Fraction(1, 2), Fraction(1, 2), Fraction(1, 1)], [Fraction(0, 1), Fraction(0, 1), Fraction(-1, 1), Fraction(1, 1)]])
+
+# FINDIND THE EIGEN VALUES OF A SQUARE MATRIX
+    >>> m = Matrix(3, 3, matrix=[[-2, 2, -3], [2, 1, -6], [-1, -2, 0]])
+    >>> m.eigen_values()
+    (Fraction(5, 1), Fraction(-3, 1), Fraction(-3, 1))
+
+# FINDING THE EIGEN VECTORS OF A SQUARE MATRIX
+    >>> m = Matrix(3, 3, matrix=[[-2, 2, -3], [2, 1, -6], [-1, -2, 0]])
+    >>> m.eigen_vectors()
+    ((Fraction(-4, 1), Fraction(7, 1), Fraction(14, 1)), (Fraction(4, 1), Fraction(1, 1), Fraction(2, 1)), (Fraction(7, 1), Fraction(1, 1), Fraction(3, 1)))
+
+# FINDING THE SOLUTION TO A SET OF LINEAR EQUATION WITH SAME NO. OF EQUATIONS TO VARIABLES USING GAUSS ELIMINATION
+    >>> m = Matrix(3, 4, matrix=[[2, 1, -1, 8], [-3, -1, 2, -11], [-2, 1, 2, -3]])
+    >>> m.gauss_elimination()
+    (Fraction(2, 1), Fraction(3, 1), Fraction(-1, 1))
+
+# FINDING THE INVCERSE OF A NON-SINGULAR MATRIX USING GAUSS JORDAN ELIMINATION
+    >>> m = Matrix(3, 3, matrix=[[2, 1, -1], [-3, -1, 2], [-2, 1, 2]])
+    >>> m.gauss_jordan_elimination()
+    Matrix(rows=3, columns=3, matrix=[[Fraction(4, 1), Fraction(3, 1), Fraction(-1, 1)], [Fraction(0, 1), Fraction(-1, 2), Fraction(1, 2)], [Fraction(0, 1), Fraction(0, 1), Fraction(1, 2)]])
+
+# CHECKING IF THE MATRIX IS A ORTHOGONAL MATRIX
+    >>> m = Matrix(3, 3, method="identity")
+    >>> m.is_orthogonal()
     True
 
-    >>> m = Matrix(3, 3, matrix=[[0, 1, -2], [-1, 0, 3], [2, -3, 0]])
-    >>> m.is_symmetric()
-    False
-
+# CHECKING IF THE MATRIX IS A ORTHONORMAL SYSTEM OF COLUMN VECTORS
+    >>> m = Matrix(3, 3, method="identity")
+    >>> m.is_orthonormal_system()
+    True
 
 # CHECKING IF A MATRIX IS SKEW SYMMETRIC MATRIX
     >>> m = Matrix(3, 3, matrix=[[0, 1, -2], [-1, 0, 3], [2, -3, 0]])
     >>> m.is_skew_symmetric()
     True
 
+# CHECKING IF A MATRIX IS SQUARE OR NOT
+    >>> m = Matrix(3, 3, method="null")
+    >>> m.is_square()
+    True
+
+# CHECKING IF A MATRIX IS SYMMETRIC MATRIX
     >>> m = Matrix(3, 3, matrix=[[1, 1, -1], [1, 2, 0], [-1, 0, 5]])
-    >>> m.is_skew_symmetric()
-    False
+    >>> m.is_symmetric()
+    True
 
 # USING THE MATRIX PRINT FUNCTION
     >>> m = Matrix(3, 3, matrix=[[1, 1, -1], [1, 2, 0], [-1, 0, 5]])
     >>> m.print()
-    [1, 1, -1]
-    [1, 2, 0]
-    [-1, 0, 5]
+    ['1', '1', '-1']
+    ['1', '2', '0']
+    ['-1', '0', '5']
+
+# FINIDNG THE RANK OF A MATRIX
+    >>> m = Matrix(3, 3, matrix=[[-2, 2, -3], [2, 1, -6], [-1, -2, 0]])
+    >>> m.rank()
+    3
 
 # FINDING TRANSPOSE OF A MATRIX
     >>> m = Matrix(3, 3, matrix=[[1, 1, -1], [1, 2, 0], [-1, 0, 5]])
     >>> m.transpose()
-    Matrix(rows=3, columns=3, matrix=[[1, 1, -1], [1, 2, 0], [-1, 0, 5]])
+    Matrix(rows=3, columns=3, matrix=[[Fraction(1, 1), Fraction(1, 1), Fraction(-1, 1)], [Fraction(1, 1), Fraction(2, 1), Fraction(0, 1)], [Fraction(-1, 1), Fraction(0, 1), Fraction(5, 1)]])
+
+# DETERMINING THE TYPE OF THE MATRIX
+    >>> M = Matrix(2, 3, method="null")
+    >>> m.type()
+    'rectangular'
     """
 
     def __init__(self, rows: int, columns: int, method: Literal["input", "null", "identity", "pass"] = "pass", *,
@@ -337,16 +393,16 @@ class Matrix:
     __radd__: Callable[["Matrix", "Matrix"], "Matrix"] = lambda self, other: self.__add__(other)
     __rsub__: Callable[["Matrix", "Matrix"], "Matrix"] = lambda self, other: (-self).__add__(other)
     __rmul__: Callable[["Matrix", "Matrix | Fraction"], "Matrix"] = lambda self, other: self.__mul__(other)
-    __bool__: Callable[["Matrix"], bool] = lambda self: self.type != "null"
+    __bool__: Callable[["Matrix"], bool] = lambda self: self.type() != "null"
     __pos__: Callable[["Matrix"], "Matrix"] = lambda self: self
     __neg__: Callable[["Matrix"], "Matrix"] = lambda self: self.__mul__(-1)
-    __eq__: Callable[["Matrix", "Matrix"], bool] = lambda self, other: self.matrix == other.matrix\
+    __eq__: Callable[["Matrix", "Matrix"], bool] = lambda self, other: self.matrix == other.matrix \
         if isinstance(other, Matrix) else NotImplemented
     __getitem__: Callable[["Matrix", int], list[Fraction]] = lambda self, item: self.matrix[item]
     __name__ = "Matrix"
-    __str__: Callable[["Matrix"], str] = lambda self:\
+    __str__: Callable[["Matrix"], str] = lambda self: \
         f"\nrows = {self.order[0]}\ncolumns = {self.order[1]}\nmatrix = {self.matrix}"
-    __repr__: Callable[["Matrix"], str] = lambda self:\
+    __repr__: Callable[["Matrix"], str] = lambda self: \
         f"Matrix(rows={self.order[0]}, columns={self.order[1]}, matrix={self.matrix})"
     __call__ = __repr__
 
@@ -393,12 +449,11 @@ class Matrix:
         self._matrix = [[Fraction() for _ in range(self.order[1])] for _ in range(self.order[0])]
         return self
 
-    def cramer_rule(self) -> tuple[Fraction]:
+    def cramer_rule(self) -> tuple[Fraction] | tuple[int, str]:
         if self.order[0] != self.order[1] - 1:
             raise MatrixError("Cramer's rule is not applicable for rectangular matrix")
 
-        a = []
-        b = []
+        a, b, res = [], [], []
 
         for row in self.matrix:
             a.append(row[:-1])
@@ -406,7 +461,8 @@ class Matrix:
 
         a = Matrix(len(a), len(a[0]), matrix=a)
         det = a.determinant()
-        res = []
+        if det == 0:
+            return 0, "The set of linear equations has no solutions"
 
         for i in range(self.order[0]):
             temp_matrix = a.copy()
@@ -431,9 +487,6 @@ class Matrix:
         return det
 
     def echelon_form(self) -> "Matrix":
-        if self.order[0] != self.order[1] - 1:
-            raise MatrixError("Invalid matrix to form echelon matrix")
-
         result = Matrix(self.order[0], self.order[1], matrix=self.matrix)
 
         pivot = 0
@@ -471,8 +524,8 @@ class Matrix:
             det = Fraction()
 
             for i in range(len(matrix)):
-                minor = [row[:i] + row[i+1:] for row in matrix[1:]]
-                det += ((-1)**i) * matrix[0][i] * determinant_for_eigen(minor)
+                minor = [row[:i] + row[i + 1:] for row in matrix[1:]]
+                det += ((-1) ** i) * matrix[0][i] * determinant_for_eigen(minor)
 
             return det
 
@@ -480,11 +533,12 @@ class Matrix:
             raise MatrixError("Eigen values for a non-square matrix are not defined")
 
         var = Term("x")
-        mat = [[self.matrix[i][j] - var if i == j else self.matrix[i][j] for j in range(self.order[1])] for i in range(self.order[0])]
+        mat = [[self.matrix[i][j] - var if i == j else self.matrix[i][j] for j in range(self.order[1])] for i in
+               range(self.order[0])]
         res = determinant_for_eigen(mat).roots()
 
         try:
-            return tuple((Fraction(element) for element in res))
+            return tuple((Fraction(round(element, 3)) for element in res))
 
         except ValueError:
             raise MatrixError("Complex roots are not allowed")
@@ -515,7 +569,7 @@ class Matrix:
             vector = characteristic_matrix.gauss_elimination()
 
             if isinstance(vector[1], str):
-                for i in range(1, value+1):
+                for i in range(1, value + 1):
                     row = simplify_row(characteristic_matrix[0].copy())
                     vector = [Fraction(1)]
 
@@ -523,9 +577,7 @@ class Matrix:
                         row[1] += row[j] * (j + i - 1)
                         vector.append(Fraction(j + i - 1))
 
-                    row = row[:2]
-                    row[1] *= -1
-                    row[1] /= row[0]
+                    row[1] /= -row[0]
                     vector.insert(0, row[1])
                     res.append(tuple(simplify_row(vector)))
 
@@ -569,8 +621,8 @@ class Matrix:
 
         identity_mat = Matrix(self.order[0], self.order[1], "identity")
         aug_matrix = Matrix(self.order[0], self.order[0] * 2,
-                            matrix=list(reversed((self.matrix[i] + identity_mat.matrix[i]
-                                                  for i in range(self.order[0]))))).echelon_form()
+                            matrix=list(reversed([self.matrix[i] + identity_mat.matrix[i]
+                                                  for i in range(self.order[0])]))).echelon_form()
         for i in range(self.order[0]):
             aug_matrix[i][:self.order[0]] = list(reversed(aug_matrix[i][:self.order[0]]))
 
@@ -695,5 +747,3 @@ class Matrix:
     is_symmetric: Callable[["Matrix"], bool] = lambda self: self == self.transpose()
     print: Callable[["Matrix"], None] = lambda self: [print([element.__str__() for element in self.matrix[i]])
                                                       for i in range(len(self.matrix))]
-
-
