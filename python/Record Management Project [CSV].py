@@ -26,7 +26,7 @@ def create():
 
         print('RECORD CREATED')
 
-    except:
+    except ValueError:
         print('\nINVALID INPUT')
 
     f.close()

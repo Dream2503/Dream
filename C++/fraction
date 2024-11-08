@@ -1,17 +1,18 @@
 #include <sstream>
-using namespace std;
+#include <numeric>
 
 class Fraction {
     int num = 0, den = 1;
-    int gcd(int, int);
     
     public:
     Fraction() {}
     Fraction(int, int);
-    Fraction(string);
-    operator int() {return this->num / this->den; }
+    Fraction(std::string);
+    operator int() {return this->num / this->den;}
     operator double() {return static_cast<double>(this->num) / this->den;}
+    operator float() {return static_cast<float>(this->num) / this->den;}
     Fraction operator+(Fraction frac) {return Fraction(this->num * frac.den + frac.num * this->den, this->den * frac.den);}
+    Fraction gcd(Fraction frac) {Fraction(std::gcd(this->num, frac.num), std::lcm(this->den, frac.den));}
     void operator+=(Fraction);
     Fraction operator-(Fraction frac) {return Fraction(this->num * frac.den - frac.num * this->den, this->den * frac.den);}
     void operator-=(Fraction);
@@ -21,32 +22,21 @@ class Fraction {
     void operator/=(Fraction);
     bool operator==(Fraction frac) {return this->num == frac.num and this->den == frac.den;}
     bool operator!=(Fraction frac) {return not this->operator==(frac);}
-    friend ostream &operator<<(ostream&, Fraction&);
+    friend std::ostream &operator<<(std::ostream&, Fraction&);
     void simplify();
 };
-int Fraction::gcd(int a, int b) {
-    int temp;
-
-    while (b) {
-        temp = b;
-        b = a % b;
-        a = temp;
-    }
-    return a;
-}
-
 Fraction::Fraction(int numerator, int denominator = 1) {
     this->num = numerator;
-    if (not denominator) throw invalid_argument("Division by zero fraction");
+    if (not denominator) throw std::invalid_argument("Division by zero fraction");
     this->den = denominator;
     this->simplify();
 }
-Fraction::Fraction(string num) {
+Fraction::Fraction(std::string num) {
     int decimal = num.find('.'), size = num.size(), res;
 
     if (decimal != -1) {
         while (decimal != size-1) {
-            swap(num[decimal], num[decimal+1]);
+            std::swap(num[decimal], num[decimal+1]);
             this->den *= 10;
             decimal++;
         }
@@ -71,22 +61,22 @@ void Fraction::operator*=(Fraction frac) {
     this->simplify();
 }
 Fraction Fraction::operator/(Fraction frac) {
-    if (not frac.num) throw invalid_argument("Division by zero fraction");
+    if (not frac.num) throw std::invalid_argument("Division by zero fraction");
     return Fraction(this->num * frac.den, this->den * frac.num);
 }
 void Fraction::operator/=(Fraction frac) {
-    if (not frac.num) throw invalid_argument("Division by zero fraction");
+    if (not frac.num) throw std::invalid_argument("Division by zero fraction");
     this->num *= frac.den;
     this->den *= frac.num;
     this->simplify();
 }
-ostream &operator<<(ostream &os, Fraction &frac) {
+std::ostream &operator<<(std::ostream &os, Fraction &frac) {
     if (frac.den == 1) os << frac.num;
     else os << frac.num << '/' << frac.den;
     return os;
 }
 void Fraction::simplify() {
-    int factor = this->gcd(this->num, this->den);
+    int factor = std::gcd(this->num, this->den);
     this->num /= factor;
     this->den /= factor;
     

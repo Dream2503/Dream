@@ -1,6 +1,6 @@
 from fractions import Fraction
 from typing import Callable, Generic, TypeVar
-from math import gcd, cos, acos, pi, sqrt as sqrtf
+from math import gcd, lcm, cos, acos, pi, sqrt as sqrtf
 from cmath import sqrt as sqrtc
 
 First = TypeVar("First")
@@ -520,7 +520,7 @@ class Term:
             else:
                 factor = None
 
-            coef = self._custom_gcd(coef, element.coefficient)
+            coef = Fraction(gcd(coef.numerator, element.coefficient.numerator), lcm(coef.denominator, element.coefficient.denominator))
 
         if factor:
             for element in self.denominator:
@@ -530,7 +530,7 @@ class Term:
                 else:
                     factor = None
 
-                coef = self._custom_gcd(coef, element.coefficient)
+                coef = Fraction(gcd(coef.numerator, element.coefficient.numerator), lcm(coef.denominator, element.coefficient.denominator))
 
         if factor:
             for term in (self.numerator, self.denominator):
@@ -538,16 +538,6 @@ class Term:
                     element.variables[factor[0]] -= factor[1]
 
         return Term(numerator=self.numerator, denominator=self.denominator)
-
-    @staticmethod
-    def _custom_gcd(frac1: Fraction, frac2: Fraction) -> Fraction:
-        num1, den1 = frac1.numerator, frac1.denominator
-        num2, den2 = frac2.numerator, frac2.denominator
-
-        gcd_num = gcd(num1, num2)
-        lcm_den = (den1 * den2) // gcd(den1, den2)
-
-        return Fraction(gcd_num, lcm_den)
 
     def roots(self) -> tuple[float, ...]:
         def quadratic_roots(b: Fraction, c: Fraction) -> tuple[float, float]:
