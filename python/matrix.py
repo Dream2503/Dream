@@ -1,7 +1,7 @@
-from typing import Literal, Callable, Any
 from fractions import Fraction
-from equation import Term
 from math import gcd, lcm
+from typing import Any, Callable, Generator, Literal
+from equation import Term
 
 
 class MatrixError(Exception): ...
@@ -18,7 +18,7 @@ class Matrix:
 
         rows = 2
         columns = 3
-        matrix = [[Fraction(1, 1), Fraction(2, 2), Fraction(3, 1)], [Frqction(4, 1), Fraction(5, 1), Fraction(6, 1)]]
+        matrix = [[Fraction(1, 1), Fraction(2, 2), Fraction(3, 1)], [Fraction(4, 1), Fraction(5, 1), Fraction(6, 1)]]
 
     -> providing a valid nested list and convert it to matrix
         >>> m = Matrix(2, 3, matrix=[[1, 2, 3], [4, 5, 6]])     # here matrix= is keyword only argument
@@ -26,7 +26,7 @@ class Matrix:
 
         rows = 2
         columns = 3
-        matrix = [[Fraction(1, 1), Fraction(2, 2), Fraction(3, 1)], [Frqction(4, 1), Fraction(5, 1), Fraction(6, 1)]]
+        matrix = [[Fraction(1, 1), Fraction(2, 2), Fraction(3, 1)], [Fraction(4, 1), Fraction(5, 1), Fraction(6, 1)]]
 
     -> by providing a type of matrix to generate
         -> null matrix
@@ -158,7 +158,7 @@ class Matrix:
     >>> m.echelon_form()
     Matrix(rows=3, columns=4, matrix=[[Fraction(2, 1), Fraction(1, 1), Fraction(-1, 1), Fraction(8, 1)], [Fraction(0, 1), Fraction(1, 2), Fraction(1, 2), Fraction(1, 1)], [Fraction(0, 1), Fraction(0, 1), Fraction(-1, 1), Fraction(1, 1)]])
 
-# FINDIND THE EIGEN VALUES OF A SQUARE MATRIX
+# FINDING THE EIGEN VALUES OF A SQUARE MATRIX
     >>> m = Matrix(3, 3, matrix=[[-2, 2, -3], [2, 1, -6], [-1, -2, 0]])
     >>> m.eigen_values()
     (Fraction(5, 1), Fraction(-3, 1), Fraction(-3, 1))
@@ -173,7 +173,7 @@ class Matrix:
     >>> m.gauss_elimination()
     (Fraction(2, 1), Fraction(3, 1), Fraction(-1, 1))
 
-# FINDING THE INVCERSE OF A NON-SINGULAR MATRIX USING GAUSS JORDAN ELIMINATION
+# FINDING THE INVERSE OF A NON-SINGULAR MATRIX USING GAUSS JORDAN ELIMINATION
     >>> m = Matrix(3, 3, matrix=[[2, 1, -1], [-3, -1, 2], [-2, 1, 2]])
     >>> m.gauss_jordan_elimination()
     Matrix(rows=3, columns=3, matrix=[[Fraction(4, 1), Fraction(3, 1), Fraction(-1, 1)], [Fraction(0, 1), Fraction(-1, 2), Fraction(1, 2)], [Fraction(0, 1), Fraction(0, 1), Fraction(1, 2)]])
@@ -210,7 +210,7 @@ class Matrix:
     ['1', '2', '0']
     ['-1', '0', '5']
 
-# FINIDNG THE RANK OF A MATRIX
+# FINDING THE RANK OF A MATRIX
     >>> m = Matrix(3, 3, matrix=[[-2, 2, -3], [2, 1, -6], [-1, -2, 0]])
     >>> m.rank()
     3
@@ -386,7 +386,7 @@ class Matrix:
                 if element == item:
                     return True
 
-    def __iter__(self) -> list[Fraction]:
+    def __iter__(self) -> Generator[Fraction]:
         for row in self.matrix:
             yield row
 
