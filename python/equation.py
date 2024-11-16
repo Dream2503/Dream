@@ -510,8 +510,11 @@ class Term:
 
         except IndexError:
             factor = None
+        try:
+            coef = self.numerator[0].coefficient
 
-        coef = self.numerator[0].coefficient
+        except IndexError:
+            coef = 0
 
         for element in self.numerator[1:]:
             if factor is not None and factor[0] in element.variables:

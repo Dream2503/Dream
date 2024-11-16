@@ -1,0 +1,230 @@
+#include <iostream>
+#define CONST_SIZE 8
+using namespace std;
+
+template <class type>
+class Stack {
+    int size = CONST_SIZE, top =-1;
+    type *array =new type[CONST_SIZE];
+    bool isOpr(char ch) {return (ch == '+' || ch == '-' || ch == '*' || ch == '/');}
+    int pres(char);
+    bool operators(Stack<type>, string);
+
+    public:
+        Stack() {}
+        Stack(initializer_list<type> list) {for (const type element: list) this->push(element);}
+        Stack(Stack<type> &stack) {for (int i = 0; i <= this->top; i++) this->push(stack.array[i]);}
+        Stack(type *list, int size) {for (int i = 0; i < size; i++) this->push(list[i]);}
+        double average() {return this->sum() / (double)this->length();}
+        void clear() {while (not this->isEmpty()) this->pop();}
+        bool contains(type);
+        Stack<type> copy() {return *this;}
+        int count(type);
+        type evalPostfix(string);
+        void extend(Stack<type> stack) {for (int i = 0; i <= stack.top; i++) this->push(stack.array[i]);}
+        void display() {operator<<(cout, *this);}
+        string infixToPostfix(string);
+        int index(type);
+        bool isSorted();
+        bool isEmpty() {return this->top == -1;}
+        bool isFull() {return this->top == this->size - 1;}
+        int length() {return this->top + 1;}
+        type max();
+        type min();
+        Stack<type> operator+(Stack<type>);
+        void operator+=(Stack<type> stack) {this->extend(stack);}
+        Stack<type> operator*(int);
+        void operator*=(int);
+        bool operator>(Stack<type> stack) {return this->operators(stack, ">");}
+        bool operator>=(Stack<type> stack) {return this->operators(stack, ">=");}
+        bool operator<(Stack<type> stack) {return this->operators(stack, "<");}
+        bool operator<=(Stack<type> stack) {return this->operators(stack, "<=");}
+        bool operator==(Stack<type> stack) {return this->operators(stack, "==");}
+        bool operator!=(Stack<type> stack) {return not (*this == stack);}
+        template <class T>
+        friend ostream &operator<<(ostream&, Stack<T>);
+        type operator[](int index) {return this->peek(index);}
+        type peek(int);
+        type pop();
+        void push(type);
+        type stackTop();
+        type sum();
+    
+};
+template <class type>
+int Stack<type>::pres(char ch) {
+    if (ch == '+' || ch == '-') return 1;
+    if (ch == '*' || ch == '/') return 2;
+    return 0;
+}
+template <class type>
+bool Stack<type>::operators(Stack<type> stack, string opr) {
+    int small = this->top;
+    if (this->top > stack.top) small = stack.top;
+
+    for (int i = small; i >= 0; i++) {
+        if ((opr == ">") and (this->array[i] <= stack[i])) return false;
+        else if ((opr == ">=") and (this->array[i] < stack[i])) return false;
+        else if ((opr == "<") and (this->array[i] >= stack[i])) return false;
+        else if ((opr == "<=") and (this->array[i] > stack[i])) return false;
+        else if ((opr == "==") and (this->array[i] != stack[i] or this->top != stack.top)) return false;
+    }
+    return true;
+}
+
+template <class type>
+bool Stack<type>::contains(type value) {
+    for (int i = this->top; i >= 0; i--) if (this->array[i] == value) return true;
+    return false;
+}
+template <class type>
+int Stack<type>::count(type value) {
+    int cnt = 0;
+    for (int i = this->top; i >= 0; i--) if (this->array[i] == value) cnt++;
+    return cnt;
+}
+template <class type>
+type Stack<type>::evalPostfix(string str) {
+    this->clear();
+    type x1, x2, res;
+
+    for (char ch: str) {
+        if (this->isOpr(ch)) {
+            x2 = this->pop(), x1 = this->pop();
+
+            switch (ch) {
+                case '+':
+                    res = x1 + x2;
+                    break;
+                case '-':
+                    res = x1 - x2;
+                    break;
+                case '*':
+                    res = x1 * x2;
+                    break;
+                case '/':
+                    res = x1 / x2;
+                    break;
+                default:
+                    break;
+            }
+            this->push(res);
+        } else this->push(ch - '0');
+    }
+    return this->pop();
+}
+template <class type>
+string Stack<type>::infixToPostfix(string infix) {
+    this->clear();
+    string postfix;
+    int i = 0;
+
+    while (infix[i]) {
+        if (isOpr(infix[i])) {
+            if (pres(infix[i]) > pres(this->stackTop())) this->push(infix[i++]);
+            else postfix += this->pop();
+        } else postfix += infix[i++];
+    }
+    while (not this->isEmpty()) postfix += this->pop();
+    return postfix;
+}
+template <class type>
+int Stack<type>::index(type value) {
+    for (int i = this->top; i >= 0; i++) if (this->array[i] == value) return i;
+    return 0;
+}
+template <class type>
+bool Stack<type>::isSorted() {
+    for (int i = this->top; i >= 1; i--) if (this->array[i] < this->array[i-1]) return false;
+    return true;
+}
+template <class type>
+type Stack<type>::max() {
+    if (this->isEmpty()) return 0;
+    type max = this->array[this->top];
+    for (int i = this->top-1; i >= 0; i--) {if (this->array[i] > max) max = this->array[i];}
+    return max;
+}
+template <class type>
+type Stack<type>::min() {
+    if (this->isEmpty()) return 0;
+    type min = this->array[this->top];
+    for (int i = this->top-1; i >= 0; i--) {if (this->array[i] < min) min = this->array[i];}
+    return min;
+}
+template <class type>
+Stack<type> Stack<type>::operator+(Stack<type> stack) {
+    Stack<type> res(*this);
+    res.extend(stack);
+    return res;
+}
+template <class type>
+Stack<type> Stack<type>::operator*(int num) {
+    Stack<type> res;
+    if (this->isEmpty() or num == 0) return res;
+    if (num < 0) {
+        cout << "Invalid number";
+        exit(0);
+    }
+    for (int i = 1; i < num; i++) res.extend(*this);
+    return res;
+}
+template <class type>
+void Stack<type>::operator*=(int num) {
+    Stack<type> res;
+    res = *this * num;
+    this->clear();
+    *this = res;
+}
+template <class T>
+ostream &operator<<(ostream &out, Stack<T> stack) {
+    if (stack.isEmpty()) cout << "Stack is empty\n";
+    else {
+        out << stack.array[stack.top] << "    <- top" << endl;
+        
+        for (int i = stack.top - 1; i >= 0; i--) {
+            out << stack.array[i] << endl;
+        }
+    }
+    return out;
+}
+template <class type>
+type Stack<type>::peek(int pos) {
+    int index = this->top - pos;
+
+    if (index < 0 or index >= this->size) {
+        cout << "Index out of range";
+        exit(0);
+    }
+    return this->array[index];
+}
+template <class type>
+type Stack<type>::pop() {
+    if (this->isEmpty()) {
+        cout << "Stack Underflow";
+        exit(0);
+    }
+    return this->array[this->top--];
+}
+template <class type>
+void Stack<type>::push(type value) {
+    if (this->isFull()) {
+        this->size *= 2;
+        type *list = new type[this->size];
+        for (int i = 0; i <= this->top; i++) list[i] = this->array[i];
+        delete []this->list;
+        this->array = list;
+    }
+    else this->array[++this->top] = value;
+}
+template <class type>
+type Stack<type>::stackTop() {
+    if (this->isEmpty()) return -1;
+    return this->array[this->top];
+}
+template <class type>
+type Stack<type>::sum() {
+    type sum = 0;
+    for (int i = this->top; i >= 0; i++) sum += this->array[i];
+    return sum;
+}

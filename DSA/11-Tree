@@ -1,0 +1,145 @@
+#include <iostream>
+#include "09-StackLinkedList"
+#include "10-Queue"
+using namespace std;
+
+template <class type>
+class Tree {
+    struct Node {
+        type data = 0;
+        Node *lchild = nullptr, *rchild = nullptr;
+    };
+    Node *root = nullptr;
+
+    public:
+        Tree();
+        int count();
+        void inOrder();
+        void levelOrder();
+        void postOrder();
+        void preOrder();
+        int sum();
+};
+
+template <class type>
+Tree<type>::Tree() {
+    Queue<Node*> queue;
+    this->root = new Node;
+
+    cout << "Enter the root value: ";
+    cin >> this->root->data;
+    queue.enqueue(this->root);
+
+    int value;
+    Node *prev, *current;
+
+    while (not queue.isEmpty()) {
+        prev = queue.dequeue();
+        cout << "Enter the left child value of node " << prev->data << ": ";
+        cin >> value;
+
+        if (value != -1) {
+            current = new Node;
+            current->data = value;
+            prev->lchild = current;
+            queue.enqueue(current);
+        }
+        cout << "Enter the right child value of node " << prev->data << ": ";
+        cin >> value;
+
+        if (value != -1) {
+            current = new Node;
+            current->data = value;
+            prev->rchild = current;
+            queue.enqueue(current);
+        }
+    }
+}
+template <class type>
+int Tree<type>::count() {
+    auto inner = [](Node* node, auto &inner) -> int {
+        if (node) return inner(node->lchild, inner) + inner(node->rchild, inner) + 1;
+        return 0;
+    };
+    return inner(this->root, inner);
+}
+template <class type>
+void Tree<type>::inOrder() {
+    Stack<Node*> stk;
+    Node *current = root;
+
+    do {
+        if (current) {
+            stk.push(current);
+            current = current->lchild; 
+        } else {
+            current = stk.pop();
+            cout << current->data << " ";
+            current = current->rchild;
+        }
+    } while (current or not stk.isEmpty());
+}
+template <class type>
+void Tree<type>::levelOrder() {
+    Queue<Node*> queue;
+    cout << this->root->data;
+    queue.enqueue(this->root);
+    Node *current;
+
+    while (not queue.isEmpty()) {
+        current = queue.dequeue();
+
+        if (current->lchild) {
+            cout << current->lchild->data << " ";
+            queue.enqueue(current->lchild);
+        } if (current->rchild) {
+            cout << current->rchild->data << " ";
+            queue.enqueue(current->rchild);
+        }
+    }
+}
+template <class type>
+void Tree<type>::postOrder() {
+    Stack<long long int> stk;
+    Node *current = root;
+
+    do {
+        if (current) {
+            stk.push((long long int)current);
+            current = current->lchild; 
+        } else {
+            current = (Node*)stk.pop();
+            if (root > 0) {
+                stk.push(-(long long int)current);
+                current = current->rchild;
+            } else {
+                cout << current->data << " ";
+                current = nullptr;
+            }
+        }
+    } while (current or not stk.isEmpty());
+}
+template <class type>
+void Tree<type>::preOrder() {
+    Stack<Node*> stk;
+    Node *current = root;
+
+    do {
+        if (root) {
+            cout << current->data << " ";
+            stk.push(current);
+            current = current->lchild; 
+        } else {
+            current = stk.pop();
+            current = current->rchild;
+        }
+    } while (current or not stk.isEmpty());
+}
+template <class type>
+int Tree<type>::sum() {
+    auto inner = [](Node* node, auto &inner) -> int {
+        if (node) return inner(node->lchild, inner) + inner(node->rchild, inner) + node->data;
+        return 0;
+    };
+    return inner(this->root, inner);
+}

@@ -1,0 +1,80 @@
+#include <iostream>
+#define CONST_SIZE 8
+using namespace std;
+
+template <class type>
+class Heap {
+    type *list = new type[CONST_SIZE];
+    int len = 0, size = CONST_SIZE;
+    string mode = "max";
+    void reSize();
+
+    public:
+        Heap() {}
+        Heap(initializer_list<type> list, string mode = "max") { this->mode = mode; for (type element: list) this->insert(element);}
+        Heap(Heap<type> &heap) { this->mode = mode; for (type element: heap) this->insert(element);}
+        Heap(type *list, int size, string mode = "max") { this->mode = mode; for (int i = 0; i < size; i++) this->insert(list[i]);}
+        type *begin() {return list + 1;}
+        void insert(type);
+        type *end() {return list + len;}
+        template <class T>
+        friend ostream &operator<<(ostream&, Heap<T>&);
+        int remove();
+};
+
+template <class type>
+void Heap<type>::reSize() {
+    this->size *= 2;
+    type *list = new type[this->size];
+    for (int i = 0; i < this->len; i++) list[i] = this->list[i];
+    delete []this->list;
+    this->list = list;
+}
+
+template <class type>
+void Heap<type>::insert(type value) {
+    if (this->len == 0) this->list[len++] = -1;
+    if (this->len == this->size) this->reSize();
+    this->list[this->len++] = value;
+    if (this->len == 2) return;
+    int i = this->len - 1, var = this->list[i];
+
+    while (i > 1 and ((var > this->list[i/2] and this->mode == "max") or (var < this->list[i/2] and this->mode == "min"))) {
+        this->list[i] = this->list[i/2];
+        i /= 2;
+    }
+    this->list[i] = var;
+}
+
+template <class T>
+ostream &operator<<(ostream &out, Heap<T> &heap) {
+    if (not heap.len) out << "No elements to display" << endl;
+    else {
+        out << '[';
+
+        for (int i = 1; i < heap.len; i++) {
+            out << heap.list[i];
+            if (i != heap.len - 1) out << ", ";
+        }
+        out << ']' << endl;
+    }
+    return out;
+}
+template <class type>
+int Heap<type>::remove() {
+    if (this->len < 2) return this->list[this->len - 1];
+    int res = this->list[1], i = 1, j = 2, size = --this->len, temp;
+    this->list[1] = this->list[size];
+
+    while (j < size) {
+        if ((this->list[j+1] > this->list[j] and this->mode == "max") or (this->list[j+1] < this->list[j] and this->mode == "min")) j++;
+        if ((this->list[i] < this->list[j] and this->mode == "max") or (this->list[i] > this->list[j] and this->mode == "min")) {
+            int temp = this->list[i];
+            this->list[i] = this->list[j];
+            this->list[j] = temp;
+            i = j;
+            j *= 2;
+        } else break;
+    }
+    return res;
+}

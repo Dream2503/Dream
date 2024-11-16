@@ -1,0 +1,190 @@
+#include <iostream>
+#include "09-StackLinkedList"
+#include "10-Queue"
+using namespace std;
+
+template <class type>
+class BinarySearchTree {
+    struct Node {
+        type data = 0;
+        Node *lchild = nullptr, *rchild = nullptr;
+    };
+    Node *root = nullptr;
+
+    public:
+        BinarySearchTree() {}
+        BinarySearchTree(initializer_list<type> list) {for (type element: list) this->insert(element);}
+        BinarySearchTree(type *list, int size) {for (int i = 0; i < size; i++) this->insert(list[i]);}
+        int count();
+        void remove(type);
+        void inOrder();
+        void insert(type);
+        void levelOrder();
+        void postOrder();
+        void preOrder();
+        Node *search(type);
+        int sum();
+};
+template <class type>
+int BinarySearchTree<type>::count() {
+    auto inner = [inner](Node* node) -> int {
+        if (node) return inner(node->lchild) + inner(node->rchild) + 1;
+        return 0;
+    };
+    return inner(this->root);
+}
+template <class type>
+void BinarySearchTree<type>::remove(type value) {
+    auto height = [](Node *node, auto &height) -> int {
+        if (not node) return 0;
+        int x = height(node->lchild, height), y = height(node->rchild, height);
+        if (x > y) return ++x;
+        return ++y;
+    };
+    auto inPre = [](Node *node) -> Node* {
+        while (node and node->rchild) node = node->rchild;
+        return node;
+    };
+    auto inSucc = [](Node *node) -> Node* {
+        while (node and node->lchild) node = node->lchild;
+        return node;
+    };
+    auto inner = [height, inPre, inSucc, this](Node *node, type value, auto &inner) -> Node* {
+        if (not node) return node;
+
+        if (not (node->lchild or node->rchild)) {
+            if (node == this->root) this->root = nullptr;
+            delete node;
+            return nullptr;
+        }
+        if (value < node->data) node->lchild = inner(node->lchild, value, inner);
+        else if (value > node->data) node->rchild = inner(node->rchild, value, inner);
+        else {
+            if (height(node->lchild, height) > height(node->rchild, height)) {
+                Node *temp = inPre(node->lchild);
+                node->data = temp->data;
+                node->lchild = inner(node->lchild, value, inner);
+            } else {
+                Node *temp = inSucc(node->rchild);
+                node->data = temp->data;
+                node->rchild = inner(node->rchild, value, inner);
+            }
+        }
+        return node;
+    };
+    inner(this->root, value, inner);
+}
+template <class type>
+void BinarySearchTree<type>::inOrder() {
+    Stack<Node*> stk;
+    Node *current = root;
+
+    do {
+        if (current) {
+            stk.push(current);
+            current = current->lchild; 
+        } else {
+            current = stk.pop();
+            cout << current->data << " ";
+            current = current->rchild;
+        }
+    } while (current or not stk.isEmpty());
+}
+template <class type>
+void BinarySearchTree<type>::insert(type value) {
+    if (not this->root) {
+        this->root = new Node;
+        root->data = value;
+        return;
+    }
+    Node *prev, *current = this->root;
+
+    while (current) {
+        prev = current;
+        if (value < current->data) current = current->lchild;
+        else if (value > current->data) current = current->rchild;
+        else return;
+    }
+    if (value < prev->data) {
+        prev->lchild = new Node;
+        prev->lchild->data = value;
+    } else {
+        prev->rchild = new Node;
+        prev->rchild->data = value;
+    }
+}
+template <class type>
+void BinarySearchTree<type>::levelOrder() {
+    Queue<Node*> queue;
+    cout << this->root->data;
+    queue.enqueue(this->root);
+    Node *current;
+
+    while (not queue.isEmpty()) {
+        current = queue.dequeue();
+
+        if (current->lchild) {
+            cout << current->lchild->data << " ";
+            queue.enqueue(current->lchild);
+        } if (current->rchild) {
+            cout << current->rchild->data << " ";
+            queue.enqueue(current->rchild);
+        }
+    }
+}
+template <class type>
+void BinarySearchTree<type>::postOrder() {
+    Stack<long long int> stk;
+    Node *current = root;
+
+    do {
+        if (current) {
+            stk.push((long long int)current);
+            current = current->lchild; 
+        } else {
+            current = (Node*)stk.pop();
+            if (root > 0) {
+                stk.push(-(long long int)current);
+                current = current->rchild;
+            } else {
+                cout << current->data << " ";
+                current = nullptr;
+            }
+        }
+    } while (current or not stk.isEmpty());
+}
+template <class type>
+void BinarySearchTree<type>::preOrder() {
+    Stack<Node*> stk;
+    Node *current = root;
+
+    do {
+        if (root) {
+            cout << current->data << " ";
+            stk.push(current);
+            current = current->lchild; 
+        } else {
+            current = stk.pop();
+            current = current->rchild;
+        }
+    } while (current or not stk.isEmpty());
+}
+template <class type>
+typename BinarySearchTree<type>::Node *BinarySearchTree<type>::search(type value) {
+    Node *current = this->root;
+
+    while (current) {
+        if (value < current->data) current = current->lchild;
+        else if (value > current->data) current = current->rchild;
+        else return current;
+    }
+    return current;
+}
+template <class type>
+int BinarySearchTree<type>::sum() {
+    auto inner = [](Node* node, auto &inner) -> int {
+        if (node) return inner(node->lchild, inner) + inner(node->rchild, inner) + node->data;
+        return 0;
+    };
+    return inner(this->root, inner);
+}

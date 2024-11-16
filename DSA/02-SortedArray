@@ -1,0 +1,255 @@
+#include <iostream>
+#define CONST_SIZE 8
+using namespace std;
+
+template <class type>
+class SortedArray {
+    private:
+        type *list = new type[CONST_SIZE];
+        int len = 0, size = CONST_SIZE;
+        string mode = "asc";
+        bool operators(SortedArray<type>, string);
+        void reSize();
+    
+    public:
+        SortedArray() {}
+        SortedArray(initializer_list<type> list) {for (const type element: list) this->insert(element);}
+        SortedArray(SortedArray<type>&);
+        SortedArray(type *list, int size) {for (int i = 0; i < size; i++) this->insert(list[i]);}
+        double average() {return this->sum() / (double)this->len;}
+        type *begin() {return this->list;}
+        void clear();
+        bool contains(type);
+        SortedArray<type> copy() {return *this;}
+        int count(type);
+        void display() {operator<<(cout, *this);}
+        type *end() {return this->list + this->len;}
+        int index(type);
+        void insert(type);
+        int length() {return this->len;}
+        type max();
+        void merge(SortedArray<type> array) {*this += array;}
+        type min();
+        SortedArray<type> operator+(SortedArray<type>);
+        void operator+=(SortedArray<type>);
+        SortedArray<type> operator*(int);
+        void operator*=(int);
+        bool operator>(SortedArray<type> array) {return this->operators(array, ">");}
+        bool operator>=(SortedArray<type> array) {return this->operators(array, ">=");}
+        bool operator<(SortedArray<type> array) {return this->operators(array, "<");}
+        bool operator<=(SortedArray<type> array) {return this->operators(array, "<=");}
+        bool operator==(SortedArray<type> array) {return this->operators(array, "==");}
+        bool operator!=(SortedArray<type> array) {return not (*this == array);}
+        template <class T>
+        friend ostream &operator<<(ostream&, SortedArray<T>);
+        type operator[](int index);
+        type pop(int);
+        void remove(type);
+        void reverse();
+        type sum();
+};
+template <class type>
+SortedArray<type>::SortedArray(SortedArray<type> &array) {
+    while (array.len >= this->size) this->reSize();
+    if (array.mode == "asc") for (int i = 0; i < array.len; i++) this->list[i] = array[i];
+    else
+
+    this->mode = array.mode;
+    for (type element: array) this->insert(element);
+}
+
+template <class type>
+bool SortedArray<type>::operators(SortedArray<type> array, string opr) {
+    if (this->mode != array.mode) {
+        cout << "Different type of sorted arrays cant be compared";
+        exit(0);
+    }
+    int small = this->len;
+    if (this->len > array.len) small = array.len;
+
+    for (int i = 0; i < small; i++) {
+        if ((opr == ">") and (this->list[i] <= array[i])) return false;
+        else if ((opr == ">=") and (this->list[i] < array[i])) return false;
+        else if ((opr == "<") and (this->list[i] >= array[i])) return false;
+        else if ((opr == "<=") and (this->list[i] > array[i])) return false;
+        else if ((opr == "==") and (this->list[i] != array[i] or this->len != array.len)) return false;
+    }
+    return true;
+}
+template <class type>
+void SortedArray<type>::reSize() {
+    this->size *= 2;
+    type *list = new type[this->size];
+    for (int i = 0; i < this->len; i++) list[i] = this->list[i];
+    delete []this->list;
+    this->list = list;
+}
+
+template <class type>
+void SortedArray<type>::clear() {
+    delete []this->list;
+    this->len = 0;
+    this->list = new type[CONST_SIZE];
+    this->size = CONST_SIZE;
+}
+template <class type>
+bool SortedArray<type>::contains(type value) {
+    if (this->index(value) == -1) return false;
+    return true;
+}
+template <class type>
+int SortedArray<type>::count(type value) {
+    int cnt = 0;
+    int pos;
+    if ((pos = this->index(value)) != -1) cnt++;
+
+    if (cnt) {
+        for (int i = pos - 1; i >= 0; i--) {
+            if (this->list[i] != value) break;
+            cnt++;
+        }
+        for (int i = pos + 1; i < this->len; i++) {
+            if (this->list[i] != value) break;
+            cnt++;
+        }
+    }
+    return cnt;
+}
+template <class type>
+int SortedArray<type>::index(type value) {
+    int low = 0, high = this->len - 1, mid, i;
+
+    while (low <= high) {
+        mid = (low + high) / 2;
+
+        if (this->list[mid] == value) {
+            for (i = mid - 1; i >= low; i--) if (this->list[i] != value) break;
+            return i + 1;
+        } else if ((this->list[mid] < value and this->mode == "asc") or (this->list[mid] > value and this->mode == "dsc")) low = mid + 1;
+        else if ((this->list[mid] > value and this->mode == "asc") or (this->list[mid] < value and this->mode == "dsc")) high = mid - 1;
+    }
+    return -1;
+}
+template <class type>
+void SortedArray<type>::insert(type value) {
+    int index;
+    if (this->len == this->size) this->reSize();
+    for (int i = 0; i <= this->len; i++)
+        if ((this->list[i] >= value and this->mode == "asc") or (this->list[i] <= value and this->mode == "dsc")) {
+            index = i;
+            break;
+        } else index = i;
+    for (int i = this->len++; i > index; i--) this->list[i] = this->list[i-1];
+    this->list[index] = value;
+}
+template <class type>
+type SortedArray <type>::max() {
+    if (this->mode == "asc") return this->list[this->len-1];
+    return this->list[0];
+}
+template <class type>
+type SortedArray <type>::min() {
+    if (this->mode == "asc") return this->list[0];
+    return this->list[this->len-1];
+}
+template <class type>
+SortedArray<type> SortedArray<type>::operator+(SortedArray<type> array) {
+    SortedArray<type> result;
+    int i = 0, j = 0, k = 0;
+    result.len = this->len + array.len;
+    while (result.len >= result.size) result.reSize();
+    
+    if (this->mode != array.mode) {
+        array = array.copy();
+        array.reverse();
+    }
+    while (i != this->len and j != array.len) {
+        if ((this->list[i] < array[j] and this->mode == "asc") or (this->list[i] > array[j] and this->mode == "dsc")) result.list[k++] = this->list[i++];
+        else if ((this->list[i] > array[j] and this->mode == "asc") or (this->list[i] < array[j] and this->mode == "dsc")) result.list[k++] = array[j++];
+        else {
+            result.list[k++] = this->list[i++];
+            result.list[k++] = array[j++];
+        }
+    }
+    for (; i < this->len; i++) result.list[k++] = this->list[i];
+    int temp = j;
+    if (array.mode == this->mode) for (; j < array.len; j++) result.list[k++] = array[j];
+    else for (j = array.len - 1; j >= temp; j--) result.list[k++] = array[j];
+    result.mode = this->mode;
+    return result;
+}
+template <class type>
+void SortedArray<type>::operator+=(SortedArray array) {
+    SortedArray<type> result = *this + array;
+    delete []this->list;
+    *this = result;
+}
+template <class type>
+SortedArray<type> SortedArray<type>::operator*(int num) {
+    SortedArray<type> result;
+    result.len = this->len * num;
+    result.mode = this->mode;
+    while (result.len >= result.size) result.reSize();
+    for (int i = 0, k = 0; i < this->len; i++) for (int j = 0; j < num; j++) result.list[k++] = this->list[i];
+    return result;
+}
+template <class type>
+void SortedArray<type>::operator*=(int num) {
+    SortedArray<type> result = *this * num;
+    delete []this->list;
+    *this = result;
+}
+template <class type>
+type SortedArray<type>::operator[](int index) {
+    if (index >= this->len or index < 0) {
+        cout << "Index out of range";
+        exit(0);
+    }
+    return this->list[index];
+}
+template <class T>
+ostream &operator<<(ostream &out, SortedArray<T> array) {
+    if (not array.len) out << "No elements to display" << endl;
+    else {
+        out << '{';
+
+        for (int i = 0; i < array.len; i++) {
+            out << array[i];
+            if (i != array.len - 1) out << ", ";
+        }
+        out << '}' << endl;
+    }
+    return out;
+}
+template <class type>
+type SortedArray<type>::pop(int index) {
+    if (index >= this->len) {
+        cout << "Index out of range";
+        exit(0);
+    }
+    type temp = this->list[index];
+    for (int i = index; i < this->len - 1; i++) this->list[i] = this->list[i+1];
+    this->len--;
+    return temp;
+}
+template <class type>
+void SortedArray<type>::remove(type value) {
+    int index = this->index(value);
+    this->pop(index);
+}
+template <class type>
+void SortedArray<type>::reverse() {
+    for (int i = 0, j = this->len - 1; i < j; i++, j--) {
+        type temp = this->list[i];
+        this->list[i] = this->list[j];
+        this->list[j] = temp;
+    }
+    if (this->mode == "asc") this->mode = "dsc";
+    else this->mode = "asc";
+}
+template <class type>
+type SortedArray<type>::sum() {
+    type sum = 0;
+    for (int i = 0; i < this->len; i++) sum += this->list[i];
+    return sum;
+}

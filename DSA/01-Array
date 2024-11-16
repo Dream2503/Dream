@@ -1,0 +1,227 @@
+#include <iostream>
+#define CONST_SIZE 8
+using namespace std;
+
+template <class type>
+class Array {
+    type *list = new type[CONST_SIZE];
+    int len = 0, size = CONST_SIZE;
+    bool operators(Array<type>, string);
+    void reSize();
+    
+    public:
+        Array() {}
+        Array(Array<type> &array) {for (type element: array) this->append(element);}
+        Array(initializer_list<type> list) {for (const type element: list) this->append(element);}
+        Array(type *list, int size) {for (int i = 0; i < size; i++) this->append(list[i]);}
+        void append(type);
+        double average() {return this->sum() / (double)this->len;}
+        type *begin() {return this->list;}
+        void clear();
+        bool contains(type);
+        Array<type> copy() {return *this;}
+        int count(type);
+        void display() {operator<<(cout, *this);}
+        type *end() {return this->list + this->len;}
+        void extend(Array<type> array) {for (int i = 0; i < array.len; i++) this->append(array[i]);}
+        int index(type);
+        void insert(int, type);
+        bool isSorted();
+        int length() {return this->len;}
+        void leftRotate() {if (this->len) this->append(this->pop(0));}
+        void leftShift();
+        type max();
+        type min();
+        Array<type> operator+(Array<type>);
+        void operator+=(Array<type> array) {this->extend(array);}
+        Array<type> operator*(int);
+        void operator*=(int);
+        bool operator>(Array<type> array) {return this->operators(array, ">");}
+        bool operator>=(Array<type> array) {return this->operators(array, ">=");}
+        bool operator<(Array<type> array) {return this->operators(array, "<");}
+        bool operator<=(Array<type> array) {return this->operators(array, "<=");}
+        bool operator==(Array<type> array) {return this->operators(array, "==");}
+        bool operator!=(Array<type> array) {return not (*this == array);}
+        template <class T>
+        friend ostream &operator<<(ostream&, Array<T>);
+        type &operator[](int);
+        type pop(int);
+        void rightRotate();
+        void rightShift();
+        void remove(type);
+        void reverse();
+        void sort();
+        type sum();
+};
+
+template <class type>
+bool Array<type>::operators(Array<type> array, string opr) {
+    int small = this->len;
+    if (this->len > array.len) small = array.len;
+
+    for (int i = 0; i < small; i++) {
+        if ((opr == ">") and (this->list[i] <= array[i])) return false;
+        else if ((opr == ">=") and (this->list[i] < array[i])) return false;
+        else if ((opr == "<") and (this->list[i] >= array[i])) return false;
+        else if ((opr == "<=") and (this->list[i] > array[i])) return false;
+        else if ((opr == "==") and (this->list[i] != array[i] or this->len != array.len)) return false;
+    }
+    return true;
+}
+template <class type>
+void Array<type>::reSize() {
+    this->size *= 2;
+    type *list = new type[this->size];
+    for (int i = 0; i < this->len; i++) list[i] = this->list[i];
+    delete []this->list;
+    this->list = list;
+}
+
+template <class type>
+void Array <type>::append(type value) {
+    if (this->len == this->size) this->reSize();
+    this->list[this->len++] = value;
+}
+template <class type>
+void Array<type>::clear() {
+    delete []this->list;
+    this->len = 0;
+    this->list = new type[CONST_SIZE];
+    this->size = CONST_SIZE;
+}
+template <class type>
+bool Array<type>::contains(type value) {
+    if (this->index(value) == -1) return false;
+    return true;
+}
+template <class type>
+int Array<type>::count(type value) {
+    int cnt = 0;
+    for (type element: *this) if (element == value) cnt++;
+    return cnt;
+}
+template <class type>
+int Array<type>::index(type value) {
+    for (int i = 0; i < this->len; i++) if (this->list[i] == value) return i;
+    return -1;
+}
+template <class type>
+void Array<type>::insert(int index, type value) {
+    if (index > this->len or index < 0) {
+        cout << "Index out of range";
+        exit(0);
+    }
+    if (this->len == this->size) this->reSize();
+    for (int i = this->len++; i > index; i--) this->list[i] = this->list[i-1];
+    this->list[index] = value;
+}
+template <class type>
+bool Array<type>::isSorted() {
+    for (int i = 1; i < this->len; i++) if (this->list[i] < this->list[i-1]) return false;
+    return true;
+}
+template <class type>
+void Array<type>::leftShift() {
+    if (this->len) {
+        this->pop(0);
+        this->append(0);
+    }
+}
+template <class type>
+type Array<type>::max() {
+    if (not this->len) return -1;
+    type max = this->list[0];
+    for (type element: *this) if (element > max) max = element;
+    return max;
+}
+template <class type>
+type Array<type>::min() {
+    if (not this->len) return -1;
+    type min = this->list[0];
+    for (type element: *this) if (element < min) min = element;
+    return min;
+}
+template <class type>
+Array<type> Array<type>::operator+(Array<type> array) {
+    Array<type> result = this->copy();
+    result.extend(array);
+    return result;
+}
+template <class type>
+Array<type> Array<type>::operator*(int num) {
+    if (num < 0) {
+        cout << "Invalid number";
+        exit(0);
+    }
+    Array result;
+    for (int i = 1; i <= num; i++) result.extend(*this);
+    return result;
+}
+template <class type>
+void Array<type>::operator*=(int num) {
+    Array<type> result = *this * num;
+    delete []this->list;
+    *this = result;
+}
+template <class T>
+ostream &operator<<(ostream &out, Array<T> array) {
+    if (not array.len) out << "No elements to display" << endl;
+    else {
+        out << '[';
+
+        for (int i = 0; i < array.len; i++) {
+            out << array[i];
+            if (i != array.len - 1) out << ", ";
+        }
+        out << ']' << endl;
+    }
+    return out;
+}
+template <class type>
+type &Array<type>::operator[](int index) {
+    if (index >= this->len or index < 0) {
+        cout << "Index out of range";
+        exit(0);
+    }
+    return this->list[index];
+}
+template <class type>
+type Array<type>::pop(int index) {
+    if (index >= this->len) {
+        cout << "Index out of range";
+        exit(0);
+    }
+    type temp = this->list[index];
+    for (int i = index; i < this->len - 1; i++) this->list[i] = this->list[i+1];
+    this->len--;
+    return temp;
+}
+template <class type>
+void Array<type>::rightRotate() {
+    type temp = this->pop(this->len-1);
+    this->insert(0, temp);
+}
+template <class type>
+void Array<type>::rightShift() {
+    this->insert(0, 0);
+    this->len--;
+}
+template <class type>
+void Array<type>::remove(type value) {
+    int index = this->index(value);
+    this->pop(index);
+}
+template <class type>
+void Array<type>::reverse() {
+    for (int i = 0, j = this->len - 1; i < j; i++, j--) {
+        type temp = this->list[i];
+        this->list[i] = this->list[j];
+        this->list[j] = temp;
+    }
+}
+template <class type>
+type Array<type>::sum() {
+    type sum = 0;
+    for (type element: *this) sum += element;
+    return sum;
+}

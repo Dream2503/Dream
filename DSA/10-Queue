@@ -1,0 +1,269 @@
+#include <iostream>
+using namespace std;
+
+template <class type>
+class Queue {
+    struct Node {
+        type data;
+        Node *next = nullptr;
+    };
+    Node *start = nullptr, *end = nullptr;
+    bool operators(Queue<type>, string);
+
+    public:
+        Queue() {}
+        Queue(initializer_list<type> list) {for (const type element: list) this->enqueue(element);}
+        Queue(Queue<type>&);
+        Queue(type *list, int size) {for (int i = 0; i < size; i++) this->enqueue(list[i]);}
+        double average() {return this->sum() / (double)this->length();}
+        void clear();
+        bool contains(type);
+        Queue<type> copy() {return *this;}
+        int count(type);
+        type dequeue();
+        void display() {operator<<(cout, *this);}
+        void enqueue(type);
+        void extend(Queue<type>);
+        type first() {return this->start->data;}
+        int index(type);
+        bool isEmpty() {return not this->start;}
+        bool isFull() {return (this->end + 1) % this->size == this->start;}
+        bool isSorted();
+        type last() {return this->end->data;}
+        int length();
+        type max();
+        type min();
+        Queue<type> operator+(Queue<type>);
+        void operator+=(Queue<type> queue) {this->extend(queue);}
+        Queue<type> operator*(int);
+        void operator*=(int num) {*this = *this * num;}
+        bool operator>(Queue<type> queue) {return this->operators(queue, ">");}
+        bool operator>=(Queue<type> queue) {return this->operators(queue, ">=");}
+        bool operator<(Queue<type> queue) {return this->operators(queue, "<");}
+        bool operator<=(Queue<type> queue) {return this->operators(queue, "<=");}
+        bool operator==(Queue<type> queue) {return this->operators(queue, "==");}
+        bool operator!=(Queue<type> queue) {return not (*this == queue);}
+        template <class T>
+        friend ostream &operator<<(ostream&, Queue<T>);
+        type operator[](int);
+        type sum();
+};
+template <class type>
+Queue<type>::Queue(Queue<type> &queue) {
+    Node *current = queue.start;
+
+    while (current) {
+        this->enqueue(current->data);
+        current = current->next;
+    }
+}
+template <class type>
+bool Queue<type>::operators(Queue<type> queue, string opr) {
+    Node *current1 = this->start, *current2 = queue.start;
+
+    while (current1 and current2) {
+        if ((opr == ">") and (current1->data <= current2->data)) return false;
+        else if ((opr == ">=") and (current1->data < current2->data)) return false;
+        else if ((opr == "<") and (current1->data >= current2->data)) return false;
+        else if ((opr == "<=") and (current1->data > current2->data)) return false;
+        else if ((opr == "==") and (current1->data != current2->data)) return false;
+        current1 = current1->next;
+        current2 = current2->next;
+    }
+    if ((current1 or current2) and (opr == "==")) return false;
+    return true;
+}
+
+template <class type>
+void Queue<type>::clear() {
+    if (not this->start) return;
+    Node *prev = this->start, *current = prev->next;
+    
+    while (current) {
+        delete prev;
+        prev = current;
+        current = current->next;
+    }
+    delete prev;
+    this->start = nullptr;
+}
+template <class type>
+bool Queue<type>::contains(type value) {
+    Node *current = this->start;
+
+    while (current) {
+        if (current->data == value) return true;
+        current = current->next;
+    }
+    return false;
+}
+template <class type>
+int Queue<type>::count(type value) {
+    Node *current = this->start;
+    int cnt = 0;
+    
+    while (current) {
+        if (current->data == value) cnt++;
+        current = current->next;
+    }
+    return cnt;
+}
+template <class type>
+type Queue<type>::dequeue() {
+    if (this->isEmpty()) {
+        printf("Queue is empty\n");
+        exit(0);
+    }
+    Node *temp = this->start;
+    this->start = this->start->next;
+    type value = temp->data;
+    delete temp;
+    return value;
+}
+template <class type>
+void Queue<type>::enqueue(type value) {
+    if (this->isEmpty()) {
+        this->start = this->end = new Node;
+        this->start->data = value;
+        return;
+    }
+    this->end->next = new Node;
+    this->end = this->end->next;
+    this->end->data = value;
+}
+template <class type>
+void Queue<type>::extend(Queue<type> queue) {
+    Queue<type> result(queue);
+    if (not this->start) this->start = result.start;
+    else {
+        Node *current = this->start;
+        while (current->next) current = current->next;
+        current->next = result.start;
+    }
+}
+template <class type>
+int Queue<type>::index(type value) {
+    Node *current = this->start;
+    int cnt = 0;
+
+    while (current) {
+        if (current->data == value) return cnt;
+        current = current->next;
+        cnt++;
+    }
+    return -1;
+}
+template <class type>
+bool Queue<type>::isSorted() {
+    if (not this->start) return true;
+    Node *current = this->start;
+
+    while (current->next) {
+        if (current->data > current->next->data) return false;
+        current = current->next;
+    }
+    return true;
+}
+template <class type>
+int Queue<type>::length() {
+    Node *current = this->start;
+    int len = 0;
+
+    while (current) {
+        len++;
+        current = current->next;
+    }
+    return len;
+}
+template <class type>
+type Queue<type>::max() {
+    if (not this->start) return 0;
+    Node *current = this->start->next;
+    type max = this->start->data;
+
+    while (current) {
+        if (current->data > max) max = current->data;
+        current = current->next;
+    }
+    return max;
+}
+template <class type>
+type Queue<type>::min() {
+    if (not this->start) return 0;
+    Node *current = this->start->next;
+    type min = this->start->data;
+
+    while (current) {
+        if (current->data < min) min = current->data;
+        current = current->next;
+    }
+    return min;
+}
+template <class type>
+Queue<type> Queue<type>::operator+(Queue<type> queue) {
+    Queue<type> queue1(*this);
+    queue1.extend(queue);
+    return queue1;
+}
+template <class type>
+Queue<type> Queue<type>::operator*(int num) {
+    Queue<type> queue, result(*this);
+
+    if (num < 0) {
+        cout << "Invalid number";
+        exit(0);
+    } else if (not this->start or num == 0) return queue;
+    else if (num == 1) return this->copy();
+    else {
+        Node *current = result.start;
+
+        for (int i = 1; i < num; i++ ) {
+            queue = this->copy();
+            while (current->next) current = current->next;
+            current->next = queue.start;
+        }
+        return result;
+    } 
+}
+template <class T>
+ostream &operator<<(ostream &out, Queue<T> queue) {
+    if (not queue.start) out << "No elements to display" << endl;
+    else {
+        typename Queue<T>::Node *current = queue.start;
+        out << '[';
+
+        while (current->next) {
+            out << current->data << ", ";
+            current = current->next;
+        }
+        out << current->data << ']' << endl;
+    }
+    return out;
+}
+template <class type>
+type Queue<type>::operator[](int index) {
+    if (index < 0 or ((not this->start) and index > 0)) {
+        cout << "Index out of range";
+        exit(0);
+    }
+    Node *current = this->start;
+
+    for (int i = 0 ; i < index and current; i++) {
+        current = current->next;
+    }
+    if (current) return current->data;
+    cout << "Index out of range";
+    exit(0);
+}
+template <class type>
+type Queue<type>::sum() {
+    if (not this->start) return 0;
+    type sum = this->start->data;
+    Node *current = this->start->next;
+
+    while (current) {
+        sum += current->data;
+        current = current->next;
+    }
+    return sum;
+}

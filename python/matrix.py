@@ -6,7 +6,6 @@ from equation import Term
 
 class MatrixError(Exception): ...
 
-
 class Matrix:
     """
 # INITIALIZING MATRIX OBJECT
@@ -540,8 +539,12 @@ class Matrix:
         try:
             return tuple((Fraction(round(element, 3)) for element in res))
 
+        except TypeError:
+            return tuple(res)
+
         except ValueError:
             raise MatrixError("Complex roots are not allowed")
+
 
     def eigen_vectors(self) -> tuple[tuple[Fraction]]:
         def simplify_row(lst: list[Fraction]) -> list[Fraction]:
