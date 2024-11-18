@@ -5,11 +5,15 @@
             "label": "C/C++: gcc.exe build active file",
             "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
             "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "-g",                      // Debugging symbols
+                "${workspaceFolder}/test.cpp",  // Source file
+                "-IC:/lib/opencv/include",  // Include OpenCV headers
+                "-IC:/lib/opencv/include/opencv2",  // Include OpenCV headers (opencv2)
+                "-LC:/lib/opencv/build/x64/vc14/lib",  // Link OpenCV libraries
+                "-lopencv_core",            // Link OpenCV core library
+                "-lopencv_imgproc",         // Link OpenCV image processing library
+                "-lopencv_highgui",         // Link OpenCV GUI library
+                "-o", "${workspaceFolder}/test"  // Output executable
             ],
             "options": {
                 "cwd": "${fileDirname}"

@@ -4,6 +4,7 @@
         "fraction": "cpp",
         "matrix": "cpp",
         "14-sort": "cpp",
-        "13-heap": "cpp"
+        "13-heap": "cpp",
+        "iostream": "cpp"
     }
 }

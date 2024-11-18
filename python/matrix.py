@@ -385,7 +385,7 @@ class Matrix:
                 if element == item:
                     return True
 
-    def __iter__(self) -> Generator[Fraction]:
+    def __iter__(self) -> list[Fraction]:
         for row in self.matrix:
             yield row
 
