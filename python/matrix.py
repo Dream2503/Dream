@@ -1,10 +1,11 @@
 from fractions import Fraction
 from math import gcd, lcm
 from typing import Any, Callable, Generator, Literal
-from equation import Term
+from equation import Term, Variable
 
 
 class MatrixError(Exception): ...
+
 
 class Matrix:
     """
@@ -231,10 +232,11 @@ class Matrix:
         if rows < 0 or columns < 0:
             raise MatrixError("Row or column of a matrix cannot be negative")
 
-        self._order = (rows, columns)
+        self._order: tuple[int, int] = (rows, columns)
 
         if method == "input":
-            self._input()._validate()
+            self._input()
+            self._validate()
 
         elif method == "null":
             self._null()
@@ -243,7 +245,7 @@ class Matrix:
             self._identity()
 
         elif method == "pass":
-            self._matrix = [row.copy() for row in matrix]
+            self._matrix: list[list[Fraction]] = [row.copy() for row in matrix]
             self._validate()
 
     @property
@@ -257,7 +259,7 @@ class Matrix:
     def __add__(self, other: "Matrix") -> "Matrix":
         if isinstance(other, Matrix):
             if self.order == other.order:
-                result = Matrix(self.order[0], self.order[1], "null")
+                result: Matrix = Matrix(self.order[0], self.order[1], "null")
 
                 for i in range(self.order[0]):
                     for j in range(self.order[1]):
@@ -274,7 +276,7 @@ class Matrix:
     def __sub__(self, other: "Matrix") -> "Matrix":
         if isinstance(other, Matrix):
             if self.order == other.order:
-                result = Matrix(self.order[0], self.order[1], "null")
+                result: Matrix = Matrix(self.order[0], self.order[1], "null")
 
                 for i in range(self.order[0]):
                     for j in range(self.order[1]):
@@ -291,7 +293,7 @@ class Matrix:
     def __mul__(self, other: "Matrix | Fraction") -> "Matrix":
         if isinstance(other, Matrix):
             if self.order[1] == other.order[0]:
-                result = Matrix(self.order[0], other.order[1], "null")
+                result: Matrix = Matrix(self.order[0], other.order[1], "null")
 
                 for k in range(self.order[0]):
                     for i in range(other.order[1]):
@@ -371,7 +373,7 @@ class Matrix:
                 return NotImplemented
 
     def __abs__(self) -> "Matrix":
-        result = Matrix(self.order[0], self.order[1], "null")
+        result: Matrix = Matrix(self.order[0], self.order[1], "null")
 
         for i in range(self.order[0]):
             for j in range(self.order[1]):
@@ -405,11 +407,12 @@ class Matrix:
         f"Matrix(rows={self.order[0]}, columns={self.order[1]}, matrix={self.matrix})"
     __call__ = __repr__
 
-    def _validate(self) -> "Matrix":
+    def _validate(self) -> None:
+        """Validates the object and user input to initialize a matrix object."""
         if self.order[0] != len(self.matrix):
             raise MatrixError("Invalid Matrix row")
 
-        column_length = len(self.matrix[0])
+        column_length: int = len(self.matrix[0])
 
         for column in self.matrix:
             if len(column) != column_length:
@@ -423,18 +426,17 @@ class Matrix:
                 except:
                     raise MatrixError("Invalid Matrix element")
 
-        return self
+    def _identity(self) -> None:
+        """Initializes an identity matrix"""
+        self._matrix: list[list[Fraction]] = [[Fraction(1) if i == j else Fraction(0) for j in range(self.order[1])]
+                                              for i in range(self.order[0])]
 
-    def _identity(self) -> "Matrix":
-        self._matrix = [[Fraction(1) if i == j else Fraction(0) for j in range(self.order[1])]
-                        for i in range(self.order[0])]
-        return self
-
-    def _input(self) -> "Matrix":
-        self._matrix = []
+    def _input(self) -> None:
+        """Accept user input for construct the matrix with provided values."""
+        self._matrix: list = []
 
         for _ in range(self.order[0]):
-            row = input("Enter row (space-separated values): ").split()
+            row: list[str] = input("Enter row (space-separated values): ").split()
 
             if len(row) == self.order[1]:
                 self._matrix.append([Fraction(element) for element in row])
@@ -442,29 +444,31 @@ class Matrix:
             else:
                 raise MatrixError("Invalid matrix elements")
 
-        return self
-
-    def _null(self) -> "Matrix":
-        self._matrix = [[Fraction() for _ in range(self.order[1])] for _ in range(self.order[0])]
-        return self
+    def _null(self) -> None:
+        """Initializes a null matrix"""
+        self._matrix: list[list[Fraction]] = [[Fraction() for _ in range(self.order[1])] for _ in range(self.order[0])]
 
     def cramer_rule(self) -> tuple[Fraction] | tuple[int, str]:
+        """Solves a set of linear equation where the matrix object is an augmented coefficient matrix of the set of linear equation by using Cramer's Rule."""
         if self.order[0] != self.order[1] - 1:
             raise MatrixError("Cramer's rule is not applicable for rectangular matrix")
 
-        a, b, res = [], [], []
+        temp_a: list[list[Fraction]] = []
+        b: list[list[Fraction]] = []
+        res: list[Fraction] = []
 
         for row in self.matrix:
-            a.append(row[:-1])
+            temp_a.append(row[:-1])
             b.append(row[-1])
 
-        a = Matrix(len(a), len(a[0]), matrix=a)
-        det = a.determinant()
+        a: Matrix = Matrix(len(temp_a), len(temp_a[0]), matrix=temp_a)
+        det: Fraction = a.determinant()
+
         if det == 0:
             return 0, "The set of linear equations has no solutions"
 
         for i in range(self.order[0]):
-            temp_matrix = a.copy()
+            temp_matrix: Matrix = a.copy()
 
             for j in range(self.order[0]):
                 temp_matrix[j][i] = b[j]
@@ -474,11 +478,12 @@ class Matrix:
         return tuple(res)
 
     def determinant(self) -> Fraction:
+        """Finds the determinant of the matrix."""
         if not self.is_square():
             raise MatrixError("Determinant of rectangular matrix is not defined")
 
-        result = self.echelon_form()
-        det = Fraction(1)
+        result: Matrix = self.echelon_form()
+        det: Fraction = Fraction(1)
 
         for i in range(result.order[0]):
             det *= result.matrix[i][i]
@@ -486,11 +491,12 @@ class Matrix:
         return det
 
     def echelon_form(self) -> "Matrix":
-        result = Matrix(self.order[0], self.order[1], matrix=self.matrix)
+        """Returns the echelon_form of the current matrix."""
+        result: Matrix = Matrix(self.order[0], self.order[1], matrix=self.matrix)
+        pivot: int = 0
 
-        pivot = 0
         while pivot + 1 < result.order[0]:
-            cnt = pivot
+            cnt: int = pivot
 
             try:
                 while result.matrix[pivot][cnt] == 0:
@@ -503,10 +509,10 @@ class Matrix:
                 for i in range(result.order[1]):
                     result.matrix[pivot][i], result.matrix[cnt][i] = result.matrix[cnt][i], result.matrix[pivot][i]
 
-            pivot = cnt
+            pivot: int = cnt
 
             for i in range(pivot + 1, result.order[0]):
-                factor = result.matrix[i][pivot] / result.matrix[pivot][pivot]
+                factor: Fraction = result.matrix[i][pivot] / result.matrix[pivot][pivot]
 
                 for j in range(pivot, result.order[1]):
                     result.matrix[i][j] -= (factor * result.matrix[pivot][j])
@@ -516,25 +522,29 @@ class Matrix:
         return result
 
     def eigen_values(self) -> tuple[Fraction]:
-        def determinant_for_eigen(matrix: list[list[Fraction]]):
+        """Finds the eigen values of a matrix."""
+
+        def recursive_determinant(matrix: list[list[Term]]):
+            """Finds the determinant of a 2D-Array using recursive approach of finding determinant of sub-matrices."""
             if len(matrix) == 2:
                 return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
 
-            det = Fraction()
+            det: Fraction = Fraction()
 
             for i in range(len(matrix)):
-                minor = [row[:i] + row[i + 1:] for row in matrix[1:]]
-                det += ((-1) ** i) * matrix[0][i] * determinant_for_eigen(minor)
+                minor: list[list[Term]] = [row[:i] + row[i + 1:] for row in matrix[1:]]
+                det += ((-1) ** i) * matrix[0][i] * recursive_determinant(minor)
 
             return det
 
         if not self.is_square():
             raise MatrixError("Eigen values for a non-square matrix are not defined")
 
-        var = Term("x")
-        mat = [[self.matrix[i][j] - var if i == j else self.matrix[i][j] for j in range(self.order[1])] for i in
-               range(self.order[0])]
-        res = determinant_for_eigen(mat).roots()
+        var: Term = Term("x")
+        mat: list[list[Term]] = [
+            [self.matrix[i][j] - var if i == j else self.matrix[i][j] for j in range(self.order[1])] for i in
+            range(self.order[0])]
+        res: tuple[float] = recursive_determinant(mat).roots()
 
         try:
             return tuple((Fraction(round(element, 3)) for element in res))
@@ -543,10 +553,11 @@ class Matrix:
             return tuple(res)
 
         except ValueError:
-            raise MatrixError("Complex roots are not allowed")
-
+            raise MatrixError("Complex roots are not supported.")
 
     def eigen_vectors(self) -> tuple[tuple[Fraction]]:
+        """Finds the normalized eigen vectors for the corresponding eigen values of the matrix."""
+
         def simplify_row(lst: list[Fraction]) -> list[Fraction]:
             factor = Fraction(lst[0])
             size = len(lst)
@@ -559,33 +570,35 @@ class Matrix:
 
             return lst
 
-        res, cnt = [], {}
-        values = self.eigen_values()
+        res: list = []
+        cnt: dict[Fraction: int] = {}
+        values: tuple[Fraction] = self.eigen_values()
+        variable_matrix: Matrix = Matrix(self.order[1], 1, matrix=[[Variable(chr(ch))] for ch in range(97, 123)])
 
         for value in values:
             cnt[value] = cnt.get(value, 0) + 1
 
         for key, value in cnt.items():
-            characteristic_matrix = Matrix(self.order[0], self.order[1],
+            vector: list[Fraction] | list[None] = [None for _ in range(self.order[1])]
+            characteristic_matrix: Matrix = Matrix(self.order[0], self.order[1],
                                            matrix=[[self.matrix[i][j] - (key if i == j else 0)
                                                     for j in range(self.order[1])] for i in range(self.order[0])])
-            vector = characteristic_matrix.gauss_elimination()
+            characteristic_matrix: Matrix = characteristic_matrix.echelon_form() * variable_matrix
 
-            if isinstance(vector[1], str):
-                for i in range(1, value + 1):
-                    row = simplify_row(characteristic_matrix[0].copy())
-                    vector = [Fraction(1)]
+            for row in self.matrix[::-1]:
+                
 
-                    for j in range(2, len(row)):
-                        row[1] += row[j] * (j + i - 1)
-                        vector.append(Fraction(j + i - 1))
-
-                    row[1] /= -row[0]
-                    vector.insert(0, row[1])
-                    res.append(tuple(simplify_row(vector)))
-
-            else:
-                res.append(res)
+            # for i in range(1, value + 1):
+            #     row = simplify_row(characteristic_matrix[0].copy())
+            #     vector = [Fraction(1)]
+            #
+            #     for j in range(2, len(row)):
+            #         row[1] += row[j] * (j + i - 1)
+            #         vector.append(Fraction(j + i - 1))
+            #
+            #     row[1] /= -row[0]
+            #     vector.insert(0, row[1])
+            #     res.append(tuple(simplify_row(vector)))
 
         return tuple(res)
 

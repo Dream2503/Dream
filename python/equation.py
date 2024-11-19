@@ -356,6 +356,7 @@ class Term:
         numerator=self.denominator, denominator=self.numerator) * other
     __neg__: Callable[["Term"], "Term"] = lambda self: self * -1
     __pos__: Callable[["Term"], "Term"] = lambda self: self
+    __len__: Callable[["Term"], int] = lambda self: len(self.variables())
 
     def _init_simplify(self) -> "Term":
         zero = factor = check = var_coef = None
@@ -542,7 +543,7 @@ class Term:
 
         return Term(numerator=self.numerator, denominator=self.denominator)
 
-    def roots(self) -> tuple[float, ...]:
+    def roots(self) -> tuple[float]:
         def quadratic_roots(b: Fraction, c: Fraction) -> tuple[float, float]:
             determinant = (b * b) - (4 * c)
 
