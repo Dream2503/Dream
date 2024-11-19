@@ -581,12 +581,12 @@ class Matrix:
         for key, value in cnt.items():
             vector: list[Fraction] | list[None] = [None for _ in range(self.order[1])]
             characteristic_matrix: Matrix = Matrix(self.order[0], self.order[1],
-                                           matrix=[[self.matrix[i][j] - (key if i == j else 0)
-                                                    for j in range(self.order[1])] for i in range(self.order[0])])
+                                                   matrix=[[self.matrix[i][j] - (key if i == j else 0)
+                                                            for j in range(self.order[1])] for i in
+                                                           range(self.order[0])])
             characteristic_matrix: Matrix = characteristic_matrix.echelon_form() * variable_matrix
 
-            for row in self.matrix[::-1]:
-                
+            # for row in self.matrix[::-1]:
 
             # for i in range(1, value + 1):
             #     row = simplify_row(characteristic_matrix[0].copy())
