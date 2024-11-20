@@ -184,6 +184,51 @@ class Variable:
             except ValueError:
                 return NotImplemented
 
+    def __iadd__(self, other: "Variable") -> None:
+        if isinstance(other, Variable) and self.variables == other.variables:
+            self._coefficient += other.coefficient
+
+        else:
+            return NotImplemented
+
+    def __isub__(self, other: "Variable") -> None:
+        if isinstance(other, Variable) and self.variables == other.variables:
+            self._coefficient -= other.coefficient
+
+        else:
+            return NotImplemented
+
+    def __imul__(self, other: "Variable | Fraction") -> None:
+        if isinstance(other, Variable):
+            self._coefficient *= other.coefficient
+
+            for var, order in other.variables.items():
+                self.variables[var] = self.variables.get(var, 0) + order
+
+        else:
+            try:
+                other: Fraction = Fraction(other)
+                self._coefficient *= other
+
+            except ValueError:
+                return NotImplemented
+
+    def __itruediv__(self, other: "Variable | Fraction") -> None:
+        if isinstance(other, Variable):
+            self._coefficient /= other.coefficient
+            variables: dict[str, Fraction] = {}
+
+            for var, order in other.variables.items():
+                self.variables[var] = self.variables.get(var, 0) - order
+
+        else:
+            try:
+                other: Fraction = Fraction(other)
+                self._coefficient /= other
+
+            except ValueError:
+                return NotImplemented
+
     def __eq__(self, other: "Variable | Fraction") -> bool:
         if isinstance(other, Variable):
             return self.coefficient == other.coefficient and self.variables == other.variables
@@ -222,9 +267,9 @@ class Variable:
             return self.copy()
 
 
-class Term:
+class Polynomial:
     def __init__(self, numerator_variables: str = "0", denominator_variables: str = "1", *,
-                 term_obj: "Term | None" = None, numerator: list[Variable] | None = None,
+                 term_obj: "Polynomial | None" = None, numerator: list[Variable] | None = None,
                  denominator: list[Variable] | None = None) -> None:
         if term_obj is not None:
             self._numerator: list[Variable] = term_obj.numerator.copy()
@@ -247,7 +292,7 @@ class Term:
         return self._denominator
 
     def __repr__(self) -> str:
-        return f"Term(numerator={self.numerator}, denominator={self.denominator})"
+        return f"Polynomial(numerator={self.numerator}, denominator={self.denominator})"
 
     def __str__(self) -> str:
         res: list[str] = []
@@ -273,8 +318,8 @@ class Term:
 
         return f"({res[0]}) / ({res[1]})"
 
-    def __add__(self, other: "Term | Variable | Fraction") -> "Term":
-        if isinstance(other, Term):
+    def __add__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
+        if isinstance(other, Polynomial):
             numerator: list[Variable] = [var1 * var2 for var1 in self.numerator for var2 in other.denominator] + \
                                         [var1 * var2 for var1 in other.numerator for var2 in self.denominator]
             denominator: list[Variable] = [var1 * var2 for var1 in self.denominator for var2 in other.denominator]
@@ -292,10 +337,10 @@ class Term:
             except ValueError:
                 return NotImplemented
 
-        return Term(numerator=numerator, denominator=denominator)
+        return Polynomial(numerator=numerator, denominator=denominator)
 
-    def __sub__(self, other: "Term | Variable | Fraction") -> "Term":
-        if isinstance(other, Term):
+    def __sub__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
+        if isinstance(other, Polynomial):
             numerator: list[Variable] = [var1 * var2 for var1 in self.numerator for var2 in other.denominator] + \
                                         [-var1 * var2 for var1 in other.numerator for var2 in self.denominator]
             denominator: list[Variable] = [var1 * var2 for var1 in self.denominator for var2 in other.denominator]
@@ -313,10 +358,10 @@ class Term:
             except ValueError:
                 return NotImplemented
 
-        return Term(numerator=numerator, denominator=denominator)
+        return Polynomial(numerator=numerator, denominator=denominator)
 
-    def __mul__(self, other: "Term | Variable | Fraction") -> "Term":
-        if isinstance(other, Term):
+    def __mul__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
+        if isinstance(other, Polynomial):
             numerator: list[Variable] = [element1 * element2 for element1 in self.numerator for element2 in
                                          other.numerator]
             denominator: list[Variable] = [element1 * element2 for element1 in self.denominator for element2 in
@@ -335,10 +380,10 @@ class Term:
             except ValueError:
                 return NotImplemented
 
-        return Term(numerator=numerator, denominator=denominator)
+        return Polynomial(numerator=numerator, denominator=denominator)
 
-    def __truediv__(self, other: "Term | Variable | Fraction") -> "Term":
-        if isinstance(other, Term):
+    def __truediv__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
+        if isinstance(other, Polynomial):
             numerator: list[Variable] = [element1 * element2 for element1 in self.numerator for element2 in
                                          other.denominator]
             denominator: list[Variable] = [element1 * element2 for element1 in self.denominator for element2 in
@@ -357,30 +402,30 @@ class Term:
             except ValueError:
                 return NotImplemented
 
-        return Term(numerator=numerator, denominator=denominator)
+        return Polynomial(numerator=numerator, denominator=denominator)
 
-    def __eq__(self, other: "Term | Variable| Fraction") -> bool:
-        if isinstance(other, Term):
+    def __eq__(self, other: "Polynomial | Variable| Fraction") -> bool:
+        if isinstance(other, Polynomial):
             return self.numerator == other.numerator and self.denominator == other.denominator
 
         elif isinstance(other, Variable):
-            return self.__eq__(Term(numerator=[other]))
+            return self.__eq__(Polynomial(numerator=[other]))
 
         else:
             try:
-                return self.__eq__(Term(numerator=[Variable(coefficient=Fraction(other), variables_dict={})]))
+                return self.__eq__(Polynomial(numerator=[Variable(coefficient=Fraction(other), variables_dict={})]))
 
             except ValueError:
                 return NotImplemented
 
-    __radd__: Callable[["Term", "Term | Variable | Fraction"], "Term"] = lambda self, other: self.__add__(other)
-    __rsub__: Callable[["Term", "Term | Variable | Fraction"], "Term"] = lambda self, other: (-self).__add__(other)
-    __rmul__: Callable[["Term", "Term | Variable | Fraction"], "Term"] = lambda self, other: self.__mul__(other)
-    __rtruediv__: Callable[["Term", "Term | Variable | Fraction"], "Term"] = lambda self, other: Term(
+    __radd__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = lambda self, other: self.__add__(other)
+    __rsub__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = lambda self, other: (-self).__add__(other)
+    __rmul__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = lambda self, other: self.__mul__(other)
+    __rtruediv__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = lambda self, other: Polynomial(
         numerator=self.denominator, denominator=self.numerator) * other
-    __neg__: Callable[["Term"], "Term"] = lambda self: self * -1
-    __pos__: Callable[["Term"], "Term"] = lambda self: self
-    __len__: Callable[["Term"], int] = lambda self: len(self.variables())
+    __neg__: Callable[["Polynomial"], "Polynomial"] = lambda self: self * -1
+    __pos__: Callable[["Polynomial"], "Polynomial"] = lambda self: self
+    __len__: Callable[["Polynomial"], int] = lambda self: len(self.variables())
 
     def _init_simplify(self) -> None:
         factor: Variable = None
@@ -484,7 +529,7 @@ class Term:
                 except (TypeError, IndexError):
                     pass
 
-                res.append(var) if var else res.append(self.numerator[i])
+                res.append(var) if var is not None else res.append(self.numerator[i])
                 i += 1
 
             if change:
@@ -563,9 +608,9 @@ class Term:
                 for element in term:
                     element.variables[factor[0]] -= factor[1]
 
-    def substitute(self, variable: str, value: Fraction) -> "Term | Fraction":
-        return Term(numerator=[var.substitute(variable, value) for var in self.numerator],
-                    denominator=[var.substitute(variable, value) for var in self.denominator])
+    def substitute(self, variable: str, value: Fraction) -> "Polynomial | Fraction":
+        return Polynomial(numerator=[var.substitute(variable, value) for var in self.numerator],
+                          denominator=[var.substitute(variable, value) for var in self.denominator])
 
     def roots(self) -> tuple[float]:
         def quadratic_roots(b: Fraction, c: Fraction) -> tuple[float, float]:
@@ -612,12 +657,12 @@ class Term:
             float, float, float, float]:
             return a, b, c, d, e
 
-        var: str = tuple(self.numerator[0].variables.items())[0]
+        var: tuple[str, Fraction] = tuple(self.numerator[0].variables.items())[0]
         factor: Fraction = self.numerator[0].coefficient
         constant: Fraction = self.numerator[-1].coefficient if self.numerator[-1].variables == {} else Fraction(0)
         coef: dict[Fraction, Fraction] = {}
 
-        for i in range(len(self.numerator) - (1 if constant else 0)):
+        for i in range(len(self.numerator) - 1):
             if len(self.numerator[i].variables) != 1 or var[0] not in self.numerator[i].variables:
                 raise ValueError("roots of the this Equation cannot be determined")
 

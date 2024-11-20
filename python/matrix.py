@@ -1,7 +1,7 @@
 from fractions import Fraction
 from math import gcd, lcm
 from typing import Any, Callable, Generator, Literal
-from equation import Term, Variable
+from equation import Polynomial, Variable
 
 
 class MatrixError(Exception): ...
@@ -423,8 +423,8 @@ class Matrix:
                 try:
                     self.matrix[i][j] = Fraction(self.matrix[i][j])
 
-                except:
-                    raise MatrixError("Invalid Matrix element")
+                except TypeError:
+                    pass
 
     def _identity(self) -> None:
         """Initializes an identity matrix"""
@@ -524,15 +524,15 @@ class Matrix:
     def eigen_values(self) -> tuple[Fraction]:
         """Finds the eigen values of a matrix."""
 
-        def recursive_determinant(matrix: list[list[Term]]):
+        def recursive_determinant(matrix: list[list[Polynomial]]):
             """Finds the determinant of a 2D-Array using recursive approach of finding determinant of sub-matrices."""
             if len(matrix) == 2:
                 return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
 
-            det: Fraction = Fraction()
+            det: Polynomial = Polynomial()
 
             for i in range(len(matrix)):
-                minor: list[list[Term]] = [row[:i] + row[i + 1:] for row in matrix[1:]]
+                minor: list[list[Polynomial]] = [row[:i] + row[i+1:] for row in matrix[1:]]
                 det += ((-1) ** i) * matrix[0][i] * recursive_determinant(minor)
 
             return det
@@ -540,8 +540,8 @@ class Matrix:
         if not self.is_square():
             raise MatrixError("Eigen values for a non-square matrix are not defined")
 
-        var: Term = Term("x")
-        mat: list[list[Term]] = [
+        var: Polynomial = Polynomial("x")
+        mat: list[list[Polynomial]] = [
             [self.matrix[i][j] - var if i == j else self.matrix[i][j] for j in range(self.order[1])] for i in
             range(self.order[0])]
         res: tuple[float] = recursive_determinant(mat).roots()
@@ -573,18 +573,17 @@ class Matrix:
         res: list = []
         cnt: dict[Fraction: int] = {}
         values: tuple[Fraction] = self.eigen_values()
-        variable_matrix: Matrix = Matrix(self.order[1], 1, matrix=[[Variable(chr(ch))] for ch in range(97, 123)])
+        var_mat: Matrix = Matrix(self.order[1], 1, matrix=[[Polynomial(f"x{i}")] for i in range(1, self.order[1] + 1)])
 
         for value in values:
             cnt[value] = cnt.get(value, 0) + 1
 
         for key, value in cnt.items():
-            vector: list[Fraction] | list[None] = [None for _ in range(self.order[1])]
-            characteristic_matrix: Matrix = Matrix(self.order[0], self.order[1],
-                                                   matrix=[[self.matrix[i][j] - (key if i == j else 0)
-                                                            for j in range(self.order[1])] for i in
-                                                           range(self.order[0])])
-            characteristic_matrix: Matrix = characteristic_matrix.echelon_form() * variable_matrix
+            eigen_vec: list[Fraction] | list[None] = [None for _ in range(self.order[1])]
+            matrix = [[self.matrix[i][j] - (key if i == j else Fraction(0))
+                       for j in range(self.order[1])] for i in range(self.order[0])]
+            char_matrix: Matrix = Matrix(self.order[0], self.order[1], matrix=matrix).echelon_form() * var_mat
+
 
             # for row in self.matrix[::-1]:
 
