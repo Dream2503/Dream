@@ -1,13 +1,15 @@
 from fractions import Fraction
 from math import gcd, lcm
-from typing import Any, Callable, Generator, Literal
-from equation import Polynomial, Variable
+from typing import Callable, Literal, Generic, TypeVar
+from equation import Polynomial
+
+Type = TypeVar("Type")
 
 
 class MatrixError(Exception): ...
 
 
-class Matrix:
+class Matrix(Generic[Type]):
     """
 # INITIALIZING MATRIX OBJECT
     -> using input method
@@ -227,7 +229,7 @@ class Matrix:
     """
 
     def __init__(self, rows: int, columns: int, method: Literal["input", "null", "identity", "pass"] = "pass", *,
-                 matrix: list[list[Any]] = None) -> None:
+                 matrix: list[list[Type]] = None) -> None:
 
         if rows < 0 or columns < 0:
             raise MatrixError("Row or column of a matrix cannot be negative")
@@ -253,13 +255,13 @@ class Matrix:
         return self._order
 
     @property
-    def matrix(self) -> list[list[Fraction]]:
+    def matrix(self) -> list[list[Type]]:
         return self._matrix
 
-    def __add__(self, other: "Matrix") -> "Matrix":
+    def __add__(self, other: "Matrix[Type]") -> "Matrix[Type]":
         if isinstance(other, Matrix):
             if self.order == other.order:
-                result: Matrix = Matrix(self.order[0], self.order[1], "null")
+                result: Matrix[Type] = Matrix(self.order[0], self.order[1], "null")
 
                 for i in range(self.order[0]):
                     for j in range(self.order[1]):
@@ -273,10 +275,10 @@ class Matrix:
         else:
             return NotImplemented
 
-    def __sub__(self, other: "Matrix") -> "Matrix":
+    def __sub__(self, other: "Matrix[Type]") -> "Matrix[Type]":
         if isinstance(other, Matrix):
             if self.order == other.order:
-                result: Matrix = Matrix(self.order[0], self.order[1], "null")
+                result: Matrix[Type] = Matrix(self.order[0], self.order[1], "null")
 
                 for i in range(self.order[0]):
                     for j in range(self.order[1]):
@@ -290,10 +292,10 @@ class Matrix:
         else:
             return NotImplemented
 
-    def __mul__(self, other: "Matrix | Fraction") -> "Matrix":
+    def __mul__(self, other: "Matrix[Type] | Type") -> "Matrix[Type]":
         if isinstance(other, Matrix):
             if self.order[1] == other.order[0]:
-                result: Matrix = Matrix(self.order[0], other.order[1], "null")
+                result: Matrix[Type] = Matrix(self.order[0], other.order[1], "null")
 
                 for k in range(self.order[0]):
                     for i in range(other.order[1]):
@@ -318,14 +320,12 @@ class Matrix:
         except ValueError:
             return NotImplemented
 
-    def __iadd__(self, other: "Matrix") -> "Matrix":
+    def __iadd__(self, other: "Matrix[Type]") -> None:
         if isinstance(other, Matrix):
             if self.order == other.order:
                 for i in range(self.order[0]):
                     for j in range(self.order[1]):
                         self.matrix[i][j] += other.matrix[i][j]
-
-                return self
 
             else:
                 raise MatrixError("Invalid order for addition\n")
@@ -333,14 +333,12 @@ class Matrix:
         else:
             return NotImplemented
 
-    def __isub__(self, other: "Matrix") -> "Matrix":
+    def __isub__(self, other: "Matrix[Type]") -> None:
         if isinstance(other, Matrix):
             if self.order == other.order:
                 for i in range(self.order[0]):
                     for j in range(self.order[0]):
                         self.matrix[i][j] -= other.matrix[i][j]
-
-                return self
 
             else:
                 raise MatrixError("Invalid order for subtraction\n")
@@ -348,7 +346,7 @@ class Matrix:
         else:
             return NotImplemented
 
-    def __imul__(self, other: "Matrix | Fraction") -> "Matrix":
+    def __imul__(self, other: "Matrix[Type] | Type") -> None:
         if isinstance(other, Matrix):
             if self.order[1] == other.order[0]:
                 for k in range(self.order[0]):
@@ -356,15 +354,11 @@ class Matrix:
                         for j in range(self.order[1]):
                             self.matrix[k][j] *= other.matrix[j][i]
 
-                return self
-
             else:
                 raise MatrixError("Invalid matrix order for multiplication\n")
 
         else:
             try:
-                other = Fraction(other)
-
                 for i in range(self.order[0]):
                     for j in range(self.order[1]):
                         self.matrix[i][j] *= other
@@ -372,8 +366,8 @@ class Matrix:
             except ValueError:
                 return NotImplemented
 
-    def __abs__(self) -> "Matrix":
-        result: Matrix = Matrix(self.order[0], self.order[1], "null")
+    def __abs__(self) -> "Matrix[Type]":
+        result: Matrix[Type] = Matrix(self.order[0], self.order[1], "null")
 
         for i in range(self.order[0]):
             for j in range(self.order[1]):
@@ -381,29 +375,30 @@ class Matrix:
 
         return result
 
-    def __contains__(self, item: Fraction) -> bool:
+    def __contains__(self, item: Type) -> bool:
         for row in self.matrix:
             for element in row:
                 if element == item:
                     return True
 
-    def __iter__(self) -> list[Fraction]:
+    def __iter__(self) -> list[Type]:
         for row in self.matrix:
             yield row
 
-    __radd__: Callable[["Matrix", "Matrix"], "Matrix"] = lambda self, other: self.__add__(other)
-    __rsub__: Callable[["Matrix", "Matrix"], "Matrix"] = lambda self, other: (-self).__add__(other)
-    __rmul__: Callable[["Matrix", "Matrix | Fraction"], "Matrix"] = lambda self, other: self.__mul__(other)
-    __bool__: Callable[["Matrix"], bool] = lambda self: self.type() != "null"
-    __pos__: Callable[["Matrix"], "Matrix"] = lambda self: self
-    __neg__: Callable[["Matrix"], "Matrix"] = lambda self: self.__mul__(-1)
-    __eq__: Callable[["Matrix", "Matrix"], bool] = lambda self, other: self.matrix == other.matrix \
+    __radd__: Callable[["Matrix[Type]", "Matrix[Type]"], "Matrix[Type]"] = lambda self, other: self.__add__(other)
+    __rsub__: Callable[["Matrix[Type]", "Matrix[Type]"], "Matrix[Type]"] = lambda self, other: (-self).__add__(other)
+    __rmul__: Callable[["Matrix[Type]", "Matrix[Type] | Type"], "Matrix[Type]"] = lambda self, other: self.__mul__(
+        other)
+    __bool__: Callable[["Matrix[Type]"], bool] = lambda self: self.type() != "null"
+    __pos__: Callable[["Matrix[Type]"], "Matrix[Type]"] = lambda self: self
+    __neg__: Callable[["Matrix[Type]"], "Matrix[Type]"] = lambda self: self.__mul__(-1)
+    __eq__: Callable[["Matrix[Type]", "Matrix[Type]"], bool] = lambda self, other: self.matrix == other.matrix \
         if isinstance(other, Matrix) else NotImplemented
-    __getitem__: Callable[["Matrix", int], list[Fraction]] = lambda self, item: self.matrix[item]
+    __getitem__: Callable[["Matrix[Type]", int], list[Type]] = lambda self, item: self.matrix[item]
     __name__ = "Matrix"
-    __str__: Callable[["Matrix"], str] = lambda self: \
+    __str__: Callable[["Matrix[Type]"], str] = lambda self: \
         f"\nrows = {self.order[0]}\ncolumns = {self.order[1]}\nmatrix = {self.matrix}"
-    __repr__: Callable[["Matrix"], str] = lambda self: \
+    __repr__: Callable[["Matrix[Type]"], str] = lambda self: \
         f"Matrix(rows={self.order[0]}, columns={self.order[1]}, matrix={self.matrix})"
     __call__ = __repr__
 
@@ -433,7 +428,7 @@ class Matrix:
 
     def _input(self) -> None:
         """Accept user input for construct the matrix with provided values."""
-        self._matrix: list = []
+        self._matrix: list[str] = []
 
         for _ in range(self.order[0]):
             row: list[str] = input("Enter row (space-separated values): ").split()
@@ -448,27 +443,27 @@ class Matrix:
         """Initializes a null matrix"""
         self._matrix: list[list[Fraction]] = [[Fraction() for _ in range(self.order[1])] for _ in range(self.order[0])]
 
-    def cramer_rule(self) -> tuple[Fraction] | tuple[int, str]:
+    def cramer_rule(self) -> tuple[Type] | tuple[int, str]:
         """Solves a set of linear equation where the matrix object is an augmented coefficient matrix of the set of linear equation by using Cramer's Rule."""
         if self.order[0] != self.order[1] - 1:
             raise MatrixError("Cramer's rule is not applicable for rectangular matrix")
 
-        temp_a: list[list[Fraction]] = []
-        b: list[list[Fraction]] = []
-        res: list[Fraction] = []
+        temp_a: list[list[Type]] = []
+        b: list[list[Type]] = []
+        res: list[Type] = []
 
         for row in self.matrix:
             temp_a.append(row[:-1])
             b.append(row[-1])
 
-        a: Matrix = Matrix(len(temp_a), len(temp_a[0]), matrix=temp_a)
-        det: Fraction = a.determinant()
+        a: Matrix[Type] = Matrix(len(temp_a), len(temp_a[0]), matrix=temp_a)
+        det: Type = a.determinant()
 
         if det == 0:
             return 0, "The set of linear equations has no solutions"
 
         for i in range(self.order[0]):
-            temp_matrix: Matrix = a.copy()
+            temp_matrix: Matrix[Type] = a.copy()
 
             for j in range(self.order[0]):
                 temp_matrix[j][i] = b[j]
@@ -477,12 +472,12 @@ class Matrix:
 
         return tuple(res)
 
-    def determinant(self) -> Fraction:
+    def determinant(self) -> Type:
         """Finds the determinant of the matrix."""
         if not self.is_square():
             raise MatrixError("Determinant of rectangular matrix is not defined")
 
-        result: Matrix = self.echelon_form()
+        result: Matrix[Type] = self.echelon_form()
         det: Fraction = Fraction(1)
 
         for i in range(result.order[0]):
@@ -490,9 +485,9 @@ class Matrix:
 
         return det
 
-    def echelon_form(self) -> "Matrix":
+    def echelon_form(self) -> "Matrix[Type]":
         """Returns the echelon_form of the current matrix."""
-        result: Matrix = Matrix(self.order[0], self.order[1], matrix=self.matrix)
+        result: Matrix[Type] = Matrix(self.order[0], self.order[1], matrix=self.matrix)
         pivot: int = 0
 
         while pivot + 1 < result.order[0]:
@@ -532,7 +527,7 @@ class Matrix:
             det: Polynomial = Polynomial()
 
             for i in range(len(matrix)):
-                minor: list[list[Polynomial]] = [row[:i] + row[i+1:] for row in matrix[1:]]
+                minor: list[list[Polynomial]] = [row[:i] + row[i + 1:] for row in matrix[1:]]
                 det += ((-1) ** i) * matrix[0][i] * recursive_determinant(minor)
 
             return det
@@ -541,9 +536,9 @@ class Matrix:
             raise MatrixError("Eigen values for a non-square matrix are not defined")
 
         var: Polynomial = Polynomial("x")
-        mat: list[list[Polynomial]] = [
-            [self.matrix[i][j] - var if i == j else self.matrix[i][j] for j in range(self.order[1])] for i in
-            range(self.order[0])]
+        mat: list[list[Polynomial]] = \
+            [[self.matrix[i][j] - var if i == j else self.matrix[i][j] for j in range(self.order[1])] for i in
+             range(self.order[0])]
         res: tuple[float] = recursive_determinant(mat).roots()
 
         try:
@@ -573,7 +568,8 @@ class Matrix:
         res: list = []
         cnt: dict[Fraction: int] = {}
         values: tuple[Fraction] = self.eigen_values()
-        var_mat: Matrix = Matrix(self.order[1], 1, matrix=[[Polynomial(f"x{i}")] for i in range(1, self.order[1] + 1)])
+        var_mat: Matrix[Type] = Matrix(self.order[1], 1,
+                                       matrix=[[Polynomial(f"x{i}")] for i in range(1, self.order[1] + 1)])
 
         for value in values:
             cnt[value] = cnt.get(value, 0) + 1
@@ -582,10 +578,11 @@ class Matrix:
             eigen_vec: list[Fraction] | list[None] = [None for _ in range(self.order[1])]
             matrix = [[self.matrix[i][j] - (key if i == j else Fraction(0))
                        for j in range(self.order[1])] for i in range(self.order[0])]
-            char_matrix: Matrix = Matrix(self.order[0], self.order[1], matrix=matrix).echelon_form() * var_mat
+            char_matrix: Matrix[Type] = Matrix(self.order[0], self.order[1], matrix=matrix).echelon_form() * var_mat
 
-
-            # for row in self.matrix[::-1]:
+            # for row in char_matrix.matrix[::-1]:
+            #
+            #     for var in row:
 
             # for i in range(1, value + 1):
             #     row = simplify_row(characteristic_matrix[0].copy())
@@ -601,8 +598,8 @@ class Matrix:
 
         return tuple(res)
 
-    def gauss_elimination(self) -> tuple[Fraction] | tuple[int, str]:
-        result = self.echelon_form()
+    def gauss_elimination(self) -> tuple[Type] | tuple[int, str]:
+        result: Matrix[Type] = self.echelon_form()
 
         if result[-1][-2] == 0 and result[-1][-1] != 0:
             return -1, "The set of linear equations has no solutions"
@@ -611,8 +608,9 @@ class Matrix:
             return 0, "The set of linear equations has infinitely many solutions"
 
         else:
-            cnt = ans = 0
-            res = [result[-1][-1] / result[-1][-2]]
+            cnt: int = 0
+            ans: int = 0
+            res: Type = [result[-1][-1] / result[-1][-2]]
 
             for i in range(-2, -result.order[0] - 1, -1):
                 for j in range(-2, i - 1, -1):
@@ -620,32 +618,33 @@ class Matrix:
                     cnt += 1
 
                 res.append((result[i][-1] - ans) / result[i][i - 1])
-                ans = cnt = 0
+                cnt: int = 0
+                ans: int = 0
 
             res.reverse()
             return tuple(res)
 
-    def gauss_jordan_elimination(self) -> "Matrix":
+    def gauss_jordan_elimination(self) -> "Matrix[Type]":
         if not self.is_square():
             raise MatrixError("Inverse of a rectangular matrix is not defined")
 
-        det = self.determinant()
+        det: Type = self.determinant()
 
         if det == 0:
             raise MatrixError("Inverse of singular matrix is not defined")
 
-        identity_mat = Matrix(self.order[0], self.order[1], "identity")
-        aug_matrix = Matrix(self.order[0], self.order[0] * 2,
-                            matrix=list(reversed([self.matrix[i] + identity_mat.matrix[i]
-                                                  for i in range(self.order[0])]))).echelon_form()
+        identity_mat: Matrix[Fraction] = Matrix(self.order[0], self.order[1], "identity")
+        aug_matrix: Matrix[Type] = Matrix(self.order[0], self.order[0] * 2,
+                                          matrix=list(reversed([self.matrix[i] + identity_mat.matrix[i]
+                                                                for i in range(self.order[0])]))).echelon_form()
         for i in range(self.order[0]):
             aug_matrix[i][:self.order[0]] = list(reversed(aug_matrix[i][:self.order[0]]))
 
-        aug_matrix = aug_matrix.echelon_form()
-        res = []
+        aug_matrix: Matrix[Type] = aug_matrix.echelon_form()
+        res: list[list[Type]] = []
 
         for i in range(self.order[0] - 1, -1, -1):
-            factor = 1 / aug_matrix[i][i]
+            factor: Type = 1 / aug_matrix[i][i]
 
             for j in range(self.order[0], self.order[0] * 2):
                 aug_matrix[i][j] *= factor
@@ -655,8 +654,8 @@ class Matrix:
         return Matrix(self.order[0], self.order[1], matrix=res)
 
     def is_orthonormal_system(self) -> bool:
-        def dot_product(lst1: list[Fraction], lst2: list[Fraction]):
-            res = 0
+        def dot_product(lst1: list[Type], lst2: list[Type]) -> Type:
+            res: Type = Fraction(0)
 
             for k in range(len(lst1)):
                 res += lst1 * lst2
@@ -666,7 +665,7 @@ class Matrix:
         if not self.is_square():
             raise MatrixError("Orthonormal system is defined for square matrices only")
 
-        matrix = self.transpose()
+        matrix: Matrix[Type] = self.transpose()
 
         for i in range(matrix.order[0]):
             for j in range(i, matrix.order[0]):
@@ -677,9 +676,10 @@ class Matrix:
         return True
 
     def rank(self) -> int:
-        result = self.echelon_form()
-        rank = result.order[0]
-        i, j = rank - 1, result.order[1] - 1
+        result: Matrix[Type] = self.echelon_form()
+        rank: int = result.order[0]
+        i: int = rank - 1
+        j: int = result.order[1] - 1
 
         while result.matrix[i][j] == 0 and i > 0 and j > 0:
             rank -= 1
@@ -688,8 +688,8 @@ class Matrix:
 
         return rank
 
-    def transpose(self) -> "Matrix":
-        result = Matrix(self.order[1], self.order[0], "null")
+    def transpose(self) -> "Matrix[Type]":
+        result: Matrix[Type] = Matrix(self.order[1], self.order[0], "null")
 
         for i in range(self.order[0]):
             for j in range(self.order[1]):
@@ -697,68 +697,74 @@ class Matrix:
 
         return result
 
-    def type(self) -> "Matrix":
+    def type(self) -> str:
         if self.order[0] == 1 and self.order[1] != 1:
-            res = "row"
+            res: str = "row"
 
         elif self.order[1] == 1 and self.order[0] != 1:
-            res = "column"
+            res: str = "column"
 
         elif self.order[0] == self.order[1]:
-            res = "square"
-            is_scalar = is_identity = is_diagonal = True
+            res: str = "square"
+            is_scalar: bool = True
+            is_identity: bool = True
+            is_diagonal: bool = True
 
             for i in range(self.order[0]):
                 for j in range(self.order[1]):
                     if i == j:
                         if self.matrix[i][j] != self.matrix[0][0]:
-                            is_scalar = False
+                            is_scalar: bool = False
 
                         elif self.matrix[i][j] != Fraction(1):
-                            is_identity = False
+                            is_identity: bool = False
 
                     else:
                         if self.matrix[i][j] != Fraction():
-                            is_scalar = is_identity = is_diagonal = False
+                            is_scalar: bool = False
+                            is_identity: bool = False
+                            is_diagonal: bool = False
 
                 if not (is_scalar and is_identity and is_diagonal):
                     break
 
             if is_identity:
-                res = "identity"
+                res: str = "identity"
 
             elif is_scalar:
-                res = "scalar"
+                res: str = "scalar"
 
             elif is_diagonal:
-                res = "diagonal"
+                res: str = "diagonal"
 
         elif self.order[0] != self.order[1]:
-            res = "rectangular"
+            res: str = "rectangular"
 
         else:
-            res = ""
+            res: str = ""
 
-        is_null = True
+        is_null: bool = True
 
         for i in range(self.order[0]):
             for j in range(self.order[1]):
                 if self.matrix[i][j] != Fraction():
-                    is_null = False
+                    is_null: bool = False
                     break
 
             if not is_null:
                 break
 
         if is_null:
-            res = "null"
+            res: str = "null"
 
         return res
 
-    copy: Callable[["Matrix"], "Matrix"] = lambda self: Matrix(self.order[0], self.order[1], matrix=self.matrix)
-    is_orthogonal: Callable[["Matrix"], bool] = lambda self: self.is_orthonormal_system()
-    is_skew_symmetric: Callable[["Matrix"], bool] = lambda self: self == (-self).transpose()
-    is_square: Callable[["Matrix"], bool] = lambda self: self.order[0] == self.order[1]
-    is_symmetric: Callable[["Matrix"], bool] = lambda self: self == self.transpose()
-    print: Callable[["Matrix"], None] = lambda self: [print([element.__str__() for element in self.matrix[i]])
-                                                      for i in range(len(self.matrix))]
+    copy: Callable[["Matrix[Type]"], "Matrix[Type]"] = lambda self: Matrix(self.order[0], self.order[1],
+                                                                           matrix=self.matrix)
+    is_orthogonal: Callable[["Matrix[Type]"], bool] = lambda self: self.is_orthonormal_system()
+    is_skew_symmetric: Callable[["Matrix[Type]"], bool] = lambda self: self == (-self).transpose()
+    is_square: Callable[["Matrix[Type]"], bool] = lambda self: self.order[0] == self.order[1]
+    is_symmetric: Callable[["Matrix[Type]"], bool] = lambda self: self == self.transpose()
+    print: Callable[["Matrix[Type]"], None] = lambda self: [print([element.__str__() for element in self.matrix[i]])
+                                                            for i in range(len(self.matrix))]
+    trace: Callable[["Matrix[Type]"], int] = lambda self: sum(self.matrix[i][i] for i in self.order[0])
