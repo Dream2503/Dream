@@ -184,47 +184,54 @@ class Variable:
             except ValueError:
                 return NotImplemented
 
-    def __iadd__(self, other: "Variable") -> None:
+    def __iadd__(self, other: "Variable") -> "Variable":
         if isinstance(other, Variable) and self.variables == other.variables:
             self._coefficient += other.coefficient
+            return self
 
         else:
             return NotImplemented
 
-    def __isub__(self, other: "Variable") -> None:
+    def __isub__(self, other: "Variable") -> "Variable":
         if isinstance(other, Variable) and self.variables == other.variables:
             self._coefficient -= other.coefficient
+            return  self
 
         else:
             return NotImplemented
 
-    def __imul__(self, other: "Variable | Fraction") -> None:
+    def __imul__(self, other: "Variable | Fraction") -> "Variable":
         if isinstance(other, Variable):
             self._coefficient *= other.coefficient
 
             for var, order in other.variables.items():
                 self.variables[var] = self.variables.get(var, 0) + order
 
+            return self
+
         else:
             try:
                 other: Fraction = Fraction(other)
                 self._coefficient *= other
+                return  self
 
             except ValueError:
                 return NotImplemented
 
-    def __itruediv__(self, other: "Variable | Fraction") -> None:
+    def __itruediv__(self, other: "Variable | Fraction") -> "Variable":
         if isinstance(other, Variable):
             self._coefficient /= other.coefficient
-            variables: dict[str, Fraction] = {}
 
             for var, order in other.variables.items():
                 self.variables[var] = self.variables.get(var, 0) - order
+
+            return self
 
         else:
             try:
                 other: Fraction = Fraction(other)
                 self._coefficient /= other
+                return self
 
             except ValueError:
                 return NotImplemented
@@ -257,10 +264,10 @@ class Variable:
     def substitute(self, variable: str, value: Fraction) -> "Variable":
         if self.variables.get(variable, None) is not None:
             if len(self) == 1:
-                return Variable(coefficient=self.coefficient * (value ** self.variables[variable]), variables_dict={})
+                return Variable(coefficient=self.coefficient * value ** self.variables[variable], variables_dict={})
 
             else:
-                return Variable(coefficient=self.coefficient * (value ** self.variables[variable]),
+                return Variable(coefficient=self.coefficient * value ** self.variables[variable],
                                 variables_dict={key: value for key, value in self.variables.items() if key != variable})
 
         else:
@@ -418,14 +425,16 @@ class Polynomial:
             except ValueError:
                 return NotImplemented
 
-    __radd__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = lambda self, other: self.__add__(other)
-    __rsub__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = lambda self, other: (-self).__add__(other)
-    __rmul__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = lambda self, other: self.__mul__(other)
-    __rtruediv__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = lambda self, other: Polynomial(
-        numerator=self.denominator, denominator=self.numerator) * other
+    __radd__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = \
+        lambda self, other: self.__add__(other)
+    __rsub__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = \
+        lambda self, other: (-self).__add__(other)
+    __rmul__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = \
+        lambda self, other: self.__mul__(other)
+    __rtruediv__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = \
+        lambda self, other: Polynomial(numerator=self.denominator, denominator=self.numerator) * other
     __neg__: Callable[["Polynomial"], "Polynomial"] = lambda self: self * -1
     __pos__: Callable[["Polynomial"], "Polynomial"] = lambda self: self
-    __len__: Callable[["Polynomial"], int] = lambda self: len(self.variables())
 
     def _init_simplify(self) -> None:
         factor: Variable = None

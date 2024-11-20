@@ -36,7 +36,7 @@
   "keyToString": {
     "Python tests.Doctests in matrix.executor": "Run",
     "Python.reaction_time.executor": "Run",
-    "Python.test.executor": "Run",
+    "Python.test.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "C:/Users/swapn/OneDrive/Desktop/achha/Dream/main/python",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -94,11 +94,18 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test.py</url>
-          <line>4</line>
-          <option name="timeStamp" value="20" />
+          <url>file://$PROJECT_DIR$/matrix.py</url>
+          <line>544</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
 </project>
