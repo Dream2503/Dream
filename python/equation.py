@@ -201,21 +201,25 @@ class Variable:
         coefficient=other / self.coefficient, variables_dict={key: value * -1 for key, value in self.variables.items()})
     __abs__: Callable[["Variable"], "Variable"] = lambda self: Variable(coefficient=abs(self.coefficient),
                                                                         variables_dict=self.variables.copy())
+    __bool__: Callable[["Variable"], bool] = lambda self: bool(self.coefficient)
     __neg__: Callable[["Variable"], "Variable"] = lambda self: self * -1
     __pos__: Callable[["Variable"], "Variable"] = lambda self: self
     __len__: Callable[["Variable"], int] = lambda self: len(self.variables)
 
-    def substitute(self, variable: str, value: Fraction) -> "Variable | Fraction":
+    copy: Callable[["Variable"], "Variable"] = lambda self: Variable(coefficient=self.coefficient,
+                                                                     variables_dict=self.variables.copy())
+
+    def substitute(self, variable: str, value: Fraction) -> "Variable":
         if self.variables.get(variable, None) is not None:
             if len(self) == 1:
-                return self.coefficient * (value ** self.variables[variable])
+                return Variable(coefficient=self.coefficient * (value ** self.variables[variable]), variables_dict={})
 
             else:
                 return Variable(coefficient=self.coefficient * (value ** self.variables[variable]),
                                 variables_dict={key: value for key, value in self.variables.items() if key != variable})
 
         else:
-            return self
+            return self.copy()
 
 
 class Term:
@@ -288,7 +292,7 @@ class Term:
             except ValueError:
                 return NotImplemented
 
-        return Term(numerator=numerator, denominator=denominator)._operation_simplify()
+        return Term(numerator=numerator, denominator=denominator)
 
     def __sub__(self, other: "Term | Variable | Fraction") -> "Term":
         if isinstance(other, Term):
@@ -309,7 +313,7 @@ class Term:
             except ValueError:
                 return NotImplemented
 
-        return Term(numerator=numerator, denominator=denominator)._operation_simplify()
+        return Term(numerator=numerator, denominator=denominator)
 
     def __mul__(self, other: "Term | Variable | Fraction") -> "Term":
         if isinstance(other, Term):
@@ -331,7 +335,7 @@ class Term:
             except ValueError:
                 return NotImplemented
 
-        return Term(numerator=numerator, denominator=denominator)._operation_simplify()
+        return Term(numerator=numerator, denominator=denominator)
 
     def __truediv__(self, other: "Term | Variable | Fraction") -> "Term":
         if isinstance(other, Term):
@@ -353,7 +357,7 @@ class Term:
             except ValueError:
                 return NotImplemented
 
-        return Term(numerator=numerator, denominator=denominator)._operation_simplify()
+        return Term(numerator=numerator, denominator=denominator)
 
     def __eq__(self, other: "Term | Variable| Fraction") -> bool:
         if isinstance(other, Term):
@@ -379,10 +383,9 @@ class Term:
     __len__: Callable[["Term"], int] = lambda self: len(self.variables())
 
     def _init_simplify(self) -> None:
-        zero: str = ""
         factor: Variable = None
         check: Variable = None
-        var_coef: Variable = None
+        main_var: Variable = None
         broke: bool = False
 
         for idx, variable in enumerate(self.numerator):
@@ -392,8 +395,7 @@ class Term:
 
             for var, exp in variable.variables.items():
                 if exp == 0:
-                    zero: str = var
-                    check: Variable = variable
+                    variable.variables.pop(var)
                     broke: bool = True
                     break
 
@@ -402,31 +404,26 @@ class Term:
                     factor: Variable = Variable(coefficient=Fraction(1), variables_dict={var: variable.variables[var]})
                     self.numerator.pop(idx)
                     check: Variable = var
-                    var_coef: Variable = variable
+                    main_var: Variable = variable
                     broke: bool = True
                     break
 
-            if broke:
-                break
-
-        if zero is not None:
-            check.variables.pop(zero)
-            self._init_simplify()
-            return
+            if broke and factor is None:
+                self._init_simplify()
+                return
 
         if factor is not None:
             self._numerator: list[Variable] = [factor * element for element in self.numerator]
             self._denominator: list[Variable] = [factor * element for element in self.denominator]
-            self.numerator.append(Variable(coefficient=var_coef.coefficient,
-                                           variables_dict={key: value for key, value in var_coef.variables.items()
+            self.numerator.append(Variable(coefficient=main_var.coefficient,
+                                           variables_dict={key: value for key, value in main_var.variables.items()
                                                            if key != check}))
             self._init_simplify()
             return
 
-        zero: str = ""
         factor: Variable = None
         check: Variable = None
-        var_coef: Variable = None
+        main_var: Variable = None
         broke: bool = False
 
         for idx, variable in enumerate(self.denominator):
@@ -436,31 +433,28 @@ class Term:
 
             for var, exp in variable.variables.items():
                 if exp == 0:
-                    zero: str = var
-                    check: Variable = variable
-                    broke: Variable = True
+                    variable.variables.pop(var)
+                    broke: bool = True
                     break
+
                 elif exp < 0:
                     variable.variables[var] = abs(variable.variables[var])
                     factor: Variable = Variable(coefficient=Fraction(1), variables_dict={var: variable.variables[var]})
                     self.denominator.pop(idx)
                     check: Variable = var
-                    var_coef: Variable = variable
+                    main_var: Variable = variable
                     broke: bool = True
                     break
 
-            if broke:
-                break
-
-        if zero is not None:
-            check.variables.pop(zero)
-            self._init_simplify()
+            if broke and factor is None:
+                self._init_simplify()
+                return
 
         if factor is not None:
             self._numerator: list[Variable] = [factor * element for element in self.numerator]
             self._denominator: list[Variable] = [factor * element for element in self.denominator]
-            self.denominator.append(Variable(coefficient=var_coef.coefficient,
-                                             variables_dict={key: value for key, value in var_coef.variables.items()
+            self.denominator.append(Variable(coefficient=main_var.coefficient,
+                                             variables_dict={key: value for key, value in main_var.variables.items()
                                                              if key != check}))
             self._init_simplify()
 
@@ -469,9 +463,6 @@ class Term:
         self.denominator.sort(key=lambda value: tuple(value.variables.keys()))
         self.denominator.sort(key=lambda value: tuple(value.variables.values()), reverse=True)
 
-        return self
-
-    def _operation_simplify(self) -> "Term":
         change: bool = False
 
         while not change:
@@ -487,9 +478,8 @@ class Term:
                         var += self.numerator[i] + self.numerator[i + 1]
                     else:
                         var: Variable = self.numerator[i] + self.numerator[i + 1]
-
-                    change: bool = True
-                    i += 1
+                        change: bool = True
+                        i += 1
 
                 except (TypeError, IndexError):
                     pass
@@ -508,7 +498,7 @@ class Term:
 
         while not change:
             res: list[Variable] = []
-            size: int = len(self.numerator)
+            size: int = len(self.denominator)
             i: int = 0
 
             while i < size:
@@ -519,9 +509,8 @@ class Term:
                         var += self.denominator[i] + self.denominator[i + 1]
                     else:
                         var: Variable = self.denominator[i] + self.denominator[i + 1]
-
-                    change: bool = True
-                    i += 1
+                        change: bool = True
+                        i += 1
 
                 except (TypeError, IndexError):
                     pass
@@ -541,6 +530,7 @@ class Term:
 
         except IndexError:
             factor: list[str, Fraction] = None
+
         try:
             coef: Fraction = self.numerator[0].coefficient
 
@@ -555,7 +545,7 @@ class Term:
                 factor: list[str, Fraction] = None
 
             coef: Fraction = Fraction(gcd(coef.numerator, element.coefficient.numerator),
-                            lcm(coef.denominator, element.coefficient.denominator))
+                                      lcm(coef.denominator, element.coefficient.denominator))
 
         if factor:
             for element in self.denominator:
@@ -566,17 +556,16 @@ class Term:
                     factor: list[str, Fraction] = None
 
                 coef: Fraction = Fraction(gcd(coef.numerator, element.coefficient.numerator),
-                                lcm(coef.denominator, element.coefficient.denominator))
+                                          lcm(coef.denominator, element.coefficient.denominator))
 
         if factor:
             for term in (self.numerator, self.denominator):
                 for element in term:
                     element.variables[factor[0]] -= factor[1]
 
-        return Term(numerator=self.numerator, denominator=self.denominator)
-
     def substitute(self, variable: str, value: Fraction) -> "Term | Fraction":
-        pass
+        return Term(numerator=[var.substitute(variable, value) for var in self.numerator],
+                    denominator=[var.substitute(variable, value) for var in self.denominator])
 
     def roots(self) -> tuple[float]:
         def quadratic_roots(b: Fraction, c: Fraction) -> tuple[float, float]:
@@ -596,8 +585,9 @@ class Term:
 
             return round(root1, 14), round(root2, 14)
 
-        def cubic_roots(b: Fraction, c: Fraction, d: Fraction) -> tuple[float | complex, float | complex, float | complex]:
-            q: Fraction= (c / 3) - (b ** 2 / 9)
+        def cubic_roots(b: Fraction, c: Fraction, d: Fraction) -> tuple[
+            float | complex, float | complex, float | complex]:
+            q: Fraction = (c / 3) - (b ** 2 / 9)
             r: Fraction = ((c * b - 3 * d) / 6) - (b ** 3 / 27)
             check: Fraction = r ** 2 + q ** 3
 
