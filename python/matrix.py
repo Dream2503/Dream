@@ -539,7 +539,8 @@ class Matrix(Generic[Type]):
         mat: list[list[Polynomial]] = \
             [[self.matrix[i][j] - var if i == j else self.matrix[i][j] for j in range(self.order[1])] for i in
              range(self.order[0])]
-        res: tuple[float] = recursive_determinant(mat).roots()
+        char_poly: Polynomial = recursive_determinant(mat)
+        res: tuple[float] = char_poly.roots()
 
         try:
             return tuple((Fraction(round(element, 3)) for element in res))
@@ -668,8 +669,10 @@ class Matrix(Generic[Type]):
 
         identity_mat: Matrix[Fraction] = Matrix(self.order[0], self.order[1], "identity")
         aug_matrix: Matrix[Type] = Matrix(self.order[0], self.order[0] * 2,
-                                          matrix=list(reversed([self.matrix[i] + identity_mat.matrix[i]
-                                                                for i in range(self.order[0])]))).echelon_form()
+                                          matrix=[self.matrix[i] + identity_mat.matrix[i] for i in range(self.order[0])])
+        aug_matrix: Matrix[Type] = aug_matrix.echelon_form()
+        aug_matrix._matrix = aug_matrix.matrix[::-1]
+
         for i in range(self.order[0]):
             aug_matrix[i][:self.order[0]] = list(reversed(aug_matrix[i][:self.order[0]]))
 
@@ -691,7 +694,7 @@ class Matrix(Generic[Type]):
             res: Type = Fraction(0)
 
             for k in range(len(lst1)):
-                res += lst1 * lst2
+                res += lst1[k] * lst2[k]
 
             return res
 
@@ -798,6 +801,7 @@ class Matrix(Generic[Type]):
     is_skew_symmetric: Callable[["Matrix[Type]"], bool] = lambda self: self == (-self).transpose()
     is_square: Callable[["Matrix[Type]"], bool] = lambda self: self.order[0] == self.order[1]
     is_symmetric: Callable[["Matrix[Type]"], bool] = lambda self: self == self.transpose()
+    nullity: Callable[["Matrix[[Type]]"], int] = lambda self: self.order[0] - self.rank()
     print: Callable[["Matrix[Type]"], None] = lambda self: [print([element.__str__() for element in self.matrix[i]])
                                                             for i in range(len(self.matrix))]
-    trace: Callable[["Matrix[Type]"], int] = lambda self: sum(self.matrix[i][i] for i in self.order[0])
+    trace: Callable[["Matrix[Type]"], Type] = lambda self: sum(self.matrix[i][i] for i in self.order[0])

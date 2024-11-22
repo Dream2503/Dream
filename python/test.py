@@ -1,5 +1,4 @@
 from matrix import Matrix
 
-m: Matrix = Matrix(3, 3, matrix=[[2, 0, -1], [0, 0.5, 0], [1, 0, 4]])
-print(m.eigen_values())
-# print(m.eigen_vectors())
+m: Matrix = Matrix(2, 3, matrix=[[2, -6, -11], [-3, 8, 10], [1, 0, 4]])
+print(m.gauss_jordan_elimination())

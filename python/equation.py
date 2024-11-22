@@ -338,7 +338,8 @@ class Polynomial:
         else:
             try:
                 other: Fraction = Fraction(other)
-                numerator: list[Variable] = self.numerator + [var * other.numerator for var in self.denominator]
+                numerator: list[Variable] = ([var * other.denominator for var in self.numerator] +
+                                             [var * other.numerator for var in self.denominator])
                 denominator: list[Variable] = [var * other.denominator for var in self.denominator]
 
             except ValueError:
@@ -359,7 +360,8 @@ class Polynomial:
         else:
             try:
                 other: Fraction = Fraction(other)
-                numerator: list[Variable] = self.numerator + [var * -other.numerator for var in self.denominator]
+                numerator: list[Variable] = ([var * other.denominator for var in self.numerator] +
+                                             [var * -other.numerator for var in self.denominator])
                 denominator: list[Variable] = [var * other.denominator for var in self.denominator]
 
             except ValueError:
