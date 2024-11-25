@@ -8,7 +8,7 @@ class Variable:
     def __init__(self, expression: str = "0", *, variable_obj: "Variable" = None, coefficient: Fraction = None,
                  variables_dict: dict[str, Fraction] = None) -> None:
         self._coefficient: Fraction = coefficient
-        self._variables: dict[str, Fraction] = variables_dict
+        self._variables: dict[str, Fraction] = variables_dict.copy() if variables_dict is not None else None
 
         if variable_obj is not None:
             self._coefficient: Fraction = variable_obj._coefficient
@@ -132,14 +132,14 @@ class Variable:
 
     def __add__(self, other: "Variable") -> "Variable":
         if isinstance(other, Variable) and self.variables == other.variables:
-            return Variable(coefficient=self.coefficient + other.coefficient, variables_dict=self.variables.copy())
+            return Variable(coefficient=self.coefficient + other.coefficient, variables_dict=self.variables)
 
         else:
             return NotImplemented
 
     def __sub__(self, other: "Variable") -> "Variable":
         if isinstance(other, Variable) and self.variables == other.variables:
-            return Variable(coefficient=self.coefficient - other.coefficient, variables_dict=self.variables.copy())
+            return Variable(coefficient=self.coefficient - other.coefficient, variables_dict=self.variables)
 
         else:
             return NotImplemented
@@ -158,7 +158,7 @@ class Variable:
         else:
             try:
                 other: Fraction = Fraction(other)
-                return Variable(coefficient=self.coefficient * other, variables_dict=self.variables.copy())
+                return Variable(coefficient=self.coefficient * other, variables_dict=self.variables)
 
             except ValueError:
                 return NotImplemented
@@ -261,34 +261,44 @@ class Variable:
     copy: Callable[["Variable"], "Variable"] = lambda self: Variable(coefficient=self.coefficient,
                                                                      variables_dict=self.variables.copy())
 
-    def substitute(self, variable: str, value: Fraction) -> "Variable":
+    def substitute(self, variable: str, value: "Variable | Fraction") -> "Variable":
         if self.variables.get(variable, None) is not None:
-            if len(self) == 1:
-                return Variable(coefficient=self.coefficient * value ** self.variables[variable], variables_dict={})
-
-            else:
+            try:
+                value: Fraction = Fraction(value)
                 return Variable(coefficient=self.coefficient * value ** self.variables[variable],
                                 variables_dict={key: value for key, value in self.variables.items() if key != variable})
 
-        else:
-            return self.copy()
+            except TypeError:
+                if isinstance(value, Variable):
+                    if len(value) == 1:
+                        variables = {}
+
+                        for key, val in self.variables.items():
+                            if key == variable:
+                                first, second = tuple(value.variables.items())[0]
+                                variables[first] = variables.get(first, 0) + second * val
+
+                            else:
+                                variables[key] = variables.get(key, 0) + val
+
+                        return Variable(coefficient=self.coefficient * value.coefficient, variables_dict=variables)
+
+        return self.copy()
 
 
 class Polynomial:
     def __init__(self, numerator_variables: str = "0", denominator_variables: str = "1", *,
-                 term_obj: "Polynomial | None" = None, numerator: list[Variable] | None = None,
+                 poly_obj: "Polynomial | None" = None, numerator: list[Variable] | None = None,
                  denominator: list[Variable] | None = None) -> None:
-        if term_obj is not None:
-            self._numerator: list[Variable] = term_obj.numerator.copy()
-            self._denominator: list[Variable] = term_obj.denominator.copy()
+        if poly_obj is not None:
+            self._numerator: list[Variable] = poly_obj.numerator.copy()
+            self._denominator: list[Variable] = poly_obj.denominator.copy()
 
         else:
             self._numerator: list[Variable] = numerator if numerator \
                 else [Variable(element) for element in numerator_variables.split()]
             self._denominator: list[Variable] = denominator if denominator \
                 else [Variable(element) for element in denominator_variables.split()]
-
-        self._init_simplify()
 
     @property
     def numerator(self) -> list[Variable]:
@@ -298,10 +308,8 @@ class Polynomial:
     def denominator(self) -> list[Variable]:
         return self._denominator
 
-    def __repr__(self) -> str:
-        return f"Polynomial(numerator={self.numerator}, denominator={self.denominator})"
-
     def __str__(self) -> str:
+        self._init_simplify()
         res: list[str] = []
 
         for term in (self.numerator, self.denominator):
@@ -323,7 +331,13 @@ class Polynomial:
 
             res.append('0' if not current else current)
 
-        return f"({res[0]}) / ({res[1]})"
+        if res[1] == '1':
+            return f"{res[0]}"
+
+        else:
+            return f"({res[0]}) / ({res[1]})"
+
+    __repr__ = __str__
 
     def __add__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
         if isinstance(other, Polynomial):
@@ -427,16 +441,13 @@ class Polynomial:
             except ValueError:
                 return NotImplemented
 
-    __radd__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = \
-        lambda self, other: self.__add__(other)
-    __rsub__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = \
-        lambda self, other: (-self).__add__(other)
-    __rmul__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = \
-        lambda self, other: self.__mul__(other)
-    __rtruediv__: Callable[["Polynomial", "Polynomial | Variable | Fraction"], "Polynomial"] = \
+    __radd__: Callable[["Polynomial | Variable | Fraction"], "Polynomial"] = lambda self, other: self.__add__(other)
+    __rsub__: Callable[["Polynomial | Variable | Fraction"], "Polynomial"] = lambda self, other: (-self).__add__(other)
+    __rmul__: Callable[["Polynomial | Variable | Fraction"], "Polynomial"] = lambda self, other: self.__mul__(other)
+    __rtruediv__: Callable[["Polynomial | Variable | Fraction"], "Polynomial"] = \
         lambda self, other: Polynomial(numerator=self.denominator, denominator=self.numerator) * other
-    __neg__: Callable[["Polynomial"], "Polynomial"] = lambda self: self * -1
-    __pos__: Callable[["Polynomial"], "Polynomial"] = lambda self: self
+    __neg__: Callable[[], "Polynomial"] = lambda self: self * -1
+    __pos__: Callable[[], "Polynomial"] = lambda self: self
 
     def _init_simplify(self) -> None:
         factor: Variable = None
@@ -591,7 +602,7 @@ class Polynomial:
             coef: Fraction = self.numerator[0].coefficient
 
         except IndexError:
-            coef: Fraction = Fraction(0)
+            coef: Fraction = Fraction(1)
 
         for element in self.numerator[1:]:
             if factor is not None and factor[0] in element.variables:
@@ -603,23 +614,36 @@ class Polynomial:
             coef: Fraction = Fraction(gcd(coef.numerator, element.coefficient.numerator),
                                       lcm(coef.denominator, element.coefficient.denominator))
 
-        if factor:
-            for element in self.denominator:
-                if factor is not None and factor[0] in element.variables:
-                    factor[1] = min(factor[1], element.variables[factor[0]])
+        if coef != Fraction(1) and len(self.numerator) > 1:
+            for i in range(len(self.numerator)):
+                self.numerator[i] /= coef
 
-                else:
-                    factor: list[str, Fraction] = None
+        coef: Fraction = self.denominator[0].coefficient
 
-                coef: Fraction = Fraction(gcd(coef.numerator, element.coefficient.numerator),
-                                          lcm(coef.denominator, element.coefficient.denominator))
+        for element in self.denominator:
+            if factor is not None and factor[0] in element.variables:
+                factor[1] = min(factor[1], element.variables[factor[0]])
+
+            else:
+                factor: list[str, Fraction] = None
+
+            coef: Fraction = Fraction(gcd(coef.numerator, element.coefficient.numerator),
+                                      lcm(coef.denominator, element.coefficient.denominator))
+
+        if coef != Fraction(1):
+            for i in range(len(self.denominator)):
+                self.denominator[i] /= coef
 
         if factor:
             for term in (self.numerator, self.denominator):
                 for element in term:
                     element.variables[factor[0]] -= factor[1]
 
-    def substitute(self, variable: str, value: Fraction) -> "Polynomial | Fraction":
+        if len(self.denominator) == 1 and not self.denominator[0].variables and self.denominator[0].coefficient < 0:
+            self.denominator[0] = abs(self.denominator[0])
+            self._numerator = [var * -1 for var in self.numerator]
+
+    def substitute(self, variable: str, value: Variable | Fraction) -> "Polynomial | Fraction":
         return Polynomial(numerator=[var.substitute(variable, value) for var in self.numerator],
                           denominator=[var.substitute(variable, value) for var in self.denominator])
 
@@ -687,3 +711,5 @@ class Polynomial:
 
         elif var[1] == 4:
             return quartic_roots(coef[4], coef.get(3, 0), coef.get(2, 0), coef.get(1, 0), constant / factor)
+
+    copy: Callable[[], "Polynomial"] = lambda self: Polynomial(poly_obj=self)

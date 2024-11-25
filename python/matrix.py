@@ -381,7 +381,7 @@ class Matrix(Generic[Type]):
                 if element == item:
                     return True
 
-    def __iter__(self) -> list[Type]:
+    def __iter__(self) -> list[Type]:  # type: ignore
         for row in self.matrix:
             yield row
 
@@ -576,17 +576,18 @@ class Matrix(Generic[Type]):
             cnt[value] = cnt.get(value, 0) + 1
 
         for key, value in cnt.items():
-            eigen_vec: list[Fraction] | list[None] = [None for _ in range(self.order[1])]
+            eigen_vec: list[Fraction | None] = [None for _ in range(self.order[1])]
             matrix: list[list[Type]] = [[self.matrix[i][j] - (key if i == j else Fraction(0))
-                       for j in range(self.order[1])] for i in range(self.order[0])]
-            char_matrix: Matrix[Polynomial] = Matrix(self.order[0], self.order[1], matrix=matrix).echelon_form() * var_mat
+                                         for j in range(self.order[1])] for i in range(self.order[0])]
+            char_matrix: Matrix[Polynomial] = Matrix(self.order[0], self.order[1],
+                                                     matrix=matrix).echelon_form() * var_mat
 
             for row in char_matrix.matrix[::-1]:
                 poly: Polynomial = row[0]
 
                 for idx, component in enumerate(eigen_vec):
                     if component is not None:
-                        poly: Polynomial = poly.substitute(f"x{idx+1}", component)
+                        poly: Polynomial = poly.substitute(f"x{idx + 1}", component)
 
                 var: list[Variable] = []
 
@@ -633,29 +634,71 @@ class Matrix(Generic[Type]):
         return tuple(res)
 
     def gauss_elimination(self) -> tuple[Type] | tuple[int, str]:
-        result: Matrix[Type] = self.echelon_form()
-
-        if result[-1][-2] == 0 and result[-1][-1] != 0:
-            return -1, "The set of linear equations has no solutions"
-
-        elif result[-1][-2] == result[-1][-1] == 0:
-            return 0, "The set of linear equations has infinitely many solutions"
+        if self.order[0] != self.order[1] - 1:
+            matrix: list[list[Fraction]] = [row for idx, row in enumerate(self.matrix) if idx < self.order[1] - 1]
 
         else:
-            cnt: int = 0
-            ans: int = 0
-            res: Type = [result[-1][-1] / result[-1][-2]]
+            matrix: list[list[Fraction]] = self.matrix
 
-            for i in range(-2, -result.order[0] - 1, -1):
-                for j in range(-2, i - 1, -1):
-                    ans += result[i][j] * res[cnt]
-                    cnt += 1
+        result: Matrix[Fraction] = Matrix(self.order[1] - 1, self.order[1], matrix=matrix).echelon_form()
 
-                res.append((result[i][-1] - ans) / result[i][i - 1])
-                cnt: int = 0
-                ans: int = 0
+        if result[-1][-2] == 0 and result[-1][-1] != 0:
+            return 1, "The set of linear equations has no solutions"
 
-            res.reverse()
+        elif result[-1][-2] == result[-1][-1] == 0:
+            """Infinitely many solutions"""
+
+        else:
+            for i in range(self.order[0]):
+                result.matrix[i][-1] = -result.matrix[i][-1]
+
+            res: list[Fraction | None] = [None for _ in range(self.order[1] - 1)]
+            matrix: list[list[Polynomial]] = [[Polynomial(f"x{i}")] for i in range(1, self.order[1] + 1)]
+            matrix[-1][0] = Fraction(1)
+            var_mat: Matrix[Polynomial] = Matrix(self.order[1], 1, matrix=matrix)
+            poly_mat: Matrix[Polynomial] = result * var_mat
+            poly_mat.print()
+
+            for row in poly_mat.matrix[::-1]:
+                poly: Polynomial = row[0]
+
+                for idx, component in enumerate(res):
+                    if component is not None:
+                        poly: Polynomial = poly.substitute(f"x{idx + 1}", component)
+
+                var: list[Variable] = []
+
+                for variable in poly.numerator:
+                    if variable.variables:
+                        var.append(variable)
+
+                if len(var) == 0:
+                    pass
+
+                elif len(var) == 1:
+                    factor: Fraction = var[0].coefficient
+
+                    for i in range(len(poly.numerator)):
+                        poly.numerator[i] /= factor
+
+                    idx: str = tuple(var[0].variables.keys())[0][1]
+
+                    try:
+                        res[int(idx) - 1] = -poly.numerator[1].coefficient
+
+                    except IndexError:
+                        res[int(idx) - 1] = Fraction(0)
+
+                elif len(var) > 1:
+                    print(poly)
+                    for variable in var:
+                        var_str: str = tuple(variable.variables.keys())[0]
+                        temp_poly: Polynomial = poly.substitute(var_str, 0)
+                        print("xdd", temp_poly)
+                        temp_poly /= variable.coefficient
+                        # print("xpp", temp_poly)
+                        res[int(var_str[1]) - 1] = -temp_poly
+
             return tuple(res)
 
     def gauss_jordan_elimination(self) -> "Matrix[Type]":
@@ -669,7 +712,8 @@ class Matrix(Generic[Type]):
 
         identity_mat: Matrix[Fraction] = Matrix(self.order[0], self.order[1], "identity")
         aug_matrix: Matrix[Type] = Matrix(self.order[0], self.order[0] * 2,
-                                          matrix=[self.matrix[i] + identity_mat.matrix[i] for i in range(self.order[0])])
+                                          matrix=[self.matrix[i] + identity_mat.matrix[i] for i in
+                                                  range(self.order[0])])
         aug_matrix: Matrix[Type] = aug_matrix.echelon_form()
         aug_matrix._matrix = aug_matrix.matrix[::-1]
 
@@ -795,13 +839,12 @@ class Matrix(Generic[Type]):
 
         return res
 
-    copy: Callable[["Matrix[Type]"], "Matrix[Type]"] = lambda self: Matrix(self.order[0], self.order[1],
-                                                                           matrix=self.matrix)
-    is_orthogonal: Callable[["Matrix[Type]"], bool] = lambda self: self.is_orthonormal_system()
-    is_skew_symmetric: Callable[["Matrix[Type]"], bool] = lambda self: self == (-self).transpose()
-    is_square: Callable[["Matrix[Type]"], bool] = lambda self: self.order[0] == self.order[1]
-    is_symmetric: Callable[["Matrix[Type]"], bool] = lambda self: self == self.transpose()
-    nullity: Callable[["Matrix[[Type]]"], int] = lambda self: self.order[0] - self.rank()
-    print: Callable[["Matrix[Type]"], None] = lambda self: [print([element.__str__() for element in self.matrix[i]])
-                                                            for i in range(len(self.matrix))]
-    trace: Callable[["Matrix[Type]"], Type] = lambda self: sum(self.matrix[i][i] for i in self.order[0])
+    copy: Callable[[], "Matrix[Type]"] = lambda self: Matrix(self.order[0], self.order[1], matrix=self.matrix)
+    is_orthogonal: Callable[[], bool] = lambda self: self.is_orthonormal_system()
+    is_skew_symmetric: Callable[[], bool] = lambda self: self == (-self).transpose()
+    is_square: Callable[[], bool] = lambda self: self.order[0] == self.order[1]
+    is_symmetric: Callable[[], bool] = lambda self: self == self.transpose()
+    nullity: Callable[[], int] = lambda self: self.order[0] - self.rank()
+    print: Callable[[], None] = lambda self: [print([element.__str__() for element in self.matrix[i]]) for i in
+                                              range(len(self.matrix))]
+    trace: Callable[[], Type] = lambda self: sum(self.matrix[i][i] for i in self.order[0])
