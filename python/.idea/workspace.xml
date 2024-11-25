@@ -34,7 +34,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python tests.Doctests in matrix.executor": "Run",
+    "Python tests.Doctests in matrix.executor": "Debug",
     "Python.reaction_time.executor": "Run",
     "Python.test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -96,12 +96,12 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/test.py</url>
           <line>11</line>
-          <option name="timeStamp" value="52" />
+          <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/matrix.py</url>
-          <line>662</line>
-          <option name="timeStamp" value="55" />
+          <url>file://$PROJECT_DIR$/equation.py</url>
+          <line>316</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -114,7 +114,7 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="coef" language="Python" />
+        <watch expression="temp_poly.denominator" language="Python" />
       </configuration>
     </watches-manager>
   </component>

@@ -7,10 +7,9 @@ m: Matrix = Matrix(3, 4, matrix=[
     [-1, 2, -5, -21],
     [3, -6, 1, 7],
 ])
-m.echelon_form().print()
 
-for element in m.gauss_elimination():
-    print(element)
+res = m.gauss_elimination()
+[print(i) for i in res]
 
 # poly = Polynomial("8x2 4", "4")
 # print(poly)

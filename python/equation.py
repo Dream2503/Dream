@@ -300,6 +300,8 @@ class Polynomial:
             self._denominator: list[Variable] = denominator if denominator \
                 else [Variable(element) for element in denominator_variables.split()]
 
+        self._pre_simplify()
+
     @property
     def numerator(self) -> list[Variable]:
         return self._numerator
@@ -308,8 +310,11 @@ class Polynomial:
     def denominator(self) -> list[Variable]:
         return self._denominator
 
+    def __repr__(self) -> str:
+        return f"Polynomial(numerator={self.numerator}, denominator={self.denominator}"
+
     def __str__(self) -> str:
-        self._init_simplify()
+        self._post_simplify()
         res: list[str] = []
 
         for term in (self.numerator, self.denominator):
@@ -336,8 +341,6 @@ class Polynomial:
 
         else:
             return f"({res[0]}) / ({res[1]})"
-
-    __repr__ = __str__
 
     def __add__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
         if isinstance(other, Polynomial):
@@ -449,7 +452,58 @@ class Polynomial:
     __neg__: Callable[[], "Polynomial"] = lambda self: self * -1
     __pos__: Callable[[], "Polynomial"] = lambda self: self
 
-    def _init_simplify(self) -> None:
+    def _post_simplify(self) -> None:
+        try:
+            factor: list[str, Fraction] = list(tuple(self.numerator[0].variables.items())[0])
+
+        except IndexError:
+            factor: list[str, Fraction] = None
+
+        try:
+            coef: Fraction = self.numerator[0].coefficient
+
+        except IndexError:
+            coef: Fraction = Fraction(1)
+
+        for element in self.numerator[1:]:
+            if factor is not None and factor[0] in element.variables:
+                factor[1] = min(factor[1], element.variables[factor[0]])
+
+            else:
+                factor: list[str, Fraction] = None
+
+            coef: Fraction = Fraction(gcd(coef.numerator, element.coefficient.numerator),
+                                      lcm(coef.denominator, element.coefficient.denominator))
+
+        if coef != Fraction(1):
+            for i in range(len(self.numerator)):
+                self.numerator[i] /= coef
+
+
+        for element in self.denominator:
+            if factor is not None and factor[0] in element.variables:
+                factor[1] = min(factor[1], element.variables[factor[0]])
+
+            else:
+                factor: list[str, Fraction] = None
+
+            coef: Fraction = Fraction(gcd(coef.numerator, element.coefficient.numerator),
+                                      lcm(coef.denominator, element.coefficient.denominator))
+
+        if coef != Fraction(1):
+            for i in range(len(self.denominator)):
+                self.denominator[i] /= coef
+
+        if factor:
+            for term in (self.numerator, self.denominator):
+                for element in term:
+                    element.variables[factor[0]] -= factor[1]
+
+        if len(self.denominator) == 1 and not self.denominator[0].variables and self.denominator[0].coefficient < 0:
+            self.denominator[0] = abs(self.denominator[0])
+            self._numerator = [var * -1 for var in self.numerator]
+
+    def _pre_simplify(self) -> None:
         factor: Variable = None
         check: Variable = None
         main_var: Variable = None
@@ -476,7 +530,7 @@ class Polynomial:
                     break
 
             if broke and factor is None:
-                self._init_simplify()
+                self._pre_simplify()
                 return
 
         if factor is not None:
@@ -485,7 +539,7 @@ class Polynomial:
             self.numerator.append(Variable(coefficient=main_var.coefficient,
                                            variables_dict={key: value for key, value in main_var.variables.items()
                                                            if key != check}))
-            self._init_simplify()
+            self._pre_simplify()
             return
 
         factor: Variable = None
@@ -514,7 +568,7 @@ class Polynomial:
                     break
 
             if broke and factor is None:
-                self._init_simplify()
+                self._pre_simplify()
                 return
 
         if factor is not None:
@@ -523,7 +577,7 @@ class Polynomial:
             self.denominator.append(Variable(coefficient=main_var.coefficient,
                                              variables_dict={key: value for key, value in main_var.variables.items()
                                                              if key != check}))
-            self._init_simplify()
+            self._pre_simplify()
 
         self.numerator.sort(key=lambda value: tuple(value.variables.keys()))
         self.numerator.sort(key=lambda value: tuple(value.variables.values()), reverse=True)
@@ -591,57 +645,6 @@ class Polynomial:
 
             else:
                 change: bool = True
-
-        try:
-            factor: list[str, Fraction] = list(tuple(self.numerator[0].variables.items())[0])
-
-        except IndexError:
-            factor: list[str, Fraction] = None
-
-        try:
-            coef: Fraction = self.numerator[0].coefficient
-
-        except IndexError:
-            coef: Fraction = Fraction(1)
-
-        for element in self.numerator[1:]:
-            if factor is not None and factor[0] in element.variables:
-                factor[1] = min(factor[1], element.variables[factor[0]])
-
-            else:
-                factor: list[str, Fraction] = None
-
-            coef: Fraction = Fraction(gcd(coef.numerator, element.coefficient.numerator),
-                                      lcm(coef.denominator, element.coefficient.denominator))
-
-        if coef != Fraction(1) and len(self.numerator) > 1:
-            for i in range(len(self.numerator)):
-                self.numerator[i] /= coef
-
-        coef: Fraction = self.denominator[0].coefficient
-
-        for element in self.denominator:
-            if factor is not None and factor[0] in element.variables:
-                factor[1] = min(factor[1], element.variables[factor[0]])
-
-            else:
-                factor: list[str, Fraction] = None
-
-            coef: Fraction = Fraction(gcd(coef.numerator, element.coefficient.numerator),
-                                      lcm(coef.denominator, element.coefficient.denominator))
-
-        if coef != Fraction(1):
-            for i in range(len(self.denominator)):
-                self.denominator[i] /= coef
-
-        if factor:
-            for term in (self.numerator, self.denominator):
-                for element in term:
-                    element.variables[factor[0]] -= factor[1]
-
-        if len(self.denominator) == 1 and not self.denominator[0].variables and self.denominator[0].coefficient < 0:
-            self.denominator[0] = abs(self.denominator[0])
-            self._numerator = [var * -1 for var in self.numerator]
 
     def substitute(self, variable: str, value: Variable | Fraction) -> "Polynomial | Fraction":
         return Polynomial(numerator=[var.substitute(variable, value) for var in self.numerator],

@@ -643,10 +643,7 @@ class Matrix(Generic[Type]):
         result: Matrix[Fraction] = Matrix(self.order[1] - 1, self.order[1], matrix=matrix).echelon_form()
 
         if result[-1][-2] == 0 and result[-1][-1] != 0:
-            return 1, "The set of linear equations has no solutions"
-
-        elif result[-1][-2] == result[-1][-1] == 0:
-            """Infinitely many solutions"""
+            return 0, "The set of linear equations has no solutions"
 
         else:
             for i in range(self.order[0]):
@@ -657,7 +654,6 @@ class Matrix(Generic[Type]):
             matrix[-1][0] = Fraction(1)
             var_mat: Matrix[Polynomial] = Matrix(self.order[1], 1, matrix=matrix)
             poly_mat: Matrix[Polynomial] = result * var_mat
-            poly_mat.print()
 
             for row in poly_mat.matrix[::-1]:
                 poly: Polynomial = row[0]
@@ -690,13 +686,10 @@ class Matrix(Generic[Type]):
                         res[int(idx) - 1] = Fraction(0)
 
                 elif len(var) > 1:
-                    print(poly)
                     for variable in var:
                         var_str: str = tuple(variable.variables.keys())[0]
                         temp_poly: Polynomial = poly.substitute(var_str, 0)
-                        print("xdd", temp_poly)
                         temp_poly /= variable.coefficient
-                        # print("xpp", temp_poly)
                         res[int(var_str[1]) - 1] = -temp_poly
 
             return tuple(res)
