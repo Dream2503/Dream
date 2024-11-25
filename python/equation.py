@@ -195,7 +195,7 @@ class Variable:
     def __isub__(self, other: "Variable") -> "Variable":
         if isinstance(other, Variable) and self.variables == other.variables:
             self._coefficient -= other.coefficient
-            return  self
+            return self
 
         else:
             return NotImplemented
@@ -213,7 +213,7 @@ class Variable:
             try:
                 other: Fraction = Fraction(other)
                 self._coefficient *= other
-                return  self
+                return self
 
             except ValueError:
                 return NotImplemented
@@ -479,7 +479,6 @@ class Polynomial:
             for i in range(len(self.numerator)):
                 self.numerator[i] /= coef
 
-
         for element in self.denominator:
             if factor is not None and factor[0] in element.variables:
                 factor[1] = min(factor[1], element.variables[factor[0]])
@@ -679,6 +678,7 @@ class Polynomial:
 
                 if r >= 0:
                     t1: complex = a - (q / a)
+
                 else:
                     t1: complex = (q / a) - a
 

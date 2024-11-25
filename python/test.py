@@ -1,15 +1,12 @@
 from matrix import Matrix
 from fractions import Fraction
-from equation import Polynomial
+from equation import Polynomial, Variable
 
-m: Matrix = Matrix(3, 4, matrix=[
-    [4, -8, 3, 16],
-    [-1, 2, -5, -21],
-    [3, -6, 1, 7],
+m: Matrix = Matrix(matrix=[
+    [Fraction(18, 10), Fraction(-232, 100)],
+    [Fraction(-25, 100), Fraction(6, 10)]
 ])
-
-res = m.gauss_elimination()
-[print(i) for i in res]
+print(m.gauss_jordan_elimination().gauss_jordan_elimination() == m)
 
 # poly = Polynomial("8x2 4", "4")
 # print(poly)
