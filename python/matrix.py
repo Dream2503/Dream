@@ -1,5 +1,5 @@
 from fractions import Fraction
-from math import gcd, lcm
+from math import gcd, lcm, sqrt
 from typing import Callable, Literal, Generic, TypeVar
 from equation import Polynomial, Variable
 
@@ -177,7 +177,7 @@ class Matrix(Generic[Type]):
 
 # FINDING THE INVERSE OF A NON-SINGULAR MATRIX USING GAUSS JORDAN ELIMINATION
     >>> m: Matrix[Fraction] = Matrix(3, 3, matrix=[[2, 1, -1], [-3, -1, 2], [-2, 1, 2]])
-    >>> m.gauss_jordan_elimination()
+    >>> m.inverse()
     Matrix(rows=3, columns=3, matrix=[[Fraction(4, 1), Fraction(3, 1), Fraction(-1, 1)], [Fraction(0, 1), Fraction(-1, 2), Fraction(1, 2)], [Fraction(0, 1), Fraction(0, 1), Fraction(1, 2)]])
 
 # CHECKING IF THE MATRIX IS A ORTHOGONAL MATRIX
@@ -228,8 +228,8 @@ class Matrix(Generic[Type]):
     'rectangular'
     """
 
-    def __init__(self, rows: int = 0, columns: int = 0, method: Literal["input", "null", "identity", "pass"] = "pass", *,
-                 matrix: list[list[Type]] = None) -> None:
+    def __init__(self, rows: int = 0, columns: int = 0, method: Literal["input", "null", "identity", "pass"] = "pass",
+                 *, matrix: list[list[Type]] = None) -> None:
 
         if matrix is not None:
             rows = len(matrix)
@@ -406,6 +406,70 @@ class Matrix(Generic[Type]):
         f"Matrix(rows={self.order[0]}, columns={self.order[1]}, matrix={self.matrix})"
     __call__ = __repr__
 
+    def _back_substitution(self) -> list[Fraction | None]:
+        res: list[Fraction | None] = [None for _ in range(self.order[0])]
+
+        for row in self.matrix[::-1]:
+            poly: Polynomial = row[0]
+
+            for idx, component in enumerate(res):
+                if component is not None:
+                    poly: Polynomial = poly.substitute(f"x{idx + 1}", component)
+
+            var: list[Variable] = []
+
+            for variable in poly.numerator:
+                if variable.variables:
+                    var.append(variable)
+
+            if len(var) == 0:
+                pass
+
+            elif len(var) == 1:
+                factor: Fraction = var[0].coefficient
+
+                for i in range(len(poly.numerator)):
+                    poly.numerator[i] /= factor
+
+                idx: str = tuple(var[0].variables.keys())[0][1]
+
+                try:
+                    res[int(idx) - 1] = -poly.numerator[1].coefficient
+
+                except IndexError:
+                    res[int(idx) - 1] = Fraction(0)
+
+            elif len(var) > 1:
+                for variable in var[1:]:
+                    element: str = tuple(variable.variables.keys())[0]
+                    poly: Polynomial = poly.substitute(element, Fraction(1))
+                    res[int(element[1]) - 1] = Fraction(1)
+
+                for i in range(len(poly.numerator)):
+                    poly.numerator[i] /= var[0].coefficient
+
+                idx: str = tuple(var[0].variables.keys())[0][1]
+
+                try:
+                    res[int(idx) - 1] = -poly.numerator[1].coefficient
+
+                except IndexError:
+                    res[int(idx) - 1] = Fraction(0)
+
+        return res
+
+    @staticmethod
+    def _dot_product(lst1: list[Type], lst2: list[Type]) -> Type:
+        if len(lst1) != len(lst2):
+            raise MatrixError("Dot product of two unequal order of vector is not defined")
+
+        res: Type = Fraction(0)
+
+        for i in range(len(lst1)):
+            res += lst1[i] * lst2[i]
+
+        return res
+
     def _identity(self) -> None:
         """Initializes an identity matrix"""
         self._matrix: list[list[Fraction]] = [[Fraction(1) if i == j else Fraction(0) for j in range(self.order[1])]
@@ -431,11 +495,18 @@ class Matrix(Generic[Type]):
     @staticmethod
     def _simplify_row(lst: list[Fraction]) -> tuple[Fraction]:
         """Simplifies a list of Fractions by dividing them with their GCD"""
-        factor = Fraction(lst[0])
+        factor = Fraction(1)
         size = len(lst)
+        all_neg: bool = True
 
-        for i in range(1, size):
+        for i in range(size):
             factor = Fraction(gcd(factor.numerator, lst[i].numerator), lcm(factor.denominator, lst[i].denominator))
+
+            if lst[i] >= 0:
+                all_neg: bool = False
+
+        if all_neg:
+            factor *= Fraction(-1)
 
         for i in range(size):
             lst[i] /= factor
@@ -456,52 +527,65 @@ class Matrix(Generic[Type]):
         for i in range(self.order[0]):
             for j in range(self.order[1]):
                 try:
-                    self.matrix[i][j] = Fraction(self.matrix[i][j])
+                    self.matrix[i][j] = Fraction(f"{self.matrix[i][j]}")
 
-                except TypeError:
+                except (TypeError, ValueError):
                     pass
 
-    def cramer_rule(self) -> tuple[Type] | tuple[int, str]:
-        """Solves a set of linear equation where the matrix object is an augmented coefficient matrix of the set of linear equation by using Cramer's Rule."""
-        if self.order[0] != self.order[1] - 1:
-            raise MatrixError("Cramer's rule is not applicable for rectangular matrix")
+    def cramer_rule(self) -> dict[str, Fraction] | tuple[int, str]:
+        """Solves a system of linear equation where the matrix object is an augmented coefficient matrix of the set of linear equation by using Cramer's Rule."""
+        if self.order[0] < self.order[1]:
+            matrix: list[list[Fraction]] = [row for idx, row in enumerate(self.matrix) if idx < self.order[1] - 1]
+            order = (len(matrix), len(matrix[0]))
 
-        temp_a: list[list[Type]] = []
-        b: list[list[Type]] = []
-        res: list[Type] = []
+        else:
+            matrix: list[list[Fraction]] = self.matrix
+            order = self.order
 
-        for row in self.matrix:
+        result: Matrix[Fraction] = Matrix(order[0], order[1], matrix=matrix)
+
+        temp_a: list[list[Fraction]] = []
+        b: list[list[Fraction]] = []
+        res: list[Fraction] = []
+
+        for row in result:
             temp_a.append(row[:-1])
             b.append(row[-1])
 
-        a: Matrix[Type] = Matrix(len(temp_a), len(temp_a[0]), matrix=temp_a)
-        det: Type = a.determinant()
+        a: Matrix[Fraction] = Matrix(len(temp_a), len(temp_a[0]), matrix=temp_a)
+        det: Fraction = a.determinant()
 
         if det == 0:
             return 0, "The set of linear equations has no solutions"
 
         for i in range(self.order[0]):
-            temp_matrix: Matrix[Type] = a.copy()
+            temp_matrix: Matrix[Fraction] = a.copy()
 
             for j in range(self.order[0]):
                 temp_matrix[j][i] = b[j]
 
             res.append(temp_matrix.determinant() / det)
 
-        return tuple(res)
+        return {f"x{i}": val for i, val in enumerate(res)}
 
-    def determinant(self) -> Type:
+    def determinant(self) -> Fraction:
         """Finds the determinant of the matrix."""
         if not self.is_square():
             raise MatrixError("Determinant of rectangular matrix is not defined")
 
-        result: Matrix[Type] = self.echelon_form()
+        result: Matrix[Fraction] = self.echelon_form()
         det: Fraction = Fraction(1)
 
         for i in range(result.order[0]):
             det *= result.matrix[i][i]
 
         return det
+
+    def diagonalize(self) -> "Matrix[Fraction]":
+        vector: tuple[tuple[Fraction]] = self.eigen_vectors()
+        matrix: list[list[Fraction]] = [list(vec) for vec in vector]
+        x: Matrix[Fraction] = Matrix(len(vector), len(vector[0]), matrix=matrix).transpose()
+        return x.gauss_elimination() * self * x
 
     def echelon_form(self) -> "Matrix[Type]":
         """Returns the echelon_form of the current matrix."""
@@ -534,7 +618,7 @@ class Matrix(Generic[Type]):
 
         return result
 
-    def eigen_values(self) -> tuple[Fraction]:
+    def eigen_values(self) -> dict[str, Fraction]:
         """Finds the eigen values of a matrix."""
 
         def recursive_determinant(matrix: list[list[Polynomial]]):
@@ -561,87 +645,42 @@ class Matrix(Generic[Type]):
         res: tuple[float] = char_poly.roots()
 
         try:
-            return tuple((Fraction(round(element, 3)) for element in res))
+            ans: tuple[Fraction] = tuple((Fraction(f"{round(element, 3)}") for element in res))
 
         except TypeError:
-            return tuple(res)
+            ans: tuple[Fraction] = tuple(res)
 
         except ValueError:
             raise MatrixError("Complex roots are not supported.")
+
+        return {f"lambda{i + 1}": val for i, val in enumerate(ans)}
 
     def eigen_vectors(self) -> tuple[tuple[Fraction]]:
         """Finds the normalized eigen vectors for the corresponding eigen values of the matrix."""
 
         res: list = []
-        cnt: dict[Fraction: int] = {}
-        values: tuple[Fraction] = self.eigen_values()
+        cnt: dict[Fraction, int] = {}
+        eigen_val: dict[str, Fraction] = self.eigen_values()
         var_mat: Matrix[Type] = Matrix(self.order[1], 1,
                                        matrix=[[Polynomial(f"x{i}")] for i in range(1, self.order[1] + 1)])
 
-        for value in values:
+        for value in eigen_val.values():
             cnt[value] = cnt.get(value, 0) + 1
 
         for key, value in cnt.items():
-            eigen_vec: list[Fraction | None] = [None for _ in range(self.order[1])]
             matrix: list[list[Type]] = [[self.matrix[i][j] - (key if i == j else Fraction(0))
                                          for j in range(self.order[1])] for i in range(self.order[0])]
             char_matrix: Matrix[Polynomial] = Matrix(self.order[0], self.order[1],
                                                      matrix=matrix).echelon_form() * var_mat
 
-            for row in char_matrix.matrix[::-1]:
-                poly: Polynomial = row[0]
-
-                for idx, component in enumerate(eigen_vec):
-                    if component is not None:
-                        poly: Polynomial = poly.substitute(f"x{idx + 1}", component)
-
-                var: list[Variable] = []
-
-                for variable in poly.numerator:
-                    if variable.variables:
-                        var.append(variable)
-
-                if len(var) == 0:
-                    pass
-
-                elif len(var) == 1:
-                    factor: Fraction = var[0].coefficient
-
-                    for i in range(len(poly.numerator)):
-                        poly.numerator[i] /= factor
-
-                    idx: str = tuple(var[0].variables.keys())[0][1]
-
-                    try:
-                        eigen_vec[int(idx) - 1] = -poly.numerator[1].coefficient
-
-                    except IndexError:
-                        eigen_vec[int(idx) - 1] = Fraction(0)
-
-                elif len(var) > 1:
-                    for variable in var[1:]:
-                        element: str = tuple(variable.variables.keys())[0]
-                        poly: Polynomial = poly.substitute(element, Fraction(1))
-                        eigen_vec[int(element[1]) - 1] = Fraction(1)
-
-                    for i in range(len(poly.numerator)):
-                        poly.numerator[i] /= var[0].coefficient
-
-                    idx: str = tuple(var[0].variables.keys())[0][1]
-
-                    try:
-                        eigen_vec[int(idx) - 1] = -poly.numerator[1].coefficient
-
-                    except IndexError:
-                        eigen_vec[int(idx) - 1] = Fraction(0)
-
-            eigen_vec = [1 if value is None else value for value in eigen_vec]
+            eigen_vec: list[Fraction] = [Fraction(1) if value is None else value for value in
+                                         char_matrix._back_substitution()]
             res.append(self._simplify_row(eigen_vec))
 
         return tuple(res)
 
-    def gauss_elimination(self) -> tuple[Fraction] | tuple[int, str]:
-        """Solves the set of linear equations (assuming the "self" matrix as the augmented matrix) by gauss elimination method"""
+    def gauss_elimination(self) -> dict[str, Fraction] | tuple[int, str]:
+        """Solves the system of linear equations (assuming the "self" matrix as the augmented matrix) by gauss elimination method"""
         if self.order[0] < self.order[1]:
             matrix: list[list[Fraction]] = [row for idx, row in enumerate(self.matrix) if idx < self.order[1] - 1]
             order = (len(matrix), len(matrix[0]))
@@ -650,7 +689,7 @@ class Matrix(Generic[Type]):
             matrix: list[list[Fraction]] = self.matrix
             order = self.order
 
-        result: Matrix[Fraction] = Matrix(self.order[1] - 1, self.order[1], matrix=matrix).echelon_form()
+        result: Matrix[Fraction] = Matrix(order[0], order[1], matrix=matrix).echelon_form()
 
         if result[-1][-2] == 0 and result[-1][-1] != 0:
             return 0, "The set of linear equations has no solutions"
@@ -659,63 +698,16 @@ class Matrix(Generic[Type]):
             for i in range(order[0]):
                 result.matrix[i][-1] = -result.matrix[i][-1]
 
-            res: list[Fraction | None] = [None for _ in range(order[1] - 1)]
             matrix: list[list[Polynomial]] = [[Polynomial(f"x{i}")] for i in range(1, order[1] + 1)]
             matrix[-1][0] = Fraction(1)
             var_mat: Matrix[Polynomial] = Matrix(order[1], 1, matrix=matrix)
             poly_mat: Matrix[Polynomial] = result * var_mat
 
-            for row in poly_mat.matrix[::-1]:
-                poly: Polynomial = row[0]
+            res: list[Fraction] = [1 if val is None else val for val in poly_mat._back_substitution()]
+            return {f"x{i}": val for i, val in enumerate(self._simplify_row(res))}
 
-                for idx, component in enumerate(res):
-                    if component is not None:
-                        poly: Polynomial = poly.substitute(f"x{idx + 1}", component)
-
-                var: list[Variable] = []
-
-                for variable in poly.numerator:
-                    if variable.variables:
-                        var.append(variable)
-
-                if len(var) == 0:
-                    pass
-
-                elif len(var) == 1:
-                    factor: Fraction = var[0].coefficient
-
-                    for i in range(len(poly.numerator)):
-                        poly.numerator[i] /= factor
-
-                    idx: str = tuple(var[0].variables.keys())[0][1]
-
-                    try:
-                        res[int(idx) - 1] = -poly.numerator[1].coefficient
-
-                    except IndexError:
-                        res[int(idx) - 1] = Fraction(0)
-
-                elif len(var) > 1:
-                    for variable in var[1:]:
-                        element: str = tuple(variable.variables.keys())[0]
-                        poly: Polynomial = poly.substitute(element, Fraction(1))
-                        res[int(element[1]) - 1] = Fraction(1)
-
-                    for i in range(len(poly.numerator)):
-                        poly.numerator[i] /= var[0].coefficient
-
-                    idx: str = tuple(var[0].variables.keys())[0][1]
-
-                    try:
-                        res[int(idx) - 1] = -poly.numerator[1].coefficient
-
-                    except IndexError:
-                        res[int(idx) - 1] = Fraction(0)
-
-            res = [1 if value is None else value for value in res]
-            return self._simplify_row(res)
-
-    def gauss_jordan_elimination(self) -> "Matrix[Type]":
+    def inverse(self) -> "Matrix[Type]":
+        """Computes the inverse of a non-singular matrix using Gauss Jordan Elimination"""
         if not self.is_square():
             raise MatrixError("Inverse of a rectangular matrix is not defined")
 
@@ -748,14 +740,6 @@ class Matrix(Generic[Type]):
         return Matrix(self.order[0], self.order[1], matrix=res)
 
     def is_orthonormal_system(self) -> bool:
-        def dot_product(lst1: list[Type], lst2: list[Type]) -> Type:
-            res: Type = Fraction(0)
-
-            for k in range(len(lst1)):
-                res += lst1[k] * lst2[k]
-
-            return res
-
         if not self.is_square():
             raise MatrixError("Orthonormal system is defined for square matrices only")
 
@@ -763,11 +747,21 @@ class Matrix(Generic[Type]):
 
         for i in range(matrix.order[0]):
             for j in range(i, matrix.order[0]):
-                if ((i == j and dot_product(matrix.matrix[i], matrix.matrix[j]) != 1) or
-                        (i != j and dot_product(matrix.matrix[i], matrix.matrix[j]) != 0)):
+                if ((i == j and self._dot_product(matrix[i], matrix[j]) != 1) or
+                        (i != j and self._dot_product(matrix[i], matrix[j]) != 0)):
                     return False
 
         return True
+
+    @staticmethod
+    def normalize(eigen_vector: tuple[Fraction]) -> tuple[Fraction]:
+        total: Fraction = Fraction(0)
+
+        for value in eigen_vector:
+            total += value ** 2
+
+        normal: Fraction = Fraction(str(round(sqrt(float(total)), 3)))
+        return tuple(value / normal for value in eigen_vector)
 
     def rank(self) -> int:
         result: Matrix[Type] = self.echelon_form()
@@ -781,6 +775,19 @@ class Matrix(Generic[Type]):
             j -= 1
 
         return rank
+
+    def similar_matrix(self, matrix: "Matrix[Fraction]") -> dict[str, "Matrix[Fraction] | tuple[tuple[Fraction]]"]:
+        a_cap: Matrix[Fraction] = matrix.inverse() * self * matrix
+        y: tuple[tuple[Fraction]] = a_cap.eigen_vectors()
+        x_temp: list[tuple[Fraction]] = []
+
+        for vec in y:
+            y_matrix: Matrix[Fraction] = Matrix(1, len(vec), matrix=[list(vec)]).transpose()
+            x_matrix: Matrix[Fraction] = matrix * y_matrix
+            x_temp.append(self._simplify_row(x_matrix.transpose().matrix[0]))
+
+        x: tuple[tuple[Fraction]] = tuple(x_temp)
+        return {"A_cap": a_cap, "eigen_vectors": x}
 
     def transpose(self) -> "Matrix[Type]":
         result: Matrix[Type] = Matrix(self.order[1], self.order[0], "null")
