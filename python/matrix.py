@@ -1,6 +1,9 @@
 from fractions import Fraction
 from math import gcd, lcm, sqrt
 from typing import Callable, Literal, Generic, TypeVar
+
+from scipy.constants import sigma
+
 from equation import Polynomial, Variable
 
 Type = TypeVar("Type")
@@ -224,6 +227,11 @@ class Matrix(Generic[Type]):
     >>> m: Matrix[Fraction] = Matrix(4, 4, matrix=[[1, 2, 3, 4], [2, 3, 4, 5], [3, 4, 5, 6], [4, 5, 6, 7]])
     >>> m.nullity()
     2
+
+# COMPUTING PSEUDO INVERSE OF A MATRIX
+    >>> m: Matrix[Fraction] = Matrix(matrix=[[1, -1, 1], [-2, 2, -2]])
+    >>> m.pseudo_inverse()
+    Matrix(rows=3, columns=2, matrix=[[Fraction(0, 1), Fraction(0, 1)], [Fraction(163, 1000), Fraction(41, 500)], [Fraction(163, 1000), Fraction(41, 500)]])
 
 # USING THE MATRIX PRINT FUNCTION
     >>> m: Matrix[Fraction] = Matrix(matrix=[[1, 1, -1], [1, 2, 0], [-1, 0, 5]])
@@ -457,7 +465,7 @@ class Matrix(Generic[Type]):
         matrix=[abs(self.matrix[i][j]) for i in range(self.order[0]) for j in range(self.order[1])])
     __call__: Callable[[], str] = __repr__
 
-    def _back_substitution(self) -> list[Fraction | None]:
+    def _back_substitution(self, substituent: int = 1) -> list[Fraction | None]:
         """Back-substitutes the values in order to find the solution of the linear polynomial equations"""
         res: list[Fraction | None] = [None for _ in range(self.order[0])]
 
@@ -495,7 +503,7 @@ class Matrix(Generic[Type]):
                 for variable in var[1:]:
                     element: str = tuple(variable.variables.keys())[0]
                     poly: Polynomial = poly.substitute(element, Fraction(1))
-                    res[int(element[1]) - 1] = Fraction(1)
+                    res[int(element[1]) - 1] = Fraction(substituent)
 
                 for i in range(len(poly.numerator)):
                     poly.numerator[i] /= var[0].coefficient
@@ -553,7 +561,8 @@ class Matrix(Generic[Type]):
         all_neg: bool = True
 
         for i in range(size):
-            factor: Fraction = Fraction(gcd(factor.numerator, lst[i].numerator), lcm(factor.denominator, lst[i].denominator))
+            factor: Fraction = Fraction(gcd(factor.numerator, lst[i].numerator),
+                                        lcm(factor.denominator, lst[i].denominator))
 
             if lst[i] >= 0:
                 all_neg: bool = False
@@ -725,9 +734,10 @@ class Matrix(Generic[Type]):
             matrix: list[list[Type]] = [[self.matrix[i][j] - (key if i == j else Fraction(0))
                                          for j in range(self.order[1])] for i in range(self.order[0])]
             char_matrix: Matrix[Polynomial] = Matrix(matrix=matrix).echelon_form() * var_mat
-            eigen_vec: list[Fraction] = [Fraction(1) if value is None else value for value in
-                                         char_matrix._back_substitution()]
-            res.append(self._simplify_row(eigen_vec))
+            for i in range(1, value + 1):
+                eigen_vec: list[Fraction] = [Fraction(1) if value is None else value for value in
+                                             char_matrix._back_substitution(substituent=i)]
+                res.append(self._simplify_row(eigen_vec))
 
         return tuple(res)
 
@@ -838,6 +848,24 @@ class Matrix(Generic[Type]):
         else:
             return eigen_vector
 
+    def pseudo_inverse(self) -> "Matrix[Fraction]":
+        """Computes the pseudo inverse of a matrix"""
+        svd: dict[str, Matrix[[Fraction]]] = self.singular_value_decomposition()
+        sigma_plus: Matrix[Fraction] = svd["sigma"].transpose()
+
+        for i in range(sigma_plus.order[0]):
+            for j in range(sigma_plus.order[1]):
+                if sigma_plus[i][j] != Fraction(0):
+                    sigma_plus[i][j] = Fraction(1) / sigma_plus[i][j]
+
+        a_plus: Matrix[Fraction] = svd["v"] * sigma_plus * svd["u"].transpose()
+
+        for i in range(a_plus.order[0]):
+            for j in range(a_plus.order[1]):
+                a_plus[i][j] = Fraction(str(round(float(a_plus[i][j]), 3)))
+
+        return a_plus
+
     def rank(self) -> int:
         """Gives the rank of the matrix"""
         result: Matrix[Type] = self.echelon_form()
@@ -856,10 +884,10 @@ class Matrix(Generic[Type]):
         """Gives the singular value decomposition of the matrix [A = U * sigma * trans(T)]"""
         aat: Matrix[Fraction] = self * self.transpose()
         aat_eigen_val: list[Fraction] = sorted(aat.eigen_values().values())
-        sigma: Matrix[Fraction] = Matrix(self.order[0], self.order[1], "null")
+        sigma_: Matrix[Fraction] = Matrix(self.order[0], self.order[1], "null")
 
         for i in range(len(aat_eigen_val)):
-            sigma[i][i] = Fraction(str(round(sqrt(abs(float(aat_eigen_val[i]))), 3)))
+            sigma_[i][i] = Fraction(str(round(sqrt(abs(float(aat_eigen_val[i]))), 3)))
 
         aat_eigen_vec: tuple[tuple[Fraction]] = aat.eigen_vectors(is_absolute=True)
         u: Matrix[Fraction] = Matrix(matrix=[list(self.normalize(vec)) for vec in aat_eigen_vec]).transpose()
@@ -868,7 +896,7 @@ class Matrix(Generic[Type]):
         ata_eigen_vec: tuple[tuple[Fraction]] = ata.eigen_vectors(is_absolute=True)
         v: Matrix[Fraction] = Matrix(matrix=[list(self.normalize(vec)) for vec in ata_eigen_vec])
 
-        return {"u": u, "sigma": sigma, "v": v.transpose()}
+        return {"u": u, "sigma": sigma_, "v": v.transpose()}
 
     def transpose(self) -> "Matrix[Type]":
         """Gives the transpose of the matrix"""
@@ -930,7 +958,7 @@ class Matrix(Generic[Type]):
 
         for i in range(self.order[0]):
             for j in range(self.order[1]):
-                if self.matrix[i][j] != Fraction():
+                if self.matrix[i][j] != Fraction(0):
                     is_null: bool = False
                     break
 

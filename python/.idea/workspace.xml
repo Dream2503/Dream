@@ -36,7 +36,7 @@
   "keyToString": {
     "Python tests.Doctests in matrix.executor": "Debug",
     "Python.reaction_time.executor": "Run",
-    "Python.test.executor": "Run",
+    "Python.test.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "C:/Users/swapn/OneDrive/Desktop/achha/Dream/main/python",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -92,6 +92,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/matrix.py</url>
+          <line>872</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
