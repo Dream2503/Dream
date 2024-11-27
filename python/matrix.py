@@ -53,38 +53,38 @@ class Matrix(Generic[Type]):
         >>> m2: Matrix[Fraction] = Matrix(matrix=[[5, 6], [7, 8]])
         >>> num: int = 7
 
-        -> addition between matrix and numeric types
+        -> addition of two matrices
             >>> m1 + m2
             Matrix(rows=2, columns=2, matrix=[[Fraction(6, 1), Fraction(8, 1)], [Fraction(10, 1), Fraction(12, 1)]])
 
-        -> subtraction between matrix and numeric types
+        -> subtraction of two matrices
             >>> m1 - m2
             Matrix(rows=2, columns=2, matrix=[[Fraction(-4, 1), Fraction(-4, 1)], [Fraction(-4, 1), Fraction(-4, 1)]])
 
-        -> multiplication between matrix and numeric types
+        -> multiplication of matrices and numeric types
             >>> m1 * m2
             Matrix(rows=2, columns=2, matrix=[[Fraction(19, 1), Fraction(22, 1)], [Fraction(43, 1), Fraction(50, 1)]])
             >>> m1 * num
             Matrix(rows=2, columns=2, matrix=[[Fraction(7, 1), Fraction(14, 1)], [Fraction(21, 1), Fraction(28, 1)]])
 
 # USING IN-PLACE OPERATOR
-    -> consider the following matrices and one integer throughout the section
-    -> matrices are all redefined after every operation to keep the initial value constant throughout the operations
+    -> consider the following two matrices and one integer throughout the section
+    -> matrices are all redefined after every operation to keep the initial value unchanged throughout the operations
         >>> m1: Matrix[Fraction] = Matrix(matrix=[[1, 2], [3, 4]])
         >>> m2: Matrix[Fraction] = Matrix(matrix=[[5, 6], [7, 8]])
         >>> num: int = 7
 
-        -> in-place addition between matrix and numeric types
+        -> in-place addition of two matrices
             >>> m1 += m2
             >>> m1
             Matrix(rows=2, columns=2, matrix=[[Fraction(6, 1), Fraction(8, 1)], [Fraction(10, 1), Fraction(12, 1)]])
 
-        -> in-place subtraction between matrix and numeric types
+        -> in-place subtraction of two matrices
             >>> m1 -= m2
             >>> m1
             Matrix(rows=2, columns=2, matrix=[[Fraction(-4, 1), Fraction(-4, 1)], [Fraction(-4, 1), Fraction(-4, 1)]])
 
-        -> in-place multiplication between matrix and numeric types
+        -> in-place multiplication of matrices and numeric types
             >>> m1 *= m2
             >>> m1
             Matrix(rows=2, columns=2, matrix=[[Fraction(19, 1), Fraction(22, 1)], [Fraction(43, 1), Fraction(50, 1)]])
@@ -92,31 +92,32 @@ class Matrix(Generic[Type]):
             >>> m1
             Matrix(rows=2, columns=2, matrix=[[Fraction(7, 1), Fraction(14, 1)], [Fraction(21, 1), Fraction(28, 1)]])
 
-        -> checking equality between matrix
-            >>> m1 == m2
-            False
+# OTHER BUILT-IN OPERATORS
+    -> checking equality between matrices
+        >>> m1 == m2
+        False
 
-        -> absolute value of matrix         # making the matrix negative with multiplying with -1
-            >>> m1 *= -1
-            >>> abs(m1)
-            Matrix(rows=2, columns=2, matrix=[[Fraction(1, 1), Fraction(2, 1)], [Fraction(3, 1), Fraction(4, 1)]])
+    -> absolute value of matrix
+        >>> m1 *= -1                            # making the matrix negative by multiplying with -1
+        >>> abs(m1)
+        Matrix(rows=2, columns=2, matrix=[[Fraction(1, 1), Fraction(2, 1)], [Fraction(3, 1), Fraction(4, 1)]])
 
-        -> checking if an element is in matrix
-            >>> 4 in m1
-            True
+    -> checking if an element is in matrix
+        >>> 4 in m1
+        True
 
-            >>> 5 in m1
-            False
+        >>> 5 in m1
+        False
 
-        -> checking truth value of a matrix
-            >>> m = Matrix(method="null")
-            >>> bool(m)
-            False
+    -> checking truth value of a matrix
+        >>> m = Matrix(method="null")
+        >>> bool(m)
+        False
 
-            >>> bool(m1)
-            True
+        >>> bool(m1)
+        True
 
-#ACCESSING ELEMENT OF A MATRIX
+# ACCESSING ELEMENT OF A MATRIX
     -> consider the following matrix for this session
         >>> m: Matrix[Fraction] = Matrix(matrix=[[1, 2, 3], [4, 5, 6]])
 
@@ -309,7 +310,7 @@ class Matrix(Generic[Type]):
         return self._matrix
 
     def __add__(self, other: "Matrix[Type]") -> "Matrix[Type]":
-        """Operator+ overload function"""
+        """Operator+ overloaded function"""
         if isinstance(other, Matrix):
             if self.order == other.order:
                 result: Matrix[Type] = Matrix(self.order[0], self.order[1], "null")
@@ -327,7 +328,7 @@ class Matrix(Generic[Type]):
             return NotImplemented
 
     def __sub__(self, other: "Matrix[Type]") -> "Matrix[Type]":
-        """Operator- overload function"""
+        """Operator- overloaded function"""
         if isinstance(other, Matrix):
             if self.order == other.order:
                 result: Matrix[Type] = Matrix(self.order[0], self.order[1], "null")
@@ -345,7 +346,7 @@ class Matrix(Generic[Type]):
             return NotImplemented
 
     def __mul__(self, other: "Matrix[Type] | Type") -> "Matrix[Type]":
-        """Operator* overload function"""
+        """Operator* overloaded function"""
         if isinstance(other, Matrix):
             if self.order[1] == other.order[0]:
                 result: Matrix[Type] = Matrix(self.order[0], other.order[1], "null")
@@ -374,7 +375,7 @@ class Matrix(Generic[Type]):
             return NotImplemented
 
     def __iadd__(self, other: "Matrix[Type]") -> "Matrix[Type]":
-        """Operator+= overload function"""
+        """Operator+= overloaded function"""
         if isinstance(other, Matrix):
             if self.order == other.order:
                 for i in range(self.order[0]):
@@ -390,7 +391,7 @@ class Matrix(Generic[Type]):
             return NotImplemented
 
     def __isub__(self, other: "Matrix[Type]") -> "Matrix[Type]":
-        """Operator-= overload function"""
+        """Operator-= overloaded function"""
         if isinstance(other, Matrix):
             if self.order == other.order:
                 for i in range(self.order[0]):
@@ -406,7 +407,7 @@ class Matrix(Generic[Type]):
             return NotImplemented
 
     def __imul__(self, other: "Matrix[Type] | Type") -> "Matrix[Type]":
-        """Operator*= overload function"""
+        """Operator*= overloaded function"""
         if isinstance(other, Matrix):
             if self.order[1] == other.order[0]:
                 for k in range(self.order[0]):
@@ -433,14 +434,14 @@ class Matrix(Generic[Type]):
                 return NotImplemented
 
     def __contains__(self, item: Type) -> bool:
-        """Built-in "in" overload keyword"""
+        """Built-in "in" overloaded keyword"""
         for row in self.matrix:
             for element in row:
                 if element == item:
                     return True
 
     def __iter__(self) -> list[Type]:  # type: ignore
-        """Built-in iter() overload function"""
+        """Built-in iter() overloaded function"""
         for row in self.matrix:
             yield row
 

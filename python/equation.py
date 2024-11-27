@@ -4,20 +4,122 @@ from math import gcd, lcm, cos, acos, pi, sqrt as sqrtf
 from cmath import sqrt as sqrtc
 
 
-class PolynomialError(Exception): ...
-
-
 class Variable:
-    def __init__(self, expression: str = "0", *, variable_obj: "Variable" = None, coefficient: Fraction = None,
+    """
+# INITIALIZING VARIABLE OBJECT
+    -> providing a valid expression in a str
+        >>> v: Variable = Variable("7x^2")
+        >>> print(v)
+        7x^2
+
+    -> providing the direct coefficient and variables property attributes
+        >>> v: Variable = Variable(coefficient=7, variables_dict={"x": 2})
+        >>> print(v)
+        7x^2
+
+# USING OPERATORS BETWEEN VARIABLE AND NUMERIC TYPE
+    # ADDITION AND SUBTRACTION OF VARIABLE OBJECTS WITH DIFFERENT VARIABLE BASES ARE NOT IMPLEMENTED
+    -> consider the following variables and one integer throughout the section
+        >>> v1: Variable = Variable("5x")
+        >>> v2: Variable = Variable("2x")
+        >>> num: int = 7
+
+        -> addition of two variables
+            >>> v1 + v2
+            Variable(coefficient=7, variables={'x': Fraction(1, 1)})
+
+        -> subtraction of two variables
+            >>> v1 - v2
+            Variable(coefficient=3, variables={'x': Fraction(1, 1)})
+
+        -> multiplication of variables and numeric types
+            >>> v1 * v2
+            Variable(coefficient=10, variables={'x': Fraction(2, 1)})
+            >>> v1 * num
+            Variable(coefficient=35, variables={'x': Fraction(1, 1)})
+
+        -> division of variables and numeric types
+            >>> v1 / v2
+            Variable(coefficient=5/2, variables={'x': Fraction(0, 1)})
+            >>> v1 / num
+            Variable(coefficient=5/7, variables={'x': Fraction(1, 1)})
+
+        -> exponentiating a variable
+            >>> v1 ** 2
+            Variable(coefficient=25, variables={'x': Fraction(2, 1)})
+
+# USING IN-PLACE OPERATOR
+    -> consider the following two variables and one integer throughout the section
+    -> variables are all redefined after every operation to keep the initial value unchanged throughout the operations
+        >>> v1: Variable = Variable("5x")
+        >>> v2: Variable = Variable("2x")
+        >>> num: int = 7
+
+        -> in-place addition of two variables
+            >>> v1 += v2
+            >>> v1
+            Variable(coefficient=7, variables={'x': Fraction(1, 1)})
+
+        -> in-place subtraction of two variables
+            >>> v1 -= v2
+            >>> v1
+            Variable(coefficient=3, variables={'x': Fraction(1, 1)})
+
+        -> in-place multiplication of variables and numeric types
+            >>> v1 *= v2
+            >>> v1
+            Variable(coefficient=10, variables={'x': Fraction(2, 1)})
+            >>> v1 *= num
+            >>> v1
+            Variable(coefficient=35, variables={'x': Fraction(1, 1)})
+
+        -> in-place division of variables and numeric types
+            >>> v1 /= v2
+            >>> v1
+            Variable(coefficient=5/2, variables={})
+            >>> v1 /= num
+            >>> v1
+            Variable(coefficient=5/7, variables={'x': Fraction(1, 1)})
+
+        -> exponentiating a variable
+            >>> v1 **= 2
+            >>> v1
+            Variable(coefficient=25, variables={'x': Fraction(2, 1)})
+
+# OTHER BULIT-IN OPERATORS
+    -> checking equality between variables
+        >>> v1 == v2
+        False
+
+    -> absolute value of a variable
+        >>> v1 += -1                            # making the variable negative by multiplying with -1
+        >>> abs(v1)
+        Variable(coefficient=5, variables={'x': Fraction(1, 1)})
+
+    -> checking the truth value of a variable
+        >>> v: Variable = Variable()
+        >>> bool(v)
+        False
+        >>> bool(v1)
+        True
+
+# SUBSTITUTE THE VALUE OF A VALUE INTO THE VARIABLE
+    >>> v: Variable = v1.substitute('x', 5)
+    >>> v
+    Variable(coefficient=25, variables={})
+
+# CREATING A COPY OF THE VARIABLE
+    >>> v: Variable = Variable("9x^2")
+    >>> v.copy()
+    Variable(coefficient=9, variables={'x': Fraction(2, 1)})
+    """
+
+    def __init__(self, expression: str = "0", *, coefficient: Fraction = None,
                  variables_dict: dict[str, Fraction] = None) -> None:
+        """Initialization function for Variable class"""
         self._coefficient: Fraction = coefficient
         self._variables: dict[str, Fraction] = variables_dict.copy() if variables_dict is not None else None
-
-        if variable_obj is not None:
-            self._coefficient: Fraction = variable_obj._coefficient
-            self._variables: dict[str, Fraction] = variable_obj._variables
-
-        expression = str(expression)
+        expression: str = str(expression)
 
         if coefficient is None:
             on_coef: bool = True
@@ -32,7 +134,7 @@ class Variable:
             while i < size:
                 if on_coef and expression[i].isalpha():
                     self._coefficient: Fraction = Fraction(1)
-                    on_coef = False
+                    on_coef: bool = False
                     i -= 1
 
                 elif on_coef and not expression[i].isalpha():
@@ -80,7 +182,8 @@ class Variable:
             var.append(Fraction(1)) if len(var) % 2 != 0 else var
             self._variables: dict[str, Fraction] = {var[i - 1]: Fraction(var[i]) for i in range(1, len(var), 2)}
 
-        self._variables: dict[str, Fraction] = dict(sorted(self._variables.items()))
+        self._variables: dict[str, Fraction] = dict(sorted({key: value for key, value in self.variables.items()
+                                                            if value != Fraction(0)}.items()))
 
     @property
     def coefficient(self) -> Fraction:
@@ -90,10 +193,8 @@ class Variable:
     def variables(self) -> dict[str, Fraction]:
         return self._variables
 
-    def __repr__(self) -> str:
-        return f"Variable({self._coefficient}, {self._variables})"
-
     def __str__(self) -> str:
+        """Built-in str() overloaded function"""
         res: str = ""
         is_brace: bool = False
 
@@ -134,6 +235,7 @@ class Variable:
         return res
 
     def __add__(self, other: "Variable") -> "Variable":
+        """Operator+ overloaded function"""
         if isinstance(other, Variable) and self.variables == other.variables:
             return Variable(coefficient=self.coefficient + other.coefficient, variables_dict=self.variables)
 
@@ -141,6 +243,7 @@ class Variable:
             return NotImplemented
 
     def __sub__(self, other: "Variable") -> "Variable":
+        """Operator- overloaded function"""
         if isinstance(other, Variable) and self.variables == other.variables:
             return Variable(coefficient=self.coefficient - other.coefficient, variables_dict=self.variables)
 
@@ -148,6 +251,7 @@ class Variable:
             return NotImplemented
 
     def __mul__(self, other: "Variable | Fraction") -> "Variable":
+        """Operator* overloaded function"""
         if isinstance(other, Variable):
             coefficient: Fraction = self.coefficient * other.coefficient
             variables: dict[str, Fraction] = {}
@@ -160,13 +264,13 @@ class Variable:
 
         else:
             try:
-                other: Fraction = Fraction(other)
-                return Variable(coefficient=self.coefficient * other, variables_dict=self.variables)
+                return Variable(coefficient=self.coefficient * Fraction(other), variables_dict=self.variables)
 
             except ValueError:
                 return NotImplemented
 
     def __truediv__(self, other: "Variable | Fraction") -> "Variable":
+        """Operator/ overloaded function"""
         if isinstance(other, Variable):
             coefficient: Fraction = self.coefficient / other.coefficient
             variables: dict[str, Fraction] = {}
@@ -181,13 +285,22 @@ class Variable:
 
         else:
             try:
-                other: Fraction = Fraction(other)
-                return Variable(coefficient=self.coefficient / other, variables_dict=self.variables)
+                return Variable(coefficient=self.coefficient / Fraction(other), variables_dict=self.variables)
 
             except ValueError:
                 return NotImplemented
 
+    def __pow__(self, power) -> "Variable":
+        """Operator** overloaded function"""
+        try:
+            return Variable(coefficient=self.coefficient ** power,
+                            variables_dict={key: value * power for key, value in self.variables.items()})
+
+        except ValueError:
+            return NotImplemented
+
     def __iadd__(self, other: "Variable") -> "Variable":
+        """Operator+= overloaded function"""
         if isinstance(other, Variable) and self.variables == other.variables:
             self._coefficient += other.coefficient
             return self
@@ -196,6 +309,7 @@ class Variable:
             return NotImplemented
 
     def __isub__(self, other: "Variable") -> "Variable":
+        """Operator-= overloaded function"""
         if isinstance(other, Variable) and self.variables == other.variables:
             self._coefficient -= other.coefficient
             return self
@@ -204,6 +318,7 @@ class Variable:
             return NotImplemented
 
     def __imul__(self, other: "Variable | Fraction") -> "Variable":
+        """Operator*= overloaded function"""
         if isinstance(other, Variable):
             self._coefficient *= other.coefficient
 
@@ -214,14 +329,14 @@ class Variable:
 
         else:
             try:
-                other: Fraction = Fraction(other)
-                self._coefficient *= other
+                self._coefficient *= Fraction(other)
                 return self
 
             except ValueError:
                 return NotImplemented
 
     def __itruediv__(self, other: "Variable | Fraction") -> "Variable":
+        """Operator/= overload function"""
         if isinstance(other, Variable):
             self._coefficient /= other.coefficient
 
@@ -232,49 +347,56 @@ class Variable:
 
         else:
             try:
-                other: Fraction = Fraction(other)
-                self._coefficient /= other
+                self._coefficient /= Fraction(other)
                 return self
 
             except ValueError:
                 return NotImplemented
 
+    def __ipow__(self, power) -> "Variable":
+        """Operator**= overloaded function"""
+        try:
+            self._coefficient **= power
+            self._variables = {key: value * power for key, value in self.variables.items()}
+            return self
+
+        except ValueError:
+            return NotImplemented
+
     def __eq__(self, other: "Variable | Fraction") -> bool:
+        """Operator== overloaded function"""
         if isinstance(other, Variable):
             return self.coefficient == other.coefficient and self.variables == other.variables
 
         else:
             try:
-                other: Fraction = Fraction(other)
-                return self.coefficient == other
+                return self.coefficient == Fraction(other) and not self.variables
 
             except ValueError:
                 return NotImplemented
 
-    __rmul__: Callable[["Variable", "Variable | Fraction"], "Variable"] = lambda self, other: self.__mul__(other)
-    __rtruediv__: Callable[["Variable", "Variable | Fraction"], "Variable"] = lambda self, other: Variable(
+    __rmul__: Callable[["Variable | Fraction"], "Variable"] = lambda self, other: self.__mul__(other)
+    __rtruediv__: Callable[["Variable | Fraction"], "Variable"] = lambda self, other: Variable(
         coefficient=other / self.coefficient, variables_dict={key: value * -1 for key, value in self.variables.items()})
-    __abs__: Callable[["Variable"], "Variable"] = lambda self: Variable(coefficient=abs(self.coefficient),
-                                                                        variables_dict=self.variables.copy())
-    __bool__: Callable[["Variable"], bool] = lambda self: bool(self.coefficient)
-    __neg__: Callable[["Variable"], "Variable"] = lambda self: self * -1
-    __pos__: Callable[["Variable"], "Variable"] = lambda self: self
-    __len__: Callable[["Variable"], int] = lambda self: len(self.variables)
-
-    copy: Callable[["Variable"], "Variable"] = lambda self: Variable(coefficient=self.coefficient,
-                                                                     variables_dict=self.variables.copy())
+    __abs__: Callable[[], "Variable"] = lambda self: Variable(coefficient=abs(self.coefficient),
+                                                              variables_dict=self.variables.copy())
+    __bool__: Callable[[], bool] = lambda self: bool(self.coefficient)
+    __neg__: Callable[[], "Variable"] = lambda self: self * -1
+    __pos__: Callable[[], "Variable"] = lambda self: self
+    __len__: Callable[[], int] = lambda self: len(self.variables)
+    __repr__: Callable[[], str] = lambda self: f"Variable(coefficient={self._coefficient}, variables={self._variables})"
 
     def substitute(self, variable: str, value: "Variable | Fraction") -> "Variable":
+        """Substitutes a value of a variable with a number or another variable and returns a new variable"""
         if self.variables.get(variable, None) is not None:
             try:
-                value: Fraction = Fraction(value)
-                return Variable(coefficient=self.coefficient * value ** self.variables[variable],
+                return Variable(coefficient=self.coefficient * Fraction(value) ** self.variables[variable],
                                 variables_dict={key: value for key, value in self.variables.items() if key != variable})
 
             except TypeError:
                 if isinstance(value, Variable):
                     if len(value) == 1:
-                        variables = {}
+                        variables: dict[str, Fraction] = {}
 
                         for key, val in self.variables.items():
                             if key == variable:
@@ -288,11 +410,133 @@ class Variable:
 
         return self.copy()
 
+    copy: Callable[["Variable"], "Variable"] = lambda self: Variable(coefficient=self.coefficient,
+                                                                     variables_dict=self.variables.copy())
+
+
+class PolynomialError(Exception): ...
+
 
 class Polynomial:
+    """
+    # I WILL BE PRINTING THE RESULTANT POLYNOMIAL BECAUSE THE POLYNOMIAL REPRESENTATION MAY SEEM VERY CONFUSING
+    # INITIALIZING POLYNOMIAL OBJECT
+    -> providing a valid expression in a str
+        >>> poly: Polynomial = Polynomial("3x^3 -5x^2 2x 7")
+        >>> print(poly)
+        3x^3 - 5x^2 + 2x + 7
+
+    -> providing the direct numerator variables and denominator variables property attributes
+        >>> poly: Polynomial = Polynomial(numerator_variables=[Variable(coefficient=3, variables={'x': Fraction(3, 1)}),Variable(coefficient=-5, variables={'x': Fraction(2, 1)}), Variable(coefficient=2, variables={'x': Fraction(1, 1)}), Variable(coefficient=7, variables={})], denominator_variables=[Variable(coefficient=1, variables={})])
+        >>> print(poly)
+        3x^3 - 5x^2 + 2x + 7
+
+# USING OPERATORS BETWEEN POLYNOMIAL AND NUMERIC TYPE
+    -> consider the following polynomials and one integer throughout the section
+        >>> poly1: Polynomial = Polynomial("3x^3 -5x^2 2x 7")
+        >>> poly2: Polynomial = Polynomial("4x^4 6x^2 -1x 9")
+        >>> num: int = 7
+
+        -> addition of polynomials and numeric types
+            >>> print(poly1 + poly2)
+            4x^4 + 3x^3 + x^2 + x + 16
+            >>> print(poly1 + num)
+            x^3 - 5x^2 + 2x + 14
+
+        -> subtraction of polynomials and numeric types
+            >>> print(poly1 - poly2)
+            -4x^4 + 3x^3 - 11x^2 + 3x - 2
+            >>> print(poly1 - num)
+            x^3 - 5x^2 + 2x - 0
+
+        -> multiplication of polynomials and numeric types
+            >>> print(poly1 * poly2)
+            12x^7 - 20x^6 + 26x^5 - 5x^4 + 44x^3 - 5x^2 + 11x + 63
+            >>> print(poly1 * num)
+            3x^3 - 5x^2 + 2x + 7                            # simplifies the polynomial after multiplying
+
+        -> division of polynomials and numeric types
+            >>> print(poly1 / poly2)
+            (3x^3 - 5x^2 + 2x + 7) / (4x^4 + 6x^2 - x + 9)
+            >>> print(poly1 / num)
+            V3x^3 - 5x^2 + 2x + 7                            # simplifies the polynomial after division
+
+# USING IN-PLACE OPERATOR
+    -> consider the following two polynomials and one integer throughout the section
+    -> polynomials are all redefined after every operation to keep the initial value unchanged throughout the operations
+        >>> poly1: Polynomial = Polynomial("3x^3 -5x^2 2x 7")
+        >>> poly2: Polynomial = Polynomial("4x^4 6x^2 -1x 9")
+        >>> num: int = 7
+
+        -> addition of polynomials and numeric types
+            >>> poly1 += poly2
+            >>> print(poly1)
+            4x^4 + 3x^3 + x^2 + x + 16
+            >>> poly1 += num
+            >>> print(poly1)
+            x^3 - 5x^2 + 2x + 14
+
+        -> subtraction of polynomials and numeric types
+            >>> poly1 -= poly2
+            >>> print(poly1)
+            -4x^4 + 3x^3 - 11x^2 + 3x - 2
+            >>> poly1 -= num
+            >>> print(poly1)
+            x^3 - 5x^2 + 2x - 0
+
+        -> multiplication of polynomials and numeric types
+            >>> poly1 *= poly2
+            >>> print(poly1)
+            12x^7 - 20x^6 + 26x^5 - 5x^4 + 44x^3 - 5x^2 + 11x + 63
+            >>> poly1 *= num
+            >>> print(poly1)
+            3x^3 - 5x^2 + 2x + 7                            # simplifies the polynomial after multiplying
+
+        -> division of polynomials and numeric types
+            >>> poly1 /= poly2
+            >>> print(poly1)
+            (3x^3 - 5x^2 + 2x + 7) / (4x^4 + 6x^2 - x + 9)
+            >>> poly1 /= num
+            >>> print(poly1)
+            V3x^3 - 5x^2 + 2x + 7                            # simplifies the polynomial after division
+
+# OTHER BULIT-IN OPERATORS
+    -> checking equality between polynomials
+        >>> poly1 == poly2
+        False
+
+    -> checking the truth value of a polynomial
+        >>> poly: Polynomial = Polynomial()
+        >>> bool(poly)
+        False
+        >>> bool(poly1)
+        True
+
+# SUBSTITUTE THE VALUE OF A VALUE INTO THE POLYNOMIAL
+    >>> poly: Polynomial = Polynomial("3x^3 -5x^2 2x 7")
+    >>> poly.substitute('x', 5)
+    Polynomial(numerator=[Variable(coefficient=267, variables={})], denominator=[Variable(coefficient=1, variables={})]
+
+# CREATING A COPY OF THE POLYNOMIAL
+    >>> poly: Polynomial = Polynomial("3x^3 -5x^2 2x 7")
+    >>> print(poly.copy())
+    3x^3 - 5x^2 + 2x + 7
+
+# FINDIND THE ROOTS OF A POLYNOMIAL
+    >>> poly: Polynomial = Polynomial("3x^3 -5x^2 2x 7")
+    >>> poly.roots()
+    (-0.841, (1.254+1.097j), (1.254-1.097j))
+
+# CONVERTING A QUADRATIC POLYNOMAIL TO ITS RESPECTIVE PRINCIPAL AXES FORM
+    >>> poly: Polynomial = Polynomial("-11x1^2 84x1^1x2^1 24x2^2 -156")
+    >>> poly.to_principal_axes()
+    {'x1': [Polynomial(numerator=[Variable(coefficient=601000, variables={'y1': Fraction(1, 1)}), Variable(coefficient=-901500, variables={'y2': Fraction(1, 1)})], denominator=[Variable(coefficient=1083603, variables={})]], 'x2': [Polynomial(numerator=[Variable(coefficient=901500, variables={'y1': Fraction(1, 1)}), Variable(coefficient=601000, variables={'y2': Fraction(1, 1)})], denominator=[Variable(coefficient=1083603, variables={})]], 'conic_section': 'Hyperbola'}
+    """
+
     def __init__(self, numerator: str = "0", denominator: str = "1", *,
                  poly_obj: "Polynomial | None" = None, numerator_variables: list[Variable] | None = None,
                  denominator_variables: list[Variable] | None = None) -> None:
+        """Polynomial object initializer function"""
         if poly_obj is not None:
             self._numerator: list[Variable] = poly_obj.numerator.copy()
             self._denominator: list[Variable] = poly_obj.denominator.copy()
@@ -313,10 +557,8 @@ class Polynomial:
     def denominator(self) -> list[Variable]:
         return self._denominator
 
-    def __repr__(self) -> str:
-        return f"Polynomial(numerator={self.numerator}, denominator={self.denominator}"
-
     def __str__(self) -> str:
+        """Built-in str() overloaded function"""
         self._post_simplify()
         res: list[str] = []
 
@@ -346,6 +588,7 @@ class Polynomial:
             return f"({res[0]}) / ({res[1]})"
 
     def __add__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
+        """Operator+ overloaded function"""
         if isinstance(other, Polynomial):
             numerator: list[Variable] = [var1 * var2 for var1 in self.numerator for var2 in other.denominator] + \
                                         [var1 * var2 for var1 in other.numerator for var2 in self.denominator]
@@ -368,6 +611,7 @@ class Polynomial:
         return Polynomial(numerator_variables=numerator, denominator_variables=denominator)
 
     def __sub__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
+        """Operator- overloaded function"""
         if isinstance(other, Polynomial):
             numerator: list[Variable] = [var1 * var2 for var1 in self.numerator for var2 in other.denominator] + \
                                         [-var1 * var2 for var1 in other.numerator for var2 in self.denominator]
@@ -390,6 +634,7 @@ class Polynomial:
         return Polynomial(numerator_variables=numerator, denominator_variables=denominator)
 
     def __mul__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
+        """Operator* overloaded function"""
         if isinstance(other, Polynomial):
             numerator: list[Variable] = [element1 * element2 for element1 in self.numerator for element2 in
                                          other.numerator]
@@ -412,6 +657,7 @@ class Polynomial:
         return Polynomial(numerator_variables=numerator, denominator_variables=denominator)
 
     def __truediv__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
+        """Operator/ overloaded function"""
         if isinstance(other, Polynomial):
             numerator: list[Variable] = [element1 * element2 for element1 in self.numerator for element2 in
                                          other.denominator]
@@ -425,15 +671,44 @@ class Polynomial:
         else:
             try:
                 other: Fraction = Fraction(other)
-                numerator: list[Variable] = [element * other.denominator for element in self.numerator]
-                denominator: list[Variable] = [element * other.numerator for element in self.denominator]
+                numerator: list[Variable] = [element * other.numerator for element in self.numerator]
+                denominator: list[Variable] = [element * other.denominator for element in self.denominator]
 
             except ValueError:
                 return NotImplemented
 
         return Polynomial(numerator_variables=numerator, denominator_variables=denominator)
 
+    def __iadd__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
+        """Operator+= overloaded function"""
+        result: Polynomial = self.__add__(other)
+        self._numerator = result.numerator
+        self._denominator = result.denominator
+        return self
+
+    def __isub__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
+        """Operator-= overloaded function"""
+        result: Polynomial = self.__sub__(other)
+        self._numerator = result.numerator
+        self._denominator = result.denominator
+        return self
+
+    def __imul__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
+        """Operator*= overloaded function"""
+        result: Polynomial = self.__mul__(other)
+        self._numerator = result.numerator
+        self._denominator = result.denominator
+        return self
+
+    def __itruediv__(self, other: "Polynomial | Variable | Fraction") -> "Polynomial":
+        """Operator/= overloaded function"""
+        result: Polynomial = self.__truediv__(other)
+        self._numerator = result.numerator
+        self._denominator = result.denominator
+        return self
+
     def __eq__(self, other: "Polynomial | Variable| Fraction") -> bool:
+        """Operator== overloaded function"""
         if isinstance(other, Polynomial):
             return self.numerator == other.numerator and self.denominator == other.denominator
 
@@ -456,13 +731,23 @@ class Polynomial:
                                        denominator_variables=self.numerator) * other
     __neg__: Callable[[], "Polynomial"] = lambda self: self * -1
     __pos__: Callable[[], "Polynomial"] = lambda self: self
+    __repr__: Callable[[], str] = lambda self: f"Polynomial(numerator={self.numerator}, denominator={self.denominator}"
+    __bool__: Callable[[], bool] = lambda self: self.numerator[0].coefficient != 0
 
     def _post_simplify(self) -> None:
+        """Simplifies the polynomial object after performing some mathematical operations"""
         try:
             factor: list[str, Fraction] = list(tuple(self.numerator[0].variables.items())[0])
 
         except IndexError:
             factor: list[str, Fraction] = None
+
+        if len(self.denominator) == 1 and not self.denominator[0].variables and self.denominator[0].coefficient < 0:
+            self.denominator[0] = abs(self.denominator[0])
+            self._numerator = [var * -1 for var in self.numerator]
+
+        if len(self.numerator) == 1:
+            return
 
         try:
             coef: Fraction = self.numerator[0].coefficient
@@ -503,11 +788,8 @@ class Polynomial:
                 for element in term:
                     element.variables[factor[0]] -= factor[1]
 
-        if len(self.denominator) == 1 and not self.denominator[0].variables and self.denominator[0].coefficient < 0:
-            self.denominator[0] = abs(self.denominator[0])
-            self._numerator = [var * -1 for var in self.numerator]
-
     def _pre_simplify(self) -> None:
+        """Simplifies the polynomial object after initializing a new polynomial instance"""
         factor: Variable = None
         check: Variable = None
         main_var: Variable = None
@@ -553,7 +835,7 @@ class Polynomial:
 
         for idx, variable in enumerate(self.denominator):
             if variable.coefficient == 0:
-                self.numerator.pop(idx)
+                self.denominator.pop(idx)
                 continue
 
             for var, exp in variable.variables.items():
@@ -574,6 +856,9 @@ class Polynomial:
             if broke and factor is None:
                 self._pre_simplify()
                 return
+
+        if len(self.denominator) == 1 and self.denominator[0].coefficient == 0:
+            raise ZeroDivisionError
 
         if factor is not None:
             self._numerator: list[Variable] = [factor * element for element in self.numerator]
@@ -652,6 +937,7 @@ class Polynomial:
 
     @staticmethod
     def _conic_section(eigen_values: dict[str, Fraction], determinant: Fraction) -> str:
+        """Determines which type of conic section does the eigen vector represents"""
         are_positive: list[bool | None] = []
         is_zero_determinant: bool = True if determinant == Fraction(0) else False
 
@@ -683,7 +969,10 @@ class Polynomial:
                 return "Parabola"
 
     def roots(self) -> tuple[float]:
-        def quadratic_roots(b: Fraction, c: Fraction) -> tuple[float, float]:
+        """Computes the roots of the polynomial"""
+
+        def quadratic_roots(b: Fraction, c: Fraction) -> tuple[float | complex]:
+            """Computes the quadratic roots of a second degree polynomial"""
             determinant: Fraction = (b * b) - (4 * c)
 
             if determinant >= 0:
@@ -700,8 +989,8 @@ class Polynomial:
 
             return round(root1, 14), round(root2, 14)
 
-        def cubic_roots(b: Fraction, c: Fraction, d: Fraction) -> tuple[
-            float | complex, float | complex, float | complex]:
+        def cubic_roots(b: Fraction, c: Fraction, d: Fraction) -> tuple[float | complex]:
+            """Computes the cubic roots of a 3rd degree polynomial"""
             q: Fraction = (c / 3) - (b ** 2 / 9)
             r: Fraction = ((c * b - 3 * d) / 6) - (b ** 3 / 27)
             check: Fraction = r ** 2 + q ** 3
@@ -717,16 +1006,14 @@ class Polynomial:
 
                 x2: complex = -t1 / 2 - b / 3
                 y2: complex = sqrtc(3) / 2 * (a + (q / a))
-                return round(t1 - b / 3, 14), complex(x2, y2.real), complex(x2, -y2.real)
+                res: tuple[complex] = (t1 - b / 3, complex(x2, y2.real), complex(x2, -y2.real))
+                return tuple(round(element.real, 3) if element.imag == 0
+                             else complex(round(element.real, 3), round(element.imag, 3)) for element in res)
 
             else:
-                theta: int = 0 if q == 0 else acos(r / (-q) ** (3 / 2))
+                theta: float = 0 if q == 0 else acos(r / (-q) ** (3 / 2))
                 phis: Generator[float] = ((theta + (j * pi)) / 3 for j in range(0, 5, 2))
-                return tuple(round(2 * sqrtf(-q) * cos(phi) - b / 3, 14) for phi in phis)
-
-        def quartic_roots(a: Fraction, b: Fraction, c: Fraction, d: Fraction, e: Fraction) -> tuple[
-            float, float, float, float]:
-            return a, b, c, d, e
+                return tuple(round(2 * sqrtf(-q) * cos(phi) - b / 3, 3) for phi in phis)
 
         var: tuple[str, Fraction] = tuple(self.numerator[0].variables.items())[0]
         factor: Fraction = self.numerator[0].coefficient
@@ -734,7 +1021,8 @@ class Polynomial:
         coef: dict[Fraction, Fraction] = {}
 
         for i in range(len(self.numerator)):
-            if self.numerator[i].variables and (len(self.numerator[i].variables) != 1 or var[0] not in self.numerator[i].variables):
+            if self.numerator[i].variables and (
+                    len(self.numerator[i].variables) != 1 or var[0] not in self.numerator[i].variables):
                 raise ValueError("roots of the this Equation cannot be determined")
 
             if self.numerator[i].variables:
@@ -746,14 +1034,11 @@ class Polynomial:
         elif var[1] == 3:
             return cubic_roots(coef.get(2, 0), coef.get(1, 0), constant / factor)
 
-        elif var[1] == 4:
-            return quartic_roots(coef[4], coef.get(3, 0), coef.get(2, 0), coef.get(1, 0), constant / factor)
-
-    def substitute(self, variable: str, value: Variable | Fraction) -> "Polynomial | Fraction":
-        return Polynomial(numerator_variables=[var.substitute(variable, value) for var in self.numerator],
-                          denominator_variables=[var.substitute(variable, value) for var in self.denominator])
+        else:
+            return NotImplemented
 
     def to_principal_axes(self) -> dict[str, "Polynomial | str"]:
+        """Converts a quadratic polynomial to its principal axes using matrix algebra"""
         from matrix import Matrix
 
         if tuple(self.numerator[0].variables.values())[0] > Fraction(2):
@@ -778,8 +1063,8 @@ class Polynomial:
                 res[pos2][pos1] = var.coefficient / 2
 
         eigen_val: dict[str, Fraction] = res.eigen_values()
-        numerator: list[Variable] = [Variable(coefficient=value, variables_dict={"y1": 2, "y2": 2}) for value in
-                                     eigen_val.values()]
+        numerator: list[Variable] = [Variable(coefficient=value, variables_dict={f"y{idx + 1}": 2}) for idx, value in
+                                     enumerate(eigen_val.values())]
         numerator.append(self.numerator[-1])
         q = Polynomial(numerator_variables=numerator)
         conic_sec: str = self._conic_section(eigen_val, q.numerator[-1].coefficient)
@@ -791,3 +1076,6 @@ class Polynomial:
         return {"x1": res[0], "x2": res[1], "conic_section": conic_sec}
 
     copy: Callable[[], "Polynomial"] = lambda self: Polynomial(poly_obj=self)
+    substitute: Callable[[str, Variable | Fraction], "Polynomial"] = lambda self, variable, value: (
+        Polynomial(numerator_variables=[var.substitute(variable, value) for var in self.numerator],
+                   denominator_variables=[var.substitute(variable, value) for var in self.denominator]))
