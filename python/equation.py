@@ -967,7 +967,7 @@ class Polynomial:
         else:
             if (are_positive[0] is None or are_positive[1] is None) and is_zero_determinant:
                 return "Parabola"
-
+    
     def roots(self) -> tuple[float]:
         """Computes the roots of the polynomial"""
 

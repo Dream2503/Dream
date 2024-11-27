@@ -1,23 +1,25 @@
-from PIL import ImageChops
-from PIL.Image import Image
-from time import sleep
-from pyautogui import click, screenshot
+from PIL import Image, ImageChops
+from mss.screenshot import ScreenShot
+import time
+import mouse
+import mss
 
-TARGET: tuple[int] = (975, 250, 1, 1)
+TARGET = (975, 250, 1, 1)
 
 
 def capture_screenshot(region: tuple[int]) -> Image:
-    """Capture a screenshot of the specified region."""
-    return screenshot(region=region)
+    with mss.mss() as sct:
+        monitor: dict[str, int] = {"top": region[1], "left": region[0], "width": region[2], "height": region[3]}
+        screenshot: ScreenShot = sct.grab(monitor)
+        img: Image = Image.frombytes("RGB", screenshot.size, screenshot.bgra, "raw", "BGRX")
+        return img
 
 
-def detect_color_change(image1: Image, image2: Image) -> tuple[int] | None:
-    """Detect if there is a color change between two images."""
+def detect_color_change(image1: Image, image2: Image) -> tuple[int]:
     return ImageChops.difference(image1, image2).getbbox()
 
 
 def is_green(image: Image, box: tuple[int]) -> bool:
-    """Check if the area within the bounding box is predominantly green."""
     cropped_area: Image = image.crop(box)
     pixels: tuple[tuple[int]] = tuple(cropped_area.getdata())
 
@@ -28,7 +30,6 @@ def is_green(image: Image, box: tuple[int]) -> bool:
 
 
 def is_blue(image: Image, box: tuple[int]) -> bool:
-    """Check if the area within the bounding box is predominantly blue."""
     cropped_area: Image = image.crop(box)
     pixels: tuple[tuple[int]] = tuple(cropped_area.getdata())
 
@@ -38,24 +39,27 @@ def is_blue(image: Image, box: tuple[int]) -> bool:
     return (blue_pixels / total_pixels) > 0.5
 
 
-print("Monitoring for color changes in the selected screen region. Press Ctrl+C to stop.")
+def main():
+    prev_image: Image = capture_screenshot(TARGET)
 
-prev_image: Image = capture_screenshot(TARGET)
+    try:
+        while True:
+            curr_image: Image = capture_screenshot(TARGET)
+            diff_box: tuple[int] = detect_color_change(prev_image, curr_image)
 
-try:
-    while True:
-        curr_image: Image = capture_screenshot(TARGET)
-        diff_box: tuple[int] | None = detect_color_change(prev_image, curr_image)
+            if diff_box:
+                if is_green(curr_image, diff_box):
+                    mouse.click()
 
-        if diff_box:
-            if is_green(curr_image, diff_box):
-                click()
+                if is_blue(curr_image, diff_box):
+                    time.sleep(1.5)
+                    mouse.click()
 
-            if is_blue(curr_image, diff_box):
-                sleep(1.5)
-                click()
+                prev_image: Image = curr_image
 
-            prev_image = curr_image
+    except KeyboardInterrupt:
+        print("\nMonitoring stopped.")
 
-except KeyboardInterrupt:
-    print("\nMonitoring stopped.")
+
+if __name__ == "__main__":
+    main()
