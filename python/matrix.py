@@ -1,9 +1,6 @@
 from fractions import Fraction
 from math import gcd, lcm, sqrt
 from typing import Callable, Literal, Generic, TypeVar
-
-from scipy.constants import sigma
-
 from equation import Polynomial, Variable
 
 Type = TypeVar("Type")
@@ -231,7 +228,7 @@ class Matrix(Generic[Type]):
 # COMPUTING PSEUDO INVERSE OF A MATRIX
     >>> m: Matrix[Fraction] = Matrix(matrix=[[1, -1, 1], [-2, 2, -2]])
     >>> m.pseudo_inverse()
-    Matrix(rows=3, columns=2, matrix=[[Fraction(0, 1), Fraction(0, 1)], [Fraction(163, 1000), Fraction(41, 500)], [Fraction(163, 1000), Fraction(41, 500)]])
+    Matrix(rows=3, columns=2, matrix=[[Fraction(-67, 1000), Fraction(133, 1000)], [Fraction(67, 1000), Fraction(-133, 1000)], [Fraction(-67, 1000), Fraction(133, 1000)]])
 
 # USING THE MATRIX PRINT FUNCTION
     >>> m: Matrix[Fraction] = Matrix(matrix=[[1, 1, -1], [1, 2, 0], [-1, 0, 5]])
@@ -883,7 +880,7 @@ class Matrix(Generic[Type]):
     def singular_value_decomposition(self) -> dict[str, "Matrix[Fraction]"]:
         """Gives the singular value decomposition of the matrix [A = U * sigma * trans(T)]"""
         aat: Matrix[Fraction] = self * self.transpose()
-        aat_eigen_val: list[Fraction] = sorted(aat.eigen_values().values())
+        aat_eigen_val: list[Fraction] = sorted(aat.eigen_values().values(), reverse=True)
         sigma_: Matrix[Fraction] = Matrix(self.order[0], self.order[1], "null")
 
         for i in range(len(aat_eigen_val)):
