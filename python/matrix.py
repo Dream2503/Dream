@@ -13,7 +13,7 @@ class Matrix(Generic[Type]):
     """
 # INITIALIZING MATRIX OBJECT
     -> using input method
-        >>> m: Matrix[Fraction] = Matrix(method="input")           # this is a matrix with 2 rows and 3 columns
+        >>> m: Matrix[Fraction] = Matrix(2, 3, method="input")           # this is a matrix with 2 rows and 3 columns
         Enter row (space-separated values): 1 2 3
         Enter row (space-separated values): 4 5 6
         >>> print(m)
@@ -32,7 +32,7 @@ class Matrix(Generic[Type]):
 
     -> by providing a type of matrix to generate
         -> null matrix
-            >>> m: Matrix[Fraction] = Matrix(method="null")        # creating a null matrix of order 3
+            >>> m: Matrix[Fraction] = Matrix(3, 3, method="null")        # creating a null matrix of order 3
             >>> print(m)
 
             rows = 3
@@ -40,7 +40,7 @@ class Matrix(Generic[Type]):
             matrix = [[Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)], [Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)], [Fraction(0, 1), Fraction(0, 1), Fraction(0, 1)]]
 
         -> identity matrix
-            >>> m: Matrix[Fraction] = Matrix(method="identity")    # creating an identity matrix of order 3
+            >>> m: Matrix[Fraction] = Matrix(3, 3, method="identity")    # creating an identity matrix of order 3
             >>> print(m)
 
             rows = 3

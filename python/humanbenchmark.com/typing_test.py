@@ -27,7 +27,7 @@ def main():
     for _ in range(5):
         text: str = capture_text_from_screen(TARGET)
         perform_actions(text)
-        time.sleep(0.1)
+        time.sleep(0.2)
 
 if __name__ == "__main__":
     main()
