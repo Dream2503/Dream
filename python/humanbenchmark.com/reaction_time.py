@@ -17,12 +17,12 @@ def capture_screenshot(region: tuple[int]) -> Image:
 
 def is_green(image: Image) -> bool:
     r, g, b = tuple(image.getdata())[0]
-    return g > r and g > b and g > 100
+    return g > r and g > b and g > 50
 
 
 def is_blue(image: Image) -> bool:
     r, g, b = tuple(image.getdata())[0]
-    return b > r and b > g and b > 100
+    return b > r and b > g and b > 50
 
 
 def main():

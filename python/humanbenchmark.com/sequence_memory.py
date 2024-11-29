@@ -1,5 +1,3 @@
-from time import sleep
-
 from PIL import Image, ImageChops
 from mss.screenshot import ScreenShot
 import mouse
@@ -69,7 +67,7 @@ def main():
                 changed_tiles: list[int] = detect_color_change(prev_images, curr_images)
 
                 if changed_tiles:
-                    black_pos = get_black(curr_images, changed_tiles)
+                    black_pos: list[int] = get_black(curr_images, changed_tiles)
 
                     if black_pos:
                         sequence.append(black_pos[0])
@@ -81,9 +79,8 @@ def main():
 
             for i in sequence:
                 x, y = TARGET[i]
-                mouse.move(x+1, y+1)
+                mouse.move(x+5, y+5, duration=0.2)
                 mouse.click()
-                sleep(0.5)
 
             sequence: list[tuple[int]] = []
             cnt: int = 0

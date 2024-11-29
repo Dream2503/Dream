@@ -24,7 +24,7 @@ def perform_actions(text: str) -> None:
 def main():
     time.sleep(2)
 
-    for _ in range(5):
+    for _ in range(1):
         text: str = capture_text_from_screen(TARGET)
         perform_actions(text)
         time.sleep(0.2)
