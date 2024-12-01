@@ -18,118 +18,125 @@ class Sort {
 
 template <class type>
 void Sort<type>::bubbleSort(type *array, int size) {
-    bool flag;
-    size--;
+    bool flag;  // Flag to check if any swap was made in the inner loop
 
-    for (int i = 0; i < size; i++) {
-        flag = false;
+    for (int i = 0; i < size - 1; i++) {    // Outer loop to iterate over the array
+        flag = false;   // Reset flag to false at the start of each iteration
 
-        for (int j = 0; j < size - i; j++) {
-            if (array[j] > array[j+1]) {
-                swap(array[j], array[j+1]);
+        for (int j = 0; j < size - i - 1; j++) {    // Inner loop to compare adjacent elements
+            if (array[j] > array[j + 1]) {  // If the current element is greater than the next, swap them
+                std::swap(array[j], array[j + 1]);  // Swap the elements
+                flag = true;    // Set flag to true to indicate a swap has occurred
             }
-            flag = true;
         }
-        if (not flag) {
+        if (!flag) {    // If no swaps were made in this pass, the array is already sorted, so break out of the loop
             return;
         }
     }
 }
 template <class type>
 void Sort<type>::countSort(type *array, int size) {
-    int max = array[0], i, j;
+    type max, min;  // Variables to store the maximum and minimum values in the array
+    int i, j, range, *count; // Loop variables and an array to count occurrences
 
-    for (i = 1; i < size; i++) {
+    if (size < 1) { // Return early if the array size is less than 1
+        return;
+    }
+    max = array[0], min = array[0]; // Initialize max and min with the first element of the array
+
+    for (int i = 1; i < size; i++) {    // Find the maximum and minimum elements in the array
         if (array[i] > max) {
-            max = array[i];
+            max = array[i]; // Update max if the current element is larger
+        } else if (array[i] < min) {
+            min = array[i]; // Update min if the current element is smaller
         }
     }
-    int *list = new type[++max];
+    range = max - min + 1;  // Calculate the range of the values (difference between max and min)
+    count = new int[range]();    // Create a counting array of size 'range' to hold frequency of elements and initialize all elements to zero
 
-    for (i = 0; i < max; i++) {
-        list[i] = 0;
+    for (int i = 0; i < size; i++) {    // Count the occurrences of each element in the array
+        count[array[i] - min]++;    // Increment the counter for the corresponding value
     }
-    for (i = 0; i < size; i++) {
-        list[array[i]]++;
-    }
-    i = j = 0;
-
-    while (i < max) {
-        if (list[i] > 0) {
-            array[j++] = i;
-            list[i]--;
-        } else {
-            i++;
+    for (int i = 0, j = 0; i < range; i++) {    // Reconstruct the sorted array based on the frequency counts
+        while (count[i] > 0) {  // For each element that appears in the counting array
+            array[j] = i + min; // Place the value at the correct position in the original array
+            count[i]--; // Decrement the count for that value
+            j++;    // Move to the next position in the array
         }
     }
+    delete []count; // Clean up the dynamically allocated memory for the counting array
 }
 template <class type>
 void Sort<type>::descending(type *array, int size) {
-    for (int i = 0; i < size/2; i++) {
-        swap(array)
+    for (int i = 0; i < size / 2; i++) {    // Loop through the array up to the middle element
+        std::swap(array[i], array[size - i - 1]);   // Swap the current element with the element at the symmetric position from the end
     }
 }
 template <class type>
 void Sort<type>::insertionSort(type *array, int size) {
-    type temp;
+    type temp;  // Temporary variable to hold the current element during insertion
 
-    for (int i = 1, j; i < size; i++) {
-        temp = array[i];
-        j = i - 1;
+    for (int i = 1, j; i < size; i++) { // Loop through each element of the array starting from the second element
+        temp = array[i];    // Store the current element to be inserted
+        j = i - 1;  // Set 'j' to the index of the element before the current one
 
-        while (j > -1 && array[j] > temp) {
-            array[j+1] = array[j];
-            j--;
+        while (j > -1 && array[j] > temp) { // Move elements that are greater than 'temp' one position to the right
+            array[j + 1] = array[j];    // Shift the element to the right
+            j--;    // Move the index 'j' one step left
         }
-        array[j+1] = temp;
+        array[j + 1] = temp;    // Insert the stored 'temp' element into its correct position
     }
 }
 template <class type>
 void Sort<type>::heapSort(type *array, int size) {
-    Heap<type> heap(array, size, "min");
+    Heap<type> heap(array, size, "min");    // Create a heap from the array, using a "min" heap structure
 
-    for (int i = 0; i < size; i++) {
-        array[i] = heap.remove();
+    for (int i = 0; i < size; i++) {    // Loop to remove the root element from the heap and place it in the sorted array
+        array[i] = heap.remove();   // Remove the smallest element from the heap (root of the min-heap) and place it in the correct position in the array
     }
 }
 template <class type>
 void Sort<type>::mergeSort(type *array, int size) {
-    auto merge = [](type *array, int low, int mid, int high) -> void {
-        type *list = new type[high + 1];
-        int i = low, j = mid  + 1, k = low;
+    auto merge = [](type *array, int low, int mid, int high) -> void {  // Lambda function to merge two sorted halves of the array
+        type *list = new type[high - low + 1];    // Create a temporary list to store the merged result
+        int i = low, j = mid + 1, k = 0;
 
-        while (i <= mid && j <= high) {
+        while (i <= mid && j <= high) { // Merge the two sorted subarrays into 'list'
             if (array[i] < array[j]) {
-                list[k++] = array[i++];
-            } else if (array[i] > array[j) {
-                list[k++] = array[j++];
+                list[k++] = array[i++]; // If left element is smaller, place it in 'list'
+            } else if (array[j] < array[i]) {
+                list[k++] = array[j++]; // If right element is smaller, place it in 'list'
             } else {
-                list[k++] = array[i++];
+                list[k++] = array[i++]; // If both elements are equal, place both in 'list'
                 list[k++] = array[j++];
             }
         }
-        for (; i <= mid; i++) {
-            list[k++] = array[i++];
+        while (i <= mid) {
+            list[k++] = array[i++]; // If there are remaining elements in the left half, copy them to 'list'
         }
-        for (; j <= high; j++) {
-            list[k++] = array[j++];
+        while (j <= high) {
+            list[k++] = array[j++]; // If there are remaining elements in the right half, copy them to 'list'
         }
-        for (i = low; i <= high; i++) {
-            array[i] = list[i];
+        for (i = low, k = 0; i <= high; i++, k++) {
+            array[i] = list[k]; // Copy the merged elements from 'list' back to the original array
         }
+        delete []list;  // Clean up the temporary list
     };
-    int k = 2, low, mid, high;
+    int k, low, mid, high;
 
-    for (; k <= size; k *= 2) {
-        for (int i = 0; i + k - 1 < size; i += k) {
-            low = i;
-            high = i + k - 1;
-            mid = (low + high) / 2;
-            merge(array, low, mid, high);
+    for (k = 2; k <= size; k *= 2) {    // Outer loop to control the size of the subarrays being merged (2, 4, 8, ..., size)
+        for (int i = 0; i + k - 1 < size; i += k) { // Inner loop to iterate through subarrays and merge them
+            low = i;    // Starting index of the left subarray
+            high = i + k - 1;   // Ending index of the right subarray
+            mid = (low + high) / 2; // Midpoint of the subarrays
+            merge(array, low, mid, high);   // Merge the subarrays
         }
     }
-    if (k / 2 < size) {
-        merge(array, 0, k / 2, size - 1);
+    k /= 2;  // Halve 'k' to return to the original size of subarrays after the final merging loop.
+
+    if (k != size) {    // If 'k'is not equal to the size of the array, it means that there are two remaining subarrays that need to be merged.
+        merge(array, k, (k + size - 1) / 2, size - 1);  // Merge the last two subarrays: from index 'k' to the end of the array
+        merge(array, 0, k - 1, size - 1);   // Finally, merge the whole array from the beginning (index 0) to the last index (size - 1)
     }
 }
 template <class type>
@@ -233,11 +240,11 @@ void Sort<type>::shellSort(type *array, int size) {
 
 void print(int *array, int size) {
     if (not size) {
-        cout << "No elements to display" << endl;
+        std::cout << "No elements to display" << std::endl;
     } else {
-        cout << '[';
+        std::cout << '[';
         size--;
-        for (int i = 0; i < size; i++) cout << array[i] << ", ";
-        cout << array[size] <<  ']' << endl;
+        for (int i = 0; i < size; i++) std::cout << array[i] << ", ";
+        std::cout << array[size] <<  ']' << std::endl;
     }
 }

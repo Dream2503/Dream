@@ -3,9 +3,10 @@
 
 using namespace std;
 int main() {
-    int array[] = {237, 146, 259, 348, 152, 163, 235, 48, 36, 62};
-    Sort<int> sort("asc");
-    sort.insertionSort(array, 10);
-    print(array, 10);
+    int array[] = {4, 2, 2, 8, 3, 3, 1};
+    int size = sizeof(array) / sizeof(array[0]);
+    Sort<int> sort;
+    sort.mergeSort(array, size);
+    print(array, size);
     return 0;
 }

@@ -1,24 +1,23 @@
 #include <iostream>
 #define CONST_SIZE 8
-using namespace std;
 
 template <class type>
 class Heap {
     type *list = new type[CONST_SIZE];
     int len = 0, size = CONST_SIZE;
-    string mode = "max";
+    std::string mode = "max";
     void reSize();
 
     public:
         Heap() {}
-        Heap(initializer_list<type> list, string mode = "max") { this->mode = mode; for (type element: list) this->insert(element);}
+        Heap(std::initializer_list<type> list, std::string mode = "max") { this->mode = mode; for (type element: list) this->insert(element);}
         Heap(Heap<type> &heap) { this->mode = mode; for (type element: heap) this->insert(element);}
-        Heap(type *list, int size, string mode = "max") { this->mode = mode; for (int i = 0; i < size; i++) this->insert(list[i]);}
+        Heap(type *list, int size, std::string mode = "max") { this->mode = mode; for (int i = 0; i < size; i++) this->insert(list[i]);}
         type *begin() {return list + 1;}
         void insert(type);
         type *end() {return list + len;}
         template <class T>
-        friend ostream &operator<<(ostream&, Heap<T>&);
+        friend std::ostream &operator<<(std::ostream&, Heap<T>&);
         int remove();
 };
 
@@ -47,8 +46,8 @@ void Heap<type>::insert(type value) {
 }
 
 template <class T>
-ostream &operator<<(ostream &out, Heap<T> &heap) {
-    if (not heap.len) out << "No elements to display" << endl;
+std::ostream &operator<<(std::ostream &out, Heap<T> &heap) {
+    if (not heap.len) out << "No elements to display" << std::endl;
     else {
         out << '[';
 
@@ -56,7 +55,7 @@ ostream &operator<<(ostream &out, Heap<T> &heap) {
             out << heap.list[i];
             if (i != heap.len - 1) out << ", ";
         }
-        out << ']' << endl;
+        out << ']' << std::endl;
     }
     return out;
 }
