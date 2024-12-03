@@ -141,27 +141,47 @@ void Sort<type>::mergeSort(type *array, int size) {
 }
 template <class type>
 void Sort<type>::quickSort(type *array, int low, int high) {
-    auto partition = [](type *array, int low, int high) -> int {
-        int pivot = array[low], i = low, j = high;
+    /*
+    -> for first element as a pivot
+        -> O(nlogn) [best case] [partitioning in the middle] 
+        -> O(nlogn) [average case]
+        -> O(n^2) [worst case] [already sorted / partitioning at any end]
+    
+    -> for middle element as pivot
+        -> O(nlogn) [best case] [already sorted / partitioning in the middle]
+        -> O(nlogn) [average case]
+        -> O(n^2) [woest case] [partitioning at any end]
+
+    -> in selection sort we select the position and find out the element for that position
+    -> in quick sort we select the element and find out the postion for that element
+
+    -> differnt names of quick sort
+        -> selection exchange sort
+        -> partition exchange sort
+        -> quick sort
+    */ 
+    auto partition = [](type *array, int low, int high) -> int {    // Lambda function to perform the partitioning step of the QuickSort algorithm
+        int pivot = array[low]; // Choose the first element as the pivot
+        int i = low, j = high;  // Initialize pointers
 
         do {
-            do {
+            do {    // Move the 'i' pointer to the right until an element greater than the pivot is found
                 i++;
             } while (array[i] <= pivot);
-            do {
+            do {    // Move the 'j' pointer to the left until an element less than or equal to the pivot is found
                 j--;
             } while (array[j] > pivot);
-            if (i < j) {
-                swap(array[i], array[j]);
+            if (i < j) {    // If 'i' and 'j' haven't crossed, swap the elements at 'i' and 'j'
+                std::swap(array[i], array[j]);
             }
-        } while (i < j);
-        swap(array[low], array[j]);
-        return j;
+        } while (i < j); // Continue until 'i' and 'j' cross
+        swap(array[low], array[j]); // Place the pivot in its correct position (swap pivot with the element at 'j')        
+        return j;   // Return the index of the pivot's final position
     };
-    if (low < high) {
-        int temp = partition(array, low, high);
-        this->quickSort(array, low, temp-1);
-        this->quickSort(array, temp+1, high); 
+    if (low < high) {   // Base condition to terminate recursion
+        int temp = partition(array, low, high); // Partition the array around a pivot and get the pivot's final position
+        this->quickSort(array, low, temp - 1);  // Recursively sort the left subarray (elements less than the pivot)
+        this->quickSort(array, temp + 1, high); // Recursively sort the right subarray (elements greater than the pivot)
     }
 }
 template <class type>
