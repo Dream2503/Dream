@@ -1,0 +1,6 @@
+num1 = 5, num2 = 7 
+num1 = 5, num2 = 7 
+num1 = 6, num2 = 10 
+num1 = 6, num2 = 10 
+ptrA = 10, prtB = 10 
+num1 = 10, num2 = 7 

@@ -1,0 +1,22 @@
+1. We have 100 coins in the bank
+2. We have 125.700000 coins in the bank
+3. Year = 2020
+4. Your average grade is: 95.130000
+5. num1 = 5, num2 = 7, sum = 13
+6. num1 = 5.200000, num2 = 7.300000, sum = 9.500000
+7. num1 = 5, num2 = 3, sub = 2
+8. a = 3, b = 5, sum = a + b = 8
+9. a = 3, b = 5, sum = 3 + 5 = 8
+10. a = 3, b = 5, sum = a + b = 3 + 5 = 8
+
+verified
+We have 100 coins in the bank
+We have 125.700000 coins in the bank
+Year = 2020
+Your average grade is: 95.130000 
+num1 = 5, num2 = 7, sum = 12 
+num1 = 5.200000, num2 = 7.300000, sum = 9.500000 
+num1 = 5, num2 = 3, sub = 2 
+a = 3, b = 5, sum = a + b = 8 
+a = 3, b = 5, sum = 3 + 5 = 8
+a = 3, b = 5, sum = a + b = 3 + 5 = 8

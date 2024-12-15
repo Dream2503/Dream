@@ -1,0 +1,7 @@
+{
+    "CodeGPT.apiKey": "Google AI Studio",
+    "files.associations": {
+        "malloc.h": "c",
+        "stdio.h": "c"
+    }
+}
