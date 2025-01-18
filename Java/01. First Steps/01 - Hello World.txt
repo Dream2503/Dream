@@ -1,0 +1,27 @@
+jshell> System.out.print("Hello World");
+Hello World
+
+jshell> System.out.print("Hello Tim");
+Hello Tim
+
+jshell> System.out.print("Hello Tim"
+   ...> );
+Hello Tim
+
+jshell> System.out.print("Hello Tim);
+|  Error:
+|  unclosed string literal
+|  System.out.print("Hello Tim);
+|                   ^
+
+jshell> System.out.print("Hello Tim");
+Hello Tim
+
+jshell> System.out.print('Hello Tim');
+|  Error:
+|  unclosed character literal
+|  System.out.print('Hello Tim');
+|                   ^
+
+jshell> System.out.print("Hello Tim");
+Hello Tim

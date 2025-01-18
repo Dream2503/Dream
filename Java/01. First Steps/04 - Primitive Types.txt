@@ -1,0 +1,51 @@
+jshell> int myValue = 10000;
+myValue ==> 10000
+
+jshell> int myMinIntValue = Integer.MIN_VALUE;
+myMinIntValue ==> -2147483648
+
+jshell> int myMaxIntValue = Integer.MAX_VALUE;
+myMaxIntValue ==> 2147483647
+
+jshell> System.out.print("Integer Minimum Value = " + myMinIntValue);
+Integer Minimum Value = -2147483648
+
+jshell> System.out.print("Integer Minimum Value = " + Integer.MIN_VALUE);
+Integer Minimum Value = -2147483648
+
+jshell> System.out.print("Integer Value Range (" + Integer.MIN_VALUE + " to " + Integer.MAX_VALUE + ")");
+Integer Value Range (-2147483648 to 2147483647)
+
+jshell> System.out.print(
+   ...> "Integer Value Range ("
+   ...> +
+   ...> Integer.MIN_VALUE
+   ...> +
+   ...> " to "
+   ...> +
+   ...> Integer.MAX_VALUE
+   ...> +
+   ...> ")"
+   ...> );
+Integer Value Range (-2147483648 to 2147483647)
+
+jshell> System.out.print("Busted Max Value = " + (myMaxIntValue + 1));
+Busted Max Value = -2147483648
+
+jshell> System.out.print("Busted Min Value = " + (myMinIntValue - 1));
+Busted Min Value = 2147483647
+
+jshell> System.out.print("Integer Maximum Value  = " + Integer.MAX_VALUE);
+Integer Maximum Value  = 2147483647
+
+jshell> int myMaxIntTest = 2147483648;
+|  Error:
+|  integer number too large
+|  int myMaxIntTest = 2147483648;
+|                     ^
+
+jshell> int myMaxIntTest = 2147483647;
+myMaxIntTest ==> 2147483647
+
+jshell> int myMaxIntTest = 2_147_483_647;
+myMaxIntTest ==> 2147483647

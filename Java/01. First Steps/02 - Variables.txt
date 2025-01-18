@@ -1,0 +1,42 @@
+jshell> int myFirstNumber = 5;
+myFirstNumber ==> 5
+
+jshell> System.out.print("myFirstNumber");
+myFirstNumber
+
+jshell> System.out.print(myFirstNumber);
+5
+
+jshell> myFirstNumber = 10;
+myFirstNumber ==> 10
+
+jshell> System.out.print(myFirstNumber);
+10
+
+jshell> myFirstNumber = 1000;
+myFirstNumber ==> 1000
+
+jshell> System.out.print(myFirstNumber);
+1000
+
+jshell> /list
+
+   1 : int myFirstNumber = 5;
+   2 : System.out.print("myFirstNumber");
+   3 : System.out.print(myFirstNumber);
+   4 : myFirstNumber = 10;
+   5 : System.out.print(myFirstNumber);
+   6 : myFirstNumber = 1000;
+   7 : System.out.print(myFirstNumber);
+
+jshell> int myFirstNumber = 1000;
+myFirstNumber ==> 1000
+
+jshell> System.out.print(myFirstNumber);
+1000
+
+jshell> myFirstNumber = 10 + 5;
+myFirstNumber ==> 15
+
+jshell> myFirstNumber = (10 + 5) + (2 * 10);
+myFirstNumber ==> 35
