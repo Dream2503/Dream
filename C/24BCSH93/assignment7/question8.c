@@ -7,7 +7,6 @@ int main() {
 	for (i = 0; i < 5; i++) {
 		scanf("%d", &array[i]);
 	}
-
 	for (i = 0; i < 5/2; i++) {
 		temp = array[i];
 		array[i] = array[5-i-1];
@@ -20,6 +19,4 @@ int main() {
 	}
 	printf("\n");
 	return 0;
-
 }
-

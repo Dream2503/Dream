@@ -14,6 +14,4 @@ int main() {
 	}
 	printf("Sum of odd elements are: %d\n", sum);
 	return 0;
-
 }
-

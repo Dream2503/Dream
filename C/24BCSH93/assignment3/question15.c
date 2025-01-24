@@ -18,7 +18,6 @@ int main() {
 		mm += 12;
 		yyyy2--;
 	}
-
 	yyyy = yyyy2 - yyyy1;
 	printf("Age %d years %d months and %d days\n", yyyy, mm, dd);
 	return 0;

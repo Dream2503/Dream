@@ -10,7 +10,7 @@ int main() {
 	printf("Enter two numbers: ");
 	scanf("%d%d", &num1, &num2);
 	printf("Select a valid option to perform operation on the number\n");
-	printf("1 - Addtion\n");
+	printf("1 - Addition\n");
 	printf("2 - Subtraction\n");
 	printf("3 - Multiplication\n");
 	printf("4 - Division\n");
@@ -38,7 +38,15 @@ int main() {
 	return 0;
 }
 
-int add(int num1, int num2) {return num1 + num2;}
-int sub(int num1, int num2) {return num1 - num2;}
-int mul(int num1, int num2) {return num1 * num2;}
-int div(int num1, int num2) {return num1 / num2;}
+int add(int num1, int num2) {
+	return num1 + num2;
+}
+int sub(int num1, int num2) {
+	return num1 - num2;
+}
+int mul(int num1, int num2) {
+	return num1 * num2;
+}
+int div(int num1, int num2) {
+	return num1 / num2;
+}

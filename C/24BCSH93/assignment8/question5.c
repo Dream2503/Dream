@@ -13,5 +13,3 @@ int main() {
 	printf("The size of the string is %d\n", size);
 	return 0;
 }
-	
-

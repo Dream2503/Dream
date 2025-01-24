@@ -26,4 +26,3 @@ int max(int array[], int size) {
 	}
 	return res;
 }
-

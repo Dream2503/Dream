@@ -13,7 +13,7 @@ int main() {
 	printf("Enter the hour, min and sec for time 2: ");
 	scanf("%d%d%d", &t2.hour, &t2.min, &t2.sec);
 	res = ADDTIME(t1, t2);
-	printf("Result of addtion of both time is %d hours %d minutes %d seconds\n", res.hour, res.min, res.sec);
+	printf("Result of addition of both time is %d hours %d minutes %d seconds\n", res.hour, res.min, res.sec);
 	return 0;
 }
 
@@ -32,4 +32,3 @@ TIME ADDTIME(TIME t1, TIME t2) {
 	}
 	return res;
 }
-

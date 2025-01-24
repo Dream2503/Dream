@@ -16,4 +16,3 @@ int main() {
 	printf("Distance between the points is %f\n", distance);
 	return 0;
 }
-	

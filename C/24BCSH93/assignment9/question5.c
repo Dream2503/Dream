@@ -9,7 +9,7 @@ int main() {
 	flag = checkPalindrome(num);
 
 	if (flag) {
-		printf("It is a palindrom number\n");
+		printf("It is a palindrome number\n");
 	} else {
 		printf("It is not a palindrome number\n");
 	}

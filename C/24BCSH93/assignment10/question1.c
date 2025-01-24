@@ -7,10 +7,11 @@ int main() {
 	int num;
 	printf("Enter a number: ");
 	scanf("%d", &num);
+	
 	if (is_armstrong(num)) {
-		printf("The number is an amstrong number\n");
+		printf("The number is an armstrong number\n");
 	} else {
-		printf("The number is not an amstrong number\n");
+		printf("The number is not an armstrong number\n");
 	}
 	return 0;
 }

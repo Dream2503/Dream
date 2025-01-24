@@ -4,12 +4,10 @@ int substr(char[], char[]);
 void _remove(char[], char[], int);
 
 int main() {
-	char str[100] = "Recieve three character from the keyboard";
+	char str[100] = "Receive three character from the keyboard";
 	char key[10] = "the";
 	int pos = substr(str, key);
 	_remove(str, key, pos);
-int add(int num1, num2) {return num1 + num2;}
-
 	printf("Modified string is %s\n", str);
 	return 0;
 }

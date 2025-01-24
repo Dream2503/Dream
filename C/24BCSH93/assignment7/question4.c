@@ -13,6 +13,4 @@ int main() {
 	}
 	printf("No. of even elements are: %d\n", cnt);
 	return 0;
-
 }
-

@@ -1,10 +1,9 @@
 #include <stdio.h>
 
 int main() {
-	int size, i, flag = 1, temp;
+	int size, i, flag, temp;
 	printf("Enter total no. of elements:");
 	scanf("%d", &size);
-	
 	int array[size];
 	printf("Enter the array elements: ");
 
@@ -33,6 +32,4 @@ int main() {
 	}
 	printf("\n");
 	return 0;
-
 }
-

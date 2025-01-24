@@ -29,4 +29,3 @@ int main() {
 	printf("substr not found in the string\n");
 	return 0;
 }
-

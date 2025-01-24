@@ -12,7 +12,6 @@ int main() {
 		}
 		i++;
 	}
-
 	printf("The upper case string is %s\n", str);
 	return 0;
 }

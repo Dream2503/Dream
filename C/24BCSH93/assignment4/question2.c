@@ -4,7 +4,7 @@ int main() {
 	float unit1, unit2, units, total;
 	printf("Enter the previous month and current month reading: ");
 	scanf("%f%f", &unit1, &unit2);
-	units = unit1 + unit2;
+	units = unit2 - unit1;
 	
 	if (units <= 100) {
 		total += 3.2 * units;
@@ -24,6 +24,3 @@ int main() {
 	printf("Total price is %f\n", total);
 	return 0;
 }
-
-
-

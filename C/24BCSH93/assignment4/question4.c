@@ -37,7 +37,7 @@ int main() {
 			printf("October\n");
 			break;
 		case 11:
-			printf("Novemver\n");
+			printf("November\n");
 			break;
 		case 12:
 			printf("December\n");

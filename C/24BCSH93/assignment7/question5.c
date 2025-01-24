@@ -16,6 +16,4 @@ int main() {
 	}
 	printf("Maximum element is %d\n", max);
 	return 0;
-
 }
-

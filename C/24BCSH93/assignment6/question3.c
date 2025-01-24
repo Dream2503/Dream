@@ -11,7 +11,9 @@ int main() {
 				printf("%d ", j);
 			}
 		}
-		if (i % 2 != 0) printf("\n");
+		if (i % 2 != 0) {
+			printf("\n");
+		}
 	}
 	return 0;
 }

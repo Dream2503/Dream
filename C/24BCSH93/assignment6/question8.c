@@ -13,7 +13,9 @@ int main() {
 			rev = (rev * 10) + (temp % 10);
 			temp /= 10;
 		}
-		if (rev == lr) printf("%d ", lr);
+		if (rev == lr) {
+			printf("%d ", lr);
+		}
 	}
 	printf("\n");
 	return 0;

@@ -12,7 +12,6 @@ int main() {
 	for (i = 0; i < 5; i++) {
 		scanf("%d", &array2[i]);
 	}
-
 	for (i = 0; i < 5; i++) {
 		res[i] = array1[i] + array2[i];
 	}
@@ -23,6 +22,4 @@ int main() {
 	}
 	printf("\n");
 	return 0;
-
 }
-

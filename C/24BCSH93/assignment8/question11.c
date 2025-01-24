@@ -23,4 +23,4 @@ int main() {
 		printf("Both strings are not equal\n");
 	}
 	return 0;
-}	
+}

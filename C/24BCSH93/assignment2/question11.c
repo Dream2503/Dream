@@ -12,4 +12,3 @@ int main() {
 	printf("Total bill: %.2.2f\n", total);
 	return 0;
 }
-

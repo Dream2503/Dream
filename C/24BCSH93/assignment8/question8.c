@@ -17,7 +17,6 @@ int main() {
 		i++; j++;
 	}
 	str[i] = '\0';
-
-	printf("The concatinated string is %s\n", str);
+	printf("The concatenated string is %s\n", str);
 	return 0;
 }

@@ -14,7 +14,9 @@ int main() {
 				break;
 			}
 		}
-		if (flag == 0) printf("%d ", lr);
+		if (flag == 0) {
+			printf("%d ", lr);
+		}
 	}
 	printf("\n");
 	return 0;

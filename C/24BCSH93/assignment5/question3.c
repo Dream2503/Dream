@@ -13,4 +13,3 @@ int main() {
 	printf("Sum of digits: %d\n", res);
 	return 0;
 }
-

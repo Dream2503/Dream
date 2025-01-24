@@ -11,7 +11,10 @@ int main() {
 			break;
 		}
 	}
-	if (flag) printf("It is a composite number\n");
-	else printf("It is a prime number\n");
+	if (flag) {
+		printf("It is a composite number\n");
+	} else {
+		printf("It is a prime number\n");
+	}
 	return 0;
 }

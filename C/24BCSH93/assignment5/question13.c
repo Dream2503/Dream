@@ -10,7 +10,10 @@ int main() {
 		rev = (rev * 10) + (temp % 10);
 		temp /= 10;
 	}
-	if (rev == num) printf("It is a palindrome number\n");
-	else printf("It is not a palindrome number\n");
+	if (rev == num) {
+		printf("It is a palindrome number\n");
+	} else {
+		printf("It is not a palindrome number\n");
+	}
 	return 0;
 }

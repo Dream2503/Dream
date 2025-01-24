@@ -11,7 +11,6 @@ int main() {
 		i++;
 	}
 	str2[i] = '\0';
-
 	printf("The copied string is %s\n", str2);
 	return 0;
 }
