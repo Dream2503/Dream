@@ -1,0 +1,46 @@
+jshell> String myString = "This is a string";
+myString ==> "This is a string"
+
+jshell> System.out.print("myString is equal to " + myString);
+myString is equal to This is a string
+
+jshell> myString = myString + ", and this is more."
+myString ==> "This is a string, and this is more."
+
+jshell> myString = myString + ", and this is more."
+myString ==> "This is a string, and this is more., and this is more."
+
+jshell> System.out.print("myString is equal to " + myString);
+myString is equal to This is a string, and this is more., and this is more.
+
+jshell> myString = "I wish I had \u00241,000,000.00";
+myString ==> "I wish I had $1,000,000.00"
+
+jshell> {
+   ...>     String numberString = "250.55";
+   ...>     numberString = numberString + "49.45";
+   ...>     System.out.print(numberString);
+   ...> }
+250.5549.45
+
+jshell> String numberString = "250.55";  numberString = numberString + "49.45"; System.out.print(numberString);
+numberString ==> "250.55"
+numberString ==> "250.5549.45"
+250.5549.45
+
+jshell> int myInt = "10";
+|  Error:
+|  incompatible types: java.lang.String cannot be converted to int
+|  int myInt = "10";
+|              ^--^
+
+jshell> String lastString = "10"; int myInt = 50;
+lastString ==> "10"
+myInt ==> 50
+
+jshell> lastString = lastString + myInt;
+lastString ==> "1050"
+
+jshell> double doubleNumber = 120.47; lastString = lastString + doubleNumber;
+doubleNumber ==> 120.47
+lastString ==> "1050120.47"
