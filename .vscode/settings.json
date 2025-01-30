@@ -91,5 +91,6 @@
     ],
     "python.analysis.extraPaths": [
         "./Python/main"
-    ]
+    ],
+    "cmake.sourceDirectory": "C:/Users/swapn/OneDrive/Desktop/achha/Dream/C++/Mastering Data Structures and Algorithms using C and C++"
 }
