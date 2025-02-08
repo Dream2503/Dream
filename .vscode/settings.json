@@ -62,7 +62,8 @@
         "span": "cpp",
         "typeinfo": "cpp",
         "14-sort": "cpp",
-        "13-heap": "cpp"
+        "13-heap": "cpp",
+        "stdio.h": "c"
     },
     "cSpell.words": [
         "Boingo",
