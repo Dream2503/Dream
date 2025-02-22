@@ -1,0 +1,11 @@
+jshell> byte byteVar = Byte.MAX_VALUE;
+byteVar ==> 127
+
+jshell> short shortVar = Short.MAX_VALUE;
+shortVar ==> 32767
+
+jshell> int intVar = Integer.MIN_VALUE;
+intVar ==> -2147483648
+
+jshell> long longVar = 50_000 + (10 * (byteVar + shortVar + intVar))
+longVar ==> 378940
