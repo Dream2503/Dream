@@ -24,7 +24,7 @@ public class Main {
                     System.out.println("Invalid input");
                 }
             }
-        } while (!input.equals("exit"));
+        } while (input != "exit");
 
         System.out.println("Minimum Number: " + min);
         System.out.println("Maximum Number: " + max);
