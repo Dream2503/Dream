@@ -39,13 +39,13 @@ int binary_search(int array[], int n, int key) {
 	while (low <= high) {
 		mid = (low + high) / 2;
 		
-		if (array[mid] == key) {
-			return mid;
+		if (array[mid] > key) {
+			low = mid + 1;
 		} else if (array[mid] > key) {
 			high = mid - 1;
 		}
 		else {
-			low = mid + 1;
+			return mid;
 		}
 	}
 	if (low > high) {

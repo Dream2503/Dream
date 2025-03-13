@@ -36,7 +36,7 @@ void insert(int array[], int *n, int key, int pos) {
 	int i;
 
 	for (i = *n - 1; i >= pos; i--) {
-		array[i+1] = array[i];
+		array[i + 1] = array[i];
 	}
 	array[pos] = key;
 	*n += 1;

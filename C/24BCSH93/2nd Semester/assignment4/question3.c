@@ -6,8 +6,8 @@ Sec :- C2
 Q. Write a program to find the transpose of sparse matrix as per the specification given below:
 	(i) read_matrix(a[][max], m, n) to input a sparse matrix in general form.
 	(ii) create_sparse(a[][max], m, b, b[][3]) to create a sparse matrix in triple form.
-	(iII) transpose_sparse(a[][3], b[][3]) to transpose the sparse matrix
-	(iii) display_sparse(b[][3]) to display the sparse matrix in triple form.
+	(iii) transpose_sparse(a[][3], b[][3]) to transpose the sparse matrix
+	(iv) display_sparse(b[][3]) to display the sparse matrix in triple form.
 */
 
 #include <stdio.h>

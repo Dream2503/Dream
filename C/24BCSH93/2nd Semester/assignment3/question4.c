@@ -47,11 +47,11 @@ void multiply(int matrix1[n][n], int row1, int column1, int matrix2[n][n], int r
 	int i, j, k;
 	
 	for (k = 0; k < row1; k++) {
-		for (i = 0; i < column1; i++) {
+		for (i = 0; i < column2; i++) {
 			res[k][i] = 0;
 			
-			for (j = 0; j < column2; j++) {
-				res[k][i] += (matrix1[k][j] * matrix2[j][i]);
+			for (j = 0; j < column1; j++) {
+				res[k][i] += matrix1[k][j] * matrix2[j][i];
 			}
 		}
 	}

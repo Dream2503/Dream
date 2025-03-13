@@ -28,7 +28,7 @@ int main() {
 	for (i = 0; i < n; i++) {
 		printf("%d ", array[i]);
 	}
-	printf("\nValue deleted is %d: \n", key);
+	printf("\nValue deleted is %d\n", key);
 	return 0;
 }
 

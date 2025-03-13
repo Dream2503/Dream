@@ -75,6 +75,7 @@ bool validate_braces(char expression[]) {
 
 	while (expression[i] != '\0') {
 		ch = expression[i];
+		
 		if (ch == '(' || ch == '{' || ch == '[') {
 			push(ch);
 		} else if (ch == ')' || ch == '}' || ch == ']') {

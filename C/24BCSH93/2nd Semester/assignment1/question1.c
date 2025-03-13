@@ -3,7 +3,7 @@
    SIC:- 24BCSH93
    Sec:- C2
 
-   Q. Write a user defined function to create an array and input elements into it, and then display the elements by using another function. Call  them in main().
+   Q. Write a user defined function to create an array and input elements into it, and then display the elements by using another function. Call them in main().
 */
 
 #include <stdio.h>

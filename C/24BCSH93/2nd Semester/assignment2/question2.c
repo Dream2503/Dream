@@ -32,17 +32,17 @@ int main() {
 void selection_sort(int array[], int n) {
 	int i, j, min, temp;
 
-	for (j = 0; j < n - 1; j++) {
-		min = j;
+	for (i = 0; i < n - 1; i++) {
+		min = i;
 		
-		for (i = j + 1; i < n; i++) {
-			if (array[i] < array[min]) {
-				min = i;
+		for (j = i + 1; j < n; j++) {
+			if (array[j] < array[min]) {
+				min = j;
 			}
 		}
-		if (min != j) {
-			temp = array[j];
-			array[j] = array[min];
+		if (min != i) {
+			temp = array[i];
+			array[i] = array[min];
 			array[min] = temp;
 		}
 	}

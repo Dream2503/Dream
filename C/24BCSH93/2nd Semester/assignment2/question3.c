@@ -30,7 +30,7 @@ int main() {
 }
 
 void insertion_sort(int array[], int n) {
-	int j, i, temp;
+	int i, j, temp;
 
 	for (i = 1; i < n; i++) {
 		temp = array[i];

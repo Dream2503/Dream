@@ -19,7 +19,6 @@ int main() {
 	for (i = 0; i < n1; i++) {
 		scanf("%d", &array1[i]);
 	}
-
 	printf("Enter the no. of elements of the second array: ");
 	scanf("%d", &n2);
 
@@ -27,7 +26,6 @@ int main() {
 	for (i = 0; i < n2; i++) {
 		scanf("%d", &array2[i]);
 	}
-
 	merge(array1, n1, array2, n2, array, &n);
 
 	printf("The merged array is: ");
@@ -43,7 +41,7 @@ void merge(int array1[], int n1, int array2[], int n2, int array[], int *n) {
 
 	while (i < n1 && j < n2) {
 		if (array1[i] < array2[j]) {
-			array[k++] = array1[i]++;
+			array[k++] = array1[i++];
 		} else {
 			array[k++] = array2[j++];
 		}
