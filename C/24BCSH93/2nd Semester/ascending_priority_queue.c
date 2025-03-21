@@ -7,7 +7,7 @@ typedef struct {
 } p_type;
 
 int end = -1;
-p_type dpq[n];
+p_type apq[n];
 
 void insert(int, int);
 int min_delete();
@@ -41,11 +41,11 @@ void insert(int value, int priority) {
         p_type element = {value, priority};
         int i = end;
         
-        while (i >= 0 && dpq[i].priority < element.priority) {
-            dpq[i + 1] = dpq[i];
+        while (i >= 0 && apq[i].priority < element.priority) {
+            apq[i + 1] = apq[i];
             i--; 
         }
-        dpq[i + 1] = element;
+        apq[i + 1] = element;
         end++;
     }
 }
@@ -55,7 +55,7 @@ int min_delete() {
         printf("The priority queue is empty\n");
         return -1;
     } else {
-        return dpq[end--].value;
+        return apq[end--].value;
     }
 }
 
@@ -83,7 +83,7 @@ void display() {
 
         printf("The priority queue elements are: ");
         for (i = end; i >= 0; i--) {
-            printf("%d ", dpq[i].value);
+            printf("%d ", apq[i].value);
         }
         printf("\n");
     }

@@ -19,23 +19,23 @@ int main() {
     insert_right(30);
     display();
 
-    printf("\nInserting elements from left:\n");
+    printf("Inserting elements from left:\n");
     insert_left(40);
     insert_left(50);
     display();
 
-    printf("\nDeleting from left: %d\n", delete_left());
+    printf("Deleting from left: %d\n", delete_left());
     display();
 
-    printf("\nDeleting from right: %d\n", delete_right());
+    printf("Deleting from right: %d\n", delete_right());
     display();
 
-    printf("\nInserting at right:\n");
+    printf("Inserting at right:\n");
     insert_right(60);
     insert_right(70);
     display();
 
-    printf("\nInserting at left:\n");
+    printf("Inserting at left:\n");
     insert_left(80);
     insert_left(90);
     display();
@@ -128,22 +128,17 @@ void display() {
         printf("The deque is empty\n");
     } else {
         printf("The deque elements are: ");
+        int i = left;
 
-        if (left == right) {
-            printf("%d ", deque[left]);
-        } else {
-            int i = left;
+        while (i != right) {
+            printf("%d ", deque[i]);
 
-            while (i != right) {
-                printf("%d ", deque[i]);
-
-                if (i == n - 1) {
-                    i = 0;
-                } else {
-                    i++;
-                }
+            if (i == n - 1) {
+                i = 0;
+            } else {
+                i++;
             }
-            printf("%d ", deque[right]);
         }
+        printf("%d\n", deque[right]);
     }
 }
