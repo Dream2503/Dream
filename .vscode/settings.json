@@ -96,7 +96,8 @@
         "thread": "cpp",
         "typeindex": "cpp",
         "valarray": "cpp",
-        "climits": "cpp"
+        "climits": "cpp",
+        "dream": "cpp"
     },
     "cSpell.words": [
         "Boingo",
