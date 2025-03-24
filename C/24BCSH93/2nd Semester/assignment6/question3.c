@@ -3,7 +3,7 @@ Name:- Swapnaraj Mohanty
 SIC :- 24BBCSH93
 Sec :- C2
 
-Q. Write a program to implement a Circular Queue by using array, It should have the same operations(functions) defined in Question 1
+Q. Write a menu-driven program by using the function defined in Q2 to perform repeated opeartion on the Queue and display the status of the Queue after every operation until the user enters his choice to exit
 */
 
 #include <stdio.h>
@@ -19,23 +19,47 @@ bool is_empty();
 void display();
 
 int main() {
-	insert(10);
-	insert(20);
-	insert(30);
-	insert(40);
+	int ch, element;
+	
+	while (1) {
+		printf("\n\t\tMenu-Driven program for Circular Queue\n");
+		printf("1. Insert an element\n");
+		printf("2. Delete an element\n");
+		printf("3. Display the queue\n");
+		printf("4. To exit the program\n");
+		printf("Enter your choice: ");
+		scanf("%d", &ch);
 
-	display();
+		switch (ch) {
+			case 1:
+				printf("\nEnter an element to insert in the queue: ");
+				scanf("%d", &element);
+				insert(element);
+				display();
+				break;
 
-	delete();
-	insert(50);
-	delete();
-	display();
+			case 2:
+				if (is_empty()) {
+					printf("\nThe queue is empty\n");
+				} else {
+					printf("\n%d was delete from the queue\n", delete());
+					display();
+				}
+				break;
 
-	insert(60);
-	delete();
-	delete();
-	display();
-	return 0;
+			case 3:
+				display();
+				break;
+
+			case 4:
+				printf("Thank you for using the program\n");
+				return 0;
+
+			default:
+				printf("Invalid input. Try again...\n");
+		}
+
+	}
 }
 
 void insert(int element) {

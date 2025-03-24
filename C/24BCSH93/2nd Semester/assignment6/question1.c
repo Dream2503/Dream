@@ -72,7 +72,7 @@ bool is_empty() {
 }
 
 void display() {
-	if (is_empty()) { 
+	if (is_empty()) {
 		printf("The Queue is empty\n");
 	} else {
 		int i;
