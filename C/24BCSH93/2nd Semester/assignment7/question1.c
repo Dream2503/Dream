@@ -3,7 +3,9 @@ Name:- Swapanarj Mohanty
 SIC :- 24BCSH93
 Sec :- C2
 
-Q.
+Q. Write a program to implement a Linked List with two nodes: node1 and node2. The value to be stored in node1 and node2 are 40 and 30 respectively. It should have the following operation (function):
+	(i) void createList(NODE*) to create the linked list.
+	(ii) void traverse(NODE*) to display the node value of the list.
 */
 
 #include <stdio.h>
@@ -16,26 +18,36 @@ typedef struct node {
 
 Node *start = NULL;
 
-void create(Node*);
-void display(Node*);
+void create_list(Node*);
+void traverse(Node*);
 
 int main() {
-	start = (Node*)malloc(sizeof(Node));
-	create(start);
-	display(start);
+	start = (Node*)malloc(sizeof(Node));\
+
+	if (start == NULL) {
+		printf("Memory was not allocated\n");
+		exit(0);
+	}
+	create_list(start);
+	traverse(start);
 	return 0;
 }
 
-void create(Node* node) {
-	node->data = 10;
+void create_list(Node* node) {
+	node->data = 40;
 	node->next = (Node*)malloc(sizeof(Node));
 	node = node->next;
-	node->data = 20;
+	
+	if (node == NULL) {
+		printf("Memory was not allocated\n");
+		exit(0);
+	}
+	node->data = 30;
 	node->next = NULL;
 }
 
-void display(Node* node) {
-	if (!node) {
+void traverse(Node* node) {
+	if (node == NULL) {
 		printf("The Linked List is empty\n");
 	} else {
 		printf("The elements in the Linked List are: ");
