@@ -1,5 +1,5 @@
 /*
-Name:- Swapanarj Mohanty
+Name:- Swapnaraj Mohanty
 SIC :- 24BCSH93
 Sec :- C2
 
@@ -14,24 +14,22 @@ typedef struct node {
 	struct node *next;
 } Node;
 
-Node *start = NULL;
-
 void create_list(Node*);
 int search(Node*, int);
 
 int main() {
-	start = (Node*)malloc(sizeof(Node));
+	Node *node = (Node*)malloc(sizeof(Node));
 	int key, pos;
 	
-	if (start == NULL) {
+	if (node == NULL) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
-	create_list(start);
+	create_list(node);
 	
 	printf("Enter the key to search: ");
 	scanf("%d", &key);
-	pos = search(start, key);
+	pos = search(node, key);
 
 	if (pos == -1) {
 		printf("Element not found in the Linked List\n");

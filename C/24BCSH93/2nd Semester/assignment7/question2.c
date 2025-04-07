@@ -1,5 +1,5 @@
 /*
-Name:- Swapanarj Mohanty
+Name:- Swapnaraj Mohanty
 SIC :- 24BCSH93
 Sec :- C2
 
@@ -14,20 +14,18 @@ typedef struct node {
 	struct node *next;
 } Node;
 
-Node *start = NULL;
-
 void create_list(Node*);
 void traverse(Node*);
 
 int main() {
-	start = (Node*)malloc(sizeof(Node));
+	Node *node = (Node*)malloc(sizeof(Node));
 	
-	if (start == NULL) {
+	if (node == NULL) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
-	create_list(start);
-	traverse(start);
+	create_list(node);
+	traverse(node);
 	return 0;
 }
 
