@@ -47,7 +47,8 @@ int main() {
 		printf("2. Insert a node at the end\n");
 		printf("3. Insert a node at the given position\n");
 		printf("4. Insert a node after a specific node\n");
-		printf("5. Exit the program\n");
+		printf("5. Traverse the Linked List\n");
+		printf("6. Exit the program\n");
 		printf("\nEnter your choice: ");
 		scanf("%d", &ch);
 
@@ -75,6 +76,10 @@ int main() {
 				break;
 
 			case 5:
+				traverse(node);
+				break;
+
+			case 6:
 				printf("\nThank You for using the program\n");
 				return 0;
 
