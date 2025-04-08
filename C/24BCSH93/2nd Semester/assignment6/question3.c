@@ -1,9 +1,9 @@
 /*
 Name:- Swapnaraj Mohanty
-SIC :- 24BBCSH93
+SIC :- 24BCSH93
 Sec :- C2
 
-Q. Write a menu-driven program by using the function defined in Q2 to perform repeated opeartion on the Queue and display the status of the Queue after every operation until the user enters his choice to exit
+Q. Write a menu-driven program by using the function defined in Q2 to perform repeated operation on the Queue and display the status of the Queue after every operation until the user enters his choice to exit
 */
 
 #include <stdio.h>
@@ -42,7 +42,7 @@ int main() {
 				if (is_empty()) {
 					printf("\nThe queue is empty\n");
 				} else {
-					printf("\n%d was delete from the queue\n", delete());
+					printf("\n%d was deleted from the queue\n", delete());
 					display();
 				}
 				break;

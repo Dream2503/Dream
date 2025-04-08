@@ -1,6 +1,6 @@
 /*
 Name:- Swapnaraj Mohanty
-SIC :- 24BBCSH93
+SIC :- 24BCSH93
 Sec :- C2
 
 Q. Write a program to implement a Queue by using array, It should have the following operations(functions):
