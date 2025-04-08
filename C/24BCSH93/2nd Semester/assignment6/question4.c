@@ -3,7 +3,7 @@ Name:- Swapnaraj Mohanty
 SIC :- 24BCSH93
 Sec :- C2
 
-Q. Write a program to implement a Input-Restricted Deque(Double-ended queue) by using array. It should have the following operations (funcitons).
+Q. Write a program to implement a Input-Restricted Deque(Double-ended queue) by using array. It should have the following operations(functions).
 	(i) void insertLeft(int) to insert an element to the Left end of the Queue.
 	(ii) int deleteLeft() to remove an element from Left end of the Queue.
 	(iii) int deleteRight() to remove an element from Right end of the Queue.
