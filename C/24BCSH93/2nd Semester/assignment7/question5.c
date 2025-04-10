@@ -47,8 +47,7 @@ int main() {
 		printf("2. Delete a node from the end\n");
 		printf("3. Delete a node from the given position\n");
 		printf("4. Delete a node after a specific node\n");
-		printf("5. Traverse the Linked List\n");
-		printf("6. Exit the program\n");
+		printf("5. Exit the program\n");
 		printf("\nEnter your choice: ");
 		scanf("%d", &ch);
 
@@ -77,10 +76,6 @@ int main() {
 				break;
 
 			case 5:
-				traverse(node);
-				break;
-
-			case 6:
 				printf("\nThank You for using the program\n");
 				return 0;
 
@@ -150,15 +145,11 @@ void delete_end(Node* node) {
 
 void delete_at(Node *node) {
 	int idx, pos = 1;
-	printf("\nEnter the position to insert the element: ");
+	printf("\nEnter the position to delete the element: ");
 	scanf("%d", &idx);
 
-	if (idx < 1) {
+	if (node == NULL || idx < 1) {
 		printf("Invalid postion\n");
-		return;
-	}
-	if (node == NULL) {
-		printf("Linked list is empty\n");
 		return;
 	}
 	if (idx == 1) {
@@ -193,7 +184,7 @@ void delete_after(Node* node) {
 
 	if (node == NULL) {
 		printf("Element %d is not found\n", element);
-	} else if (node->next == NULL) {
+	} else if (node ->next == NULL) {
 		printf("No element to delete\n");
 		return;
 	} else {

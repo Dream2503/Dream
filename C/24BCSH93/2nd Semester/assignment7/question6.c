@@ -3,7 +3,7 @@ Name:- Swapnaraj Mohanty
 SIC :- 24BCSH93
 Sec :- C2
 
-Q. Write a program to search for a particular node in a linked list created by using the function createList(NODE*). It should show the location of the node if it is found, otherwise show the message node not found.
+Q. Merge
 */
 
 #include <stdio.h>
@@ -15,27 +15,23 @@ typedef struct node {
 } Node;
 
 void create_list(Node*);
-int search(Node*, int);
+Node *merge(Node*, Node*);
+void traverse(Node*);
 
 int main() {
-	Node *node = (Node*)malloc(sizeof(Node));
-	int key, pos;
+	Node *node1 = (Node*)malloc(sizeof(Node));
+	Node *node2 = (Node*)malloc(sizeof(Node));
 	
-	if (node == NULL) {
+	if (node1 == NULL || node2 == NULL) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
-	create_list(node);
-	
-	printf("Enter the key to search: ");
-	scanf("%d", &key);
-	pos = search(node, key);
-
-	if (pos == -1) {
-		printf("Element not found in the Linked List\n");
-	} else {
-		printf("Element found at location %d in the Linked List\n", pos);
-	}
+	printf("Creating List1: \n");
+	create_list(node1);
+	printf("Creating List2: \n");
+	create_list(node2);
+	Node *node = merge(node1, node2);
+	traverse(node);
 	return 0;
 }
 
@@ -70,15 +66,26 @@ void create_list(Node* node) {
 	} while (ch != 0);
 }
 
-int search(Node* node, int key) {
-	int pos = 1;
-
-	while (node) {
-		if (node->data == key) {
-			return pos;
-		}
-		node = node->next;
-		pos++;
+Node *merge(Node *node1, Node *node2) {
+	Node *node = NULL, *res = NULL;
+	
+	if (node1 == NULL) {
+		return node2;
 	}
-	return -1;
+
+
+void traverse(Node* node) {
+	if (node == NULL) {
+		printf("\nThe Linked List is empty\n");
+	} else {
+		int len = 0;
+
+		printf("\nThe elements in the Linked List are: ");
+		while (node) {
+			printf("%d ", node->data);
+			node = node->next;
+			len++;
+		}
+		printf("\nTotal length of the Linked List is %d\n", len);
+	}
 }
