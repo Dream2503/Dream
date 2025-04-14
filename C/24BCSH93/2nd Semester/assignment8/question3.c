@@ -3,7 +3,7 @@ Name:- Swapnaraj Mohanty
 SIC :- 24BCSH93
 Sec :- C2
 
-Q. Write a program to implement a Linked List more than one node. The user should have the option to insert a new node dynamically or exit the list. It should have the same operations(functions) defined in Question1. Also it should show how many nodes are there in the linked list at the end.
+Q. Write a program to create a single linked list and reverse it so that the traversal of the list begin from the last node and end at the first node. That is, last node becomes the first node and first node becomes the last node.
 */
 
 #include <stdio.h>
@@ -14,17 +14,23 @@ typedef struct node {
 	struct node *next;
 } Node;
 
+Node *start = NULL;
+
 void create_list(Node*);
+void reverse(Node*);
 void traverse(Node*);
 
 int main() {
 	Node *node = (Node*)malloc(sizeof(Node));
-	
+	start = node;
+
 	if (node == NULL) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
 	create_list(node);
+	reverse(node);
+	node = start;
 	traverse(node);
 	return 0;
 }
@@ -60,13 +66,30 @@ void create_list(Node* node) {
 	} while (ch != 0);
 }
 
+void reverse(Node *node) {
+	if (node == NULL || node->next == NULL) {
+		return;
+	}
+	Node *end = NULL, *prev = node;
+	node = node->next;
+
+	while (node) {
+		prev->next = end;
+		end = prev;
+		prev = node;
+		node = node->next;
+	}
+	prev->next = end;
+	start = prev;
+}
+
 void traverse(Node* node) {
 	if (node == NULL) {
 		printf("\nThe Linked List is empty\n");
 	} else {
 		int len = 0;
 		printf("\nThe elements in the Linked List are: ");
-		
+
 		while (node) {
 			printf("%d ", node->data);
 			node = node->next;

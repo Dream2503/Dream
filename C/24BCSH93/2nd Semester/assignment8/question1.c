@@ -3,7 +3,7 @@ Name:- Swapnaraj Mohanty
 SIC :- 24BCSH93
 Sec :- C2
 
-Q. Write a program to implement a Linked List more than one node. The user should have the option to insert a new node dynamically or exit the list. It should have the same operations(functions) defined in Question1. Also it should show how many nodes are there in the linked list at the end.
+Q. Write a program to create two single linked lists with values of the nodes in ascending order, Then write a function to merge both the list into a single list so that all the nodes will be in ascending order.
 */
 
 #include <stdio.h>
@@ -15,16 +15,23 @@ typedef struct node {
 } Node;
 
 void create_list(Node*);
+Node *merge(Node*, Node*);
 void traverse(Node*);
 
 int main() {
-	Node *node = (Node*)malloc(sizeof(Node));
+	Node *node1 = (Node*)malloc(sizeof(Node));
+	Node *node2 = (Node*)malloc(sizeof(Node));
 	
-	if (node == NULL) {
+	if (node1 == NULL || node2 == NULL) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
-	create_list(node);
+	printf("Creating List1:\n");
+	create_list(node1);
+	printf("Creating List2:\n");
+	create_list(node2);
+	Node *node = merge(node1, node2);
+	printf("Merged List:\n");
 	traverse(node);
 	return 0;
 }
@@ -60,13 +67,50 @@ void create_list(Node* node) {
 	} while (ch != 0);
 }
 
+Node *merge(Node *node1, Node *node2) {
+	Node *node = NULL, *res = NULL;
+	
+	if (node1 == NULL) {
+		return node2;
+	}
+	if (node2 == NULL) {
+		return node1;
+	}
+	if (node1->data < node2->data) {
+		res = node1;
+		node1 = node1->next;
+	} else {
+		res = node2;
+		node2 = node2->next;
+	}
+	node = res;
+
+	while (node1 && node2) {
+		if (node1->data < node2->data) {
+			node->next = node1;
+			node = node1;
+			node1 = node1->next;
+		} else {
+			node->next = node2;
+			node = node2;
+			node2 = node2->next;
+		}
+	}
+	if (node1) {
+		node->next = node1;
+	} else {
+		node->next = node2;
+	}
+	return res;
+}
+
 void traverse(Node* node) {
 	if (node == NULL) {
 		printf("\nThe Linked List is empty\n");
 	} else {
 		int len = 0;
 		printf("\nThe elements in the Linked List are: ");
-		
+
 		while (node) {
 			printf("%d ", node->data);
 			node = node->next;

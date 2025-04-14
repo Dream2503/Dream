@@ -144,32 +144,28 @@ void delete_end(Node* node) {
 }
 
 void delete_at(Node *node) {
-	int idx, pos = 1;
+	int len = 0, idx, i;
+
+	while (node != NULL) {
+		len++;
+		node = node->next;
+	}
+	node = start;
 	printf("\nEnter the position to delete the element: ");
 	scanf("%d", &idx);
 
-	if (node == NULL || idx < 1) {
-		printf("Invalid postion\n");
-		return;
-	}
-	if (idx == 1) {
-		start = node->next;
+	if (idx < 1 || idx > len) {
+		printf("Invalid position\n");
+	} else if (idx == 1) {
+		start = start->next;
 		free(node);
-		return;
-	}
-
-	while (node->next != NULL && pos != idx - 1) {
-		node = node->next;
-		pos++;
-	}
-
-	if (node->next == NULL) {
-		printf("Invalid postion\n");
-	} else {
-		Node *prev = node;
-		node = node->next;
-		prev->next = node->next;
-		free(node);
+    } else {
+		for (i = 1; i < idx - 1; i++) {
+			node = node->next;
+		}
+		Node *temp = node->next;
+		node->next = temp->next;
+		free(temp);
 	}
 }
 
@@ -181,7 +177,6 @@ void delete_after(Node* node) {
 	while (node != NULL && node->data != element) {
 		node = node->next;
 	}
-
 	if (node == NULL) {
 		printf("Element %d is not found\n", element);
 	} else if (node ->next == NULL) {
@@ -200,8 +195,8 @@ void traverse(Node* node) {
 		printf("The Linked List is empty\n");
 	} else {
 		int len = 0;
-
 		printf("\nThe elements in the Linked List are: ");
+		
 		while (node) {
 			printf("%d ", node->data);
 			node = node->next;

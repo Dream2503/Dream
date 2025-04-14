@@ -3,7 +3,7 @@ Name:- Swapnaraj Mohanty
 SIC :- 24BCSH93
 Sec :- C2
 
-Q. Merge
+Q. Write a program to sort the nodes of a single linked list in ascending order by using bubble sort algorithm.
 */
 
 #include <stdio.h>
@@ -14,23 +14,23 @@ typedef struct node {
 	struct node *next;
 } Node;
 
+Node *start = NULL;
+
 void create_list(Node*);
-Node *merge(Node*, Node*);
+void sort(Node*);
 void traverse(Node*);
 
 int main() {
-	Node *node1 = (Node*)malloc(sizeof(Node));
-	Node *node2 = (Node*)malloc(sizeof(Node));
-	
-	if (node1 == NULL || node2 == NULL) {
+	Node *node = (Node*)malloc(sizeof(Node));
+	start = node;
+
+	if (node == NULL) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
-	printf("Creating List1: \n");
-	create_list(node1);
-	printf("Creating List2: \n");
-	create_list(node2);
-	Node *node = merge(node1, node2);
+	create_list(node);
+	sort(node);
+	node = start;
 	traverse(node);
 	return 0;
 }
@@ -66,21 +66,47 @@ void create_list(Node* node) {
 	} while (ch != 0);
 }
 
-Node *merge(Node *node1, Node *node2) {
-	Node *node = NULL, *res = NULL;
-	
-	if (node1 == NULL) {
-		return node2;
+void sort(Node *node) {
+	int n = 0, i, j, temp;
+
+	if (node == NULL) {
+		return;
+	}
+	while (node) {
+		n++;
+		node = node->next;
+	}
+	for (i = 0; i < n - 1; i++) {
+		node = start;
+
+		for (j = 0; j < n - i - 1; j++) {
+			if (node->data > node->next->data) {
+				temp = node->data;
+				node->data = node->next->data;
+				node->next->data = temp;
+			}
+			node = node->next;
+		}
 	}
 
+	/*	Bubble sort for array
+	for (i = 0; i < n - 1; i++) {
+		for (j = 0; j < n - i - 1; j++) {
+			if (array[j] > array[j + 1]) {
+				swap(array[j], array[j + 1]);
+			}
+		}
+	}
+	*/
+}
 
 void traverse(Node* node) {
 	if (node == NULL) {
 		printf("\nThe Linked List is empty\n");
 	} else {
 		int len = 0;
-
 		printf("\nThe elements in the Linked List are: ");
+
 		while (node) {
 			printf("%d ", node->data);
 			node = node->next;

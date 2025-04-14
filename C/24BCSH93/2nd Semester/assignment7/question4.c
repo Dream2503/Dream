@@ -66,6 +66,7 @@ int main() {
 
 			case 3:
 				insert_at(node);
+				node = start;
 				traverse(node);
 				break;
 
@@ -160,8 +161,18 @@ void insert_at(Node *node) {
 	printf("\nEnter the position to insert the element: ");
 	scanf("%d", &idx);
 
-	if (idx <= 1 || idx > len) {
+	if (idx < 1 || idx > len) {
 		printf("Invalid position\n");
+	} else if (idx == 1) {
+		start = (Node*)malloc(sizeof(Node));
+
+		if (start == NULL) {
+			printf("Memory was not allocated\n");
+		       	exit(0);
+		}
+	    printf("\nEnter the element to insert: ");
+		scanf("%d", &start->data);
+        start->next = node;
 	} else {
 		for (i = 1; i < idx - 1; i++) {
 			node = node->next;
@@ -208,8 +219,8 @@ void traverse(Node* node) {
 		printf("The Linked List is empty\n");
 	} else {
 		int len = 0;
-
 		printf("\nThe elements in the Linked List are: ");
+		
 		while (node) {
 			printf("%d ", node->data);
 			node = node->next;
