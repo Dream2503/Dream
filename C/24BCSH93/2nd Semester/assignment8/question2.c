@@ -67,37 +67,22 @@ void create_list(Node* node) {
 }
 
 void sort(Node *node) {
-	int n = 0, i, j, temp;
+	int temp;
+	Node *p, *q, *r = NULL;
 
 	if (node == NULL) {
 		return;
 	}
-	while (node) {
-		n++;
-		node = node->next;
-	}
-	for (i = 0; i < n - 1; i++) {
-		node = start;
-
-		for (j = 0; j < n - i - 1; j++) {
-			if (node->data > node->next->data) {
-				temp = node->data;
-				node->data = node->next->data;
-				node->next->data = temp;
-			}
-			node = node->next;
-		}
-	}
-
-	/*	Bubble sort for array
-	for (i = 0; i < n - 1; i++) {
-		for (j = 0; j < n - i - 1; j++) {
-			if (array[j] > array[j + 1]) {
-				swap(array[j], array[j + 1]);
+	for (p = start; p->next != NULL; p = p->next) {
+		for (q = start; q->next != r; q = q->next) {
+			if (q->data > q->next->data) {
+				temp = q->data;
+				q->data = q->next->data;
+				q->next->data = temp;
 			}
 		}
+		r = q;
 	}
-	*/
 }
 
 void traverse(Node* node) {
