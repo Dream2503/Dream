@@ -3,9 +3,9 @@ Name:- Swapnaraj Mohanty
 SIC :- 24BCSH93
 Sec :- C2
 
-Q. Write a menu-driven program to perform the following operations on a Circular Linked List.
-	(i) Create a Circular linked list
-	(ii) Traverse the linked list
+Q. Write a menu-driven program to perform the following operations on a Doubly Linked List.
+	(i) Create a Doubly linked list
+	(ii) Traverse the linked list in backward and forward directions
 	(iii) Insert a node at the beginning
 	(iv) Insert a node at the end
 	(v) Insert a node after a given node
@@ -19,7 +19,7 @@ Q. Write a menu-driven program to perform the following operations on a Circular
 
 typedef struct node {
 	int data;
-	struct node *next;
+	struct node *prev, *next;
 } Node;
 
 Node *start = NULL;
@@ -36,24 +36,25 @@ void traverse(Node*);
 int main() {
 	Node *node = (Node*)malloc(sizeof(Node));
 	int ch;
-	start = node;
 	
-	if (start == NULL) {
+	if (node == NULL) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
+	node->prev = NULL;
+	start = node;
 	create_list(node);
 	traverse(node);
 
 	while (1) {
-		printf("\n\tMenu-Driven program for Circular Linked List\n");
+		printf("\n\tMenu-Driven program for Doubly Linked List\n");
 		printf("1. Insert a node at the beginning\n");
 		printf("2. Insert a node at the end\n");
 		printf("3. Insert a node after a given node\n");
 		printf("4. Delete a node from the beginning\n");
 		printf("5. Delete a node from the end\n");
 		printf("6. Delete a node after a given node\n");
-		printf("7. Traverse the Linked List\n");
+		printf("7. Traverse the Linked List in Forwards and Backwards directions\n");
 		printf("0. Exit the program\n");
 		printf("\nEnter your choice: ");
 		scanf("%d", &ch);
@@ -108,7 +109,8 @@ int main() {
 }
 
 void create_list(Node* node) {
-	int ch = 1;
+	int ch;
+	Node *temp;
 
 	do {
 		printf("Enter an element to append to the list: ");
@@ -118,17 +120,19 @@ void create_list(Node* node) {
 		
 		switch (ch) {
 			case 0:
-				node->next = start;
+				node->next = NULL;
 				break;
 
 			case 1:
-				node->next = (Node*)malloc(sizeof(Node));
-				node = node->next;
-
-				if (node == NULL) {
+				temp = (Node*)malloc(sizeof(Node));
+				
+				if (temp == NULL) {
 					printf("Memory was not allocated\n");
 					exit(0);
 				}
+				node->next = temp;
+				temp->prev = node;
+				node = temp;
 				break;
 
 			default:
@@ -149,38 +153,44 @@ void insert_beg(Node* node) {
 	scanf("%d", &new->data);
 	
 	if (start == NULL) {
-		start = new;
-		new->next = start;
+		new->next = NULL;
 	} else {
 		new->next = node;
-
-		while (node->next != start) {
-			node = node->next;
-		}
-		node->next = new;
-		start = new;
+		node->prev = new;
 	}
+	new->prev = NULL;
+	start = new;
 }
 
 void insert_end(Node* node) {
+	Node *temp;
+
 	if (node == NULL) {
-		node = (Node*)malloc(sizeof(Node));
-		start = node;
-		node->next = start;
+		temp = (Node*)malloc(sizeof(Node));
+
+		if (temp == NULL) {
+			printf("Memory was not allocated\n");
+			exit(0);
+		}
+		temp->next = NULL;
+		temp->prev = NULL;
+		start = temp;
 	} else {
-		while (node->next != start) {
+		while (node->next != NULL) {
 			node = node->next;
 		}
-		node->next = (Node*)malloc(sizeof(Node));
-		node = node->next;
-	}
-	if (node == NULL) {
-		printf("Memory was not allocated\n");
-		exit(0);
+		temp = (Node*)malloc(sizeof(Node));
+
+		if (temp == NULL) {
+			printf("Memory was not allocated\n");
+			exit(0);
+		}
+		node->next = temp;
+		temp->prev = node;
+		temp->next = NULL;
 	}
 	printf("\nEnter the element to insert at the end: ");
-	scanf("%d", &node->data);
-	node->next = start;
+	scanf("%d", &temp->data);
 }
 
 void insert_after(Node* node) {
@@ -192,14 +202,11 @@ void insert_after(Node* node) {
 		printf("Linked List is empty\n");
 		return;
 	}
-	do {
-		if (node->data == element) {
-			break;
-		}
+	while (node != NULL && node->data != element) {
 		node = node->next;
-	} while (node != start);
+	}
 
-	if (node == start) {
+	if (node == NULL) {
 		printf("Element %d is not found\n", element);
 	} else {
 		Node *new = (Node*)malloc(sizeof(Node));
@@ -210,42 +217,44 @@ void insert_after(Node* node) {
 		}
 		printf("Enter the element to insert: ");
 		scanf("%d", &new->data);
+		new->prev = node;
 		new->next = node->next;
 		node->next = new;
+		
+		if (new->next != NULL) {
+			new->next->prev = new;
+		}
 	}
 }
 
 void delete_beg(Node* node) {
 	if (node == NULL) {
 		printf("Linked list is empty\n");
-	} else if (node->next = start) {
-		free(start);
-		start = NULL;
 	} else {
-		while (node->next != start) {
-			node = node->next;
-		}
-		Node *temp = start;
-		start = start->next;
+		Node *temp = node;
+		start = node->next;
 		free(temp);
-		node->next = start;
+		
+		if (start != NULL) {
+			start->prev = NULL;
+		}
 	}
 }
 
 void delete_end(Node* node) {
 	if (node == NULL) {
 		printf("Linked list is empty\n");
-	} else if (node->next == start) {
+	} else if (node->next == NULL) {
 		free(node);
 		start = NULL;
 	} else {
 		Node *prev;
 
-		while (node->next != start) {
+		while (node->next != NULL) {
 			prev = node;
 			node = node->next;
 		}
-		prev->next = start;
+		prev->next = NULL;
 		free(node);
 	}
 }
@@ -259,38 +268,47 @@ void delete_after(Node* node) {
 		printf("Linked List is empty\n");
 		return;
 	}
-	do {
-		if (node->data == element) {
-			break;
-		}
+	while (node != NULL && node->data != element) {
 		node = node->next;
-	} while (node != start);
+	}
 
-	if (node == start) {
+	if (node == NULL) {
 		printf("Element %d is not found\n", element);
-	} else if (node->next == start) {
+	} else if (node->next == NULL) {
 		printf("No element to delete\n");
 		return;
 	} else {
-		Node *prev = node;
-		node = node->next;
-		prev->next = node->next;
-		free(node);
+		Node *temp = node->next;
+		node->next = temp->next;
+
+		if (temp->next != NULL) {
+			temp->next->prev = node;
+		}
+		free(temp);
 	}
 }
 
 void traverse(Node* node) {
 	if (node == NULL) {
 		printf("The Linked List is empty\n");
-	} else {
-		int len = 0;
-
-		printf("\nThe elements in the Linked List are: ");
-		do {
-			printf("%d ", node->data);
-			node = node->next;
-			len++;
-		} while (node != start);
-		printf("\nTotal length of the Linked List is %d\n", len);
+		return;
 	}
+	int len = 0;
+	Node *temp;
+
+	printf("\nThe elements in the Linked List in forwards direction are: ");
+	while (node != NULL) {
+		printf("%d ", node->data);
+		temp = node;
+		node = node->next;
+		len++;
+	}
+	node = temp;
+
+	printf("\nThe elements in the Linked List in backwards direction are: ");
+	while (node != NULL) {
+		printf("%d ", node->data);
+		node = node->prev;
+	}
+	printf("\nTotal length of the Linked List is %d\n", len);
 }
