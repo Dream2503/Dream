@@ -38,6 +38,7 @@ int main() {
 				printf("Enter the element to push: ");
 				scanf("%d", &element);
 				push(element);
+				traverse();
 				break;
 
 			case 2:
@@ -46,6 +47,7 @@ int main() {
 				if (element != -1) {
 					printf("Popped element %d from the stack\n", element);
 				}
+				traverse();
 				break;
 
 			case 3:
@@ -80,12 +82,18 @@ void push(int element) {
 }
 
 int pop() {
-	if (start == NULL) {
+	int res;
+
+	if (!start) {
 		printf("Stack Underflow\n");
 		return -1;
 	}
+	if (!start->next) {
+		res = end->data;
+		start = end = NULL;
+		return res;
+	}
 	Node *node = start;
-	int res;
 
 	while (node->next != end) {
 		node = node->next;
@@ -93,6 +101,8 @@ int pop() {
 	res = end->data;
 	free(end);
 	end = node;
+	end->next = NULL;
+	return res;
 }
 
 void traverse() {

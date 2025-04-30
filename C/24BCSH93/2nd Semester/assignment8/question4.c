@@ -218,7 +218,7 @@ void insert_after(Node* node) {
 void delete_beg(Node* node) {
 	if (node == NULL) {
 		printf("Linked list is empty\n");
-	} else if (node->next = start) {
+	} else if (node->next == start) {
 		free(start);
 		start = NULL;
 	} else {

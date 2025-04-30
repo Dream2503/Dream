@@ -30,7 +30,6 @@ int main() {
 	}
 	create_list(node);
 	sort(node);
-	node = start;
 	traverse(node);
 	return 0;
 }
