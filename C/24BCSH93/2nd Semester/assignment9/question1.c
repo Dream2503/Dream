@@ -6,8 +6,8 @@ Sec :- C2
 Q. Write a program to perform the following operations on a binary tree by using linked implementation
 	(i) Create a binary tree with n nodes recursively
 	(ii) Traverse the tree in pre-order recursively and display the contents
-	(ii) Traverse the tree in in-order recursively and display the contents
-	(ii) Traverse the tree in post-order recursively and display the contents
+	(iii) Traverse the tree in in-order recursively and display the contents
+	(iv) Traverse the tree in post-order recursively and display the contents
 */
 
 #include <stdio.h>
@@ -47,13 +47,13 @@ Node *create() {
 	scanf("%d", &new->data);
 	
 	if (new->data == -1) {
+		free(new);
 		return NULL;
 	}
 	printf("Enter the left child of %d element\n", new->data);
 	new->left = create();
 	printf("Enter the right child of %d element\n", new->data);
 	new->right = create();
-	printf("\n");
 	return new;
 }
 

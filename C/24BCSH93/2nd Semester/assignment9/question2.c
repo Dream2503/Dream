@@ -37,8 +37,21 @@ int main() {
 	Node *node;
 	int ch, element;
 
+	printf("Enter the list of element to create BST (-1 to end the list): ");
 	while (1) {
-		printf("\n\tMenu-Driven program for BST\n");
+		scanf("%d", &element);
+
+		if (element != -1) {
+			root = insert(root, element);
+		} else {
+			break;
+		}
+	}
+	printf("The in-order Traversal: ");
+	in_order(root);
+
+	while (1) {
+		printf("\n\n\tMenu-Driven program for BST\n");
 		printf("1. Insert a data into the BST\n");
 		printf("2. Traverse in pre-order\n");
 		printf("3. Traverse in in-order\n");
@@ -47,7 +60,7 @@ int main() {
 		printf("6. Find the minimum node\n");
 		printf("7. Find the maximum node\n");
 		printf("8. Delete a particular node\n");
-		printf("0. To exit the program\n");
+		printf("0. Exit the program\n");
 		printf("\nEnter your choice: ");
 		scanf("%d", &ch);
 		
@@ -55,7 +68,7 @@ int main() {
 			case 1:
 				printf("\nEnter an element to insert into the BST: ");
 				scanf("%d", &element);
-				root = insert(root, element);
+				insert(root, element);
 				printf("The in-order Traversal: ");
 				in_order(root);
 				break;
@@ -81,7 +94,7 @@ int main() {
 			case 4:
 				if (root) {
 					printf("The post-order traversal: ");
-					in_order(root);
+					post_order(root);
 				} else {
 					printf("Tree is empty\n");
 				}
@@ -101,16 +114,26 @@ int main() {
 
 			case 6:
 				node = min(root);
-				printf("\nThe minimum value is: %d", node->data);
+
+				if (node) {
+					printf("\nThe minimum value is: %d", node->data);
+				} else {
+					printf("The tree is empty\n");
+				}
 				break;
 
 			case 7:
 				node = max(root);
-				printf("\nThe maximum value is: %d", node->data);
+
+				if (node) {
+					printf("\nThe maximum value is: %d", node->data);
+				} else {
+					printf("The tree is empty\n");
+				}
 				break;
 
 			case 8:
-				printf("Enter the value to delete from the BST: ");
+				printf("\nEnter the value to delete from the BST: ");
 				scanf("%d", &element);
 				root = delete(root, element);
 				
@@ -123,7 +146,7 @@ int main() {
 				break;
 
 			case 0:
-				printf("Thank you for using the program\n");
+				printf("\nThank you for using the program\n");
 				return 0;
 
 			default:
@@ -142,8 +165,7 @@ Node *insert(Node *root, int value) {
 		}
 		root->data = value;
 		root->left = root->right = NULL;
-	}
-	else if (value < root->data) {
+	} else if (value < root->data) {
 		root->left = insert(root->left, value);
 	} else {
 		root->right = insert(root->right, value);
@@ -152,34 +174,23 @@ Node *insert(Node *root, int value) {
 }
 
 Node *search(Node *root, int key) {
-	if (!root) {
-		return NULL;
-	} else if (key < root->data) {
-		return search(root->left, key);
-	} else if (key > root->data) {
-		return search(root->right, key);
-	} else {
-		return root;
+	if (root && key < root->data) {
+		root =  search(root->left, key);
+	} else if (root && key > root->data) {
+		root = search(root->right, key);
 	}
+	return root;
 }
 
 Node *min(Node* root) {
-	if (!root) {
-		printf("The BST is empty\n");
-		return NULL;
-	}
-	if (root->left) {
+	if (root && root->left) {
 		return min(root->left);
 	}
 	return root;
 }
 
 Node *max(Node* root) {
-	if (!root) {
-		printf("The BST is empty\n");
-		return NULL;
-	}
-	if (root->right) {
+	if (root && root->right) {
 		return max(root->right);
 	}
 	return root;
@@ -210,7 +221,7 @@ Node *delete(Node *root, int key) {
 		} else {
 			temp = min(root->right);
 			root->data = temp->data;
-			root->right = delete(root->right, root->data);
+			root->right = delete(root->right, temp->data);
 		}
 	}
 	return root;
