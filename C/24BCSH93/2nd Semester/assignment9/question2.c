@@ -37,18 +37,18 @@ int main() {
 	Node *node;
 	int ch, element;
 
-	printf("Enter the list of element to create BST (-1 to end the list): ");
-	while (1) {
-		scanf("%d", &element);
+	// printf("Enter the list of element to create BST (-1 to end the list): ");
+	// while (1) {
+	// 	scanf("%d", &element);
 
-		if (element != -1) {
-			root = insert(root, element);
-		} else {
-			break;
-		}
-	}
-	printf("The in-order Traversal: ");
-	in_order(root);
+	// 	if (element != -1) {
+	// 		root = insert(root, element);
+	// 	} else {
+	// 		break;
+	// 	}
+	// }
+	// printf("The in-order Traversal: ");
+	// in_order(root);
 
 	while (1) {
 		printf("\n\n\tMenu-Driven program for BST\n");
@@ -68,7 +68,7 @@ int main() {
 			case 1:
 				printf("\nEnter an element to insert into the BST: ");
 				scanf("%d", &element);
-				insert(root, element);
+				root = insert(root, element);
 				printf("The in-order Traversal: ");
 				in_order(root);
 				break;
