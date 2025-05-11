@@ -31,27 +31,20 @@ int main() {
 }
 
 void merge(int array[15], int p, int q, int r) {
-	int res[r], i = p, j = q + 1, k = p;
+	int res[r + 1], i = p, j = q + 1, k = p;
 
 	while (i <= q && j <= r) {
 		if (array[i] < array[j]) {
-			res[k] = array[i];
-			i++;
+			res[k++] = array[i++];
 		} else {
-			res[k] = array[j];
-			j++;
+			res[k++] = array[j++];
 		}
-		k++;
 	}
 	while (i <= q) {
-		res[k] = array[i];
-		k++;
-		i++;
+		res[k++] = array[i++];
 	}
 	while (j <= r) {
-		res[k] = array[j];
-		k++;
-		j++;
+		res[k++] = array[j++];
 	}
 	for (i = p; i <= r; i++) {
 		array[i] = res[i];
