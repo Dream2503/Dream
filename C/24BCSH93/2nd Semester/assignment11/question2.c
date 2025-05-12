@@ -67,35 +67,35 @@ int main() {
 }
 
 void insert(int element) {
-    if (!rear) {
-        rear = (Node*)malloc(sizeof(Node));
-        front = rear;
-    } else {
-        rear->next = (Node*)malloc(sizeof(Node));
-        rear = rear->next;
-    }
-    if (!rear) {
-        printf("Memory was not allocated\n");
-        exit(0);
-    }
-    rear->data = element;
-    rear->next = NULL;
+	if (!rear) {
+		rear = (Node*)malloc(sizeof(Node));
+		front = rear;
+	} else {
+		rear->next = (Node*)malloc(sizeof(Node));
+		rear = rear->next;
+	}
+	if (!rear) {
+		printf("Memory was not allocated\n");
+		exit(0);
+	}
+	rear->data = element;
+	rear->next = NULL;
 }
 
 int delete() {
-    if (!front) {
-        printf("Queue is empty\n");
-        return -1;
-    }
-    Node* temp = front;
-    int res = front->data;
-    front = front->next;
+	if (!front) {
+		printf("Queue is empty\n");
+		return -1;
+	}
+	Node* temp = front;
+	int res = front->data;
+	front = front->next;
 
-    if (!front) {
-        rear = NULL;
-    }
-    free(temp);
-    return res;
+	if (!front) {
+		rear = NULL;
+	}
+	free(temp);
+	return res;
 }
 
 void traverse() {

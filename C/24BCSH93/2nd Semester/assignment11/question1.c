@@ -4,8 +4,8 @@ SIC :- 24BCSH93
 Sec :- C2
 
 Q. Write a program to implement a Stack by using Linked List. It should have the following operations (functions).
-	(i) void push(int) to insert an element into the stack
-	(ii) int pop() to remove an element from the top of the stack
+	(i) void push(int) to insert an element into the Stack
+	(ii) int pop() to remove an element from the top of the Stack
 */
 
 #include <stdio.h>
