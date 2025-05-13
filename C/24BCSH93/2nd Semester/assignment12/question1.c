@@ -11,11 +11,6 @@ Q. Implement graph using adjacent matrix format
 #include <stdbool.h>
 #define n 10
 
-typedef struct Node {
-    int data;
-    struct Node *link;
-} Node;
-
 void create_graph();
 int find_start();
 void dfs(int);
