@@ -21,9 +21,9 @@ typedef struct node {
 Node *root = NULL;
 
 Node *create();
-void pre_order();
-void in_order();
-void post_order();
+void pre_order(Node*);
+void in_order(Node*);
+void post_order(Node*);
 
 int main() {
 	root = create();

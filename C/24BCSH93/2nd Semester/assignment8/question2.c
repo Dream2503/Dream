@@ -24,7 +24,7 @@ int main() {
 	Node *node = (Node*)malloc(sizeof(Node));
 	start = node;
 
-	if (node == NULL) {
+	if (!node) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
@@ -52,7 +52,7 @@ void create_list(Node* node) {
 				node->next = (Node*)malloc(sizeof(Node));
 				node = node->next;
 
-				if (node == NULL) {
+				if (!node) {
 					printf("Memory was not allocated\n");
 					exit(0);
 				}
@@ -69,10 +69,10 @@ void sort(Node *node) {
 	int temp;
 	Node *p, *q, *r = NULL;
 
-	if (node == NULL) {
+	if (!node) {
 		return;
 	}
-	for (p = start; p->next != NULL; p = p->next) {
+	for (p = start; p->next; p = p->next) {
 		for (q = start; q->next != r; q = q->next) {
 			if (q->data > q->next->data) {
 				temp = q->data;
@@ -85,7 +85,7 @@ void sort(Node *node) {
 }
 
 void traverse(Node* node) {
-	if (node == NULL) {
+	if (!node) {
 		printf("\nThe Linked List is empty\n");
 	} else {
 		int len = 0;

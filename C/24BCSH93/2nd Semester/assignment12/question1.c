@@ -62,6 +62,7 @@ int find_start() {
             }
         }
     }
+    return 0;
 }
 
 void dfs(int element) {

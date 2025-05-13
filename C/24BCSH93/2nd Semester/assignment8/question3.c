@@ -24,7 +24,7 @@ int main() {
 	Node *node = (Node*)malloc(sizeof(Node));
 	start = node;
 
-	if (node == NULL) {
+	if (!node) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
@@ -53,7 +53,7 @@ void create_list(Node* node) {
 				node->next = (Node*)malloc(sizeof(Node));
 				node = node->next;
 
-				if (node == NULL) {
+				if (!node) {
 					printf("Memory was not allocated\n");
 					exit(0);
 				}
@@ -67,7 +67,7 @@ void create_list(Node* node) {
 }
 
 void reverse(Node *node) {
-	if (node == NULL || node->next == NULL) {
+	if (!node || !node->next) {
 		return;
 	}
 	Node *end = NULL, *prev = node;
@@ -84,7 +84,7 @@ void reverse(Node *node) {
 }
 
 void traverse(Node* node) {
-	if (node == NULL) {
+	if (!node) {
 		printf("\nThe Linked List is empty\n");
 	} else {
 		int len = 0;

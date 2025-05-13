@@ -22,7 +22,7 @@ int main() {
 	Node *node1 = (Node*)malloc(sizeof(Node));
 	Node *node2 = (Node*)malloc(sizeof(Node));
 	
-	if (node1 == NULL || node2 == NULL) {
+	if (!node1 || !node2) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
@@ -54,7 +54,7 @@ void create_list(Node* node) {
 				node->next = (Node*)malloc(sizeof(Node));
 				node = node->next;
 
-				if (node == NULL) {
+				if (!node) {
 					printf("Memory was not allocated\n");
 					exit(0);
 				}
@@ -70,10 +70,10 @@ void create_list(Node* node) {
 Node *merge(Node *node1, Node *node2) {
 	Node *node = NULL, *res = NULL;
 	
-	if (node1 == NULL) {
+	if (!node1) {
 		return node2;
 	}
-	if (node2 == NULL) {
+	if (!node2) {
 		return node1;
 	}
 	if (node1->data < node2->data) {
@@ -105,7 +105,7 @@ Node *merge(Node *node1, Node *node2) {
 }
 
 void traverse(Node* node) {
-	if (node == NULL) {
+	if (!node) {
 		printf("\nThe Linked List is empty\n");
 	} else {
 		int len = 0;

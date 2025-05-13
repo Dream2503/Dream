@@ -34,7 +34,7 @@ int main() {
 	int ch;
 	start = node;
 	
-	if (node == NULL) {
+	if (!node) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
@@ -103,7 +103,7 @@ void create_list(Node* node) {
 				node->next = (Node*)malloc(sizeof(Node));
 				node = node->next;
 
-				if (node == NULL) {
+				if (!node) {
 					printf("Memory was not allocated\n");
 					exit(0);
 				}
@@ -119,7 +119,7 @@ void create_list(Node* node) {
 void insert_beg(Node* node) {
 	start = (Node*)malloc(sizeof(Node));
 
-	if (start == NULL) {
+	if (!start) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
@@ -129,7 +129,7 @@ void insert_beg(Node* node) {
 }
 
 void insert_end(Node* node) {
-	if (node == NULL) {
+	if (!node) {
 		node = (Node*)malloc(sizeof(Node));
 		start = node;
 	} else {
@@ -140,7 +140,7 @@ void insert_end(Node* node) {
 		node = node->next;
 	}
 
-	if (node == NULL) {
+	if (!node) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
@@ -152,7 +152,7 @@ void insert_end(Node* node) {
 void insert_at(Node *node) {
 	int len = 0, idx, i;
 
-	while (node != NULL) {
+	while (node) {
 		len++;
 		node = node->next;
 	}
@@ -166,9 +166,9 @@ void insert_at(Node *node) {
 	} else if (idx == 1) {
 		start = (Node*)malloc(sizeof(Node));
 
-		if (start == NULL) {
+		if (!start) {
 			printf("Memory was not allocated\n");
-		       	exit(0);
+		    exit(0);
 		}
 	    printf("\nEnter the element to insert: ");
 		scanf("%d", &start->data);
@@ -179,7 +179,7 @@ void insert_at(Node *node) {
 		}
 		Node *new = (Node*)malloc(sizeof(Node));
 		
-		if (new == NULL) {
+		if (!new) {
 			printf("Memory was not allocated\n");
 			exit(0);
 		}
@@ -195,15 +195,15 @@ void insert_after(Node* node) {
 	printf("\nEnter the after which element to insert: ");
 	scanf("%d", &element);
 
-	while (node != NULL && node->data != element) {
+	while (node && node->data != element) {
 		node = node->next;
 	}
-	if (node == NULL) {
+	if (!node) {
 		printf("Element %d is not found\n", element);
 	} else {
 		Node *new = (Node*)malloc(sizeof(Node));
 		
-		if (new == NULL) {
+		if (!new) {
 			printf("Memory was not allocated\n");
 			exit(0);
 		}
@@ -215,7 +215,7 @@ void insert_after(Node* node) {
 }
 
 void traverse(Node* node) {
-	if (node == NULL) {
+	if (!node) {
 		printf("The Linked List is empty\n");
 	} else {
 		int len = 0;

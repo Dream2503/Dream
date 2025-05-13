@@ -12,7 +12,7 @@ void quick_sort(int[15], int, int);
 int partition(int[15], int, int);
 
 int main() {
-	int array[15], i, n;
+    int array[15], i, n;
 	printf("Enter the number of elements: ");
 	scanf("%d", &n);
 
@@ -45,6 +45,7 @@ int partition(int array[15], int p, int r) {
 			return j;
 		}
 	}
+    return p;
 }
 
 void quick_sort(int array[15], int p, int r) {

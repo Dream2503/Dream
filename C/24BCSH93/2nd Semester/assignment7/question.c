@@ -159,7 +159,7 @@ void create_list(Node* node) {
 void insert_beg(Node* node) {
 	start = (Node*)malloc(sizeof(Node));
 
-	if (start == NULL) {
+	if (!start) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
@@ -169,7 +169,7 @@ void insert_beg(Node* node) {
 }
 
 void insert_end(Node* node) {
-	if (node == NULL) {
+	if (!node) {
 		node = (Node*)malloc(sizeof(Node));
 		start = node;
 	} else {
@@ -179,7 +179,8 @@ void insert_end(Node* node) {
 		node->next = (Node*)malloc(sizeof(Node));
 		node = node->next;
 	}
-	if (node == NULL) {
+
+	if (!node) {
 		printf("Memory was not allocated\n");
 		exit(0);
 	}
@@ -191,12 +192,12 @@ void insert_end(Node* node) {
 void insert_at(Node *node) {
 	int len = 0, idx, i;
 
-	while (node != NULL) {
+	while (node) {
 		len++;
 		node = node->next;
 	}
 	node = start;
-	
+
 	printf("\nEnter the position to insert the element: ");
 	scanf("%d", &idx);
 
@@ -205,7 +206,7 @@ void insert_at(Node *node) {
 	} else if (idx == 1) {
 		start = (Node*)malloc(sizeof(Node));
 
-		if (start == NULL) {
+		if (!start) {
 			printf("Memory was not allocated\n");
 		    exit(0);
 		}
@@ -217,8 +218,8 @@ void insert_at(Node *node) {
 			node = node->next;
 		}
 		Node *new = (Node*)malloc(sizeof(Node));
-		
-		if (new == NULL) {
+
+		if (!new) {
 			printf("Memory was not allocated\n");
 			exit(0);
 		}
@@ -234,15 +235,15 @@ void insert_after(Node* node) {
 	printf("\nEnter the after which element to insert: ");
 	scanf("%d", &element);
 
-	while (node != NULL && node->data != element) {
+	while (node && node->data != element) {
 		node = node->next;
 	}
-	if (node == NULL) {
+	if (!node) {
 		printf("Element %d is not found\n", element);
 	} else {
 		Node *new = (Node*)malloc(sizeof(Node));
-		
-		if (new == NULL) {
+
+		if (!new) {
 			printf("Memory was not allocated\n");
 			exit(0);
 		}
@@ -254,7 +255,7 @@ void insert_after(Node* node) {
 }
 
 void delete_beg(Node* node) {
-	if (node == NULL) {
+	if (!node) {
 		printf("Linked list is empty\n");
 	} else {
 		start = node->next;
@@ -263,15 +264,15 @@ void delete_beg(Node* node) {
 }
 
 void delete_end(Node* node) {
-	if (node == NULL) {
+	if (!node) {
 		printf("Linked list is empty\n");
-	} else if (node->next == NULL) {
+	} else if (!node->next) {
 		free(node);
 		start = NULL;
 	} else {
 		Node *prev;
 
-		while (node->next != NULL) {
+		while (node->next) {
 			prev = node;
 			node = node->next;
 		}
@@ -283,7 +284,7 @@ void delete_end(Node* node) {
 void delete_at(Node *node) {
 	int len = 0, idx, i;
 
-	while (node != NULL) {
+	while (node) {
 		len++;
 		node = node->next;
 	}
@@ -311,13 +312,14 @@ void delete_after(Node* node) {
 	printf("\nEnter the after which element to insert: ");
 	scanf("%d", &element);
 
-	while (node != NULL && node->data != element) {
+	while (node && node->data != element) {
 		node = node->next;
 	}
-	if (node == NULL) {
+	if (!node) {
 		printf("Element %d is not found\n", element);
-	} else if (node ->next == NULL) {
+	} else if (!node->next) {
 		printf("No element to delete\n");
+		return;
 	} else {
 		Node *prev = node;
 		node = node->next;
