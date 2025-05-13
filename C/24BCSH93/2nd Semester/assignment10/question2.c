@@ -31,16 +31,21 @@ int main() {
 }
 
 int partition(int array[15], int p, int r) {
-	int x = array[p], i = p - 1, j = r + 1, temp;
+	int x = array[p], i = p, j = r, temp;
 
 	while (i < j) {
-		for (i = i + 1; array[i] < x; i++);
-		for (j = j - 1; array[j] > x; j--);
+		while (array[i] < x){
+            i++;
+        }
+	    while (array[j] > x){
+	        j--;
+	    }
 
 		if (i < j) {
 			temp = array[i];
 			array[i] = array[j];
 			array[j] = temp;
+            i++; j--;
 		} else {
 			return j;
 		}

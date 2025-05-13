@@ -7,7 +7,6 @@ Q. Implement graph using adjacent matrix format
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 #define n 10
 
