@@ -6,8 +6,8 @@ Sec :- C2
 Q. Implement graph using adjacent matrix format
 */
 
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 #define n 10
 
 void create_graph();
@@ -19,7 +19,6 @@ bool visited[n] = {false};
 int start = -1;
 
 int main() {
-    int i, j;
     create_graph();
     start = find_start();
 
@@ -34,14 +33,14 @@ void create_graph() {
     char vertex, adjacent;
     printf("Enter the element to insert into the graph (A-%c): ", n - 1 + 65);
     scanf(" %c", &vertex);
-    
+
     if (vertex != '0') {
         vertex -= 65;
-        
+
         do {
             printf("Enter the element linked to %c: ", vertex + 65);
             scanf(" %c", &adjacent);
-            
+
             if (adjacent != '0') {
                 adjacent -= 65;
                 graph[vertex][adjacent] = 1;

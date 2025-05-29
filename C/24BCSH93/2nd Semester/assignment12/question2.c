@@ -6,9 +6,9 @@ Sec :- C2
 Q. Implement graph using adjacent list format
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #define n 10
 
 void create_graph();
@@ -25,7 +25,6 @@ Node *graph[n] = {NULL};
 int start = -1;
 
 int main() {
-    int i, j;
     create_graph();
     start = find_start();
 

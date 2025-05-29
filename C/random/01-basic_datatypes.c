@@ -31,6 +31,5 @@ int main() {
     printf("unsigned int [limit 0 to 4,294,967,295] - %u\n", unsigned_integer);
     printf("long long int [limit -9,223,372,036,854,775,807 to 9,223,372,036,854,775,807] - %lld\n", long_integer_int);
     printf("unsigned long long int [limit 0 to 18,446,744,073,709,551,615] - %lld\n", unsigned_long_int);
-
     return 0;
 }

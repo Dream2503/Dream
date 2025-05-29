@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 #define n 10
 
 int deque[n], right = -1, left = -1;
@@ -18,28 +18,22 @@ int main() {
     insert_right(20);
     insert_right(30);
     display();
-
     printf("Inserting elements from left:\n");
     insert_left(40);
     insert_left(50);
     display();
-
     printf("Deleting from left: %d\n", delete_left());
     display();
-
     printf("Deleting from right: %d\n", delete_right());
     display();
-
     printf("Inserting at right:\n");
     insert_right(60);
     insert_right(70);
     display();
-
     printf("Inserting at left:\n");
     insert_left(80);
     insert_left(90);
     display();
-    
     return 0;
 }
 
@@ -107,21 +101,8 @@ int delete_right() {
     return res;
 }
 
-bool is_full() {
-    if (left == right + 1 || (left == 0 && right == n - 1)) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
-
-bool is_empty() {
-    if (left == -1 && right == -1) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
+bool is_full() { return left == right + 1 || (left == 0 && right == n - 1); }
+bool is_empty() { return left == -1 && right == -1; }
 
 void display() {
     if (is_empty()) {

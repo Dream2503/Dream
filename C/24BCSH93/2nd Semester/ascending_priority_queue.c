@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 #define n 10
 
 typedef struct {
@@ -21,13 +21,10 @@ int main() {
     insert(30, 1);
     insert(40, 4);
     insert(50, 3);
-
     printf("After inserting elements:\n");
     display();
-
     printf("Deleted element: %d\n", min_delete());
     printf("Deleted element: %d\n", min_delete());
-
     printf("After deletion:\n");
     display();
 
@@ -40,10 +37,10 @@ void insert(int value, int priority) {
     } else {
         p_type element = {value, priority};
         int i = end;
-        
+
         while (i >= 0 && apq[i].priority < element.priority) {
             apq[i + 1] = apq[i];
-            i--; 
+            i--;
         }
         apq[i + 1] = element;
         end++;
@@ -59,21 +56,8 @@ int min_delete() {
     }
 }
 
-bool is_full() {
-    if (end == n - 1) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
-
-bool is_empty() {
-    if (end == -1) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
+bool is_full() { return end == n - 1; }
+bool is_empty() { return end == -1; }
 
 void display() {
     if (is_empty()) {
