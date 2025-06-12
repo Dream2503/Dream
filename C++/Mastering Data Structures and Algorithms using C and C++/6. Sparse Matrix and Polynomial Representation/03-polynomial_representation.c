@@ -2,8 +2,7 @@
 #include <stdlib.h>
 
 struct Term {
-    int coeff;
-    int exp;
+    int coeff, exp;
 };
 
 struct Poly {
@@ -15,11 +14,11 @@ void create(struct Poly *p) {
     int i;
     printf("Number of terms?");
     scanf("%d", &p->n);
-    p->terms = (struct Term *)malloc(p->n * sizeof(struct Term));
+    p->terms = (struct Term *) malloc(p->n * sizeof(struct Term));
 
     printf("Enter terms\n");
     for (i = 0; i < p->n; i++) {
-        scanf("%d%d", &p->terms[i].coeff, &p-> terms[i].exp);
+        scanf("%d%d", &p->terms[i].coeff, &p->terms[i].exp);
     }
 }
 
@@ -35,8 +34,8 @@ void display(struct Poly p) {
 struct Poly *add(struct Poly *p1, struct Poly *p2) {
     int i, j, k;
     struct Poly *sum;
-    sum = (struct Poly *)malloc(sizeof(struct Poly));
-    sum->terms = (struct Term *)malloc((p1->n + p2 -> n) * sizeof(struct Term));
+    sum = (struct Poly *) malloc(sizeof(struct Poly));
+    sum->terms = (struct Term *) malloc((p1->n + p2->n) * sizeof(struct Term));
     i = j = k = 0;
 
     while (i < p1->n && j < p2->n) {

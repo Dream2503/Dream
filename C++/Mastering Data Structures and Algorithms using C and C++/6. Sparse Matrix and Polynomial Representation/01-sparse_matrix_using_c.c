@@ -2,15 +2,11 @@
 #include <stdlib.h>
 
 struct Element {
-    int i;
-    int j;
-    int x;
+    int i, j, x;
 };
 
 struct Sparse {
-    int m;
-    int n;
-    int num;
+    int m, n, num;
     struct Element *ele;
 };
 
@@ -21,11 +17,11 @@ void create(struct Sparse *s) {
     scanf("%d%d", &s->m, &s->n);
     printf("Number of non-zero");
     scanf("%d", &s->num);
-    s->ele = (struct Element *)malloc(s->num * sizeof(struct Element));
+    s->ele = (struct Element *) malloc(s->num * sizeof(struct Element));
     printf("Enter non-zero Elements");
 
     for (i = 0; i < s->num; i++) {
-        scanf("%d%d%d", &s->ele[i].i, &s->ele[i].j, &s-> ele[i].x);
+        scanf("%d%d%d", &s->ele[i].i, &s->ele[i].j, &s->ele[i].x);
     }
 }
 
@@ -52,8 +48,8 @@ struct Sparse *add(struct Sparse *s1, struct Sparse *s2) {
     if (s1->n != s2->n && s1->m != s2->m) {
         return NULL;
     }
-    sum = (struct Sparse *)malloc(sizeof(struct Sparse));
-    sum->ele = (struct Element *)malloc((s1->num + s2 -> num) * sizeof(struct Element));
+    sum = (struct Sparse *) malloc(sizeof(struct Sparse));
+    sum->ele = (struct Element *) malloc((s1->num + s2->num) * sizeof(struct Element));
 
     while (i < s1->num && j < s2->num) {
         if (s1->ele[i].i < s2->ele[j].i) {

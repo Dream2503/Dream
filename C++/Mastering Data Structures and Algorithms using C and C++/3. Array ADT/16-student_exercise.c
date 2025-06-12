@@ -32,7 +32,7 @@ void missing_more_element_sequence(int *array, int size) {
 }
 
 void missing_more_element_sequence_hash(int *array, int size, int low, int high) {
-    int hash[high+1], i;
+    int hash[high + 1], i;
 
     for (i = low; i <= high; i++) {
         hash[i] = 0;
@@ -51,7 +51,7 @@ void duplicate_sorted_array(int *array, int size) {
     int last_duplicate = 0, i;
 
     for (i = 1; i < size; i++) {
-        if (array[i] == array[i-1] && last_duplicate != array[i]) {
+        if (array[i] == array[i - 1] && last_duplicate != array[i]) {
             last_duplicate = array[i];
             printf("duplicate element is %d\n", array[i++]);
         }
@@ -59,14 +59,14 @@ void duplicate_sorted_array(int *array, int size) {
 }
 
 void count_duplicate_sorted_array(int *array, int size) {
-    int last_duplicate = 0, cnt = 1, i, j;
+    int cnt = 1, i, j;
 
     for (i = 1; i < size; i++) {
-        if (array[i] == array[i-1]) {
+        if (array[i] == array[i - 1]) {
             cnt++;
 
             for (j = i + 1; j < size; j++, i++) {
-                if (array[j] != array[j-1]) {
+                if (array[j] != array[j - 1]) {
                     break;
                 }
                 cnt++;
@@ -81,7 +81,7 @@ void count_duplicate_array(int *array, int size) {
     int cnt = 1, i, j;
 
     for (i = 0; i < size; i++) {
-        if (array [i] == -1) {
+        if (array[i] == -1) {
             continue;
         }
         for (j = i + 1; j < size; j++) {
@@ -98,7 +98,7 @@ void count_duplicate_array(int *array, int size) {
 }
 
 void count_duplicate_array_hash(int *array, int size, int low, int high) {
-    int hash[high+1], i;
+    int hash[high + 1], i;
 
     for (i = low; i <= high; i++) {
         hash[i] = 0;
@@ -126,7 +126,7 @@ void pair_sum_array(int *array, int size, int sum) {
 }
 
 void pair_sum_array_hash(int *array, int size, int sum, int high) {
-    int hash[high+1];
+    int hash[high + 1];
 
     for (int i = 0; i <= high; i++) {
         hash[i] = 0;
@@ -135,7 +135,7 @@ void pair_sum_array_hash(int *array, int size, int sum, int high) {
         hash[array[i]]++;
     }
     for (int i = 0; i < size; i++) {
-        if (array[i] <= sum && hash[sum-array[i]]) {
+        if (array[i] <= sum && hash[sum - array[i]]) {
             printf("%d + %d = %d\n", array[i], sum - array[i], sum);
             hash[array[i]]--;
         }

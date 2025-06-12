@@ -15,10 +15,11 @@ void Display(struct Array arr) {
         printf("%d ", arr.A[i]);
     }
 }
+
 struct Array *Union(struct Array *arr1, struct Array *arr2) {
     int i, j, k;
     i = j = k = 0;
-    struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
+    struct Array *arr3 = (struct Array *) malloc(sizeof(struct Array));
 
     while (i < arr1->length && j < arr2->length) {
         if (arr1->A[i] < arr2->A[j]) {
@@ -44,7 +45,7 @@ struct Array *Union(struct Array *arr1, struct Array *arr2) {
 struct Array *Intersection(struct Array *arr1, struct Array *arr2) {
     int i, j, k;
     i = j = k = 0;
-    struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
+    struct Array *arr3 = (struct Array *) malloc(sizeof(struct Array));
 
     while (i < arr1->length && j < arr2->length) {
         if (arr1->A[i] < arr2->A[j]) {
@@ -64,7 +65,7 @@ struct Array *Intersection(struct Array *arr1, struct Array *arr2) {
 struct Array *Difference(struct Array *arr1, struct Array *arr2) {
     int i, j, k;
     i = j = k = 0;
-    struct Array *arr3 = (struct Array *)malloc(sizeof(struct Array));
+    struct Array *arr3 = (struct Array *) malloc(sizeof(struct Array));
 
     while (i < arr1->length && j < arr2->length) {
         if (arr1->A[i] < arr2->A[j]) {

@@ -2,7 +2,6 @@
 using namespace std;
 
 class Diagonal {
-private:
     int *A;
     int n;
 
@@ -22,8 +21,11 @@ public:
     }
 
     void Set(int i, int j, int x);
+
     int Get(int i, int j);
+
     void Display();
+
     int GetDimension() { return n; }
 };
 

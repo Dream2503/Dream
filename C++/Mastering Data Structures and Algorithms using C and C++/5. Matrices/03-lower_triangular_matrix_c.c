@@ -41,9 +41,9 @@ int main() {
 
     printf("Enter Dimension");
     scanf("%d", &m.n);
-    m.A = (int *)malloc(m.n * (m.n + 1) / 2 * sizeof(int));
+    m.A = (int *) malloc(m.n * (m.n + 1) / 2 * sizeof(int));
     printf("enter all elements");
-    
+
     for (i = 1; i <= m.n; i++) {
         for (j = 1; j <= m.n; j++) {
             scanf("%d", &x);

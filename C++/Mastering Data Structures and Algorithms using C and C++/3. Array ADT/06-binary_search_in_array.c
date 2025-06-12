@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 struct Array {
     int A[10];
     int size;
@@ -29,7 +30,8 @@ int BinarySearch(struct Array arr, int key) {
         mid = (l + h) / 2;
         if (key == arr.A[mid]) {
             return mid;
-        } else if (key < arr.A[mid]) {
+        }
+        if (key < arr.A[mid]) {
             h = mid - 1;
         } else {
             l = mid + 1;
@@ -46,7 +48,8 @@ int RBinSearch(int a[], int l, int h, int key) {
 
         if (key == a[mid]) {
             return mid;
-        } else if (key < a[mid]) {
+        }
+        if (key < a[mid]) {
             return RBinSearch(a, l, mid - 1, key);
         }
     } else {

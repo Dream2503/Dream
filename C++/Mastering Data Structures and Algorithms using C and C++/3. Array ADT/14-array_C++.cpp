@@ -1,9 +1,8 @@
 #include <iostream>
 using namespace std;
 
-template <class T>
+template<class T>
 class Array {
-private:
     T *A;
     int size;
     int length;
@@ -20,17 +19,19 @@ public:
         length = 0;
         A = new T[size];
     }
-    
+
     ~Array() {
         delete[] A;
     }
 
     void Display();
+
     void Insert(int index, T x);
+
     T Delete(int index);
 };
 
-template <class T>
+template<class T>
 void Array<T>::Display() {
     for (int i = 0; i < length; i++) {
         cout << A[i] << " ";
@@ -38,7 +39,7 @@ void Array<T>::Display() {
     cout << endl;
 }
 
-template <class T>
+template<class T>
 void Array<T>::Insert(int index, T x) {
     if (index >= 0 && index <= length) {
         for (int i = length - 1; i >= index; i--) {
@@ -49,7 +50,7 @@ void Array<T>::Insert(int index, T x) {
     }
 }
 
-template <class T>
+template<class T>
 T Array<T>::Delete(int index) {
     T x = 0;
 

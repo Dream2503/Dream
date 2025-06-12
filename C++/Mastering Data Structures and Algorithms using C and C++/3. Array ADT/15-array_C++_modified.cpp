@@ -2,10 +2,10 @@
 using namespace std;
 
 class Array {
-private:
     int *A;
     int size;
     int length;
+
     void swap(int *x, int *y);
 
 public:
@@ -26,25 +26,45 @@ public:
     }
 
     void Display();
+
     void Append(int x);
+
     void Insert(int index, int x);
+
     int Delete(int index);
+
     int LinearSearch(int key);
+
     int BinarySearch(int key);
+
     int Get(int index);
+
     void Set(int index, int x);
+
     int Max();
+
     int Min();
+
     int Sum();
+
     float Avg();
+
     void Reverse();
+
     void Reverse2();
+
     void InsertSort(int x);
+
     int isSorted();
+
     void Rearrange();
+
     Array *Merge(Array arr2);
+
     Array *Union(Array arr2);
+
     Array *Diff(Array arr2);
+
     Array *Inter(Array arr2);
 };
 
@@ -140,6 +160,7 @@ void Array::Set(int index, int x) {
         A[index] = x;
     }
 }
+
 int Array::Max() {
     int max = A[0];
     int i;
@@ -175,14 +196,14 @@ int Array::Sum() {
 }
 
 float Array::Avg() {
-    return (float)Sum() / length;
+    return (float) Sum() / length;
 }
 
 void Array::Reverse() {
     int *B;
     int i, j;
     B = new int[length];
-    
+
     for (i = length - 1, j = 0; i >= 0; i--, j++) {
         B[j] = A[i];
     }
@@ -373,7 +394,7 @@ int main() {
             case 4:
                 cout << "Sum is " << arr1->Sum();
                 break;
-                
+
             case 5:
                 arr1->Display();
         }

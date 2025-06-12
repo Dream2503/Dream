@@ -2,35 +2,47 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-typedef struct Tree {    
+typedef struct Tree {
     struct Tree *lchild, *rchild;
     int data;
 } Tree;
+
 typedef struct ListNode {
     Tree *data;
     struct ListNode *next;
 } ListNode;
-typedef struct Queue {ListNode *start, *end;} Queue;
-typedef struct Stack {ListNode *top;} Stack;
+
+typedef struct Queue {
+    ListNode *start, *end;
+} Queue;
+
+typedef struct Stack {
+    ListNode *top;
+} Stack;
 
 Queue *queueCreate() {
-    Queue *queue = (Queue*)malloc(sizeof(Queue));
+    Queue *queue = (Queue *) malloc(sizeof(Queue));
     queue->start = queue->end = NULL;
     return queue;
 }
-bool queueEmpty(Queue *queue) {return !queue->start;}
+
+bool queueEmpty(Queue *queue) {
+    return !queue->start;
+}
+
 void enqueue(Queue *queue, Tree *value) {
     if (queueEmpty(queue)) {
-        queue->start = queue->end = (ListNode*)malloc(sizeof(ListNode));
+        queue->start = queue->end = (ListNode *) malloc(sizeof(ListNode));
         queue->start->data = value;
         queue->end->next = NULL;
         return;
     }
-    queue->end->next = (ListNode*)malloc(sizeof(ListNode));
+    queue->end->next = (ListNode *) malloc(sizeof(ListNode));
     queue->end = queue->end->next;
     queue->end->data = value;
     queue->end->next = NULL;
 }
+
 Tree *dequeue(Queue *queue) {
     if (queueEmpty(queue)) {
         printf("Queue is empty\n");
@@ -45,11 +57,11 @@ Tree *dequeue(Queue *queue) {
 
 Tree *treeCreate() {
     Queue *queue = queueCreate();
-    Tree *tree = (Tree*)malloc(sizeof(Tree));
+    Tree *tree = (Tree *) malloc(sizeof(Tree));
 
     printf("Enter the root value: ");
     scanf("%d", &tree->data);
-    
+
     tree->lchild = tree->rchild = NULL;
     enqueue(queue, tree);
 
@@ -62,7 +74,7 @@ Tree *treeCreate() {
         scanf("%d", &value);
 
         if (value != -1) {
-            current = (Tree*)malloc(sizeof(Tree));
+            current = (Tree *) malloc(sizeof(Tree));
             current->data = value;
             current->lchild = current->rchild = NULL;
             prev->lchild = current;
@@ -72,7 +84,7 @@ Tree *treeCreate() {
         scanf("%d", &value);
 
         if (value != -1) {
-            current = (Tree*)malloc(sizeof(Tree));
+            current = (Tree *) malloc(sizeof(Tree));
             current->data = value;
             current->lchild = current->rchild = NULL;
             prev->rchild = current;
@@ -83,19 +95,25 @@ Tree *treeCreate() {
 }
 
 Stack *stackCreate() {
-    Stack *stack = (Stack*)malloc(sizeof(Stack));
+    Stack *stack = (Stack *) malloc(sizeof(Stack));
     stack->top = NULL;
 }
+
 void push(Stack *stack, Tree *value) {
-    ListNode *new = (ListNode*)malloc(sizeof(ListNode));
+    ListNode *new = (ListNode *) malloc(sizeof(ListNode));
     new->data = value;
     new->next = stack->top;
     stack->top = new;
 }
-bool stackEmpty(Stack *stack) {return stack->top == NULL;}
+
+bool stackEmpty(Stack *stack) {
+    return stack->top == NULL;
+}
+
 void display(Stack *stack) {
-    if (stackEmpty(stack)) printf("Stack is empty\n");
-    else {
+    if (stackEmpty(stack)) {
+        printf("Stack is empty\n");
+    } else {
         ListNode *current = stack->top;
 
         while (current) {
@@ -104,6 +122,7 @@ void display(Stack *stack) {
         }
     }
 }
+
 Tree *pop(Stack *stack) {
     if (stackEmpty(stack)) {
         printf("Stack Underflow\n");
@@ -123,6 +142,7 @@ void preOrderRecur(Tree *root) {
         preOrderRecur(root->rchild);
     }
 }
+
 void inOrderRecur(Tree *root) {
     if (root) {
         inOrderRecur(root->lchild);
@@ -130,6 +150,7 @@ void inOrderRecur(Tree *root) {
         inOrderRecur(root->rchild);
     }
 }
+
 void postOrderRecur(Tree *root) {
     if (root) {
         postOrderRecur(root->lchild);
@@ -137,6 +158,7 @@ void postOrderRecur(Tree *root) {
         printf("%d ", root->data);
     }
 }
+
 void preOrderIter(Tree *root) {
     Stack *stk = stackCreate();
 
@@ -144,20 +166,21 @@ void preOrderIter(Tree *root) {
         if (root) {
             printf("%d ", root->data);
             push(stk, root);
-            root = root->lchild; 
+            root = root->lchild;
         } else {
             root = pop(stk);
             root = root->rchild;
         }
     } while (root || !stackEmpty(stk));
 }
+
 void inOrderIter(Tree *root) {
     Stack *stk = stackCreate();
 
     do {
         if (root) {
             push(stk, root);
-            root = root->lchild; 
+            root = root->lchild;
         } else {
             root = pop(stk);
             printf("%d ", root->data);
@@ -165,17 +188,18 @@ void inOrderIter(Tree *root) {
         }
     } while (root || !stackEmpty(stk));
 }
+
 void postOrderIter(Tree *root) {
     Stack *stk = stackCreate();
 
     do {
         if (root) {
             push(stk, root);
-            root = root->lchild; 
+            root = root->lchild;
         } else {
             root = pop(stk);
             if (root > 0) {
-                push(stk, -(long)root);
+                push(stk, -(long) root);
                 root = root->rchild;
             } else {
                 printf("%d ", root->data);
@@ -184,6 +208,7 @@ void postOrderIter(Tree *root) {
         }
     } while (root || !stackEmpty(stk));
 }
+
 void levelOrder(Tree *root) {
     Queue *queue = queueCreate();
     printf("%d ", root->data);
@@ -195,20 +220,28 @@ void levelOrder(Tree *root) {
         if (root->lchild) {
             printf("%d ", root->lchild->data);
             enqueue(queue, root->lchild);
-        } if (root->rchild) {
+        }
+        if (root->rchild) {
             printf("%d ", root->rchild->data);
             enqueue(queue, root->rchild);
         }
     }
 }
+
 int count(Tree *root) {
-    if (root) return count(root->lchild) + count(root->rchild) + 1;
+    if (root) {
+        return count(root->lchild) + count(root->rchild) + 1;
+    }
     return 0;
 }
+
 int sum(Tree *root) {
-    if (root) return count(root->lchild) + count(root->rchild) + root->data;
+    if (root) {
+        return count(root->lchild) + count(root->rchild) + root->data;
+    }
     return 0;
 }
+
 int main() {
     Tree *tree = treeCreate();
     levelOrder(tree);

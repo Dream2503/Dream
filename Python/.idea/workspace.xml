@@ -4,7 +4,87 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ea48df2b-5063-40b4-ba97-dad713c6e81c" name="Changes" comment="" />
+    <list default="true" id="40047afb-462a-483a-bfbc-189aeeaf54d5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/01-head_recursion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/01-head_recursion.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/02-tail_recursion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/02-tail_recursion.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/03-static_variables_in_recursion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/03-static_variables_in_recursion.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/04-global_variables_in_recursion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/04-global_variables_in_recursion.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/05-tree_recursion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/05-tree_recursion.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/06-indirect_recursion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/06-indirect_recursion.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/07-nested_recursion.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/07-nested_recursion.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/08-sum_of_n_natural_numbers.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/08-sum_of_n_natural_numbers.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/09-factorial_of_n.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/09-factorial_of_n.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/10-power_function.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/10-power_function.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/11-taylor_series_using_static_variables.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/11-taylor_series_using_static_variables.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/12-taylor_series_horners_rule.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/12-taylor_series_horners_rule.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/13-taylor_series_iterative.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/13-taylor_series_iterative.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/14-fibonacci.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/14-fibonacci.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/15-combination_formula.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/15-combination_formula.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/16-tower_of_hanoi.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/1. Recursion/16-tower_of_hanoi.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/01-queueArray.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/01-queueArray.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/02-QueueUsingArrayC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/02-QueueUsingArrayC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/03-CircularQueueUsingArrayC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/03-CircularQueueUsingArrayC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/04-queueLinkedList.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/04-queueLinkedList.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/05-QueueUsingLLC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/05-QueueUsingLLC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/06-DequeueUsingArrayC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/06-DequeueUsingArrayC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/07-QueueUsing2STLStacksC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/10. Queue/07-QueueUsing2STLStacksC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/01-trees.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/01-trees.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/02-CreateTreeUsingArrayQueueC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/02-CreateTreeUsingArrayQueueC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/03-TreeIterativeOrderTraversalUsingSTLStackC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/03-TreeIterativeOrderTraversalUsingSTLStackC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/04-LevelOrderTraversalC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/04-LevelOrderTraversalC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/05-GeneratingTreeFromTraversalC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/05-GeneratingTreeFromTraversalC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/06-Height_CountofBinaryTreeC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/06-Height_CountofBinaryTreeC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/07-CountLeafofBinaryTreeC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/11. Trees/07-CountLeafofBinaryTreeC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/2. Array Representation/01-array_declaration.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/2. Array Representation/01-array_declaration.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/2. Array Representation/02-static_vs_dynamic_arrays.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/2. Array Representation/02-static_vs_dynamic_arrays.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/2. Array Representation/03-array_size.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/2. Array Representation/03-array_size.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/01-array_ADT.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/01-array_ADT.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/02-demo_array_ADT_C++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/02-demo_array_ADT_C++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/03-inserting_and_appending_in_a_array.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/03-inserting_and_appending_in_a_array.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/04-deleting_from_array.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/04-deleting_from_array.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/05-searching_in_a_array.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/05-searching_in_a_array.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/06-binary_search_in_array.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/06-binary_search_in_array.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/07-get_set_max_min_on_array.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/07-get_set_max_min_on_array.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/08-reversing_an_array.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/08-reversing_an_array.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/09-checking_if_array_is_sorted.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/09-checking_if_array_is_sorted.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/10-merge_2_arrays.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/10-merge_2_arrays.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/11-merge_arrays_C++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/11-merge_arrays_C++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/12-set_operations_on_array.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/12-set_operations_on_array.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/13-array_menu_using_c.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/13-array_menu_using_c.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/14-array_C++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/14-array_C++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/15-array_C++_modified.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/15-array_C++_modified.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/16-student_exercise.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/3. Array ADT/16-student_exercise.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/4. Strings/01-string.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/4. Strings/01-string.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/5. Matrices/01-diagonal_matrix_c.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/5. Matrices/01-diagonal_matrix_c.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/5. Matrices/02-diagonal_matrix_cpp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/5. Matrices/02-diagonal_matrix_cpp.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/5. Matrices/03-lower_triangular_matrix_c.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/5. Matrices/03-lower_triangular_matrix_c.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/5. Matrices/04-lower_triangular_matrix_cpp.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/5. Matrices/04-lower_triangular_matrix_cpp.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/6. Sparse Matrix and Polynomial Representation/01-sparse_matrix_using_c.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/6. Sparse Matrix and Polynomial Representation/01-sparse_matrix_using_c.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/6. Sparse Matrix and Polynomial Representation/02-sparse_matrix_using_c++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/6. Sparse Matrix and Polynomial Representation/02-sparse_matrix_using_c++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/6. Sparse Matrix and Polynomial Representation/03-polynomial_representation.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/6. Sparse Matrix and Polynomial Representation/03-polynomial_representation.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/7. Linked List/01-linkedList.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/7. Linked List/01-linkedList.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/7. Linked List/02-middleElement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/7. Linked List/02-middleElement.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/7. Linked List/03-intersectingPoint.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/7. Linked List/03-intersectingPoint.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/8. Sparse Matrix and Polynomial using Linked List/01-polynomial.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/8. Sparse Matrix and Polynomial using Linked List/01-polynomial.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/01-stackArray.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/01-stackArray.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/02-StackUsingArrayC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/02-StackUsingArrayC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/03-stackLinkedList.c" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/03-stackLinkedList.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/04-StackUsingLLC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/04-StackUsingLLC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/05-ParanthesisMatchingC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/05-ParanthesisMatchingC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/06-InfixToPostfixUsingSTLStackC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/06-InfixToPostfixUsingSTLStackC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/07-PostfixEvaluationUsingLLStack_STLC++.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../C++/Mastering Data Structures and Algorithms using C and C++/9. Stack/07-PostfixEvaluationUsingLLStack_STLC++.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C/24BCSH93/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C/24BCSH93/.idea/24BCSH93.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C/24BCSH93/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C/24BCSH93/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C/24BCSH93/.idea/editor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C/24BCSH93/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C/24BCSH93/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C/24BCSH93/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,54 +93,123 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
-  <component name="ProjectId" id="2srBiiJy1RnaaQUZTg14OnRsGm7" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Dream2503&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Dream2503/Dream.git&quot;,
+    &quot;accountId&quot;: &quot;a45edc50-e195-4afc-9200-f78b2fa35a59&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2yMBs3fRSYgtaU6WyVgVbpPEQwK" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.example10.executor": "Run",
-    "Python.example2.executor": "Run",
-    "Python.example3.executor": "Run",
-    "Python.example5.executor": "Run",
-    "Python.example6.executor": "Run",
-    "Python.example7.executor": "Run",
-    "Python.example8.executor": "Run",
-    "Python.example9.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/swapn/OneDrive/Desktop/achha/Dream/Python/asyncio"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.degrees.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/swapn/OneDrive/Desktop/achha/Dream/Python/CS50's Introduction to Artificial Intelligence/01-search&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\asyncio" />
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\CS50's Introduction to Artificial Intelligence\01-search" />
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\24BCSH93" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\CS50's Introduction to Artificial Intelligence\01-search" />
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\CS50's Introduction to Artificial Intelligence\lecture_notes" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="degrees" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Python" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CS50's Introduction to Artificial Intelligence/01-search/degrees" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CS50's Introduction to Artificial Intelligence/01-search/degrees/degrees.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.degrees" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-a5bc9544c897-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.23654.177" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-PY-251.26094.141" />
+        <option value="bundled-python-sdk-9f8e2b94138c-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26094.141" />
       </set>
     </attachedChunks>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ea48df2b-5063-40b4-ba97-dad713c6e81c" name="Changes" comment="" />
-      <created>1739203942097</created>
+      <changelist id="40047afb-462a-483a-bfbc-189aeeaf54d5" name="Changes" comment="" />
+      <created>1749634766274</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1739203942097</updated>
+      <updated>1749634766274</updated>
+      <workItem from="1749634767814" duration="3282000" />
+      <workItem from="1749666209187" duration="29000" />
+      <workItem from="1749707712910" duration="127000" />
+      <workItem from="1749708062144" duration="12730000" />
+      <workItem from="1749723204109" duration="2195000" />
+      <workItem from="1749725497070" duration="8055000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Python$degrees.coverage" NAME="degrees Coverage Results" MODIFIED="1749738759302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CS50's Introduction to Artificial Intelligence/01-search/degrees" />
   </component>
 </project>

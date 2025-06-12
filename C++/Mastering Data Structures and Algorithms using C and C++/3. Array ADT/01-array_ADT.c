@@ -11,13 +11,13 @@ Array initialise() {
 
     printf("Enter the total size of array: ");
     scanf("%d", &array.size);
-    array.list = (int*)malloc(array.size * sizeof(int));
+    array.list = (int *) malloc(array.size * sizeof(int));
 
     printf("Enter the number of element to initialize: ");
     scanf("%d", &array.len);
 
     for (i = 0; i < array.len; i++) {
-        printf("Enter %d element: ", i+1);
+        printf("Enter %d element: ", i + 1);
         scanf("%d", &array.list[i]);
     }
     return array;
@@ -65,15 +65,14 @@ int delete(Array *array, int index) {
     if (index >= array->len) {
         printf("\nIndex out of range\n");
         return -1;
-    } else {
-        int element = array->list[index], i;
-
-        for (i = index; i < array->len - 1; i++) {
-            array->list[i] = array->list[i + 1];
-        }
-        array->len--;
-        return element;
     }
+    int element = array->list[index], i;
+
+    for (i = index; i < array->len - 1; i++) {
+        array->list[i] = array->list[i + 1];
+    }
+    array->len--;
+    return element;
 }
 
 int search(Array array, int key) {
@@ -135,7 +134,7 @@ int sum(Array array) {
 }
 
 double average(Array array) {
-    return sum(array) / (double)array.len;
+    return sum(array) / (double) array.len;
 }
 
 void swap(int *element1, int *element2) {
@@ -145,7 +144,7 @@ void swap(int *element1, int *element2) {
 }
 
 void reverse(Array *array) {
-    int temp, i, j;
+    int i, j;
 
     for (i = 0, j = array->len - 1; i < j; i++, j--) {
         swap(&array->list[i], &array->list[j]);
@@ -160,7 +159,8 @@ int binary_search(Array array, int key) {
 
         if (array.list[mid] == key) {
             return mid;
-        } else if (array.list[mid] > key) {
+        }
+        if (array.list[mid] > key) {
             high = mid - 1;
         } else {
             low = mid + 1;
@@ -210,7 +210,7 @@ int is_sorted(Array array) {
     int i;
 
     for (i = 1; i < array.len; i++) {
-        if (array.list[i] < array.list[i-1]) {
+        if (array.list[i] < array.list[i - 1]) {
             return 0;
         }
     }
@@ -219,7 +219,7 @@ int is_sorted(Array array) {
 
 void rearrange_pos_neg(Array *array) {
     int i = 0, j = array->len - 1;
-    
+
     while (i < j) {
         while (array->list[i] < 0) {
             i++;
@@ -235,25 +235,20 @@ void rearrange_pos_neg(Array *array) {
 
 Array merge_sorted(Array array1, Array array2) {
     int i = 0, j = 0, k = 0, length = array1.len + array2.len;
-    Array result = {(int*)malloc(length * sizeof(int)), length, length};
+    Array result = {(int *) malloc(length * sizeof(int)), length, length};
 
     while (i != array1.len && j != array2.len) {
         if (array1.list[i] < array2.list[j]) {
-            result.list[k] = array1.list[i];
-            i++;
+            result.list[k++] = array1.list[i++];
         } else {
-            result.list[k] = array2.list[j];
-            j++;
+            result.list[k++] = array2.list[j++];
         }
-        k++;
     }
     while (i < array1.len) {
-        result.list[k] = array1.list[i];
-        k++, i++;
+        result.list[k++] = array1.list[i++];
     }
     while (j < array2.len) {
-        result.list[k] = array2.list[j];
-        k++, j++;
+        result.list[k++] = array2.list[j++];
     }
     return result;
 }
@@ -273,7 +268,7 @@ void merge_append(Array *array1, Array array2) {
 
 Array merge_concat(Array array1, Array array2) {
     int k = 0, length = array1.len + array2.len, i;
-    Array result = {(int*)malloc(length * sizeof(int)), length, length};
+    Array result = {(int *) malloc(length * sizeof(int)), length, length};
 
     for (i = 0; i < array1.len; i++) {
         result.list[k++] = array1.list[i];
@@ -295,7 +290,7 @@ int merge_compare(Array array1, Array array2) {
             return 0;
         }
     }
-    return 1; 
+    return 1;
 }
 
 void merge_copy(Array array1, Array *array2) {
@@ -313,7 +308,7 @@ void merge_copy(Array array1, Array *array2) {
 
 Array set_union(Array array1, Array array2) {
     int length = array1.len + array2.len, flag = 1, i, j;
-    Array result = {(int*)malloc(length * sizeof(int)), 0, length};
+    Array result = {(int *) malloc(length * sizeof(int)), 0, length};
 
     for (i = 0; i < array1.len; i++) {
         result.list[i] = array1.list[i];
@@ -338,7 +333,7 @@ Array set_union(Array array1, Array array2) {
 
 Array set_intersection(Array array1, Array array2) {
     int length = array1.len + array2.len, i, j;
-    Array result = {(int*)malloc(length * sizeof(int)), 0, length};
+    Array result = {(int *) malloc(length * sizeof(int)), 0, length};
 
     for (i = 0; i < array1.len; i++) {
         for (j = 0; j < array2.len; j++) {
@@ -352,7 +347,7 @@ Array set_intersection(Array array1, Array array2) {
 
 Array set_difference(Array array1, Array array2) {
     int length = array1.len + array2.len, flag = 1, i, j;
-    Array result = {(int*)malloc(length * sizeof(int)), 0, length};
+    Array result = {(int *) malloc(length * sizeof(int)), 0, length};
 
     for (i = 0; i < array1.len; i++) {
         for (j = 0; j < array2.len; j++) {
@@ -364,7 +359,7 @@ Array set_difference(Array array1, Array array2) {
         if (flag) {
             append(&result, array1.list[i]);
         }
-        
+
         flag = 1;
     }
     return result;
@@ -379,7 +374,7 @@ int set_membership(Array array, int element) {
 
 Array sorted_set_union(Array array1, Array array2) {
     int i = 0, j = 0, length = array1.len + array2.len;
-    Array result = {(int*)malloc(length * sizeof(int)), 0, length};
+    Array result = {(int *) malloc(length * sizeof(int)), 0, length};
 
     while (i < array1.len && j < array2.len) {
         if (array1.list[i] < array2.list[j]) {
@@ -402,7 +397,7 @@ Array sorted_set_union(Array array1, Array array2) {
 
 Array sorted_set_intersection(Array array1, Array array2) {
     int i = 0, j = 0, length = array1.len + array2.len;
-    Array result = {(int*)malloc(length * sizeof(int)), 0, length};
+    Array result = {(int *) malloc(length * sizeof(int)), 0, length};
 
     while (i < array1.len && j < array2.len) {
         if (array1.list[i] < array2.list[j]) {
@@ -419,7 +414,7 @@ Array sorted_set_intersection(Array array1, Array array2) {
 
 Array sorted_set_difference(Array array1, Array array2) {
     int i = 0, j = 0, length = array1.len + array2.len;
-    Array result = {(int*)malloc(length * sizeof(int)), 0, length};
+    Array result = {(int *) malloc(length * sizeof(int)), 0, length};
 
     while (i < array1.len && j < array2.len) {
         if (array1.list[i] < array2.list[j]) {

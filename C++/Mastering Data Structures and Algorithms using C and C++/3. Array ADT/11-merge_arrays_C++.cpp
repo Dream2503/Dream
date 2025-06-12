@@ -1,11 +1,8 @@
 #include <iostream>
 #include <cstdlib>
-
 using namespace std;
 
 class Array {
-
-private:
     int *A;
     int size;
     int length;

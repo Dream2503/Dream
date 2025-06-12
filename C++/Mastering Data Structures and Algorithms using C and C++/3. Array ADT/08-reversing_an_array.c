@@ -26,7 +26,7 @@ void Reverse(struct Array *arr) {
     int *B;
     int i, j;
 
-    B = (int *)malloc(arr->length * sizeof(int));
+    B = (int *) malloc(arr->length * sizeof(int));
 
     for (i = arr->length - 1, j = 0; i >= 0; i--, j++) {
         B[j] = arr->A[i];

@@ -16,7 +16,7 @@ void funB(int n) {
     }
 }
 
-int main(){
+int main() {
     funA(20);
     return 0;
 }

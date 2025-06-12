@@ -9,6 +9,7 @@ int fun(int n) {
     }
     return 0;
 }
+
 int main() {
     int r;
     r = fun(5);

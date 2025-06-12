@@ -14,6 +14,7 @@ void Display(struct Array arr) {
         printf("%d ", arr.A[i]);
     }
 }
+
 void swap(int *x, int *y) {
     int temp = *x;
     *x = *y;
@@ -68,7 +69,7 @@ int Sum(struct Array arr) {
 }
 
 float Avg(struct Array arr) {
-    return (float)Sum(arr) / arr.length;
+    return (float) Sum(arr) / arr.length;
 }
 
 int main() {

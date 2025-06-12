@@ -7,7 +7,7 @@ int main() {
     int D[5] = {0};
     int E[] = {1, 2, 3, 4, 5, 6};
 
-    for ( i = 0; i < 5; i++) {
+    for (i = 0; i < 5; i++) {
         printf("%u\n", &A[i]);
     }
     return 0;

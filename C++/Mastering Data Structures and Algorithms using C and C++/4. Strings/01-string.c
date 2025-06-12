@@ -41,8 +41,8 @@ void count_vowel_consonant(char *str) {
         if ((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z')) {
             if (str[i] == 'A' || str[i] == 'E' || str[i] == 'I' || str[i] == 'O' || str[i] == 'U' ||
                 str[i] == 'a' || str[i] == 'e' || str[i] == 'i' || str[i] == 'o' || str[i] == 'u') {
-                    vowel++;
-                } else {
+                vowel++;
+            } else {
                 consonant++;
             }
         }
@@ -54,7 +54,7 @@ void count_words(char *str) {
     int cnt = 1, i;
 
     for (i = 1; str[i]; i++) {
-        if (str[i] == ' ' && str[i-1] != ' ') {
+        if (str[i] == ' ' && str[i - 1] != ' ') {
             cnt++;
         }
     }
@@ -63,7 +63,8 @@ void count_words(char *str) {
 
 void valid_string(char *str) {
     for (int i = 0; str[i]; i++) {
-        if (!((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z') || (str[i] >= '0' && str[i] <= '9'))) {
+        if (!((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >= 'a' && str[i] <= 'z') || (
+                  str[i] >= '0' && str[i] <= '9'))) {
             printf("Invalid String");
         }
     }
@@ -146,8 +147,8 @@ void find_duplicate_bitwise(char *str) {
     int h = 0, x, i;
 
     for (i = 0; str[i]; i++) {
-        x = 1;
-        x = x << (str[i] - 97);
+        x = 1 << (str[i] - 97);
+
         if (x & h) {
             printf("duplicate element %c\n", str[i]);
         } else {
@@ -160,10 +161,10 @@ void anagram(char *str1, char *str2) {
     int hash[26] = {0}, i;
 
     for (i = 0; str1[i]; i++) {
-        hash[str1[i]-97]++;
+        hash[str1[i] - 97]++;
     }
     for (i = 0; str2[i]; i++) {
-        hash[str1[i]-97]--;
+        hash[str1[i] - 97]--;
     }
     for (i = 0; i < 26; i++) {
         if (hash[i]) {
@@ -188,7 +189,7 @@ void permutation_recursion(char *str, int k) {
             if (array[i] == 0) {
                 result[k] = str[i];
                 array[i]++;
-                permutation_recursion(str, k+1);
+                permutation_recursion(str, k + 1);
                 array[i]--;
             }
         }
@@ -196,8 +197,6 @@ void permutation_recursion(char *str, int k) {
 }
 
 void permutationSwap(char *str, int low, int high) {
-    static char temp;
-
     if (low == high) {
         printf("%s\n", str);
     } else {
@@ -205,7 +204,7 @@ void permutationSwap(char *str, int low, int high) {
 
         for (i = low; str[i]; i++) {
             swap(&str[i], &str[low]);
-            permutationSwap(str, low+1, high);
+            permutationSwap(str, low + 1, high);
             swap(&str[i], &str[low]);
         }
     }

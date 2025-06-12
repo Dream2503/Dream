@@ -6,26 +6,34 @@ typedef struct Node {
     int data;
     struct Node *next;
 } Node;
-typedef struct Queue {Node *start, *end;} Queue;
+
+typedef struct Queue {
+    Node *start, *end;
+} Queue;
 
 Queue *create() {
-    Queue *queue = (Queue*)malloc(sizeof(Queue));
+    Queue *queue = (Queue *) malloc(sizeof(Queue));
     queue->start = queue->end = NULL;
     return queue;
 }
-bool isEmpty(Queue *queue) {return !queue->start;}
+
+bool isEmpty(Queue *queue) {
+    return !queue->start;
+}
+
 void enqueue(Queue *queue, int value) {
     if (isEmpty(queue)) {
-        queue->start = queue->end = (Node*)malloc(sizeof(Node));
+        queue->start = queue->end = (Node *) malloc(sizeof(Node));
         queue->start->data = value;
         queue->end->next = NULL;
         return;
     }
-    queue->end->next = (Node*)malloc(sizeof(Node));
+    queue->end->next = (Node *) malloc(sizeof(Node));
     queue->end = queue->end->next;
     queue->end->data = value;
     queue->end->next = NULL;
 }
+
 int dequeue(Queue *queue) {
     if (isEmpty(queue)) {
         printf("Queue is empty\n");
@@ -37,6 +45,7 @@ int dequeue(Queue *queue) {
     free(temp);
     return value;
 }
+
 int first(Queue *queue) {
     if (isEmpty(queue)) {
         printf("Queue is empty\n");
@@ -44,6 +53,7 @@ int first(Queue *queue) {
     }
     return queue->start->data;
 }
+
 int last(Queue *queue) {
     if (isEmpty(queue)) {
         printf("Queue is empty\n");

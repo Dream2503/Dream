@@ -7,22 +7,31 @@ typedef struct Node {
     int data;
     struct Node *next;
 } Node;
-typedef struct Stack {Node *top;} Stack;
+
+typedef struct Stack {
+    Node *top;
+} Stack;
 
 Stack *create() {
-    Stack *stack = (Stack*)malloc(sizeof(Stack));
+    Stack *stack = (Stack *) malloc(sizeof(Stack));
     stack->top = NULL;
 }
+
 void push(Stack *stack, int value) {
-    Node *new = (Node*)malloc(sizeof(Node));
+    Node *new = (Node *) malloc(sizeof(Node));
     new->data = value;
     new->next = stack->top;
     stack->top = new;
 }
-bool isEmpty(Stack *stack) {return stack->top == NULL;}
+
+bool isEmpty(Stack *stack) {
+    return stack->top == NULL;
+}
+
 void display(Stack *stack) {
-    if (isEmpty(stack)) printf("Stack is empty\n");
-    else {
+    if (isEmpty(stack)) {
+        printf("Stack is empty\n");
+    } else {
         Node *current = stack->top;
 
         while (current) {
@@ -31,6 +40,7 @@ void display(Stack *stack) {
         }
     }
 }
+
 int pop(Stack *stack) {
     if (isEmpty(stack)) {
         printf("Stack Underflow\n");
@@ -42,56 +52,84 @@ int pop(Stack *stack) {
     free(temp);
     return value;
 }
+
 int peek(Stack *stack, int pos) {
     if (pos < 0) {
         printf("Index out of range");
         return -1;
     }
     Node *current = stack->top;
-    
-    for (int i = 0; i < pos && current; i++) {current = current->next;}
-    if (current) return current->data;
-    else {
-        printf("Index out of range");
-        return -1;
-    } 
+
+    for (int i = 0; i < pos && current; i++) {
+        current = current->next;
+    }
+    if (current) {
+        return current->data;
+    }
+    printf("Index out of range");
+    return -1;
 }
+
 int stackTop(Stack *stack) {
-    if (isEmpty(stack)) return -1;
+    if (isEmpty(stack)) {
+        return -1;
+    }
     return stack->top->data;
 }
+
 bool isParenthesisBalanced(Stack *stack, char *str) {
     for (int i = 0; str[i]; i++) {
-        if (str[i] == '(') push(stack, str[i]);
-        else if (str[i] == ')') {
-            if (isEmpty(stack)) return false;
+        if (str[i] == '(') {
+            push(stack, str[i]);
+        } else if (str[i] == ')') {
+            if (isEmpty(stack)) {
+                return false;
+            }
             pop(stack);
-        } 
+        }
     }
     return isEmpty(stack);
 }
-bool isOpr(char ch) {return (ch == '+' || ch == '-' || ch == '*' || ch == '/');}
+
+bool isOpr(char ch) {
+    return (ch == '+' || ch == '-' || ch == '*' || ch == '/');
+}
+
 int pres(char ch) {
-    if (ch == '+' || ch == '-') return 1;
-    if (ch == '*' || ch == '/') return 2;
+    if (ch == '+' || ch == '-') {
+        return 1;
+    }
+    if (ch == '*' || ch == '/') {
+        return 2;
+    }
     return 0;
 }
+
 char *infixToPostfix(Stack *stack, char *infix) {
-    char *postfix = (char*)malloc(strlen(infix)*sizeof(char));
+    char *postfix = (char *) malloc(strlen(infix) * sizeof(char));
     int i = 0, j = 0;
 
     while (infix[i]) {
         if (isOpr(infix[i])) {
-            if (pres(infix[i]) > pres(stackTop(stack))) push(stack, infix[i++]);
-            else postfix[j++] = pop(stack);
-        } else postfix[j++] = infix[i++];
+            if (pres(infix[i]) > pres(stackTop(stack))) {
+                push(stack, infix[i++]);
+            } else {
+                postfix[j++] = pop(stack);
+            }
+        } else {
+            postfix[j++] = infix[i++];
+        }
     }
-    while (!isEmpty(stack)) postfix[j++] = pop(stack);
+    while (!isEmpty(stack)) {
+        postfix[j++] = pop(stack);
+    }
     postfix[j] = '\0';
     return postfix;
 }
+
 int evalPostfix(Stack *stack, char *str) {
     int x1, x2, res;
+
     for (int i = 0; str[i]; i++) {
         if (isOpr(str[i])) {
             x2 = pop(stack), x1 = pop(stack);
@@ -113,7 +151,9 @@ int evalPostfix(Stack *stack, char *str) {
                     break;
             }
             push(stack, res);
-        } else push(stack, str[i] - '0');
+        } else {
+            push(stack, str[i] - '0');
+        }
     }
     return pop(stack);
 }

@@ -3,16 +3,11 @@ using namespace std;
 
 class Element {
 public:
-    int i;
-    int j;
-    int x;
+    int i, j, x;
 };
 
 class Sparse {
-private:
-    int m;
-    int n;
-    int num;
+    int m, n, num;
     Element *ele;
 
 public:
@@ -28,7 +23,9 @@ public:
     }
 
     Sparse operator+(Sparse &s);
+
     friend istream &operator>>(istream &is, Sparse &s);
+
     friend ostream &operator<<(ostream &os, Sparse &s);
 };
 
@@ -58,7 +55,7 @@ Sparse Sparse::operator+(Sparse &s) {
         }
     }
     for (; i < num; i++) {
-        sum->ele[k++] = ele[i]; 
+        sum->ele[k++] = ele[i];
     }
     for (; j < s.num; j++) {
         sum->ele[k++] = s.ele[j];
@@ -99,7 +96,7 @@ int main() {
     cin >> s2;
 
     Sparse sum = s1 + s2;
-    
+
     cout << "First Matrix" << endl << s1;
     cout << "Second MAtrix" << endl << s2;
     cout << "Sum Matrix" << endl << sum;

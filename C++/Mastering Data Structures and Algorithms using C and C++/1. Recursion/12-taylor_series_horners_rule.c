@@ -2,7 +2,7 @@
 
 double e(int x, int n) {
     static double s;
-    
+
     if (n == 0) {
         return s;
     }
