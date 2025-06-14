@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40047afb-462a-483a-bfbc-189aeeaf54d5" name="Changes" comment="" />
+    <list default="true" id="40047afb-462a-483a-bfbc-189aeeaf54d5" name="Changes" comment="commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,12 +28,12 @@
     &quot;assignee&quot;: &quot;Dream2503&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Dream2503/Dream.git&quot;,
-    &quot;accountId&quot;: &quot;a45edc50-e195-4afc-9200-f78b2fa35a59&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:Dream2503/Dream.git",
+    "accountId": "a45edc50-e195-4afc-9200-f78b2fa35a59"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
@@ -68,39 +70,10 @@
       <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\24BCSH93" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\24BCSH93" />
       <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\CS50's Introduction to Artificial Intelligence\01-search" />
       <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\CS50's Introduction to Artificial Intelligence\lecture_notes" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="degrees" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Python" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/CS50's Introduction to Artificial Intelligence/01-search/degrees" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CS50's Introduction to Artificial Intelligence/01-search/degrees/degrees.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.degrees" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -125,6 +98,7 @@
       <workItem from="1749725497070" duration="8055000" />
       <workItem from="1749740231816" duration="569000" />
       <workItem from="1749802758155" duration="440000" />
+      <workItem from="1749893924967" duration="4367000" />
     </task>
     <servers />
   </component>
