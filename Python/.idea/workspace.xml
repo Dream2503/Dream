@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="40047afb-462a-483a-bfbc-189aeeaf54d5" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/24BCSH93/10th June.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/10th June.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/24BCSH93/11th June.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/11th June.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/24BCSH93/12th June Assignment1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/12th June Assignment1.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/24BCSH93/13th June.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/13th June.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/24BCSH93/14th June.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/14th June.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/24BCSH93/16th June - 01.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/16th June - 01.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/24BCSH93/16th June - 02.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/16th June - 02.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,12 +117,33 @@
       <workItem from="1750180758614" duration="1521000" />
       <workItem from="1750183695600" duration="9723000" />
       <workItem from="1750221340532" duration="3304000" />
-      <workItem from="1750225505869" duration="1774000" />
+      <workItem from="1750225505869" duration="2977000" />
     </task>
+    <task id="LOCAL-00001" summary="commit">
+      <option name="closed" value="true" />
+      <created>1750227801556</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1750227801557</updated>
+    </task>
+    <task id="LOCAL-00002" summary="commit">
+      <option name="closed" value="true" />
+      <created>1750227901894</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1750227901894</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
