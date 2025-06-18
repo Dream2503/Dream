@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "stdio.h": "c"
-    },
-    "cmake.configureOnOpen": false,
-    "CodeGPT.apiKey": "Google AI Studio",
-    "C_Cpp.errorSquiggles": "disabled"
-}
