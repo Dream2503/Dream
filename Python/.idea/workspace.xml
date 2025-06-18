@@ -6,6 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="40047afb-462a-483a-bfbc-189aeeaf54d5" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/01 - Creating Arrays from Lists.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/01 - Creating Arrays from Lists.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/02 - Creating Arrays from Scratch.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/02 - Creating Arrays from Scratch.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/03 - Reshaping Arrays.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/03 - Reshaping Arrays.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/04 - Stacking.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/04 - Stacking.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/05 - Indexing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/05 - Indexing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/06 - Slicing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/06 - Slicing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/07 - Fancy Indexing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/07 - Fancy Indexing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/08 - Masking.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/08 - Masking.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/09 - Universal Functions.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/09 - Universal Functions.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/10 - Additional Math and Stats Functions.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/10 - Additional Math and Stats Functions.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/11 - Exercises.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/11 - Exercises.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/12 - Solutions.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/12 - Solutions.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +69,7 @@
     &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/swapn/OneDrive/Desktop/achha/Dream/Python/Python 3 Fundamental Updated 3 - 2023&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/swapn/OneDrive/Desktop/achha/Dream/Python/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -69,6 +81,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\24BCSH93\Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]" />
       <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\Python 3 Fundamental Updated 3 - 2023" />
       <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python" />
       <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\CS50's Introduction to Artificial Intelligence\01-search" />
@@ -119,6 +132,10 @@
       <workItem from="1750221340532" duration="3304000" />
       <workItem from="1750225505869" duration="2977000" />
       <workItem from="1750228526854" duration="551000" />
+      <workItem from="1750229564190" duration="1954000" />
+      <workItem from="1750232396807" duration="3637000" />
+      <workItem from="1750241675541" duration="4569000" />
+      <workItem from="1750253397814" duration="10777000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -152,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750228618981</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="commit">
+      <option name="closed" value="true" />
+      <created>1750229903341</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1750229903342</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,7 +192,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
           <url>file://$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/17th June - 02.ipynb</url>
-          <line>127</line>
+          <line>125</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
