@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="40047afb-462a-483a-bfbc-189aeeaf54d5" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/24BCSH93/10th June.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/10th June.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/24BCSH93/11th June.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/11th June.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/24BCSH93/12th June Assignment1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/12th June Assignment1.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/24BCSH93/13th June.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/13th June.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/24BCSH93/14th June.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/14th June.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/24BCSH93/16th June - 01.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/16th June - 01.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/24BCSH93/16th June - 02.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/16th June - 02.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,12 +35,12 @@
     &quot;assignee&quot;: &quot;Dream2503&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:Dream2503/Dream.git",
-    "accountId": "a45edc50-e195-4afc-9200-f78b2fa35a59"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Dream2503/Dream.git&quot;,
+    &quot;accountId&quot;: &quot;a45edc50-e195-4afc-9200-f78b2fa35a59&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
@@ -53,26 +60,33 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/swapn/OneDrive/Desktop/achha/Dream/Python/CS50's Introduction to Artificial Intelligence/01-search&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/swapn/OneDrive/Desktop/achha/Dream/Python/Python 3 Fundamental Updated 3 - 2023&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\Python 3 Fundamental Updated 3 - 2023" />
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python" />
       <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\CS50's Introduction to Artificial Intelligence\01-search" />
       <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\24BCSH93" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\24BCSH93" />
-      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\CS50's Introduction to Artificial Intelligence\01-search" />
-      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\CS50's Introduction to Artificial Intelligence\lecture_notes" />
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\Python 3 Fundamental Updated 3 - 2023\31 - Matplotlib" />
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\Python 3 Fundamental Updated 3 - 2023\30 - Pandas" />
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\Python 3 Fundamental Updated 3 - 2023\29 - NumPy" />
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\Python 3 Fundamental Updated 3 - 2023\28 - 3rd Party Libraries" />
+      <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\Python 3 Fundamental Updated 3 - 2023\26 - Custom Classes" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -99,11 +113,34 @@
       <workItem from="1749740231816" duration="569000" />
       <workItem from="1749802758155" duration="440000" />
       <workItem from="1749893924967" duration="4367000" />
+      <workItem from="1750073807834" duration="264000" />
+      <workItem from="1750089424022" duration="2510000" />
+      <workItem from="1750092484683" duration="8409000" />
+      <workItem from="1750117227488" duration="4000" />
+      <workItem from="1750122672090" duration="155000" />
+      <workItem from="1750123996714" duration="2000" />
+      <workItem from="1750129046593" duration="13238000" />
+      <workItem from="1750167347010" duration="3000" />
+      <workItem from="1750180758614" duration="1521000" />
+      <workItem from="1750183695600" duration="9723000" />
+      <workItem from="1750221340532" duration="3304000" />
+      <workItem from="1750225505869" duration="1774000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+          <url>file://$PROJECT_DIR$/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]/17th June - 02.ipynb</url>
+          <line>127</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Python$degrees.coverage" NAME="degrees Coverage Results" MODIFIED="1749738759302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CS50's Introduction to Artificial Intelligence/01-search/degrees" />
