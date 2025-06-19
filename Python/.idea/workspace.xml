@@ -6,18 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="40047afb-462a-483a-bfbc-189aeeaf54d5" name="Changes" comment="commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/01 - Creating Arrays from Lists.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/01 - Creating Arrays from Lists.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/02 - Creating Arrays from Scratch.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/02 - Creating Arrays from Scratch.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/03 - Reshaping Arrays.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/03 - Reshaping Arrays.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/04 - Stacking.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/04 - Stacking.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/05 - Indexing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/05 - Indexing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/06 - Slicing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/06 - Slicing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/07 - Fancy Indexing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/07 - Fancy Indexing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/08 - Masking.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/08 - Masking.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/09 - Universal Functions.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/09 - Universal Functions.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/10 - Additional Math and Stats Functions.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/10 - Additional Math and Stats Functions.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/11 - Exercises.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/11 - Exercises.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/12 - Solutions.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/27 - NumPy/12 - Solutions.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/01 - Indexes.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/01 - Indexes.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/02 - Series.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/02 - Series.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/03 - DataFrames.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/03 - DataFrames.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/04 - Selecting Data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/04 - Selecting Data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/05 - Missing Data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/05 - Missing Data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/06 - Loading Data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/06 - Loading Data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/07 - Basic Data Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/07 - Basic Data Analysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/08 - Sorting and Filtering.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/08 - Sorting and Filtering.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/09 - Manipulating Data.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/09 - Manipulating Data.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/10 - Exercises.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Python 3 Fundamentals/28 - Pandas/10 - Exercises.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,27 +58,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.degrees.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/swapn/OneDrive/Desktop/achha/Dream/Python/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.degrees.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/swapn/OneDrive/Desktop/achha/Dream/Python/24BCSH93/Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.completion",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\swapn\OneDrive\Desktop\achha\Dream\Python\24BCSH93\Python Programming, Machine Learning, and Deep Learning for Industry [Summer Internship - I]" />
@@ -135,7 +135,12 @@
       <workItem from="1750229564190" duration="1954000" />
       <workItem from="1750232396807" duration="3637000" />
       <workItem from="1750241675541" duration="4569000" />
-      <workItem from="1750253397814" duration="10777000" />
+      <workItem from="1750253397814" duration="14100000" />
+      <workItem from="1750308723102" duration="149000" />
+      <workItem from="1750310172711" duration="14832000" />
+      <workItem from="1750339127989" duration="218000" />
+      <workItem from="1750339755339" duration="2722000" />
+      <workItem from="1750342581453" duration="19094000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -177,7 +182,39 @@
       <option name="project" value="LOCAL" />
       <updated>1750229903342</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="commit">
+      <option name="closed" value="true" />
+      <created>1750265285715</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1750265285715</updated>
+    </task>
+    <task id="LOCAL-00007" summary="commit">
+      <option name="closed" value="true" />
+      <created>1750313459177</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1750313459177</updated>
+    </task>
+    <task id="LOCAL-00008" summary="commit">
+      <option name="closed" value="true" />
+      <created>1750323443134</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1750323443134</updated>
+    </task>
+    <task id="LOCAL-00009" summary="commit">
+      <option name="closed" value="true" />
+      <created>1750342607112</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1750342607112</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
