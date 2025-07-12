@@ -1,0 +1,38 @@
+jshell> char myChar = 'D';
+myChar ==> 'D'
+
+jshell> char myChar = 'DD';
+|  Error:
+|  unclosed character literal
+|  char myChar = 'DD';
+|                ^
+
+jshell> char myChar = 'D';
+myChar ==> 'D'
+
+jshell> char myUnicode = '\u0044';
+myUnicode ==> 'D'
+
+jshell> char myDecimalCode = 68;
+myDecimalCode ==> 'D'
+
+jshell> char mySimpleChar = '?';
+mySimpleChar ==> '?'
+
+jshell> char myUnicodeChar = '\u003F';
+myUnicodeChar ==> '?'
+
+jshell> char myDecimalChar = 63;
+myDecimalChar ==> '?'
+
+jshell> System.out.print("My values are " + mySimpleChar + myUnicodeChar + myDecimalChar);
+My values are ???
+
+jshell> boolean myTrueBooleanValue = true;
+myTrueBooleanValue ==> true
+
+jshell> boolean myFalseBooleanValue = false;
+myFalseBooleanValue ==> false
+
+jshell> boolean isCustomerOverTwentyOne =  false;
+isCustomerOverTwentyOne ==> false
