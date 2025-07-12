@@ -86,7 +86,7 @@ def main():
 
 def shortest_path(source, target):
     """
-    Returns the shortest list of (movie_id, person_id) pairs
+    Returns the shortest my_list of (movie_id, person_id) pairs
     that connect the source to the target.
 
     If no possible path, returns None.

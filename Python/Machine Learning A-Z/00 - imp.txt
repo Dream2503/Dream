@@ -1,0 +1,4 @@
+All Lecture Slides - https://online.fliphtml5.com/grdgl/hfrm
+Ultimate Guide to Regression and Classification - https://www.superdatascience.com/blogs/the-ultimate-guide-to-regression-classification
+Machine Learning Datasets - https://archive.ics.uci.edu
+Logistic Classification Project - https://www.udemy.com/share/102R7c3@_6_HJtKoPF1EVLRXRYD6lF4kCta7n-TmNWt_5Se_b3I9Ins8uZa8cZtZWJ1s7YJE_A==/
