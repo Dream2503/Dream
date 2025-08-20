@@ -17,7 +17,7 @@ Q1. Count the number of lines, character of a file.
 root@Dream:~/24BCSH93/assignment2# wc -l emp.lst
 9 emp.lst
 root@Dream:~/24BCSH93/assignment2# wc -m emp.lst
-471 emp.lst
+366 emp.lst
 
 
 Q2. Suppress the write and execute permissions for group and others.
