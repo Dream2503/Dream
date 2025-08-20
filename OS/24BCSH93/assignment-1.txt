@@ -1,0 +1,128 @@
+Q1. Design a date command with options such that the output is
+    Today’s date    : dd/mm/yyyy
+    Current time    : hh:mm:ss
+
+root@Dream:~/24BCSH93/assignment1# echo "Today's date: $(date +%d/%m/%Y)"
+Today's date: 18/08/2025
+root@Dream:~/24BCSH93/assignment1# echo "Current time: $(date +%T)"
+Current time: 17:25:12
+
+
+Q2. Design a cal command with options to print the calendar of a specific moth of a specific year.
+
+root@Dream:~/24BCSH93/assignment1# cal 08 2025
+    August 2025
+Su Mo Tu We Th Fr Sa
+                1  2
+ 3  4  5  6  7  8  9
+10 11 12 13 14 15 16
+17 18 19 20 21 22 23
+24 25 26 27 28 29 30
+31
+
+
+Q3. Use touch command to create a file with date and time different from current date and time.
+
+root@Dream:~/24BCSH93/assignment1# touch -t 2506131536 file.txt
+root@Dream:~/24BCSH93/assignment1# ls -l
+total 0
+-rw-r--r-- 1 root root 0 Jun 13 15:36 file.txt
+
+
+Q4. Use who command to find out number of users (user count) logged in.
+
+root@Dream:~/24BCSH93/assignment1# who -q
+root
+# users=1
+
+
+Q5. Use ls command to sort the list according to
+    a. file name (descending) and display with their inode numbers. 
+    b. size of file(ascending) and display names in one column.
+
+root@Dream:~/24BCSH93/assignment1# ls -i -r
+127 file.txt
+root@Dream:~/24BCSH93/assignment1# ls -S -r
+file.txt
+
+
+Q6. Create a directory structure as given below.
+ 
+root@Dream:~/24BCSH93/assignment1# mkdir white white/blue white/red white/green white/black white/red/magenta white/red/violet white/green/cyan
+
+
+Q7. Change directory from white to violate.
+
+root@Dream:~/24BCSH93/assignment1# cd white
+root@Dream:~/24BCSH93/assignment1/white# cd red/violet
+
+
+Q8. Change directory from violate to blue.
+
+root@Dream:~/24BCSH93/assignment1/white/red/violet# cd ../../blue
+
+
+Q9. Change directory from blue to black.
+
+root@Dream:~/24BCSH93/assignment1/white/blue# cd ../black
+
+
+Q10. Change directory from black to cyan.
+
+root@Dream:~/24BCSH93/assignment1/white/black# cd ../green/cyan
+
+
+Q11. Create one file under blue and copy it into magenta directory.
+
+root@Dream:~/24BCSH93/assignment1/white/green/cyan# touch ../../blue/file.txt
+root@Dream:~/24BCSH93/assignment1/white/green/cyan# ls ../../blue
+file.txt
+root@Dream:~/24BCSH93/assignment1/white/green/cyan# cp ../../blue/file.txt ../../red/magenta
+root@Dream:~/24BCSH93/assignment1/white/green/cyan# ls ../../red/magenta
+file.txt
+
+
+Q12. Move the file under magenta to black.
+
+root@Dream:~/24BCSH93/assignment1/white/green/cyan# mv ../../red/magenta/file.txt ../../black
+root@Dream:~/24BCSH93/assignment1/white/green/cyan# ls ../../black
+file.txt
+
+
+Q13. Move entire black directory to blue.
+
+root@Dream:~/24BCSH93/assignment1/white/green/cyan# mv ../../black ../../blue
+root@Dream:~/24BCSH93/assignment1/white/green/cyan# ls ../../blue
+black  file.txt
+
+
+Q14. Delete the file under blue.
+
+root@Dream:~/24BCSH93/assignment1/white/green/cyan# rm ../../blue/file.txt
+root@Dream:~/24BCSH93/assignment1/white/green/cyan# ls ../../blue
+black
+
+
+Q15. Delete the directory cyan.
+
+root@Dream:~/24BCSH93/assignment1/white/green/cyan# cd ..
+root@Dream:~/24BCSH93/assignment1/white/green# rm -r cyan
+
+
+Q16. Delete the directory red.
+
+root@Dream:~/24BCSH93/assignment1/white/green# rm -r ../red
+root@Dream:~/24BCSH93/assignment1/white/green# ls -r ../
+blue  green
+
+
+Q17. Copy entire black directory under green.
+
+root@Dream:~/24BCSH93/assignment1/white/green# cp -r ../blue/black/ .
+root@Dream:~/24BCSH93/assignment1/white/green# ls
+black
+
+
+Q18. Delete the directory black under blue.
+
+root@Dream:~/24BCSH93/assignment1/white/green# rm -r ../blue/blacks
