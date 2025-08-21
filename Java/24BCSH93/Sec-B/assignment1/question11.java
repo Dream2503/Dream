@@ -1,4 +1,4 @@
-// 12. Write a program to test whether a number is positive, negative or equal to zero.
+// 11. Write a program to check whether an inputted number is positive or negative.
 
 import java.util.Scanner;
 
@@ -10,11 +10,8 @@ class Main {
 
         if (num < 0) {
             System.out.println(num + " is negative number");
-        } else if (num > 0) {
-            System.out.println(num + " is positive number");
         } else {
-            System.out.println(num + " is a zero");
+            System.out.println(num + " is positive number");
         }
     }
 }
-

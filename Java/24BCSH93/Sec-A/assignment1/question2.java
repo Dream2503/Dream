@@ -1,4 +1,4 @@
-// 11. Write a program to check whether an inputted number is positive or negative.
+// 2. Write a java program, that will take input as number and check it is even or odd.
 
 import java.util.Scanner;
 
@@ -8,10 +8,10 @@ class Main {
         System.out.print("Enter a number: ");
         int num = sc.nextInt();
 
-        if (num < 0) {
-            System.out.println(num + " is negative number");
+        if (num % 2 == 0) {
+            System.out.println(num + " is even number");
         } else {
-            System.out.println(num + " is positive number");
+            System.out.println(num + " is odd number");
         }
     }
 }

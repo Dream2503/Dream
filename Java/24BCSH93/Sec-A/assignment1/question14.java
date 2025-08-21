@@ -1,4 +1,4 @@
-// 8. Write a program to reverse a number.
+// Q14. Write a java program that will print a number in reverse order.
 
 import java.util.Scanner;
 
@@ -13,6 +13,6 @@ class Main {
             reversed = reversed * 10 + (num % 10);
             num /= 10;
         }
-        System.out.println("the Reversed number is " + reversed);
+        System.out.println("the reversed number is " + reversed);
     }
 }
