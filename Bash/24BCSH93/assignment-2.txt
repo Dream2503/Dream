@@ -44,7 +44,7 @@ Emp.no  Name    Designation     Dept    Date_of_Join    Salary
 0110    u.k.gupta       g.m     mktg    31/12/40        9000
 
 
-Q6. Show the fields from Name to Date_of_join from emp.lst.
+Q6. Show the fields from Name to Date_of_Join from emp.lst.
 
 root@Dream:~/24BCSH93/assignment2# cut -f2-5 emp.lst
 Name    Designation     Dept    Date_of_Join
@@ -58,7 +58,7 @@ j.b.saxena      g.m     mktg    12/03/46
 u.k.gupta       g.m     mktg    31/12/40
 
 
-Q7. Show the fields from Name to Date_of_join from emp.lst where delimiter is '.'
+Q7. Show the fields from Name to Date_of_Join from emp.lst where delimiter is '.'
 
 root@Dream:~/24BCSH93/assignment2# cut -d"." -f2-5 emp.lst
 no      Name    Designation     Dept    Date_of_Join    Salary
