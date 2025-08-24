@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 int* create_array(int);
-int binary_search(int*, int, int);
+int linear_search(int*, int, int);
 void display_array(int*, int);
 
 int main() {
@@ -15,7 +15,7 @@ int main() {
     display_array(array, size);
     printf("Enter the key to search in the array: ");
     scanf("%d", &key);
-    int pos = binary_search(array, size, key);
+    int pos = linear_search(array, size, key);
 
     if (pos == -1) {
         printf("The element %d is not found in the array\n", key);
@@ -36,7 +36,7 @@ int* create_array(int size) {
     return array;
 }
 
-int binary_search(int* array, int size, int key) {
+int linear_search(int* array, int size, int key) {
     int i;
 
     for (i = 0; i < size; i++) {
