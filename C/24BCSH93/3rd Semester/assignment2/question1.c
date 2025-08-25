@@ -15,12 +15,10 @@ void display_time(char[], clock_t, clock_t);
 
 int main() {
     srand(time(NULL));
-
     clock_t start, end;
     int low, high;
     printf("Enter the range of random numbers to generate: ");
     scanf("%d%d", &low, &high);
-
     int *array = create_array(low, high), *copy_array;
     printf("Array before sorting:\n");
     display_array(array);
