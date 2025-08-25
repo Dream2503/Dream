@@ -1,6 +1,6 @@
-/*  7. Write a program to input the time value in seconds and then display it in the hour: minute: second format using the modulus operator (%).
+/*  Q7. Write a program to input the time value in seconds and then display it in the hour: minute: second format using the modulus operator (%).
     For example, INPUT: Enter the time in second: 3610
-                OUTPUT: 1 hour: 0 minutes: 10 seconds
+                 OUTPUT: 1 hour: 0 minutes: 10 seconds
 */
 
 import java.util.Scanner;

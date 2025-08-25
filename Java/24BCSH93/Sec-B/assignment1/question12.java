@@ -1,4 +1,4 @@
-// 12. Write a program to test whether a number is positive, negative or equal to zero.
+//  Q12. Write a program to test whether a number is positive, negative or equal to zero.
 
 import java.util.Scanner;
 

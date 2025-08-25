@@ -1,4 +1,4 @@
-// Q8. Write a java program that will count the number of primes between 37 and 129.
+//  Q8. Write a java program that will count the number of primes between 37 and 129.
 
 class Main {
     public static void main(String[] args) {

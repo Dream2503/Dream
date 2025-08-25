@@ -1,4 +1,4 @@
-// Q14. Write a java program that will print a number in reverse order.
+//  Q14. Write a java program that will print a number in reverse order.
 
 import java.util.Scanner;
 

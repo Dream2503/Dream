@@ -1,4 +1,4 @@
-// 10. Write a program to find out the sum of the individual digits of a number.
+//  Q10. Write a program to find out the sum of the individual digits of a number.
 
 import java.util.Scanner;
 

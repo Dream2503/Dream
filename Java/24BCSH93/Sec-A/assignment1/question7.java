@@ -1,4 +1,4 @@
-/*  7. Write a Java program that will evaluate the sin(x) series. (Hints Use Taylor series expansion)
+/*  Q7. Write a Java program that will evaluate the sin(x) series. (Hints Use Taylor series expansion)
            i.e. sin(x) = x – x^3/3! + x^5/5! -  ...
 */
 

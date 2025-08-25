@@ -1,4 +1,4 @@
-// 11. Write a program to check whether an inputted number is positive or negative.
+//  Q11. Write a program to check whether an inputted number is positive or negative.
 
 import java.util.Scanner;
 

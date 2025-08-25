@@ -1,4 +1,4 @@
-// 1. Write a java program that will populate “This is my first Java Program”.
+//  Q1. Write a java program that will populate “This is my first Java Program”.
 
 class Main {
     public static void main(String[] args) {

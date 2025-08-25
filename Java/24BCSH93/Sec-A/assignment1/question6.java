@@ -1,4 +1,4 @@
-/*  6. Write a Java program that will evaluate the exponential series.
+/*  Q6. Write a Java program that will evaluate the exponential series.
            i.e. e^x = 1 + x + x^2/2! + x^3/3! + ...
 */
 

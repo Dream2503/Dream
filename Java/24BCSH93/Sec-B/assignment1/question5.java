@@ -1,4 +1,4 @@
-// 5. Write a program to check a number is odd or even.
+//  Q5. Write a program to check a number is odd or even.
 
 import java.util.Scanner;
 

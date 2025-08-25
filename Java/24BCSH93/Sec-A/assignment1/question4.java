@@ -1,4 +1,4 @@
-// 4. Write a Java program to test the inputted number is prime or composite.
+//  Q4. Write a Java program to test the inputted number is prime or composite.
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-//  Q9. Write a program to check a number is prime or not.
+//	Q6. Write a program to check whether an inputted number is prime or not.
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-// 6. Write a program to input the marks of a student in three different subjects and then display the average mark.
+//  Q6. Write a program to input the marks of a student in three different subjects and then display the average mark.
 
 import java.util.Scanner;
 

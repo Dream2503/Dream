@@ -1,4 +1,4 @@
-//  Q15. Write a java program to determine whether the number is a palindrome.
+//  Q7. Write a program to check whether an inputted number is palindrome or not.
 
 import java.util.Scanner;
 

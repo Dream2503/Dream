@@ -1,4 +1,4 @@
-// 2. Write a java program, that will take input as number and check it is even or odd.
+//  Q2. Write a java program, that will take input as number and check it is even or odd.
 
 import java.util.Scanner;
 

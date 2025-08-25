@@ -1,4 +1,4 @@
-// Q13. Write a program that find all factors of an inputted number N
+//  Q13. Write a program that find all factors of an inputted number N.
 
 import java.util.Scanner;
 

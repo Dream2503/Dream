@@ -1,4 +1,4 @@
-// 5. Write a java program that will compute GCD and LCM of two inputted numbers.
+//  Q5. Write a java program that will compute GCD and LCM of two inputted numbers.
 
 import java.util.Scanner;
 
@@ -15,7 +15,7 @@ class Main {
                 gcd = i;
             }
         }
-        int lcm = (num1 * num2) / gcd;
+        int lcm = num1 * num2 / gcd;
         System.out.println(gcd + " is the gcd and " + lcm + " is the lcm of " + num1 + " and " + num2);
     }
 }

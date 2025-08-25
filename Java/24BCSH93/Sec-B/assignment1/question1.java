@@ -1,4 +1,4 @@
-// 1. Write a program to display your name, branch, roll no, and college name on the computer screen.
+//  Q1. Write a program to display your name, branch, roll no, and college name on the computer screen.
 
 class Main {
     public static void main(String[] args) {

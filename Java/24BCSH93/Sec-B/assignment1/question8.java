@@ -1,4 +1,4 @@
-// 8. Write a program to reverse a number.
+//  Q8. Write a program to reverse a number.
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-// 3. Write a program to input two floating point numbers through the keyboard and display their sum.
+//  Q3. Write a program to input two floating point numbers through the keyboard and display their sum.
 
 import java.util.Scanner;
 
