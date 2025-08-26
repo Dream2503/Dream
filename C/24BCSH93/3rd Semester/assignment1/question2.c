@@ -1,4 +1,4 @@
-// Implementation of Recursive Linear Search
+//  Q2. Implementation of Recursive Linear Search
 
 #include <stdio.h>
 #include <stdlib.h>

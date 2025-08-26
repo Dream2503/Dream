@@ -1,4 +1,4 @@
-// Implementation of Iterative Binary Search
+//  Q3. Implementation of Iterative Binary Search
 
 #include <stdio.h>
 #include <stdlib.h>

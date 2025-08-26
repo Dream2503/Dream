@@ -1,4 +1,4 @@
-// Implementation of Iterative Linear Search
+//  Q1. Implementation of Iterative Linear Search
 
 #include <stdio.h>
 #include <stdlib.h>

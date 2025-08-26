@@ -1,4 +1,4 @@
-// Implementation of Bubble Sort, Insertion Sort and Selection Sort with random values and calculate the time taken
+//  Q1. Implementation of Bubble Sort, Insertion Sort and Selection Sort with random values and calculate the time taken
 
 #include <stdio.h>
 #include <stdlib.h>
