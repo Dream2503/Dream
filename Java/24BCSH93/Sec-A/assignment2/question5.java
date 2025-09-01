@@ -4,41 +4,39 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        System.out.println("Matrix1");
-        int[][] mat1 = createMatrix();
-        displayMatrix(mat1);
-        System.out.println("\nMatrix2");
-        int[][] mat2 = createMatrix();
-        displayMatrix(mat2);
-        System.out.println("\nResult");
-        int[][] res = matMul(mat1, mat2);
-        displayMatrix(res);
-    }
+        int[][] matrix1 = createMatrix("first matrix");
+        int[][] matrix2 = createMatrix("second matrix");
 
-    private static int[][] matMul(int[][] mat1, int[][] mat2) {
-        if (mat1[0].length != mat2.length) {
-            System.out.println("Incorrect matrix dimension for multiplication");
+        if (matrix1[0].length != matrix2.length) {
+            System.out.println("Invalid matrix dimensions for multiplication");
             System.exit(0);
         }
-        int[][] res = new int[mat1.length][mat2[0].length];
+        int[][] res = new int[matrix1.length][matrix2[0].length];
 
-        for (int k = 0; k < mat1.length; k++) {
-            for (int i = 0; i < mat2[0].length; i++) {
-                for (int j = 0; j < mat1[0].length; j++) {
-                    res[k][i] += mat1[k][i] * mat2[j][i];
+        for (int k = 0; k < matrix1.length; k++) {
+            for (int i = 0; i < matrix2[0].length; i++) {
+                for (int j = 0; j < matrix1[0].length; j++) {
+                    res[k][i] += matrix1[k][i] * matrix2[j][i];
                 }
             }
         }
-        return res;
+        System.out.println("The resultant matrix elements are:");
+
+        for (int[] array : res) {
+            for (int element : array) {
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
     }
 
-    private static int[][] createMatrix() {
+    private static int[][] createMatrix(String name) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the dimension of first matrix: ");
+        System.out.print("Enter the dimensions of the " + name + ": ");
         int row = sc.nextInt();
         int col = sc.nextInt();
         int[][] matrix = new int[row][col];
-        System.out.print("Enter the matrix elements: ");
+        System.out.println("Enter the " + name + " elements:");
 
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
@@ -46,16 +44,5 @@ class Main {
             }
         }
         return matrix;
-    }
-
-    private static void displayMatrix(int[][] matrix) {
-        System.out.print("The matrix elements are: ");
-
-        for (int[] row : matrix) {
-            for (int element : row) {
-                System.out.print(element + " ");
-            }
-            System.out.println();
-        }
     }
 }

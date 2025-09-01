@@ -10,30 +10,6 @@ import java.util.Scanner;
 class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] array = createArray();
-        displayArray(array, array.length);
-        System.out.println(isSubarraySumEqualsZero(array));
-    }
-
-    private static boolean isSubarraySumEqualsZero(int[] array) {
-        int sum;
-
-        for (int i = 0; i < array.length; i++) {
-            sum = 0;
-
-            for (int j = i; j < array.length; j++) {
-                sum += array[j];
-
-                if (sum == 0) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private static int[] createArray() {
-        Scanner sc = new Scanner(System.in);
         System.out.print("Enter the size of the array: ");
         int n = sc.nextInt();
         int[] array = new int[n];
@@ -42,15 +18,20 @@ class Main {
         for (int i = 0; i < n; i++) {
             array[i] = sc.nextInt();
         }
-        return array;
-    }
-
-    private static void displayArray(int[] array, int n) {
-        System.out.print("The array elements are: ");
+        int sum;
 
         for (int i = 0; i < n; i++) {
-            System.out.print(array[i] + " ");
+            sum = 0;
+
+            for (int j = i; j < n; j++) {
+                sum += array[j];
+
+                if (sum == 0) {
+                    System.out.println(true);
+                    return;
+                }
+            }
         }
-        System.out.println();
+        System.out.println(false);
     }
 }

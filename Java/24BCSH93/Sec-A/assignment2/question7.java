@@ -8,26 +8,6 @@ import java.util.Scanner;
 class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int[] array = createArray();
-        displayArray(array, array.length);
-        int newSize = removeDuplicates(array);
-        System.out.println("Array after removing duplicates");
-        displayArray(array, newSize);
-    }
-
-    private static int removeDuplicates(int[] array) {
-        int i = 0;
-
-        for (int j = 0; j < array.length; j++) {
-            if (array[i] != array[j]) {
-                array[++i] = array[j];
-            }
-        }
-        return i + 1;
-    }
-
-    private static int[] createArray() {
-        Scanner sc = new Scanner(System.in);
         System.out.print("Enter the size of the array: ");
         int n = sc.nextInt();
         int[] array = new int[n];
@@ -36,14 +16,17 @@ class Main {
         for (int i = 0; i < n; i++) {
             array[i] = sc.nextInt();
         }
-        return array;
-    }
+        int i = 0;
+        for (int j = 0; j < n; j++) {
+            if (array[i] != array[j]) {
+                array[++i] = array[j];
+            }
+        }
+        int newSize = i + 1;
+        System.out.print("The array elements after removing duplicates are: ");
 
-    private static void displayArray(int[] array, int n) {
-        System.out.print("The array elements are: ");
-
-        for (int i = 0; i < n; i++) {
-            System.out.print(array[i] + " ");
+        for (int j = 0; j < newSize; j++) {
+            System.out.print(array[j] + " ");
         }
         System.out.println();
     }

@@ -1,4 +1,4 @@
-//  Q1. Write a java program that will create a one-dimensional array of integer and display the elements of the array.
+//	Q1. Write a program to search an element present in the array
 
 import java.util.Scanner;
 
@@ -13,11 +13,15 @@ class Main {
         for (int i = 0; i < n; i++) {
             array[i] = sc.nextInt();
         }
-        System.out.print("The array elements are: ");
+        System.out.print("Enter the element to search: ");
+        int key = sc.nextInt();
 
-        for (int element : array) {
-            System.out.print(element + " ");
+        for (int i = 0; i < n; i++) {
+            if (array[i] == key) {
+                System.out.println(key + " was found at index " + i);
+                return;
+            }
         }
-        System.out.println();
+        System.out.println(key + " was not found in the array");
     }
 }

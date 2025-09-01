@@ -4,14 +4,10 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        System.out.println("Vector1");
-        int[] vec1 = createArray();
-        displayArray(vec1);
-        System.out.println("\nVector2");
-        int[] vec2 = createArray();
-        displayArray(vec2);
+        int[] vec1 = createArray("first vector");
+        int[] vec2 = createArray("second vector");
         int res = scalarProduct(vec1, vec2);
-        System.out.println("\nThe scalar product of the two vectors is " + res);
+        System.out.println("The scalar product of the two vectors is " + res);
     }
 
     private static int scalarProduct(int[] vec1, int[] vec2) {
@@ -27,25 +23,16 @@ class Main {
         return res;
     }
 
-    private static int[] createArray() {
+    private static int[] createArray(String name) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the size of the array: ");
+        System.out.print("Enter the size of the " + name + ": ");
         int n = sc.nextInt();
         int[] array = new int[n];
-        System.out.print("Enter the array elements: ");
+        System.out.print("Enter the " + name + " elements: ");
 
         for (int i = 0; i < n; i++) {
             array[i] = sc.nextInt();
         }
         return array;
-    }
-
-    private static void displayArray(int[] array) {
-        System.out.print("The array elements are: ");
-
-        for (int element : array) {
-            System.out.print(element + " ");
-        }
-        System.out.println();
     }
 }

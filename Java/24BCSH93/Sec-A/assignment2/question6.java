@@ -4,51 +4,28 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        int[][] matrix = createMatrix();
-        displayMatrix(matrix);
-
-        if (isSymmetric(matrix)) {
-            System.out.println("The matrix is a symmetric matrix");
-        } else {
-            System.out.println("The matrix is not a symmetric matrix");
-        }
-    }
-
-    private static boolean isSymmetric(int[][] matrix) {
-        for (int i = 1; i < matrix.length; i++) {
-            for (int j = 0; j < i; j++) {
-                if (matrix[i][j] != matrix[j][i]) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    private static int[][] createMatrix() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the dimension of first matrix: ");
+        System.out.print("Enter the dimensions of the matrix: ");
         int row = sc.nextInt();
         int col = sc.nextInt();
         int[][] matrix = new int[row][col];
-        System.out.print("Enter the matrix elements: ");
+        System.out.println("Enter the matrix elements:");
 
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
                 matrix[i][j] = sc.nextInt();
             }
         }
-        return matrix;
-    }
-
-    private static void displayMatrix(int[][] matrix) {
-        System.out.print("The matrix elements are: ");
-
-        for (int[] row : matrix) {
-            for (int element : row) {
-                System.out.print(element + " ");
+        if (row == col) {
+            for (int i = 1; i < matrix.length; i++) {
+                for (int j = 0; j < i; j++) {
+                    if (matrix[i][j] != matrix[j][i]) {
+                        System.out.println("The matrix is not a symmetric matrix");
+                        return;
+                    }
+                }
             }
-            System.out.println();
         }
+        System.out.println("The matrix is a symmetric matrix");
     }
 }

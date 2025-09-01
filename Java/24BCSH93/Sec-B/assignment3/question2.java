@@ -1,4 +1,4 @@
-//  Q1. Write a java program that will create a one-dimensional array of integer and display the elements of the array.
+//	Q2. Write a program to sort the array of n elements.
 
 import java.util.Scanner;
 
@@ -13,7 +13,17 @@ class Main {
         for (int i = 0; i < n; i++) {
             array[i] = sc.nextInt();
         }
-        System.out.print("The array elements are: ");
+
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j + 1];
+                    array[j + 1] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+        System.out.print("The sorted array is: ");
 
         for (int element : array) {
             System.out.print(element + " ");
