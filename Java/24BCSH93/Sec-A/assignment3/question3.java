@@ -1,6 +1,6 @@
 /*	Q3. Define a class Complex, placed the necessary data members and member functions to perform basic Complex number operation. (Note: the class
         must have constructor)
- */
+*/
 
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ class Complex {
     }
 
     public void display() {
-        System.out.println(real + " + " + imag + "i");
+        System.out.println(real + "+" + imag + "i");
     }
 
     public static Complex add(Complex complex1, Complex complex2) {
@@ -22,6 +22,24 @@ class Complex {
 
     public static Complex subtract(Complex complex1, Complex complex2) {
         return new Complex(complex1.real - complex2.real, complex1.imag - complex2.imag);
+    }
+
+    public static Complex multiply(Complex complex1, Complex complex2) {
+        double real = complex1.real * complex2.real - complex1.imag * complex2.imag;
+        double imag = complex1.real * complex2.imag + complex1.imag * complex2.real;
+        return new Complex(real, imag);
+    }
+
+    public static Complex divide(Complex complex1, Complex complex2) {
+        double denominator = complex2.real * complex2.real + complex2.imag * complex2.imag;
+
+        if (denominator == 0) {
+            System.out.println("Division by zero");
+            System.exit(0);
+        }
+        double real = (complex1.real * complex2.real + complex1.imag * complex2.imag) / denominator;
+        double imag = (complex1.imag * complex2.real - complex1.real * complex2.imag) / denominator;
+        return new Complex(real, imag);
     }
 }
 
@@ -36,10 +54,15 @@ class Main {
         Complex sum = Complex.add(complex1, complex2);
         System.out.print("Sum of two complex numbers is: ");
         sum.display();
-
         Complex difference = Complex.subtract(complex1, complex2);
         System.out.print("Difference of two complex numbers is: ");
         difference.display();
+        Complex product = Complex.multiply(complex1, complex2);
+        System.out.print("Product of two complex numbers is: ");
+        product.display();
+        Complex quotient = Complex.divide(complex1, complex2);
+        System.out.print("Quotient of two complex numbers is: ");
+        quotient.display();
     }
 
     private static Complex createComplex(String name) {

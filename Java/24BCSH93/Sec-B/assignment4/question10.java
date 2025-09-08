@@ -1,6 +1,6 @@
-/*	Q4. Define a class Time having data members hour, minute and second. The class should have a parameterized constructor to initialize its data
-        members. It should also have methods display() to display the time in HH:MM:SS format and add() to add two time objects. Define a Main class
-        and access all the methods.
+/*	Q10. Design a class ‘Time’ having data members as hour, minute and second. The class should have a parameterized constructor to initialize
+         its data members. It should also have methods display() to display the time in HH:MM:SS format and add() to add two times.
+         Test these methods by creating a main method in another class.
 */
 
 import java.util.Scanner;

@@ -1,3 +1,5 @@
+//  Q1. Implementation of Merge sort and display the working of it.
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,8 +8,7 @@ void merge(int*, int, int, int);
 int* create_array(int);
 void display_array(int*, int, int);
 
-int merge_sort_call = 1;
-int merge_call = 1;
+int merge_sort_call = 1, merge_call = 1;
 int* temp_array;
 
 int main() {
@@ -63,8 +64,7 @@ void merge(int* array, int low, int mid, int high) {
 }
 
 int* create_array(int n) {
-    int* array = (int*)malloc(sizeof(int) * n);
-    int i;
+    int* array = (int*)malloc(sizeof(int) * n), i;
 
     printf("Enter the array elements: ");
     for (i = 0; i < n; i++) {

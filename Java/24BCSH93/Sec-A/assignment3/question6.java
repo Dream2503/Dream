@@ -1,4 +1,4 @@
-/*	Q6. Define a class Stack, which has the member function to perform basic operation of stack. Define another main class to demonstrate the basic
+/*	Q6. Define a class Stack, which has the member function to perform basic operation of stack. Define another Main class to demonstrate the basic
         operation.
  */
 
@@ -53,7 +53,7 @@ class Main {
         Stack stack = new Stack(size);
 
         while (true) {
-            System.out.println("    Menu for Stack");
+            System.out.println("----Menu for Stack----");
             System.out.println("1. Push an element");
             System.out.println("2. Pop an element");
             System.out.println("0. To exit");

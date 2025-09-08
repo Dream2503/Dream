@@ -1,5 +1,6 @@
-/*	Q2. Define a class Box, having basic data members and member function. Write a Main class that create Box objects and compute the volume of the
-        Box.
+/*	Q7. Define a class ‘Box’ that uses a parameterized constructor to initialize the dimensions of a box. The dimensions of the Box are length,
+        breath, height. The class should have a method that can return the volume of the box. Create an object of the Box class and test the
+        functionalities [use this keyword].
 */
 
 import java.util.Scanner;
@@ -30,18 +31,12 @@ class Box {
 
 class Main {
     public static void main(String[] args) {
-        Box box1 = createBox("first");
-        Box box2 = createBox("second");
-        System.out.println("The volume of the first Box is " + box1.computeVolume());
-        System.out.println("The volume of the second Box is " + box2.computeVolume());
-    }
-
-    private static Box createBox(String name) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter length, breath and height for " + name + " Box: ");
+        System.out.print("Enter length, breath and height for a Box: ");
         double length = sc.nextDouble();
         double breath = sc.nextDouble();
         double height = sc.nextDouble();
-        return new Box(length, breath, height);
+        Box box = new Box(length, breath, height);
+        System.out.println("The volume of the Box is " + box.computeVolume());
     }
 }
