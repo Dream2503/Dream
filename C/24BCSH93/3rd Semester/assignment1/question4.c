@@ -28,6 +28,11 @@ int main() {
 
 int* create_array(int size) {
     int *array = (int*)malloc(sizeof(int) * size), i;
+
+    if (!array) {
+        printf("Memory was not allocated");
+        exit(0);
+    }
     printf("Enter %d array elements: ", size);
 
     for (i = 0; i < size; i++) {

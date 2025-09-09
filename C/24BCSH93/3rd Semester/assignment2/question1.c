@@ -57,6 +57,10 @@ int main() {
 int* create_array(int low, int high) {
     int *array = (int*)malloc(sizeof(int) * n), i;
 
+    if (!array) {
+        printf("Memory was not allocated during creation");
+        exit(0);
+    }
     for (i = 0; i < n; i++) {
         array[i] = low + rand() % (high - low + 1);
     }
@@ -66,6 +70,10 @@ int* create_array(int low, int high) {
 int* copy(int* array) {
     int *res = (int*)malloc(sizeof(int) * n), i;
 
+    if (!res) {
+        printf("Memory was not allocated during copying");
+        exit(0);
+    }
     for (i = 0; i < n; i++) {
         res[i] = array[i];
     }

@@ -1,4 +1,4 @@
-//  Q1. Implementation of Merge sort and display the working of it.
+//  Q1. Implementation of Merge Sort and display the working of it.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,8 +8,7 @@ void merge(int*, int, int, int);
 int* create_array(int);
 void display_array(int*, int, int);
 
-int merge_sort_call = 1, merge_call = 1;
-int* temp_array;
+int merge_sort_call = 1, merge_call = 1, *temp_array;
 
 int main() {
     int size;
@@ -17,6 +16,11 @@ int main() {
     scanf("%d", &size);
     int* array = create_array(size);
     temp_array = (int*)malloc(sizeof(int) * size);
+
+    if (!temp_array) {
+        printf("Memory was not allocated during creation of temp_array");
+        exit(0);
+    }
     merge_sort(array, 0, size - 1);
     printf("Final sorted array: ");
     display_array(array, 0, size - 1);
@@ -64,8 +68,12 @@ void merge(int* array, int low, int mid, int high) {
 }
 
 int* create_array(int n) {
-    int* array = (int*)malloc(sizeof(int) * n), i;
+    int *array = (int*)malloc(sizeof(int) * n), i;
 
+    if (!array) {
+        printf("Memory was not allocated during creation of array");
+        exit(0);
+    }
     printf("Enter the array elements: ");
     for (i = 0; i < n; i++) {
         scanf("%d", &array[i]);
