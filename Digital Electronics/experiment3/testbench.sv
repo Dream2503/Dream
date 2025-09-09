@@ -1,6 +1,6 @@
 // https://www.edaplayground.com/x/GPCH
 
-module minimization_test();
+module implementation_test();
     reg A, B, C;
     wire y_nand, y_nor;
 
@@ -21,6 +21,6 @@ module minimization_test();
 
     initial begin
         $dumpfile("test.vcd");
-    	$dumpvars(1, minimization_test);
+    	$dumpvars(1, implementation_test);
     end
 endmodule
