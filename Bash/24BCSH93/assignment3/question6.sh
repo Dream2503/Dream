@@ -22,6 +22,5 @@ if [ $min -gt $c ]
 then
 	min=$c
 fi
-
 echo "The largest number is $max"
 echo "The smallest number is $min"
