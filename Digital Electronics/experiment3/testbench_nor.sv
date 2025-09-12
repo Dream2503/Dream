@@ -1,10 +1,9 @@
-// https://www.edaplayground.com/x/GPCH
+// https://www.edaplayground.com/x/phSw
 
-module implementation_test();
+module nor_test();
     reg A, B, C;
-    wire y_nand, y_nor;
+    wire y_nor;
 
-    nand_implementation nand_dut(A, B, C, y_nand);
     nor_implementation nor_dut(A, B, C, y_nor);
   
     initial begin
@@ -21,6 +20,6 @@ module implementation_test();
 
     initial begin
         $dumpfile("test.vcd");
-    	$dumpvars(1, implementation_test);
+    	$dumpvars(1, nor_test);
     end
 endmodule
