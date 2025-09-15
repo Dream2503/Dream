@@ -13,8 +13,8 @@ do
 		echo "$str is not a palindrome"
 		break
 	fi
-	i=$((i + 1))
-	j=$((j - 1))
+	i=$(($i + 1))
+	j=$(($j - 1))
 done
 if [ $i -gt $j ]
 then

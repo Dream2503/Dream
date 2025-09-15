@@ -1,0 +1,4 @@
+Hello World!
+This is a test file, with numbers 12345 and symbols #@$%.
+New line here.
+

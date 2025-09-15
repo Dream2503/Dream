@@ -16,20 +16,20 @@ do
 
 	while [ $j -lt $sub_len ]
 	do
-		idx=$((i + j))
+		idx=$(($i + $j))
 
 		if [ ${str:$idx:1} != ${sub:$j:1} ]
 		then
 			break
 		fi
-		j=$((j + 1))
+		j=$(($j + 1))
 	done
 	if [ $j -eq $sub_len ]
 	then
-		echo "Substring found at position $i"
+		echo "Substring found at position $(($i - 1))"
 		break
 	fi
-	i=$((i + 1))
+	i=$(($i + 1))
 done
 if [ $i -eq $max_len ]
 then

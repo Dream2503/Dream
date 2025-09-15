@@ -3,4 +3,4 @@
 #!/bin/bash
 echo -n "Enter a 5 digit number: "
 read num
-echo "The digits at odd positions are: ${num:1:1}, ${num:3:1}"
+echo "The digits at odd positions are: ${num:0:1}, ${num:2:1} and ${num:4:1}"
