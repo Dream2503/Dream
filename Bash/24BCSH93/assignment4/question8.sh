@@ -8,7 +8,6 @@ chars=$(grep -o . "$file" | wc -l)
 words=$(grep -o "[a-zA-Z0-9]\+" "$file" | wc -l)
 spaces=$(grep -o " " "$file" | wc -l)
 specials=$(grep -o "[^a-zA-Z0-9 ]" "$file" | wc -l)
-
 echo "File: $file"
 echo "Characters: $chars"
 echo "Words: $words"

@@ -2,13 +2,12 @@
 
 #!/bin/bash
 fact() {
-	res=1
+    res=1
 
-	for ((i = 2; i <= $1; i++))
-	do
-		res=$(($res * $i))
-	done
-	echo "$res"
+    for ((i = 2; i <= $1; i++)); do
+        ((res *= i))
+    done
+    echo "$res"
 }
 
 echo -n "Enter a number: "

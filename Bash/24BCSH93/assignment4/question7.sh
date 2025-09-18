@@ -6,8 +6,7 @@ echo -n "Enter the number of iteration: "
 read n
 sum=0
 
-for ((i = 1; i <= n; i++))
-do
-	sum=$(echo "scale = 6; $sum + 1 / $i" | bc)
+for ((i = 1; i <= n; i++)); do
+    sum=$(echo "scale = 6; $sum + 1 / $i" | bc)
 done
 echo "After $n iterations, the result is $sum"

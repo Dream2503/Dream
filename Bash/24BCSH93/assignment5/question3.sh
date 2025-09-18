@@ -2,14 +2,14 @@
 
 #!/bin/bash
 is_even() {
-	if [ $(($1 % 2)) -eq 0 ]
-	then
-		echo "$1 is an even number"
-	else
-		echo "$1 is an odd number"
-	fi
+    if (($1 % 2 == 0)); then
+        echo "even"
+    else
+        echo "odd"
+    fi
 }
 
 echo -n "Enter a number: "
 read num
-is_even $num
+res=$(is_even $num)
+echo "$num is an $res number"

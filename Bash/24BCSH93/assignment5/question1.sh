@@ -5,11 +5,9 @@ echo -n "Enter the array elements: "
 read -a array
 sum=0
 
-for element in "${array[@]}"
-do
-	sum=$(($sum + $element))
+for element in "${array[@]}"; do
+    ((sum += element))
 done
-
-echo "The sum of all the elements of the array is $sum"
 avg=$(echo "scale = 6; $sum / ${#array[@]}" | bc)
+echo "The sum of all the elements of the array is $sum"
 echo "The average of the elements of the array is $avg"

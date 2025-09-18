@@ -6,17 +6,14 @@ read str
 i=0
 j=$((${#str} - 1))
 
-while [ $i -le $j ]
-do
-	if [ ${str:$i:1} != ${str:$j:1} ]
-	then
-		echo "$str is not a palindrome"
-		break
-	fi
-	i=$(($i + 1))
-	j=$(($j - 1))
+while ((i < j)); do
+    if [ ${str:$i:1} != ${str:$j:1} ]; then
+        echo "$str is not a palindrome"
+        break
+    fi
+    ((i++))
+    ((j--))
 done
-if [ $i -gt $j ]
-then
-	echo "$str is a palindrome"
+if ((i > j)); then
+    echo "$str is a palindrome"
 fi

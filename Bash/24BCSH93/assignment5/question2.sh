@@ -4,10 +4,8 @@
 find_max() {
     max=$1
 
-    for element in "$@"
-    do
-        if [ $max -lt $element ]
-		then
+    for element in "$@"; do
+        if ((max < element)); then
             max=$element
         fi
     done

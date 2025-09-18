@@ -2,16 +2,15 @@
 
 #!/bin/bash
 add() {
-	echo "$(($1 + $2))"
+    echo "$(($1 + $2))"
 }
-
 subtract() {
-	echo "$(($1 - $2))"
+    echo "$(($1 - $2))"
 }
 
 echo -n "Enter two numbers: "
 read a b
 sum=$(add $a $b)
-echo "Sum of $a and $b is $sum"
 diff=$(subtract $a $b)
+echo "Sum of $a and $b is $sum"
 echo "Difference of $a and $b is $diff"

@@ -2,11 +2,10 @@
 
 #!/bin/bash
 echo -n "Enter a number: "
-read num;
+read num
 fact=1
 
-for ((i = 2; i <= num; i++))
-do
-	fact=$(($fact * i))
+for ((i = 2; i <= num; i++)); do
+    ((fact *= i))
 done
 echo "The factorial of $num is $fact"

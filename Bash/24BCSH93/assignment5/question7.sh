@@ -6,24 +6,19 @@
 even_sum() {
     sum=0
 
-    for element in "${array[@]}"
-    do
-        if [ $(($element % 2)) -eq 0 ]
-        then
-            sum=$(($sum + $element))
+    for element in "${array[@]}"; do
+        if ((element % 2 == 0)); then
+            ((sum += element))
         fi
     done
     echo "$sum"
 }
-
 odd_sum() {
     sum=0
 
-    for element in "${array[@]}"
-    do
-        if [ $(($element % 2)) -eq 1 ]
-        then
-            sum=$(($sum + $element))
+    for element in "${array[@]}"; do
+        if ((element % 2 == 1)); then
+            ((sum += element))
         fi
     done
     echo "$sum"
@@ -31,9 +26,7 @@ odd_sum() {
 
 echo -n "Enter the array elements: "
 read -a array
-
 even=$(even_sum ${array[@]})
 odd=$(odd_sum ${array[@]})
-
 echo "The sum of even elements are $even"
 echo "The sum of odd elements are $odd"

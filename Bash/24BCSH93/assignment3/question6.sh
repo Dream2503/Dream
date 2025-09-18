@@ -6,21 +6,17 @@ read a b c
 max=$a
 min=$a
 
-if [ $max -lt $b ]
-then
-	max=$b
+if ((max < b)); then
+    max=$b
 fi
-if [ $min -gt $b ]
-then
-	min=$b
+if ((min > b)); then
+    min=$b
 fi
-if [ $max -lt $c ]
-then
-	max=$c
+if ((max < c)); then
+    max=$c
 fi
-if [ $min -gt $c ]
-then
-	min=$c
+if ((min > c)); then
+    min=$c
 fi
 echo "The largest number is $max"
 echo "The smallest number is $min"

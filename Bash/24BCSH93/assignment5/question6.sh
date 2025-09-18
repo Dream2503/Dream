@@ -3,40 +3,40 @@
 
 #!/bin/bash
 ascending_sort() {
-	for ((i = 0; i < $n - 1; i++))
-	do
-		for ((j = 0; j < $n - $i - 1; j++))
-		do
-			if [ ${array[$j]} -gt ${array[$(($j + 1))]} ]
-			then
-				temp=${array[$j]}
-				array[$j]=${array[$(($j + 1))]}
-				array[$(($j + 1))]=$temp
-			fi
-		done
-	done
-}
+    arr=("$@")
+    n=$#
 
+    for ((i = 0; i < n - 1; i++)); do
+        for ((j = 0; j < n - i - 1; j++)); do
+            if ((arr[j] > arr[j + 1])); then
+                temp=${arr[j]}
+                arr[j]=${arr[j + 1]}
+                arr[j + 1]=$temp
+            fi
+        done
+    done
+    echo "${arr[@]}"
+}
 descending_sort() {
-	for ((i = 0; i < $n - 1; i++))
-	do
-		for ((j = 0; j < $n - $i - 1; j++))
-		do
-			if [ ${array[$j]} -lt ${array[$(($j + 1))]} ]
-			then
-				temp=${array[$j]}
-				array[$j]=${array[$(($j + 1))]}
-				array[$(($j + 1))]=$temp
-			fi
-		done
-	done
+    arr=("$@")
+    n=$#
+
+    for ((i = 0; i < n - 1; i++)); do
+        for ((j = 0; j < n - i - 1; j++)); do
+            if ((arr[j] < arr[j + 1])); then
+                temp=${arr[j]}
+                arr[j]=${arr[j + 1]}
+                arr[j + 1]=$temp
+            fi
+        done
+    done
+    echo "${arr[@]}"
 }
 
 echo -n "Enter the array elements: "
 read -a array
-n=${#array[@]}
 
-ascending_sort $array
-echo "The sorted array in ascending order is ${array[@]}"
-descending_sort $array
-echo "The sorted array in descending order is ${array[@]}"
+asc_sorted=$(ascending_sort ${array[@]})
+echo "The sorted array in ascending order is ${asc_sorted[@]}"
+des_sorted=$(descending_sort ${array[@]})
+echo "The sorted array in descending order is ${des_sorted[@]}"

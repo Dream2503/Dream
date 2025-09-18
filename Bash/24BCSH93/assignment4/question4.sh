@@ -6,32 +6,26 @@ read str
 echo -n "Enter the substring: "
 read sub
 i=0
-str_len=${#str}
 sub_len=${#sub}
-max_len=$(($str_len - $sub_len + 1))
+max_len=$((${#str} - sub_len + 1))
 
-while [ $i -lt $max_len ]
-do
-	j=0
+while ((i < max_len)); do
+    j=0
 
-	while [ $j -lt $sub_len ]
-	do
-		idx=$(($i + $j))
+    while ((j < sub_len)); do
+        idx=$((i + j))
 
-		if [ ${str:$idx:1} != ${sub:$j:1} ]
-		then
-			break
-		fi
-		j=$(($j + 1))
-	done
-	if [ $j -eq $sub_len ]
-	then
-		echo "Substring found at position $(($i - 1))"
-		break
-	fi
-	i=$(($i + 1))
+        if [ ${str:idx:1} != ${sub:j:1} ]; then
+            break
+        fi
+        ((j++))
+    done
+    if ((j == sub_len)); then
+        echo "Substring found at position $i"
+        break
+    fi
+    ((i++))
 done
-if [ $i -eq $max_len ]
-then
-	echo "Substring not found"
+if ((i == max_len)); then
+    echo "Substring not found"
 fi
