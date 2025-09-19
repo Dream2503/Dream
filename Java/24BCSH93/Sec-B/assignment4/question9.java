@@ -2,7 +2,6 @@
         Define a method distance() which returns the distance between two points.
 */
 
-import java.awt.*;
 import java.util.Scanner;
 
 class Point {
@@ -22,7 +21,7 @@ class Main {
     public static void main(String[] args) {
         Point point1 = createPoint("first");
         Point point2 = createPoint("second");
-        double distance = java.awt.Point.distance(point1, point2);
+        double distance = Point.distance(point1, point2);
         System.out.println("Distance between the two Points is: " + distance);
     }
 
