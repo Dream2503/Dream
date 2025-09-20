@@ -12,11 +12,9 @@ typedef struct {
 
 Array k_way_merge(Array*, int);
 void build_min_heap(Element*);
-void min_heapify(Element*, int);
+void min_heapify(Element*, int, int);
 Array* create_arrays(int);
 void display(Array);
-
-int heap_size;
 
 int main() {
     int k, i;
@@ -39,8 +37,8 @@ int main() {
 }
 
 Array k_way_merge(Array* arrays, int k) {
-    heap_size = k;
-    Element* heap = (Element*)malloc(sizeof(Element) * heap_size);
+    int heap_size = 0;
+    Element* heap = (Element*)malloc(sizeof(Element) * k);
 
     if (!heap) {
         printf("Memory was not allocated");
@@ -49,9 +47,12 @@ Array k_way_merge(Array* arrays, int k) {
     int i, n = 0;
 
     for (i = 0; i < k; i++) {
-        Element element = {arrays[i], arrays[i].data[0], 1};
-        heap[i] = element;
-        n += arrays[i].size;
+        if (arrays[i].size > 0) {
+            Element element = {arrays[i], arrays[i].data[0], 1};
+            heap[i] = element;
+            n += arrays[i].size;
+            heap_size++;
+        }
     }
     Array res = {(int*)malloc(sizeof(int) * n), n};
 
@@ -60,7 +61,7 @@ Array k_way_merge(Array* arrays, int k) {
         exit(0);
     }
     for (i = heap_size / 2 - 1; i >= 0; i--) {
-        min_heapify(heap, i);
+        min_heapify(heap, heap_size, i);
     }
     i = 0;
 
@@ -75,13 +76,13 @@ Array k_way_merge(Array* arrays, int k) {
             heap[0] = heap[heap_size - 1];
             heap_size--;
         }
-        min_heapify(heap, 0);
+        min_heapify(heap, heap_size, 0);
     }
     free(heap);
     return res;
 }
 
-void min_heapify(Element* heap, int i) {
+void min_heapify(Element* heap, int heap_size, int i) {
     int left = (i + 1) * 2 - 1, right = left + 1, min = i;
 
     if (left < heap_size && heap[left].value < heap[min].value) {
@@ -96,11 +97,10 @@ void min_heapify(Element* heap, int i) {
         heap[min] = temp;
 
         if (min < heap_size / 2) {
-            min_heapify(heap, min);
+            min_heapify(heap, heap_size, min);
         }
     }
 }
-
 
 Array* create_arrays(int k) {
     Array* arrays = (Array*)malloc(sizeof(Array) * k);
