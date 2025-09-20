@@ -54,9 +54,7 @@ void max_heapify(int* array, int i) {
     printf("Max Heapify call %d on array for i=%d i.e. A[i]=%d\n", ++max_heapify_call, i, array[i]);
     printf("Array before: ");
     display_array(array, heap_size);
-    int left = (i + 1) * 2 - 1;
-    int right = (i + 1) * 2;
-    int max = i;
+    int left = (i + 1) * 2 - 1, right = left + 1, max = i;
 
     if (left < heap_size && array[left] > array[max]) {
         max = left;

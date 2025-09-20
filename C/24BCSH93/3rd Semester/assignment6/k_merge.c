@@ -13,9 +13,6 @@ typedef struct {
 Array k_way_merge(Array*, int);
 void build_min_heap(Element*);
 void min_heapify(Element*, int);
-void insert_heap(Element*, Element);
-Element extract_heap(Element*);
-int parent(int);
 Array* create_arrays(int);
 void display(Array);
 
@@ -62,26 +59,30 @@ Array k_way_merge(Array* arrays, int k) {
         printf("Memory was not allocated");
         exit(0);
     }
-    build_min_heap(heap);
+    for (i = heap_size / 2 - 1; i >= 0; i--) {
+        min_heapify(heap, i);
+    }
     i = 0;
 
     while (heap_size) {
-        Element min_element = extract_heap(heap);
+        Element min_element = heap[0];
         res.data[i++] = min_element.value;
 
         if (min_element.idx < min_element.array.size) {
-            Element new_element = {min_element.array, min_element.array.data[min_element.idx], min_element.idx + 1};
-            insert_heap(heap, new_element);
+            Element element = {min_element.array, min_element.array.data[min_element.idx], min_element.idx + 1};
+            heap[0] = element;
+        } else {
+            heap[0] = heap[heap_size - 1];
+            heap_size--;
         }
+        min_heapify(heap, 0);
     }
     free(heap);
     return res;
 }
 
 void min_heapify(Element* heap, int i) {
-    int left = (i + 1) * 2 - 1;
-    int right = (i + 1) * 2;
-    int min = i;
+    int left = (i + 1) * 2 - 1, right = left + 1, min = i;
 
     if (left < heap_size && heap[left].value < heap[min].value) {
         min = left;
@@ -93,45 +94,13 @@ void min_heapify(Element* heap, int i) {
         Element temp = heap[i];
         heap[i] = heap[min];
         heap[min] = temp;
-        min_heapify(heap, min);
+
+        if (min < heap_size / 2) {
+            min_heapify(heap, min);
+        }
     }
 }
 
-void build_min_heap(Element* heap) {
-    int i;
-
-    for (i = heap_size / 2 - 1; i >= 0; i--) {
-        min_heapify(heap, i);
-    }
-}
-
-void insert_heap(Element* heap, Element element) {
-    heap[heap_size] = element;
-    int i = heap_size;
-
-    while (i > 0 && heap[parent(i)].value > heap[i].value) {
-        Element temp = heap[parent(i)];
-        heap[parent(i)] = heap[i];
-        heap[i] = temp;
-        i = parent(i);
-    }
-    heap_size++;
-}
-
-Element extract_heap(Element* heap) {
-    Element res = heap[0];
-    heap[0] = heap[heap_size - 1];
-    heap_size--;
-    min_heapify(heap, 0);
-    return res;
-}
-
-int parent(int child) {
-    if (child % 2 == 0) {
-        return child / 2 - 1;
-    }
-    return child / 2;
-}
 
 Array* create_arrays(int k) {
     Array* arrays = (Array*)malloc(sizeof(Array) * k);
