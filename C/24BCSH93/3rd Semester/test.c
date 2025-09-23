@@ -17,7 +17,7 @@ int* copy(int*);
 void display_array(int*);
 void display_time(char[], clock_t, clock_t);
 
-unsigned long int read = 0, write = 0;
+unsigned long long int read = 0, write = 0;
 
 int main() {
     srand(time(NULL));
