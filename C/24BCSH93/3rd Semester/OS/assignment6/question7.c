@@ -1,5 +1,5 @@
 /*  Q7. Write a program to create two child processes. The first child prints all odd numbers from 1 to 20, and the second child prints all even
-        numbers from 1 to 20. The parent  waits for both children.
+        numbers from 1 to 20. The parent waits for both children.
 */
 
 #include <stdio.h>

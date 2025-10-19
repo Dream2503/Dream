@@ -7,7 +7,6 @@
             Child ends
 */
 
-
 #include <stdio.h>
 #include <unistd.h>
 #include <wait.h>
@@ -26,7 +25,7 @@ int main() {
         wait(NULL);
     } else if (pid == 0) {
         printf("Child Starts\n");
-        sleep(1);
+        sleep(2);
 
         for (i = 1; i <= 10; i++) {
             printf("%d ", i);
