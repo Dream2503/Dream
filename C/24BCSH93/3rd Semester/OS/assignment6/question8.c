@@ -1,5 +1,5 @@
-/*  Q7. Write a program to create two child processes. The first child prints all odd numbers from 1 to 20, and the second child prints all even
-        numbers from 1 to 20. The parent waits for both children. [concurrent execution of both the child]
+/*  Q8. Write a program where the parent process creates two child processes. The first child prints numbers from 1–5, and after it finishes, the
+        second child prints numbers from 6–10. The parent waits for both children. [Sequential execution]
 */
 
 #include <stdio.h>
@@ -10,14 +10,13 @@ int main() {
     int pid1 = fork(), i;
 
     if (pid1 > 0) {
+        waitpid(pid1, NULL, 0);
         int pid2 = fork();
 
         if (pid2 > 0) {
-            wait(NULL);
+            waitpid(pid2, NULL, 0);
         } else if (pid2 == 0) {
-            printf("All the even numbers are: ");
-
-            for (i = 2; i <= 20; i += 2) {
+            for (i = 6; i <= 10; i++) {
                 printf("%d ", i);
             }
             printf("\n");
@@ -25,12 +24,9 @@ int main() {
             printf("Fork Failed for Second Child\n");
         }
     } else if (pid1 == 0) {
-        printf("All the odd numbers are: ");
-
-        for (i = 1; i < 20; i += 2) {
+        for (i = 1; i <= 5; i++) {
             printf("%d ", i);
         }
-        printf("\n");
     } else {
         printf("Fork Failed for First Child\n");
     }

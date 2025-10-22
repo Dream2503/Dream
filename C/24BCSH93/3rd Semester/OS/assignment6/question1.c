@@ -7,7 +7,7 @@ int main() {
     int pid = fork();
 
     if (pid > 0) {
-        printf("Parent Process, PID=%d\n", getppid());
+        printf("Parent Process, PID=%d\n", getpid());
     } else if (pid == 0) {
         printf("Child Process, PID=%d\n", getpid());
     } else {
