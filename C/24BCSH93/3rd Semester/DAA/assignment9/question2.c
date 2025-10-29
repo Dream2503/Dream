@@ -22,8 +22,7 @@ int main() {
     }
     for (i = 0; i < size; i++) {
         printf("Enter the ID, starting time and finishing time of %dth activity: ", i + 1);
-        scanf("%d%d", &activities[i].start, &activities[i].finish);
-        activities[i].id = i + 1;
+        scanf("%d%d%d", &activities[i].id, &activities[i].start, &activities[i].finish);
     }
     int selects = activity_selection(activities, size, selected);
     printf("\nAll the selected activities are:\n");
