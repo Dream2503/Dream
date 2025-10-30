@@ -7,6 +7,8 @@ module jk_latch_test;
     jk_latch jk_latch_dut (EN, J, K, Q, not_Q);
 
     initial begin
+        jk_latch_dut.Q = 0;
+        jk_latch_dut.not_Q = 1;
         {EN, J, K} = 3'b0xx; #10;
         {EN, J, K} = 3'b100; #10;
         {EN, J, K} = 3'b101; #10;

@@ -7,6 +7,8 @@ module d_latch_test;
     d_latch d_latch_dut (EN, D, Q, not_Q);
 
     initial begin
+        d_latch_dut.Q = 0;
+        d_latch_dut.not_Q = 1;
         {EN, D} = 2'b0x; #10;
         {EN, D} = 2'b10; #10;
         {EN, D} = 2'b11; #10;

@@ -7,6 +7,8 @@ module sr_latch_test;
     sr_latch sr_latch_dut (EN, S, R, Q, not_Q);
 
     initial begin
+        sr_latch_dut.Q = 0;
+        sr_latch_dut.not_Q = 1;
         {EN, S, R} = 3'b0xx; #10;
         {EN, S, R} = 3'b100; #10;
         {EN, S, R} = 3'b101; #10;
