@@ -41,7 +41,9 @@ class Buffer {
 class Producer extends Thread {
     Buffer buffer;
 
-    Producer(Buffer buffer) {this.buffer = buffer;}
+    Producer(Buffer buffer) {
+        this.buffer = buffer;
+    }
 
     public void run() {
         Random random = new Random();
@@ -55,7 +57,9 @@ class Producer extends Thread {
 class Consumer extends Thread {
     Buffer buffer;
 
-    Consumer(Buffer buffer) {this.buffer = buffer;}
+    Consumer(Buffer buffer) {
+        this.buffer = buffer;
+    }
 
     public void run() {
         int even = 0, odd = 0;
