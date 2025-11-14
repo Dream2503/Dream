@@ -437,31 +437,39 @@ void display_gantt_chart(GanttChart gantt_chart) {
     printf("Gantt Chart:\n");
 
     for (i = 0; i < gantt_chart.size; i++) {
-        printf("-----------");
+        if (i < gantt_chart.size - 1 && gantt_chart.chart[i].pid != gantt_chart.chart[i + 1].pid) {
+            printf("-----------");
+        }
     }
     printf("-\n|");
 
     for (i = 0; i < gantt_chart.size; i++) {
-        if (gantt_chart.chart[i].pid == -1) {
-            printf("   IDLE   |");
-        } else {
-            printf("   P%-3d   |", gantt_chart.chart[i].pid);
+        if (i < gantt_chart.size - 1 && gantt_chart.chart[i].pid != gantt_chart.chart[i + 1].pid) {
+            if (gantt_chart.chart[i].pid == -1) {
+                printf("   IDLE   |");
+            } else {
+                printf("   P%-3d   |", gantt_chart.chart[i].pid);
+            }
         }
     }
     printf("\n");
 
     for (i = 0; i < gantt_chart.size; i++) {
-        printf("-----------");
+        if (i < gantt_chart.size - 1 && gantt_chart.chart[i].pid != gantt_chart.chart[i + 1].pid) {
+            printf("-----------");
+        }
     }
     printf("-\n0.00");
 
     for (i = 0; i < gantt_chart.size; i++) {
-        if (gantt_chart.chart[i].finish < 10) {
-            printf("       %.2f", gantt_chart.chart[i].finish);
-        } else if (gantt_chart.chart[i].finish < 100) {
-            printf("      %.2f", gantt_chart.chart[i].finish);
-        } else {
-            printf("     %.2f", gantt_chart.chart[i].finish);
+        if (i < gantt_chart.size - 1 && gantt_chart.chart[i].pid != gantt_chart.chart[i + 1].pid) {
+            if (gantt_chart.chart[i].finish < 10) {
+                printf("       %.2f", gantt_chart.chart[i].finish);
+            } else if (gantt_chart.chart[i].finish < 100) {
+                printf("      %.2f", gantt_chart.chart[i].finish);
+            } else {
+                printf("     %.2f", gantt_chart.chart[i].finish);
+            }
         }
     }
     printf("\n\n");
