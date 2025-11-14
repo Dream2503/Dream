@@ -53,7 +53,7 @@ typedef struct {
 
 typedef struct {
     GanttChartElement* chart;
-    int size;
+    int size, capacity;
 } GanttChart;
 
 typedef struct Node {
@@ -73,6 +73,7 @@ typedef struct {
 int arrival_comparator(const void*, const void*);
 int remaining_comparator(const void*, const void*);
 int priority_comparator(const void*, const void*);
+void gantt_chart_push_back(GanttChart*, GanttChartElement);
 void queue_push(Queue*, Process*);
 void queue_pop(Queue*);
 int parent(int);
@@ -216,11 +217,25 @@ int priority_comparator(const void* a, const void* b) {
     return 0;
 }
 
+void gantt_chart_push_back(GanttChart* gantt_chart, GanttChartElement element) {
+    if (gantt_chart->size == gantt_chart->capacity) {
+        GanttChartElement* temp = (GanttChartElement*)realloc(gantt_chart->chart, 2 * gantt_chart->capacity * sizeof(GanttChartElement));
+
+        if (!temp) {
+            printf("Memory was not allocated\n");
+            exit(0);
+        }
+        gantt_chart->chart = temp;
+        gantt_chart->capacity *= 2;
+    }
+    gantt_chart->chart[gantt_chart->size++] = element;
+}
+
 void queue_push(Queue* queue, Process* process) {
     Node* node = (Node*)malloc(sizeof(Node));
 
     if (!node) {
-        printf("Memory was not allocated");
+        printf("Memory was not allocated\n");
         exit(0);
     }
     node->data = process;
@@ -300,7 +315,7 @@ GanttChart scheduling_queue_impl(Process* processes, int size, float time_slice)
     float time = 0;
     Process* process;
     Queue queue = {NULL, NULL};
-    GanttChart gantt_chart = {(GanttChartElement*)malloc(size * 4 * sizeof(GanttChartElement)), 0};
+    GanttChart gantt_chart = {(GanttChartElement*)malloc(size * sizeof(GanttChartElement)), 0, size};
 
     if (!gantt_chart.chart) {
         printf("Memory was not allocated\n");
@@ -315,7 +330,7 @@ GanttChart scheduling_queue_impl(Process* processes, int size, float time_slice)
     while (queue.front || i < size) {
         if (!queue.front && i < size && time < processes[i].arrival) {
             time = processes[i].arrival;
-            gantt_chart.chart[gantt_chart.size++] = (GanttChartElement){-1, time};
+            gantt_chart_push_back(&gantt_chart, (GanttChartElement){-1, time});
         }
         while (i < size && processes[i].arrival <= time) {
             queue_push(&queue, &processes[i++]);
@@ -330,7 +345,6 @@ GanttChart scheduling_queue_impl(Process* processes, int size, float time_slice)
             if (time_slice < process->remaining) {
                 process->remaining -= time_slice;
                 time += time_slice;
-                gantt_chart.chart[gantt_chart.size++] = (GanttChartElement){process->pid, time};
 
                 while (i < size && processes[i].arrival <= time) {
                     queue_push(&queue, &processes[i++]);
@@ -340,8 +354,8 @@ GanttChart scheduling_queue_impl(Process* processes, int size, float time_slice)
                 time += process->remaining;
                 process->remaining = 0;
                 process->departure = time;
-                gantt_chart.chart[gantt_chart.size++] = (GanttChartElement){process->pid, time};
             }
+            gantt_chart_push_back(&gantt_chart, (GanttChartElement){process->pid, time});
         }
     }
     for (i = 0; i < size; i++) {
@@ -356,10 +370,10 @@ GanttChart scheduling_heap_impl(Process* processes, int size, bool preemptive, i
     float time = 0;
     Process* process;
     PriorityQueue queue = {(Process**)malloc(size * sizeof(Process*)), 0, comparator};
-    GanttChart gantt_chart = {(GanttChartElement*)malloc(size * 4 * sizeof(GanttChartElement)), 0};
+    GanttChart gantt_chart = {(GanttChartElement*)malloc(size * sizeof(GanttChartElement)), 0, size};
 
     if (!queue.heap || !gantt_chart.chart) {
-        printf("Memory allocation failed\n");
+        printf("Memory was not allocated\n");
         exit(0);
     }
     for (i = 0; i < size; i++) {
@@ -371,7 +385,7 @@ GanttChart scheduling_heap_impl(Process* processes, int size, bool preemptive, i
     while (queue.size || i < size) {
         if (!queue.size && i < size && time < processes[i].arrival) {
             time = processes[i].arrival;
-            gantt_chart.chart[gantt_chart.size++] = (GanttChartElement){-1, time};
+            gantt_chart_push_back(&gantt_chart, (GanttChartElement){-1, time});
         }
         while (i < size && processes[i].arrival <= time) {
             heap_push(&queue, &processes[i++]);
@@ -386,7 +400,6 @@ GanttChart scheduling_heap_impl(Process* processes, int size, bool preemptive, i
             if (preemptive && i < size && processes[i].arrival < time + process->remaining && comparator(&processes[i], process) < 0) {
                 process->remaining -= processes[i].arrival - time;
                 time = processes[i].arrival;
-                gantt_chart.chart[gantt_chart.size++] = (GanttChartElement){process->pid, time};
 
                 while (i < size && processes[i].arrival <= time) {
                     heap_push(&queue, &processes[i++]);
@@ -396,8 +409,8 @@ GanttChart scheduling_heap_impl(Process* processes, int size, bool preemptive, i
                 time += process->remaining;
                 process->remaining = 0;
                 process->departure = time;
-                gantt_chart.chart[gantt_chart.size++] = (GanttChartElement){process->pid, time};
             }
+            gantt_chart_push_back(&gantt_chart, (GanttChartElement){process->pid, time});
         }
     }
     for (i = 0; i < size; i++) {
