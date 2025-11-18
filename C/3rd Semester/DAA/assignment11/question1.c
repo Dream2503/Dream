@@ -37,8 +37,8 @@ void add_edge(Graph, int, int);
 void print_graph(Graph);
 void delete_graph(Graph);
 void push(Queue*, GraphNode*);
-GraphNode* pop(Queue*);
-void DFS(Graph, int);
+void pop(Queue*);
+void BFS(Graph, int);
 
 int main() {
     int V, source, destination;
@@ -60,7 +60,7 @@ int main() {
     print_graph(graph);
     printf("\nEnter source vertex for BFS: ");
     scanf("%d", &source);
-    DFS(graph, source);
+    BFS(graph, source);
     delete_graph(graph);
     return 0;
 }
@@ -83,19 +83,16 @@ void push(Queue* queue, GraphNode* node) {
     queue->rear = new;
 }
 
-GraphNode* pop(Queue* queue) {
-    if (!queue->front) {
-        return NULL;
-    }
-    ListNode* res = queue->front;
-    GraphNode* data = res->data;
-    queue->front = queue->front->next;
+void pop(Queue* queue) {
+    if (queue->front) {
+        ListNode* temp = queue->front;
+        queue->front = queue->front->next;
 
-    if (!queue->front) {
-        queue->rear = NULL;
+        if (!queue->front) {
+            queue->rear = NULL;
+        }
+        free(temp);
     }
-    free(res);
-    return data;
 }
 
 Graph create_graph(int V) {
@@ -154,7 +151,7 @@ void delete_graph(Graph graph) {
     free(graph.nodes);
 }
 
-void DFS(Graph graph, int source) {
+void BFS(Graph graph, int source) {
     int i;
     AdjNode* adj;
     GraphNode *u, *v;
@@ -165,7 +162,8 @@ void DFS(Graph graph, int source) {
     printf("\nBFS Traversal starting from vertex %d: ", source);
 
     while (queue.front) {
-        u = pop(&queue);
+        u = queue.front->data;
+        pop(&queue);
         printf("%d ", u->vertex);
         adj = u->head;
 
