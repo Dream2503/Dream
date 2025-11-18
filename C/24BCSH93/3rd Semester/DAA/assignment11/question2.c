@@ -1,4 +1,4 @@
-//  Q1. Implementation of Breadth-First-Search Algorithm.
+//  Q2. Implementation of Depth-First-Search Algorithm.
 
 #include <stdint.h>
 #include <stdio.h>
@@ -12,7 +12,7 @@ typedef struct AdjNode {
 } AdjNode;
 
 typedef struct GraphNode {
-    int vertex, distance;
+    int vertex, start, finish;
     Color color;
     struct GraphNode* parent;
     AdjNode* head;
@@ -23,22 +23,12 @@ typedef struct {
     int V;
 } Graph;
 
-typedef struct ListNode {
-    GraphNode* data;
-    struct ListNode* next;
-} ListNode;
-
-typedef struct {
-    ListNode *front, *rear;
-} Queue;
-
 Graph create_graph(int);
 void add_edge(Graph, int, int);
 void print_graph(Graph);
 void delete_graph(Graph);
-void push(Queue*, GraphNode*);
-GraphNode* pop(Queue*);
-void DFS(Graph, int);
+void DFS(Graph);
+void DFS_visit(Graph, GraphNode*, int*);
 
 int main() {
     int V, source, destination;
@@ -58,44 +48,9 @@ int main() {
         add_edge(graph, destination, source);
     }
     print_graph(graph);
-    printf("\nEnter source vertex for BFS: ");
-    scanf("%d", &source);
-    DFS(graph, source);
+    DFS(graph);
     delete_graph(graph);
     return 0;
-}
-
-void push(Queue* queue, GraphNode* node) {
-    ListNode* new = (ListNode*)malloc(sizeof(ListNode));
-
-    if (!new) {
-        printf("Memory was not allocated");
-        exit(0);
-    }
-    new->data = node;
-    new->next = NULL;
-
-    if (queue->rear) {
-        queue->rear->next = new;
-    } else {
-        queue->front = new;
-    }
-    queue->rear = new;
-}
-
-GraphNode* pop(Queue* queue) {
-    if (!queue->front) {
-        return NULL;
-    }
-    ListNode* res = queue->front;
-    GraphNode* data = res->data;
-    queue->front = queue->front->next;
-
-    if (!queue->front) {
-        queue->rear = NULL;
-    }
-    free(res);
-    return data;
 }
 
 Graph create_graph(int V) {
@@ -106,7 +61,7 @@ Graph create_graph(int V) {
         exit(0);
     }
     for (int i = 0; i < V; i++) {
-        graph.nodes[i] = (GraphNode){i, -1, WHITE, NULL, NULL};
+        graph.nodes[i] = (GraphNode){i, -1, -1, WHITE, NULL, NULL};
     }
     return graph;
 }
@@ -154,36 +109,17 @@ void delete_graph(Graph graph) {
     free(graph.nodes);
 }
 
-void DFS(Graph graph, int source) {
-    int i;
-    AdjNode* adj;
-    GraphNode *u, *v;
-    Queue queue = {NULL, NULL};
-    graph.nodes[source].color = GREY;
-    graph.nodes[source].distance = 0;
-    push(&queue, &graph.nodes[source]);
-    printf("\nBFS Traversal starting from vertex %d: ", source);
+void DFS(Graph graph) {
+    int i, time = -1;
+    printf("\nDFS Traversal: ");
 
-    while (queue.front) {
-        u = pop(&queue);
-        printf("%d ", u->vertex);
-        adj = u->head;
-
-        while (adj) {
-            v = &graph.nodes[adj->vertex];
-
-            if (v->color == WHITE) {
-                v->color = GREY;
-                v->distance = u->distance + 1;
-                v->parent = u;
-                push(&queue, v);
-            }
-            adj = adj->next;
+    for (i = 0; i < graph.V; i++) {
+        if (graph.nodes[i].color == WHITE) {
+            DFS_visit(graph, &graph.nodes[i], &time);
         }
-        u->color = BLACK;
     }
-    printf("\n\nAfter BFS:\n");
-    printf("vertex\tcolor\tdistance\tparent\n");
+    printf("\n\nAfter DFS:\n");
+    printf("vertex\tcolor\tstart\tfinish\tparent\n");
 
     for (i = 0; i < graph.V; i++) {
         printf("%d\t", i);
@@ -201,10 +137,15 @@ void DFS(Graph graph, int source) {
             printf("BLACK");
             break;
         }
-        if (graph.nodes[i].distance == -1) {
-            printf("\tINF\t\t");
+        if (graph.nodes[i].start == -1) {
+            printf("\tNIL\t");
         } else {
-            printf("\t%d\t\t", graph.nodes[i].distance);
+            printf("\t%d\t", graph.nodes[i].start);
+        }
+        if (graph.nodes[i].finish == -1) {
+            printf("NIL\t");
+        } else {
+            printf("%d\t", graph.nodes[i].finish);
         }
         if (graph.nodes[i].parent) {
             printf("%d", graph.nodes[i].parent->vertex);
@@ -213,4 +154,25 @@ void DFS(Graph graph, int source) {
         }
         printf("\n");
     }
+}
+
+void DFS_visit(Graph graph, GraphNode* u, int* time) {
+    GraphNode* v;
+    AdjNode* adj = u->head;
+    u->start = ++*time;
+    u->color = GREY;
+    printf("%d ", u->vertex);
+
+    while (adj) {
+        v = &graph.nodes[adj->vertex];
+
+        if (v->color == WHITE) {
+            v->color = GREY;
+            v->parent = u;
+            DFS_visit(graph, v, time);
+        }
+        adj = adj->next;
+    }
+    u->color = BLACK;
+    u->finish = ++*time;
 }
