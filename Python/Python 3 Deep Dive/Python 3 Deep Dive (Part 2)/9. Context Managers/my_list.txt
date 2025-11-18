@@ -1,7 +1,0 @@
-Items
-   - Item 1
-      - item 1a
-      - item 1b
-   - Item 2
-      - item 2a
-      - item 2b
