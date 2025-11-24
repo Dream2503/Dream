@@ -1,4 +1,4 @@
-//  Q3. Write a program to generate a SIGCLD signal when a child terminates and print the signal number.
+//  Q3. Write a program to generate a SIGCHLD signal when a child terminates and print the signal number.
 
 #include <signal.h>
 #include <stdio.h>
