@@ -1,4 +1,4 @@
-//  Q1. Write a program to generate a SIGALRM signal.
+//  Q4. Write a program to generate a SIGALRM signal.
 
 #include <signal.h>
 #include <stdio.h>
