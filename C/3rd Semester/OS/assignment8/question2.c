@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 int main() {
-    printf("Signal No. of SIGINT: %d", SIGINT);
+    printf("Signal No. of SIGINT: %d\n", SIGINT);
     printf("Signal No. of SIGQUIT: %d", SIGQUIT);
     return 0;
 }
