@@ -1,4 +1,4 @@
-//  Q1. Implement Dijkstra's Single Source Shortest Path Algorithm.
+//  Q2. Implementation Prim's Minimum Spanning Tree Algorithm.
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -35,7 +35,7 @@ void min_heapify(PriorityQueue*, int);
 void push(PriorityQueue*, GraphNode*);
 void pop(PriorityQueue*);
 void decrease_key(PriorityQueue*, int, int);
-void dijkstra(Graph, int);
+void prims_MST(Graph, int);
 
 int main() {
     int V, source, destination, cost;
@@ -54,9 +54,9 @@ int main() {
         add_edge(graph, source, destination, cost);
     }
     print_graph(graph);
-    printf("\nEnter source vertex for Dijkstra's Single Source Shortest Path algorithm: ");
+    printf("\nEnter source vertex for Prim's Minimum Spanning Tree algorithm: ");
     scanf("%d", &source);
-    dijkstra(graph, source);
+    prims_MST(graph, source);
     delete_graph(graph);
     return 0;
 }
@@ -161,7 +161,7 @@ void delete_graph(Graph graph) {
     free(graph.nodes);
 }
 
-void dijkstra(Graph graph, int source) {
+void prims_MST(Graph graph, int source) {
     int i;
     AdjNode* adj;
     GraphNode *u, *v;
@@ -182,10 +182,10 @@ void dijkstra(Graph graph, int source) {
         while (adj) {
             v = &graph.nodes[adj->vertex];
 
-            if (!visited[v->vertex] && v->distance > u->distance + adj->cost) {
+            if (!visited[v->vertex] && v->distance > adj->cost) {
                 for (i = 0; i < graph.V; i++) {
                     if (queue.heap[i]->vertex == v->vertex) {
-                        decrease_key(&queue, i, u->distance + adj->cost);
+                        decrease_key(&queue, i, adj->cost);
                     }
                 }
                 v->parent = u;
@@ -193,16 +193,11 @@ void dijkstra(Graph graph, int source) {
             adj = adj->next;
         }
     }
-    printf("vertex\tdistance\tparent\n");
+    printf("vertex\tparent\n");
 
     for (i = 0; i < graph.V; i++) {
         printf("%d\t", i);
 
-        if (graph.nodes[i].distance == INT32_MAX) {
-            printf("INF\t\t");
-        } else {
-            printf("%d\t\t", graph.nodes[i].distance);
-        }
         if (graph.nodes[i].parent) {
             printf("%d", graph.nodes[i].parent->vertex);
         } else {
