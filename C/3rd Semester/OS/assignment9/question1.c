@@ -22,27 +22,33 @@ int main() {
     Resource** resources = (Resource**)malloc(process_size * sizeof(Resource*));
 
     if (!resources) {
-        printf("Memory was not allocated");
+        printf("Memory was not allocated\n");
         exit(0);
     }
     for (i = 0; i < process_size; i++) {
         resources[i] = (Resource*)malloc(resource_size * sizeof(Resource));
 
         if (!resources[i]) {
-            printf("Memory was not allocated");
+            printf("Memory was not allocated\n");
             exit(0);
         }
     }
-    for (i = 0; i < process_size; i++) {
-        printf("\n");
+    printf("\nEnter the allocation matrix:\n");
 
+    for (i = 0; i < process_size; i++) {
         for (j = 0; j < resource_size; j++) {
-            printf("Enter allocated and max need of P%d R%d: ", i, j);
-            scanf("%d %d", &resources[i][j].allocated, &resources[i][j].max);
+            scanf("%d", &resources[i][j].allocated);
+        }
+    }
+    printf("\nEnter the maximum matrix:\n");
+
+    for (i = 0; i < process_size; i++) {
+        for (j = 0; j < resource_size; j++) {
+            scanf("%d", &resources[i][j].max);
             resources[i][j].need = resources[i][j].max - resources[i][j].allocated;
 
             if (resources[i][j].need < 0) {
-                printf("Failed to allocate resources more than maximum need");
+                printf("Failed to allocate resources more than maximum need\n");
 
                 for (i = 0; i < process_size; i++) {
                     free(resources[i]);
@@ -55,7 +61,7 @@ int main() {
     int* available = (int*)malloc(resource_size * sizeof(int));
 
     if (!available) {
-        printf("Memory was not allocated");
+        printf("Memory was not allocated\n");
         exit(0);
     }
     printf("\nEnter the available resources: ");
@@ -93,7 +99,7 @@ int main() {
             requests = (int*)malloc(resource_size * sizeof(int));
 
             if (!requests) {
-                printf("Memory was not allocated");
+                printf("Memory was not allocated\n");
                 exit(0);
             }
             printf("Enter process ID to request resources: ");
@@ -204,13 +210,13 @@ bool request(Resource** resources, int process_size, int resource_size, int* ava
     if (sequence) {
         free(sequence);
         grant = true;
+    } else {
+        grant = false;
         memcpy(available, available_copy, resource_size * sizeof(int));
 
         for (i = 0; i < process_size; i++) {
             memcpy(resources[i], resources_copy[i], resource_size * sizeof(Resource));
         }
-    } else {
-        grant = false;
     }
     for (i = 0; i < process_size; i++) {
         free(resources_copy[i]);
@@ -221,18 +227,40 @@ bool request(Resource** resources, int process_size, int resource_size, int* ava
 }
 
 void print_table(Resource** resources, int process_size, int resource_size) {
-    printf("\nProcess\t");
+    int i, j;
+    printf("\n\tAllocation\t\tMax\t\t\tNeed\n");
+    printf("\t");
 
-    for (int j = 0; j < resource_size; j++) {
-        printf("A%d N%d M%d\t", j, j, j);
+    for (j = 0; j < resource_size; j++) {
+        printf("R%d ", j);
+    }
+    printf("\t\t");
+
+    for (j = 0; j < resource_size; j++) {
+        printf("R%d ", j);
+    }
+    printf("\t\t");
+
+    for (j = 0; j < resource_size; j++) {
+        printf("R%d ", j);
     }
     printf("\n");
 
-    for (int i = 0; i < process_size; i++) {
+    for (i = 0; i < process_size; i++) {
         printf("P%d\t", i);
 
-        for (int j = 0; j < resource_size; j++) {
-            printf("%d  %d  %d \t", resources[i][j].allocated, resources[i][j].need, resources[i][j].max);
+        for (j = 0; j < resource_size; j++) {
+            printf("%2d ", resources[i][j].allocated);
+        }
+        printf("\t\t");
+
+        for (j = 0; j < resource_size; j++) {
+            printf("%2d ", resources[i][j].max);
+        }
+        printf("\t\t");
+
+        for (j = 0; j < resource_size; j++) {
+            printf("%2d ", resources[i][j].need);
         }
         printf("\n");
     }
