@@ -41,6 +41,8 @@ Implement all algorithms in a single menu-driven program where the user can choo
 #include <stdio.h>
 #include <stdlib.h>
 
+#define IDEAL -1
+
 typedef struct {
     int pid, priority;
     float arrival, departure, burst, remaining, waiting, turnaround, response;
@@ -228,6 +230,9 @@ void gantt_chart_push_back(GanttChart* gantt_chart, GanttChartElement element) {
         gantt_chart->chart = temp;
         gantt_chart->capacity *= 2;
     }
+    if (gantt_chart->size && gantt_chart->chart[gantt_chart->size - 1].pid == element.pid) {
+        gantt_chart->size--;
+    }
     gantt_chart->chart[gantt_chart->size++] = element;
 }
 
@@ -330,7 +335,7 @@ GanttChart scheduling_queue_impl(Process* processes, int size, float time_slice)
     while (queue.front || i < size) {
         if (!queue.front && i < size && time < processes[i].arrival) {
             time = processes[i].arrival;
-            gantt_chart_push_back(&gantt_chart, (GanttChartElement){-1, time});
+            gantt_chart_push_back(&gantt_chart, (GanttChartElement){IDEAL, time});
         }
         while (i < size && processes[i].arrival <= time) {
             queue_push(&queue, &processes[i++]);
@@ -385,7 +390,7 @@ GanttChart scheduling_heap_impl(Process* processes, int size, bool preemptive, i
     while (queue.size || i < size) {
         if (!queue.size && i < size && time < processes[i].arrival) {
             time = processes[i].arrival;
-            gantt_chart_push_back(&gantt_chart, (GanttChartElement){-1, time});
+            gantt_chart_push_back(&gantt_chart, (GanttChartElement){IDEAL, time});
         }
         while (i < size && processes[i].arrival <= time) {
             heap_push(&queue, &processes[i++]);
@@ -450,39 +455,31 @@ void display_gantt_chart(GanttChart gantt_chart) {
     printf("Gantt Chart:\n");
 
     for (i = 0; i < gantt_chart.size; i++) {
-        if (i < gantt_chart.size - 1 && gantt_chart.chart[i].pid != gantt_chart.chart[i + 1].pid) {
-            printf("-----------");
-        }
+        printf("-----------");
     }
     printf("-\n|");
 
     for (i = 0; i < gantt_chart.size; i++) {
-        if (i < gantt_chart.size - 1 && gantt_chart.chart[i].pid != gantt_chart.chart[i + 1].pid) {
-            if (gantt_chart.chart[i].pid == -1) {
-                printf("   IDLE   |");
-            } else {
-                printf("   P%-3d   |", gantt_chart.chart[i].pid);
-            }
+        if (gantt_chart.chart[i].pid == IDEAL) {
+            printf("   IDLE   |");
+        } else {
+            printf("   P%-3d   |", gantt_chart.chart[i].pid);
         }
     }
     printf("\n");
 
     for (i = 0; i < gantt_chart.size; i++) {
-        if (i < gantt_chart.size - 1 && gantt_chart.chart[i].pid != gantt_chart.chart[i + 1].pid) {
-            printf("-----------");
-        }
+        printf("-----------");
     }
     printf("-\n0.00");
 
     for (i = 0; i < gantt_chart.size; i++) {
-        if (i < gantt_chart.size - 1 && gantt_chart.chart[i].pid != gantt_chart.chart[i + 1].pid) {
-            if (gantt_chart.chart[i].finish < 10) {
-                printf("       %.2f", gantt_chart.chart[i].finish);
-            } else if (gantt_chart.chart[i].finish < 100) {
-                printf("      %.2f", gantt_chart.chart[i].finish);
-            } else {
-                printf("     %.2f", gantt_chart.chart[i].finish);
-            }
+        if (gantt_chart.chart[i].finish < 10) {
+            printf("       %.2f", gantt_chart.chart[i].finish);
+        } else if (gantt_chart.chart[i].finish < 100) {
+            printf("      %.2f", gantt_chart.chart[i].finish);
+        } else {
+            printf("     %.2f", gantt_chart.chart[i].finish);
         }
     }
     printf("\n\n");
