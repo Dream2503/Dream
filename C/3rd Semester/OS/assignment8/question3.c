@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void handler(int signal) { printf("Signal No. handled: %d", signal); }
+void handler(int signal) { printf("Signal No. handled: %d\n", signal); }
 
 int main() {
     signal(SIGCHLD, handler);

@@ -5,6 +5,6 @@
 
 int main() {
     printf("Signal No. of SIGINT: %d\n", SIGINT);
-    printf("Signal No. of SIGQUIT: %d", SIGQUIT);
+    printf("Signal No. of SIGQUIT: %d\n", SIGQUIT);
     return 0;
 }
