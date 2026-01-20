@@ -1,0 +1,108 @@
+<!--
+Q5.	Create a webpage named My Profile using HTML5 semantic elements. Your page must use appropriate semantic tags (for example: <header>, <nav>,
+    <main>, <section>, <footer>) and must satisfy all of the following requirements:
+    a.	Use a <nav> with anchor links (bookmarks) to the sections on the same page: About, Education, and Hobbies.
+    b.	Use a <header> element that contains your name as the main heading (<h1>), your phone number and your email.
+    c.	Use a <main> element to wrap the primary page content.
+    d.	Create three <section> elements with id attributes about, education, and hobbies. Each section must have a heading (<h2>) and atleast one
+        paragraph describing the topic.
+    e.	In the about section, Include your profile image and a paragraph about yourself. Use a list to showcase your skills.
+    f.	In the education section, use a table to showcase your academic records.
+    g.	In the hobbies section, add a list of hobbies.
+    h.	The footer section must contain hyperlinks to your social media handles.
+-->
+
+<html>
+<head>
+    <title>My Profile</title>
+</head>
+<body>
+<nav>
+    <a href="#about">About</a> |
+    <a href="#education">Education</a> |
+    <a href="#hobbies">Hobbies</a>
+</nav>
+
+<header>
+    <h1>Name: Swapnaraj Mohanty</h1>
+    <p>Phone no: 8917519861</p>
+    <p>Email: swapnarajmohanty2503@gmail.com</p>
+</header>
+
+<main>
+    <section id="about">
+        <h2>About</h2>
+        <img src="https://erp.silicon.ac.in/uploads/student_photo/SITBBS_B.TECH_2024-2028/CSE/24BCSH93/24BCSH93_64X64.jpg">
+        <p>
+            I am a student who is interested in learning new technologies and improving my skills in programming and web development. I enjoy
+            understanding how things work behind the scenes and like experimenting with code to build simple but useful projects.
+        </p>
+        <h3>Skills</h3>
+        <ul>
+            <li>HTML and CSS</li>
+            <li>Basic Python Programming</li>
+            <li>Problem Solving</li>
+            <li>Database Fundamentals</li>
+            <li>Basic Web Design</li>
+        </ul>
+    </section>
+
+    <section id="education">
+        <h2>Education</h2>
+        <p>
+            I am currently pursuing my studies and focusing on subjects related to computer science and technology. My education has helped me build a
+            strong foundation in programming concepts, databases, and web technologies, which I continue to improve through practice.
+        </p>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <tr>
+                <th>Qualification</th>
+                <th>Institution</th>
+                <th>Year</th>
+                <th>Result</th>
+            </tr>
+            <tr>
+                <td>Secondary School</td>
+                <td>SAI International School</td>
+                <td>2022</td>
+                <td>90%</td>
+            </tr>
+            <tr>
+                <td>Higher Secondary</td>
+                <td>SAI International School</td>
+                <td>2024</td>
+                <td>92%</td>
+            </tr>
+            <tr>
+                <td>Undergraduate (Pursuing)</td>
+                <td>Silicon University</td>
+                <td>2028</td>
+                <td>-</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="hobbies">
+        <h2>Hobbies</h2>
+        <p>
+            In my free time, I enjoy exploring new tech tools, coding, and learning about computers. I also like playing games and spending time
+            online discovering new ideas and content that help me relax and stay curious.
+        </p>
+        <ul>
+            <li>Coding and learning new programming concepts</li>
+            <li>Playing video games</li>
+            <li>Exploring new technologies and tools</li>
+            <li>Browsing the internet and reading tech-related content</li>
+            <li>Listening to music</li>
+        </ul>
+    </section>
+</main>
+<footer>
+    <h2>Social Media</h2>
+    <p>
+        <a href="https://www.github.com/Dream2503">GitHub</a> |
+        <a href="https://www.linkedin.com/in/swapnaraj-mohanty-a62905218">LinkedIn</a> |
+        <a href="https://wa.me/918917519861">WhatsApp</a>
+    </p>
+</footer>
+</body>
+</html>
