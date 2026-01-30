@@ -1,0 +1,167 @@
+<html>
+<head>
+    <title>abc</title>
+    <style>
+        div {
+            display: block;
+            text-align: center;
+        }
+
+        div ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .div a {
+            display: block;
+            background: #111;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.8em 1.8em;
+            text-transform: uppercase;
+            font-size: 80%;
+            letter-spacing: 2px;
+            text-shadow: 0 -1px 0 #000;
+            position: relative;
+        }
+
+        .div li {
+            position: relative;
+        }
+
+        .div > li {
+            float: left;
+            border-bottom: 4px #aaa solid;
+            margin-right: 1px;
+        }
+
+        .div > li > a {
+            margin-bottom: 1px;
+            box-shadow: inset 0 2em .33em -0.5em #555;
+        }
+
+        .div > li:hover,
+        .div > li:hover > a {
+            border-bottom-color: orange;
+        }
+
+        .div li:hover > a {
+            color: orange;
+        }
+
+        .div > li:first-child {
+            border-radius: 4px 0 0 4px;
+        }
+
+        .div > li:first-child > a {
+            border-radius: 4px 0 0 0;
+        }
+
+        .div > li:last-child {
+            border-radius: 0 0 4px 0;
+            margin-right: 0;
+        }
+
+        .div > li:last-child > a {
+            border-radius: 0 4px 0 0;
+        }
+
+        .div li li a {
+            margin-top: 1px;
+        }
+
+        .div li a:first-child:nth-last-child(2):before {
+            content: "";
+            position: absolute;
+            height: 0;
+            width: 0;
+            border: 5px solid transparent;
+            top: 50%;
+            right: 5px;
+        }
+
+        .div ul {
+            position: absolute;
+            white-space: nowrap;
+            border-bottom: 5px solid orange;
+            z-index: 1;
+            left: -99999em;
+        }
+
+        .div > li:hover > ul {
+            left: auto;
+            margin-top: 5px;
+            min-width: 100%;
+        }
+
+        .div > li li:hover > ul {
+            left: 100%;
+            margin-left: 1px;
+            top: -1px;
+        }
+
+        /* arrow hover styling */
+        .div > li > a:first-child:nth-last-child(2):before {
+            border-top-color: #aaa;
+        }
+
+        .div > li:hover > a:first-child:nth-last-child(2):before {
+            border: 5px solid transparent;
+            border-bottom-color: orange;
+            margin-top: -5px
+        }
+
+        .div li li > a:first-child:nth-last-child(2):before {
+            border-left-color: #aaa;
+            margin-top: -5px
+        }
+
+        .div li li:hover > a:first-child:nth-last-child(2):before {
+            border: 5px solid transparent;
+            border-right-color: orange;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul class="div">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Portfolio</a>
+            <ul>
+                <li><a href="#">item</a></li>
+                <li><a href="#">item</a></li>
+                <li><a href="#">item</a></li>
+                <li><a href="#">item</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Resume</a>
+            <ul>
+                <li><a href="#">item a long submenu</a></li>
+                <li><a href="#">item</a>
+                    <ul>
+                        <li><a href="#">Ray</a></li>
+                        <li><a href="#">Veronica</a></li>
+                        <li><a href="#">Bushy</a></li>
+                        <li><a href="#">Havoc</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">item</a></li>
+                <li><a href="#">item</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Download</a></li>
+        <li><a href="#">Rants</a>
+            <ul>
+                <li><a href="#">item</a></li>
+                <li><a href="#">item</a></li>
+                <li><a href="#">item</a></li>
+                <li><a href="#">item</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</div>
+</body>
+</html>

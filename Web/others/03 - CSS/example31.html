@@ -1,0 +1,75 @@
+<html>
+<head>
+    <style>
+        #x {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        #x li {
+            display: block;
+            position: relative;
+            float: left;
+            background: blue;
+        }
+
+        #x li a {
+            display: block;
+            padding: 0;
+            text-decoration: none;
+            width: 200px;
+            line-height: 35px;
+            color: white;
+        }
+
+        #x li li a {
+            font-size: 80%;
+        }
+
+        #x li:hover {
+            background: red;
+        }
+
+        #x ul {
+            position: absolute;
+            padding: 0;
+            left: 0;
+            display: none;
+        }
+
+        #x li:hover ul ul {
+            display: none;
+        }
+
+        #x li:hover ul {
+            display: block;
+        }
+
+        #x li li:hover ul {
+            display: block;
+            margin-left: 200px;
+            margin-top: -35px;
+        }
+    </style>
+</head>
+<body>
+<ul id="x">
+    <li><a href="#">Main Item 1</a></li>
+    <li><a href="#">Main Item 2</a>
+        <ul>
+            <li><a href="#">Sub Item</a></li>
+            <li><a href="#">Sub Item</a></li>
+            <li><a href="#">SUB SUB LIST »</a>
+                <ul>
+                    <li><a href="#">Sub Sub Item 1</a>
+                    <li><a href="#">Sub Sub Item 2</a>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li><a href="#">Main Item 3</a></li>
+</ul>
+</body>
+</html>
