@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>Skew transform</title>
+    <style>
+        div {
+            width: 300px;
+            height: 100px;
+            background: yellow;
+            border: 1px solid black;
+        }
+
+        div#myDiv {
+            transform: skewY(20deg);
+        }
+
+        div#myDiv1 {
+            transform: matrix(1, -0.3, 0, 1, 0, 0);
+        }
+
+        div#myDiv2 {
+            transform: matrix(1, 0, 0.5, 1, 150, 0);
+        }
+    </style>
+</head>
+<body>
+<div id="myDiv">This is div with skew transform</div>
+<br>
+<div id="myDiv1">This is div with matrix1</div>
+<br>
+<div id="myDiv2">This is div with matrix2</div>
+<br>
+</body>
+</html>

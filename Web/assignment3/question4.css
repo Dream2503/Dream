@@ -1,0 +1,19 @@
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th {
+    border: 1px solid black;
+    background: grey;
+    font-weight: bold;
+}
+
+td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.strip {
+    background: lightgrey;
+}
