@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CSS Box, Flexbox and Grid Demo</title>
+    <style>
+        .box {
+            width: 250px;
+            padding: 20px;
+            border: 5px solid black;
+            margin: 20px;
+            background-color: lightblue;
+            text-align: center;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 15px;
+        }
+
+        .navbar div {
+            color: white;
+            font-size: 18px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 15px;
+            margin: 20px;
+        }
+
+        .grid-item {
+            background-color: lightgreen;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid green;
+        }
+    </style>
+</head>
+
+<body>
+<h1 align="center">CSS Box, Flexbox and Grid Example</h1>
+
+<div class="navbar">
+    <div>Home</div>
+    <div>About</div>
+    <div>Services</div>
+    <div>Contact</div>
+</div>
+<div class="box">
+    This is an example of CSS Box Model
+</div>
+<div class="grid-container">
+    <div class="grid-item">Left Sidebar</div>
+    <div class="grid-item">Main Content</div>
+    <div class="grid-item">Right Sidebar</div>
+</div>
+</body>
+
+</html>

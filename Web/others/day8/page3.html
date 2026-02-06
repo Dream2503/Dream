@@ -1,0 +1,135 @@
+<html>
+<head>
+    <title>abc</title>
+    <style type=text/css>
+        #header {
+            height: 28%;
+            width: 100%;
+            background: url(logo.jpg);
+        }
+
+        #menu {
+            height: 7%;
+            width: 100%;
+            background: grey;
+            float: left;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        li {
+            display: inline;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding -left: 5px;
+            padding -right: 5px;
+            padding -top: 5px;
+            padding-bottom: 5px;
+            background: orange;
+            border-raduis: 10pt;
+            border-style: solid inset;
+            border-color: black;
+            font-size: 0.7cm;
+            color: white;
+        }
+
+        li a:hover {
+            background: yellow;
+        }
+
+        #link {
+            height: 60%;
+            width: 25%;
+            background: lime;
+            float: left;
+        }
+
+        p a:hover {
+            background: red;
+        }
+
+        #section {
+            height: 60%;
+            width: 75%;
+            background: maroon;
+            float: left;
+        }
+
+        #footer {
+            height: 5%;
+            width: 100%;
+            background: indigo;
+            float: left;
+            color: white;
+            font-size: 0.4cm;
+        }
+    </style>
+</head>
+<body>
+<div id=header></div>
+<div id=menu>
+    <ul>
+        <li><a href=>home<a/></li>
+        <li><a href=>contact<a/></li>
+        <li><a href=>galary<a/></li>
+        <li><a href=>blog<a/></li>
+        <li><a href=>about<a/></li>
+        <li><a href=>other<a/></li>
+    </ul>
+</div>
+<div id=link>
+    <p style=background:magenta;font-size:0.5cm;margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;><a href=>library</a>
+    </p>
+    <pp style=background:magenta;font-size:0.5cm;margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;><a
+            href=>canteen</a></p>
+        <pp style=background:magenta;font-size:0.5cm;margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;><a
+                href=>news</a></p>
+            <pp style=background:magenta;font-size:0.5cm;margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;><a
+                    href=>sports</a></p>
+                <pp style=background:magenta;font-size:0.5cm;margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;><a
+                        href=>events</a></p>
+                    <pp style=background:magenta;font-size:0.5cm;margin:5px 5px 5px 5px;padding:5px 5px 5px 5px;><a
+                            href=>campus</a></p>
+                        <pp style=background:magenta;font-size:0.5cm;margin:5px 5px 5px 5px;padding:5px 5px 5px
+                            5px;><a href=>faculty</a></p>
+                            <pp style=background:magenta;font-size:0.5cm;margin:5px 5px 5px 5px;padding:5px 5px 5px
+                                5px;><a href=>student</a></p>
+                                <pp style=background:magenta;font-size:0.5cm;margin:5px 5px 5px 5px;padding:5px 5px
+                                    5px 5px;><a href=>other</a></p>
+</div>
+<div id=section>
+    <h1 align=center><u>login info</u></h1>
+    <center>
+        <form name=form1 method=POST action=>
+            <table height=150 width=250>
+                <tr>
+                    <td>Enter id:</td>
+                    <td><input type=text name=text1 placeholder=enter your id></td>
+                </tr>
+                <tr>
+                    <td>Enter pwd:</td>
+                    <td><input type=password name=text2 placeholder=enter your password></td>
+                </tr>
+                <tr>
+                    <td align=center><input type=button value=submit onclick=myvalidate()></td>
+                    <td align=center><input type=button value=reset></td>
+                </tr>
+                <tr>
+                    <td><input type=checkbox>stay sign-in</td>
+                    <td align=right><a href=>forgotten password ?</a></td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</div>
+<div id=footer>
+    <marquee>this site is designed and maintained by anil</marquee>
+</div>
+</body>
+</html>
