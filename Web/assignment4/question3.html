@@ -1,0 +1,95 @@
+<!--
+Q3.	Design a Product Section for an eCommerce webpage using Flexbox. Create a container <div> with the title “Featured Products”. Inside the container
+add 4 product cards in a single row. Each product card must include: Product image, Product name (heading), Price (paragraph), “Add to Cart” button.
+-->
+
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 40px;
+        }
+
+        .product-section {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .products {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .product-card {
+            width: 23%;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            margin: 10px 0;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #ff6f00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="product-section">
+    <h2>Featured Products</h2>
+    <div class="products">
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/71W+S88m5JL._AC_SL1500_.jpg">
+            <h3>SmartWatch</h3>
+            <p class="price">4,999</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/71Rz4nN%2BNFL._AC_SL1500_.jpg">
+            <h3>Wireless Headphones</h3>
+            <p class="price">2,499</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/61Mk3YqYHpL.jpg">
+            <h3>Gaming Mouse</h3>
+            <p class="price">999</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/81wdmgabXFL._AC_.jpg">
+            <h3>Bluetooth Speaker</h3>
+            <p class="price">11,299</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
