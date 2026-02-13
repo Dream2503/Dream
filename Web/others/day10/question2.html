@@ -1,0 +1,52 @@
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div {
+            font-family: Arial;
+            height: 250px;
+            width: 300px;
+            padding: 10px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #username, #password {
+            width: 250px;
+            padding: 7px;
+            margin: 10px;
+            border-radius: 5px;
+            border-width: 1px;
+            border-color: grey;
+        }
+
+        button {
+            background: #4CAF50;
+        }
+
+        #login {
+            color: white;
+            height: 35px;
+            width: 250px;
+            border-radius: 5px;
+            border-width: 1px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <input type="checkbox" id="remember_me">
+    <label>Remember Me</label><br><br>
+    <button id="login">Login</button>
+</div>
+</body>
+</html>

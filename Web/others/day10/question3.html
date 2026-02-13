@@ -1,0 +1,78 @@
+<html>
+<head>
+    <title>Featured Products</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+
+        .product-container h2 {
+            text-align: center;
+        }
+
+        .products {
+            display: flex;
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: bisque;
+            border-radius: 8px;
+            padding: 15px;
+            width: 23%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .product-card img {
+            height: 200px;
+            border-radius: 6px;
+        }
+
+        .product-card button {
+            background-color: blue;
+            color: bisque;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .product-card button:hover {
+            background-color: cyan;
+        }
+    </style>
+</head>
+<body>
+<div class="product-container">
+    <h2>Featured Products</h2>
+    <div class="products">
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/71W+S88m5JL._AC_SL1500_.jpg">
+            <h3>SmartWatch</h3>
+            <p class="price">4,999</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/71Rz4nN%2BNFL._AC_SL1500_.jpg">
+            <h3>Wireless Headphones</h3>
+            <p class="price">2,499</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/61Mk3YqYHpL.jpg">
+            <h3>Gaming Mouse</h3>
+            <p class="price">999</p>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/81wdmgabXFL._AC_.jpg">
+            <h3>Bluetooth Speaker</h3>
+            <p class="price">11,299</p>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
