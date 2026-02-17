@@ -1,0 +1,6 @@
+Address,Mnemonics,Machine Code,Addressing Mode,Instruction Type,Operation
+4200,"MVI A, 7",3E 07 ,Immediate,2 bytes,A <- 7
+4202,"MVI B, 5",06 05,Immediate,2 bytes,B <- 5
+4204,SUB B,90,Register,1 bytes,A <- A - B
+4205,STA 0,32 00 00,Indirect,3 bytes,C <- A
+4206,HLT,76,,1 bytes,

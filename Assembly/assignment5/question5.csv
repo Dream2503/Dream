@@ -1,0 +1,8 @@
+Address,Mnemonics,Machine Code,Addressing Mode,Instruction Type,Operation
+4200,"MVI B, 7",06 07,Immediate,2 bytes,B <- 7
+4202,"MOV C, B",48,Register,1 bytes,C <- B
+4203,loop: ADD B,80,Register,1 bytes,A <- A + B
+4204,DCR C,0D,Register,1 bytes,C <- C - 1
+4205,JNZ loop,C2 04 042,,3 bytes,
+4208,STA 0,32 00 00,Direct,3 bytes,[0] <- A
+420B,HLT,76,,1 bytes,

@@ -1,7 +1,11 @@
-; Q4. An assembly program to subtract two numbers and store the result in any Memory location .
+; Q4. An assembly program to multiply two numbers.
 
-MVI A, 7
-MVI B, 5
-SUB B
+MVI B, 3
+MVI C, 6
+
+loop: ADD B
+DCR C
+JNZ loop
+
 STA 0
 HLT

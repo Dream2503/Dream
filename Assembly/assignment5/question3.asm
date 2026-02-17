@@ -1,7 +1,18 @@
-; Q3. An assembly program to subtract two numbers and store the result in any general purpose resister.
+; Q3. An assembly program to add two 8-bit Hexadecimal numbers and store result in decimal form only which will be a 16-bits number.
+;     Sample data:
+;     A: 84H
+;     B: 75H
+;     Result = 84H + 75H = F9H = 159D
+;     The result stored at 2020H and 2021H.
 
-MVI A, 7
-MVI B, 5
-SUB B
-MOV C, A
-HLT
+MVI A, 84H
+MVI B, 75H
+ADD B
+DAA
+STA 2021H
+
+JNC next
+MVI A, 1
+STA 2020H
+
+next: HLT
