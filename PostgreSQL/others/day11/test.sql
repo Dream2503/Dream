@@ -126,9 +126,14 @@ SELECT *
 FROM dept d
 WHERE EXISTS (SELECT '' FROM emp WHERE deptno = d.deptno);
 
--- DELETE FROM emp e WHERE sal < (SELECT AVG(sal) FROM emp WHERE deptno = e.deptno);
+/*
+DELETE
+FROM emp e
+WHERE sal < (SELECT AVG(sal) FROM emp WHERE deptno = e.deptno);
 
--- UPDATE emp e1 SET sal = (SELECT MAX(sal) FROM emp e2 WHERE e1.deptno = e2.deptno);
+UPDATE emp e1
+SET sal = (SELECT MAX(sal) FROM emp e2 WHERE e1.deptno = e2.deptno);
+*/
 
 SELECT *
 FROM emp
