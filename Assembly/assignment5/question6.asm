@@ -5,7 +5,7 @@ MOV A, B
 ANI 0FH
 MOV C, A
 MOV A, B
-MVI D, 4
+MVI D, 04H
 
 loop: RRC
 DCR D
@@ -13,5 +13,5 @@ JNZ loop
 
 ANI 0FH
 ADD C
-STA 0
+STA 0000H
 HLT

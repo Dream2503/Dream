@@ -2,9 +2,10 @@ Address,Mnemonics,Machine Code,Addressing Mode,Instruction Type,Operation
 4200,"MVI A, 84H",3E 84,Immediate,2 bytes,A <- 84H
 4202,"MVI B, 75H",06 75,Immediate,2 bytes,B <- 75H
 4204,ADD B,80,Register,1 bytes,A <- A + B
-4205,DAA,27,Register,1 bytes,
+4205,DAA,27,Register,1 bytes,A -> BCD
 4206,STA 2021H,32 21 20,Direct,3 bytes,[2021H] <- A
-4209,JNC next,D2 11 42,Register,3 bytes,
-420C,"MVI A, 1",3E 01,Immediate,2 bytes,A <- 1
-420E,STA 2020H,32 20 20,Direct,3 bytes,[2020H] <- A
-4211,next: HLT,76,,1 bytes,
+4209,XRA A,AF,Register,1 bytes,A <- A ^ A
+420A,ADC A,8F,Register,1 bytes,A <- A + A + C
+420B,"MVI A, 01H",3E 01,Immediate,2 bytes,A <- 01H
+420D,STA 2020H,32 20 20,Direct,3 bytes,[2020H] <- A
+4210,HLT,76, ,1 bytes,HALT

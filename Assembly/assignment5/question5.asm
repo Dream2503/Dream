@@ -1,11 +1,12 @@
 ; Q5. Program to find square of 8-bit number.
 
-MVI B, 7
+XRA A
+MVI B, 07H
 MOV C, B
 
 loop: ADD B
 DCR C
 JNZ loop
 
-STA 0
+STA 0000H
 HLT

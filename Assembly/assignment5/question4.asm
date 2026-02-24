@@ -1,11 +1,12 @@
 ; Q4. An assembly program to multiply two numbers.
 
-MVI B, 3
-MVI C, 6
+XRA A
+MVI B, 03H
+MVI C, 06H
 
 loop: ADD B
 DCR C
 JNZ loop
 
-STA 0
+STA 0000H
 HLT

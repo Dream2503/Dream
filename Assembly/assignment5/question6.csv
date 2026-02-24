@@ -4,11 +4,11 @@ Address,Mnemonics,Machine Code,Addressing Mode,Instruction Type,Operation
 4203,ANI 0FH,E6 0F,Immediate,2 bytes,A <- A & 0FH
 4205,"MOV C, A",4F,Register,1 bytes,C <- A
 4206,"MOV A, B",78,Register,1 bytes,A <- B
-4207,"MVI D, 4",16 04,Immediate,2 bytes,D <- 4
-4209,loop: RRC,0F,Register,1 bytes,
+4207,"MVI D, 04H",16 04,Immediate,2 bytes,D <- 04H
+4209,loop: RRC,0F,Register,1 bytes,right rotate A
 420A,DCR D,15,Register,1 bytes,D <- D - 1
-420B,JNZ loop,C2 09 042,Register,3 bytes,
-420E,ANI 0FH,E6 0F,Immediate,2 bytes,
+420B,JNZ loop,C2 09 42,Direct,3 bytes,"if Z=0, PC <- 4209H"
+420E,ANI 0FH,E6 0F,Immediate,2 bytes,A <- A & 0FH
 4210,ADD C,81,Register,1 bytes,A <- A + C
-4211,STA 0,32 00 00,Direct,3 bytes,[0] <- A
-4214,HLT,76,,1 bytes,
+4211,STA 0000H,32 00 00,Direct,3 bytes,[0000H] <- A
+4214,HLT,76, ,1 bytes,HALT

@@ -4,8 +4,8 @@ Address,Mnemonics,Machine Code,Addressing Mode,Instruction Type,Operation
 4204,"MVI D, 45H",16 45,Immediate,2 bytes,D <- 45H
 4206,ADD B,80,Register,1 bytes,A <- A + B
 4207,ADD D,82,Register,1 bytes,A <- A + D
-4208,JNZ else,C2 0D 042,Register,3 bytes,
+4208,JNZ else,C2 0D 042,Direct,3 bytes,"if Z=0, PC <- 420DH"
 420B,INR C,0C,Register,1 bytes,C <- C + 1
-420C,HLT,76,,1 bytes,
-420D,else: DCR C,0D,Register,1 bytes,D <- D - 1
-420E,HLT,76,,1 bytes,
+420C,HLT,76, ,1 bytes,HALT
+420D,else: DCR C,0D,Register,1 bytes,C <- C - 1
+420E,HLT,76, ,1 bytes,HALT
