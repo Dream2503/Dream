@@ -4,7 +4,7 @@ Address,Mnemonics,Machine Code,Addressing Mode,Instruction Type,Operation
 4204,ADD B,80,Register,1 bytes,A <- A + B
 4205,SBI 09H,DE 09,Immediate,2 bytes,A <- A - 09H
 4207,"MOV C, A",4F,Register,1 bytes,C <- A
-4208,"LXI H, 0834H",21 34 08,Immediate,3 bytes,HL <- 0834H
+4208,"LXI H, 2100H",21 00 21,Immediate,3 bytes,HL <- 2100H
 420B,"inner_loop: MOV A, M",7E,Indirect,1 bytes,A <- [HL]
 420C,INX H,23,Register,1 bytes,HL <- HL + 1
 420D,"MOV D, M",56,Indirect,1 bytes,D <- [HL]

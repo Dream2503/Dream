@@ -2,7 +2,7 @@
 
 XRA A
 MVI C, 05H
-LXI H, 0834H
+LXI H, 2100H
 
 loop: MOV B, M
 CMP B

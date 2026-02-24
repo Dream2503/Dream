@@ -1,7 +1,7 @@
 Address,Mnemonics,Machine Code,Addressing Mode,Instruction Type,Operation
 4200,XRA A,AF,Register,1 bytes,A <- A ^ A
 4201,"MVI C, 05H",0E 05,Immediate,2 bytes,C <- 05H
-4203,LXI H 0834H,21 34 08,Immediate,3 bytes,HL <- 0834H
+4203,LXI H 2100H,21 00 21,Immediate,3 bytes,HL <- 2100H
 4206,"loop: MOV B, M",46,Indirect,1 bytes,B <- [HL]
 4207,CMP B,B8,Register,1 bytes,flag <- A - B
 4208,JP continue,F2 0C 42,Direct,3 bytes,"if S=0, PC <- 420CH "

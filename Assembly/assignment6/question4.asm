@@ -6,7 +6,7 @@ outer_loop: MVI A, 09H
 ADD B
 SBI 09H
 MOV C, A
-LXI H, 0834H
+LXI H, 2100H
 
 inner_loop: MOV A, M
 INX H
