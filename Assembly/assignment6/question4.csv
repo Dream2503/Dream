@@ -1,0 +1,23 @@
+Address,Mnemonics,Machine Code,Addressing Mode,Instruction Type,Operation
+4200,"MVI B, 09H",06 09,Immediate,2 bytes,B <- 09H
+4202,"outer_loop: MVI A, 09H",3E 09,Immediate,2 bytes,A <- 09H
+4204,ADD B,80,Register,1 bytes,A <- A + B
+4205,SBI 09H,DE 09,Immediate,2 bytes,A <- A - 09H
+4207,"MOV C, A",4F,Register,1 bytes,C <- A
+4208,"LXI H, 0834H",21 34 08,Immediate,3 bytes,HL <- 0834H
+420B,"inner_loop: MOV A, M",7E,Indirect,1 bytes,A <- [HL]
+420C,INX H,23,Register,1 bytes,HL <- HL + 1
+420D,"MOV D, M",56,Indirect,1 bytes,D <- [HL]
+420E,CMP D,BA,Register,1 bytes,flag <- A - D
+420F,JM continue,FA 18 42,Direct,3 bytes,"if S=1, PC <- 4218H"
+4212,"MOV A, M",7E,Indirect,1 bytes,A <- [HL]
+4213,DCX H,2B,Register,1 bytes,HL <- HL - 1
+4214,"MOV E, M",5E,Indirect,1 bytes,E <- [HL]
+4215,"MOV M, A",77,Indirect,1 bytes,[HL] <- A
+4216,INX H,23,Register,1 bytes,HL <- HL + 1
+4217,"MOV M, E",73,Indirect,1 bytes,[HL] <- E
+4218,continue: DCR C,0D,Register,1 bytes,C <- C - 1
+4219,JNZ inner_loop,C2 0B 42,Direct,3 bytes,"if Z=0, PC <- 420BH"
+421C,DCR B,05,Register,1 bytes,B <- B - 1
+421D,JNZ outer_loop,C2 02 42,Direct,3 bytes,"if Z=0, PC <- 4202H"
+4220,HLT,76, ,1 bytes,HALT

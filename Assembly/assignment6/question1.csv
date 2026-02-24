@@ -1,0 +1,8 @@
+Address,Mnemonics,Machine Code,Addressing Mode,Instruction Type,Operation
+4200,"MVI A, 69H",3E 69,Immediate,2 bytes,A <- 69H
+4202,"MVI B, 96H",06 96,Immediate,2 bytes,B <- 96H
+4204,CMP B,B8,Register,1 bytes,flag <- A − B
+4205,JP large,F2 09 42,Direct,3 bytes,"if S=0, PC ← 4209H"
+4208,"MOV A, B",78,Register,1 bytes,A <- B
+4209,large: STA 0000H,32 00 00,Direct,3 bytes,[0000H] <- A
+420C,HLT,76, ,1 bytes,HALT

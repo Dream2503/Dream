@@ -1,0 +1,14 @@
+Address,Mnemonics,Machine Code,Addressing Mode,Instruction Type,Operation
+4200,XRA A,AF,Register,1 bytes,A <- A ^ A
+4201,"MVI C, 05H",0E 05,Immediate,2 bytes,C <- 05H
+4203,LXI H 0834H,21 34 08,Immediate,3 bytes,HL <- 0834H
+4206,"loop: MOV B, M",46,Indirect,1 bytes,B <- [HL]
+4207,CMP B,B8,Register,1 bytes,flag <- A - B
+4208,JP continue,F2 0C 42,Direct,3 bytes,"if S=0, PC <- 420CH "
+420B,"MOV A, B",78,Register,1 bytes,A <- B
+420C,continue: INX H,23,Register,1 bytes,HL <- HL + 1
+420D,DCR C,0D,Register,1 bytes,C <- C - 1
+420E,JNZ loop,C2 06 42,Direct,3 bytes,"if Z=0, PC <- 4206H"
+4211,INX H,23,Register,1 bytes,HL <- HL + 1
+4212,"MOV M, A",77,Indirect,1 bytes,[HL] <- A
+4213,HLT,76, ,1 bytes,HALT
