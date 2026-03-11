@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>abc</title>
+    <script>
+        var num = 191, temp = num, rev = 0;
+
+        while (temp != 0) {
+            rev = rev * 10 + temp % 10;
+            temp = Math.floor(temp / 10);
+        }
+        if (num == rev) {
+            document.write(num + " is a palindrome number");
+        } else {
+            document.write(num + " is not a palindrome number");
+        }
+    </script>
+</head>
+<body bgcolor="pink" text="violet">
+</body>
+</html>

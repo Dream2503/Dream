@@ -1,0 +1,27 @@
+<html>
+<head>
+    <title>abc</title>
+    <script>
+        var n = parseInt(prompt("Enter a number: "))
+        var i = 0, j = 0;
+
+        while (i < n) {
+            document.write("* ");
+
+            if (i == j) {
+                document.write("<br>");
+
+                if (i == n - 1) {
+                    break;
+                }
+                i = 0;
+                j++;
+            } else {
+                i++;
+            }
+        }
+    </script>
+</head>
+<body bgcolor="pink" text="violet">
+</body>
+</html>

@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>abc</title>
+    <script>
+        var num = 625, temp = Math.floor(num / 10), sum = 0, unit = num % 10;
+
+        while (temp != 0) {
+            sum += temp % 10;
+            temp = Math.floor(temp / 10);
+        }
+        if (Math.pow(sum, unit) == num) {
+            document.write(num + " is a Autothecal number<br>");
+        } else {
+            document.write(num + " is not a Autothecal number<br>");
+        }
+        var squared = num * num, flag = true;
+        temp = num;
+
+        while (temp != 0) {
+            if (temp % 10 != squared % 10) {
+                flag = false;
+                break;
+            }
+            temp = Math.floor(temp / 10);
+            squared = Math.floor(squared / 10);
+        }
+        if (flag) {
+            document.write(num + " is a Automorphic number");
+        } else {
+            document.write(num + " is not a Automorphic number");
+        }
+    </script>
+</head>
+<body bgcolor="pink" text="violet">
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>abc</title>
+    <script>
+        var num = 191, temp = num, rev = 0, is_prime = true;
+
+        for (var i = 2; i <= num / 2; i++) {
+            if (num % i == 0) {
+                is_prime = false;
+                break;
+            }
+        }
+        while (temp != 0) {
+            rev = rev * 10 + temp % 10;
+            temp = Math.floor(temp / 10);
+        }
+        if (is_prime && num == rev) {
+            document.write(num + " is a Pal-Prime number");
+        } else {
+            document.write(num + " is not a Pal-Prime number");
+        }
+    </script>
+</head>
+<body bgcolor="pink" text="violet">
+</body>
+</html>
