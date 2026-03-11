@@ -11,7 +11,6 @@ multiply: ADD D
 DCR C
 JNZ multiply
 DCR B
-
 JNZ factorial
 
 STA 0
