@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>abc</title>
+    <script>
+        var low = parseInt(prompt("Enter the lower limit of the range: "));
+        var high = parseInt(prompt("Enter the upper limit of the range: "));
+        document.write("The prime numbers in the range " + low + " to " + high + " are: ")
+
+        for (var i = low; i <= high; i++) {
+            var is_prime = true;
+
+            for (var j = 2; j <= i / 2; j++) {
+                if (i % j == 0) {
+                    is_prime = false;
+                    break;
+                }
+            }
+            if (is_prime) {
+                document.write(i + " ");
+            }
+        }
+    </script>
+</head>
+<body bgcolor="pink" text="violet">
+</body>
+</html>

@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>abc</title>
+    <script>
+        var num1 = parseInt(prompt("Enter a number: "))
+        var num2 = parseInt(prompt("Enter another number: "))
+        var a = num1, b = num2;
+
+        while (b != 0) {
+            var temp = b;
+            b = a % b;
+            a = temp
+        }
+        document.write("HCF and LCM of " + num1 + " and " + num2 + " is: " + a + " and " + ((num1 * num2) / a));
+    </script>
+</head>
+<body bgcolor="pink" text="violet">
+</body>
+</html>

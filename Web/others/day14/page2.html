@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title>abc</title>
+    <script>
+        var num1 = parseInt(prompt("Enter lhs: "))
+        var opr = prompt("Enter the operator: ");
+        var num2 = parseInt(prompt("Enter rhs: "))
+        var res;
+
+        switch (opr) {
+            case "+":
+                res = num1 + num2;
+                break;
+
+            case "-":
+                res = num1 - num2;
+                break;
+
+            case "*":
+                res = num1 * num2;
+                break;
+
+            case "/":
+                res = num1 / num2;
+                break;
+
+            case "%":
+                res = num1 % num2;
+                break;
+
+            case "^":
+                res = Math.pow(num1, num2);
+                break;
+
+            default:
+                document.write("Invalid operator: " + opr);
+        }
+        document.write(num1 + " " + opr + " " + num2 + " = " + res);
+    </script>
+</head>
+<body bgcolor="pink" text="violet">
+</body>
+</html>
