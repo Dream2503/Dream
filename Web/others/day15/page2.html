@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>abc</title>
+    <script>
+        var n = parseInt(prompt("Enter the number of elements in array: "))
+        var array = new Array();
+
+        for (var i = 0; i < n; i++) {
+            array.push(parseInt(prompt("Enter the " + (i + 1) + " element: ")));
+        }
+        document.writeln("Reversed array: " + array.reverse() + "<br>");
+        document.writeln("Sorted array: " + array.sort() + "<br>");
+        array.push(parseInt(prompt("Enter an element to push in the array: ")));
+        document.writeln("After pushing an element: " + array + "<br>");
+        array.pop();
+        document.writeln("After popping the element: " + array + "<br>");
+        var idx = parseInt(prompt("Enter the index to start from: "))
+        var del = parseInt(prompt("Enter the number of elements to delete: "))
+        document.writeln("Spliced array: " + array.splice(idx, del, 1, 2, 3) + "<br>");
+        document.writeln("Sliced array: " + array.slice(idx, del) + "<br>");
+        document.writeln("Shifted array: " + array.shift() + "<br>");
+        document.writeln("unshifted array: " + array.unshift(1, 2) + "<br>");
+        document.writeln("Concatinated array: " + array.concat(array) + "<br>");
+    </script>
+</head>
+<body bgcolor="pink" text="violet">
+</body>
+</html>
