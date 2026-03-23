@@ -1,0 +1,14 @@
+<html>
+<body>
+    <h2>Dynamic Content</h2>
+    <button id="button">Add Element</button>
+    <script>
+        document.querySelector("#button").addEventListener("click", () => {
+            let newDiv = document.createElement("div");
+            newDiv.textContent = "new Element Added";
+            newDiv.style.margin = "10px 0";
+            document.body.appendChild(newDiv)
+        });
+    </script>
+</body>
+</html>

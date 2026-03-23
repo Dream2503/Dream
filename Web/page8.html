@@ -1,0 +1,20 @@
+<html>
+<body>
+<p id="para">This is a sample paragraph. Click the button to hide or show this text.</p>
+<button id="toggle" onclick="toggle()">Hide</button>
+<script>
+    function toggle() {
+        var p = document.getElementById("para");
+        var btn = document.getElementById("toggle");
+
+        if (p.style.display == "none") {
+            p.style.display = "block";
+            btn.innerHTML = "Hide";
+        } else {
+            p.style.display = "none";
+            btn.innerHTML = "Show";
+        }
+    }
+</script>
+</body>
+</html> 
