@@ -1,0 +1,20 @@
+<!-- Q5. Write a program to find the second largest element of an array without sorting it. -->
+
+<html>
+<head>
+    <script>
+        let array = [1, 2, 3, 4, 5];
+        let largest = second_largest = array[0];
+
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] > largest) {
+                second_largest = largest;
+                largest = array[i];
+            } else if (array[i] > second_largest && array[i] != largest) {
+                second_largest = array[i];
+            }
+        }
+        console.log("Second Largest: " + second_largest);
+    </script>
+</head>
+</html>

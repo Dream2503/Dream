@@ -1,0 +1,27 @@
+<!-- Q12. Write a function generateFibonacci(n) that generates the first n Fibonacci numbers and returns them in an array. -->
+
+<html>
+<head>
+    <script>
+        function generateFibonacci(n) {
+            let array = [];
+
+            if (n <= 0) {
+                return array;
+            }
+            array[0] = 0;
+
+            if (n > 1) {
+                array[1] = 1;
+            }
+            for (let i = 2; i < n; i++) {
+                array[i] = array[i - 1] + array[i - 2];
+            }
+            return array;
+        }
+
+        let num = 7;
+        console.log("Fibonacci till " + num + " numbers are: " + generateFibonacci(num));
+    </script>
+</head>
+</html>

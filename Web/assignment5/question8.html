@@ -1,0 +1,24 @@
+<!-- Q8. Write a function isPrime(num) that returns true if the number is prime, otherwise false. Test with different numbers. -->
+
+<html>
+<head>
+    <script>
+        function isPrime(n) {
+            for (let i = 2; i <= n / 2; i++) {
+                if (n % i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        let num = 2503;
+
+        if (isPrime(num)) {
+            console.log(num + " is a prime number.");
+        } else {
+            console.log(num + " is not a prime number.");
+        }
+    </script>
+</head>
+</html>

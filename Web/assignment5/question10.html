@@ -1,0 +1,24 @@
+<!-- Q10. Write a function that takes an array of numbers and returns two new arrays: one containing even numbers and one containing odd numbers. -->
+
+<html>
+<head>
+    <script>
+        function evenOdd(array) {
+            let even = [], odd = [];
+
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] % 2 == 0) {
+                    even.push(array[i])
+                } else {
+                    odd.push(array[i])
+                }
+            }
+            return {even, odd}
+        }
+
+        let array = [1, 2, 3, 4, 5], res = evenOdd(array);
+        console.log("Even array: " + res.even);
+        console.log("Odd array: " + res.odd);
+    </script>
+</head>
+</html>

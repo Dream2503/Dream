@@ -1,0 +1,25 @@
+<!-- Q4. Write a program to calculate and print the sum, average, largest, and smallest of elements of an array. -->
+
+<html>
+<head>
+    <script>
+        let array = [1, 2, 3, 4, 5];
+        let sum = 0, smallest = largest = array[0];
+
+        for (let i = 0; i < array.length; i++) {
+            sum += array[i];
+
+            if (largest < array[i]) {
+                largest = array[i];
+            }
+            if (smallest > array[i]) {
+                smallest = array[i];
+            }
+        }
+        console.log("Sum: " + sum);
+        console.log("Avg: " + (sum / array.length));
+        console.log("Largest: " + largest);
+        console.log("Smallest: " + smallest);
+    </script>
+</head>
+</html>

@@ -1,0 +1,25 @@
+<!-- Q9. Write a function to check whether a number is an Armstrong number (e.g., 153 → Armstrong, 123 → not Armstrong). -->
+
+<html>
+<head>
+    <script>
+        function isArmstrong(n) {
+            let count = Math.ceil(Math.log10(n)), res = 0, temp = n;
+
+            while (temp) {
+                res += Math.pow(temp % 10, count);
+                temp = Math.floor(temp / 10);
+            }
+            return n == res;
+        }
+
+        let num = 2503;
+
+        if (isArmstrong(num)) {
+            console.log(num + " is an Armstrong number.");
+        } else {
+            console.log(num + " is not an Armstrong number.");
+        }
+    </script>
+</head>
+</html>

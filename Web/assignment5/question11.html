@@ -1,0 +1,19 @@
+<!-- Q11. Write a function reverseArray(arr) that reverses the elements of an array without using the built- in reverse() method. -->
+
+<html>
+<head>
+    <script>
+        function reverseArray(array) {
+            for (let i = 0, j = array.length - 1; i < j; i++, j--) {
+                let temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+
+        let array = [1, 2, 3, 4, 5];
+        reverseArray(array);
+        console.log("Array after reversing: " + array);
+    </script>
+</head>
+</html>

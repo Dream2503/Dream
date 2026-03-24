@@ -1,0 +1,15 @@
+<!-- Q7. Write a program to count how many times each element occurs in an array. -->
+
+<html>
+<head>
+    <script>
+        let array = [2, 5, 0, 3, 8, 6, 6, 0];
+        let key = 6, res = 0;
+
+        for (let i = 0; i < array.length; i++) {
+            res += array[i] == key;
+        }
+        console.log("Occurrence of " + key + " in array: " + res);
+    </script>
+</head>
+</html>
