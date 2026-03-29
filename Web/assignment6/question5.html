@@ -1,0 +1,21 @@
+<!-- Q5. Design a form to take a number as input and, with the help of JS, check if the number is prime or not. Display the message in an alert box. -->
+
+<html>
+<body>
+<input id="input" placeholder="Enter a number">
+<button onclick="isPrime()">Check Prime</button>
+<script>
+    function isPrime() {
+        let n = parseInt(document.getElementById('input').value);
+
+        for (let i = 2; i <= i / 2; i++) {
+            if (n % i === 0) {
+                alert(n + " is not a Prime number.");
+                return
+            }
+        }
+        alert(n + " is a Prime number.");
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!-- Q7. Create a registration form with fields for  Name, Gender (radio button), Mobile, Address (textarea), Country (dropdown), Email, and Password.
+         Use external JS to apply form validation to check
+         a. None of the fields should be empty.
+         b. Mobile number should be a 10-digit valid mobile number.
+         c. Email should have a valid format.
+         d. Length of the password must be between 6-15. -->
+
+<html>
+<body>
+<h2>Registration Form</h2>
+<form onsubmit="validateForm()">
+    Name: <input type="text" id="name"><br><br>
+
+    Gender:
+    <input type="radio" id="male" name="gender" value="Male"> Male
+    <input type="radio" id="female" name="gender" value="Female"> Female
+    <br><br>
+
+    Mobile: <input type="text" id="mobile"><br><br>
+
+    Address:<br>
+    <textarea id="address"></textarea><br><br>
+
+    Country:
+    <select id="country">
+        <option value="">Select</option>
+        <option>India</option>
+        <option>USA</option>
+        <option>UK</option>
+    </select>
+    <br><br>
+
+    Email: <input type="text" id="email"><br><br>
+
+    Password: <input type="password" id="password"><br><br>
+
+    <button type="submit">Register</button>
+</form>
+<p id="error" style="color:red;"></p>
+<script>
+    function validateForm() {
+        let name = document.getElementById("name").value.trim();
+        let mobile = document.getElementById("mobile").value.trim();
+        let address = document.getElementById("address").value.trim();
+        let country = document.getElementById("country").value;
+        let email = document.getElementById("email").value.trim();
+        let password = document.getElementById("password").value;
+        let error = document.getElementById("error");
+        let isValidMobile = true, isValidEmail = true, atCount = 0, dotCount = 0;
+        let gender;
+        error.innerHTML = "";
+
+        if (document.getElementById("male").checked) {
+            gender = "Male";
+        } else if (document.getElementById("female").checked) {
+            gender = "Female";
+        }
+        if (!name || !mobile || !address || !country || !email || !password || !gender) {
+            error.innerHTML = "All fields are required.";
+            return;
+        }
+        if (mobile.length != 10) {
+            error.innerHTML = "Enter valid 10-digit mobile number.";
+            return;
+        }
+        for (let i = 0; i < mobile.length; i++) {
+            if (mobile[i] < '0' || mobile[i] > '9') {
+                isValidMobile = false;
+                break;
+            }
+        }
+        if (!isValidMobile) {
+            error.innerHTML = "Enter valid 10-digit mobile number.";
+            return;
+        }
+        for (let i = 0; i < email.length; i++) {
+            if (email[i] == ' ') {
+                isValidEmail = false;
+                break;
+            }
+            if (email[i] == '@') {
+                atCount++;
+            }
+            if (email[i] == '.') {
+                dotCount++;
+            }
+        }
+        if (atCount != 1 || dotCount < 1 || email[0] == '@' || email[email.length - 1] == '@') {
+            isValidEmail = false;
+        }
+        if (!isValidEmail) {
+            error.innerHTML = "Enter valid email.";
+            return;
+        }
+        if (password.length < 6 || password.length > 15) {
+            error.innerHTML = "Password must be 6 to 15 characters.";
+            return;
+        }
+        alert("Form submitted successfully.");
+    }
+</script>
+</body>
+</html>

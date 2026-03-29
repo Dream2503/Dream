@@ -1,0 +1,110 @@
+<!-- Q6. You are tasked with building a currency converter app that allows users to convert amounts between different currencies. The app should have
+         dropdown menus for selecting the source and target currencies, an input field for entering the amount to be converted, and an output field
+         for displaying the converted amount. The conversion rates to be used are as follows:
+         conversionRates = {
+         USD: { EUR: 0.93, GBP: 0.82, INR: 82.74, AUD: 1.47 },
+         EUR: { USD: 1.08, GBP: 0.88, INR: 89.06, AUD: 1.58 },
+         GBP: { USD: 1.22, EUR: 1.14, INR: 101.5, AUD: 1.80 },
+         INR: { USD: 0.012, EUR: 0.011, GBP: 0.0098, AUD: 0.018 },
+         AUD: { USD: 0.68, EUR: 0.63, GBP: 0.55, INR: 55.87 }
+         };
+         The app should display an error message if any of the fields are empty or if the "From" and "To" currencies are the same. -->
+
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid grey;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Currency Converter</h2>
+    <label>From:</label>
+    <select id="from">
+        <option value="AUD">AUD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="INR">INR</option>
+        <option value="USD">USD</option>
+    </select>
+    <input id="amount" placeholder="Amount">
+    <label>To:</label>
+    <select id="to">
+        <option value="AUD">AUD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+        <option value="INR">INR</option>
+        <option value="USD">USD</option>
+    </select>
+    <input id="result" placeholder="Result" readonly>
+    <button onclick="convert()">Convert</button>
+</div>
+<script>
+    let conversionRates = {
+        USD: {EUR: 0.93, GBP: 0.82, INR: 82.74, AUD: 1.47},
+        EUR: {USD: 1.08, GBP: 0.88, INR: 89.06, AUD: 1.58},
+        GBP: {USD: 1.22, EUR: 1.14, INR: 101.5, AUD: 1.80},
+        INR: {USD: 0.012, EUR: 0.011, GBP: 0.0098, AUD: 0.018},
+        AUD: {USD: 0.68, EUR: 0.63, GBP: 0.55, INR: 55.87}
+    };
+
+    function convert() {
+        let amount = document.getElementById("amount").value;
+        let from = document.getElementById("from").value;
+        let to = document.getElementById("to").value;
+        let rate;
+
+        if (amount == "") {
+            alert("Please fill all fields");
+            return;
+        }
+        if (from == to) {
+            rate = 1;
+        } else {
+            rate = conversionRates[from][to];
+        }
+        document.getElementById("result").value = amount * rate;
+    }
+</script>
+</body>
+</html>

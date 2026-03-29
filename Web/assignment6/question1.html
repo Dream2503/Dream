@@ -1,0 +1,13 @@
+<!-- Q1. Create a heading (<h2>) with the text Hello World. Using JavaScript, change the text to Welcome to DOM Manipulation when a button is clicked. -->
+
+<html>
+<body>
+<h2 id="heading" onclick="myFunction()">Hello World</h2>
+<button id="btn" onclick="change()">Change</button>
+<script>
+    function change() {
+        document.getElementById("heading").innerHTML = "Welcome to DOM Manipulation";
+    }
+</script>
+</body>
+</html> 

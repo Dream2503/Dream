@@ -1,0 +1,23 @@
+<!-- Q2. Write a paragraph of text and a button. When the button is clicked, toggle the visibility of the paragraph (show ? hide ? show). Change the
+         button text accordingly. -->
+
+<html>
+<body>
+<p id="para">This is a sample paragraph. Click the button to hide or show this text.</p>
+<button id="toggle" onclick="toggle()">Hide</button>
+<script>
+    function toggle() {
+        let p = document.getElementById("para");
+        let btn = document.getElementById("toggle");
+
+        if (p.style.display == "none") {
+            p.style.display = "block";
+            btn.innerHTML = "Hide";
+        } else {
+            p.style.display = "none";
+            btn.innerHTML = "Show";
+        }
+    }
+</script>
+</body>
+</html> 
