@@ -1,0 +1,4 @@
+Write a Python program to
+count the number of lines,
+words, and characters in
+a file.
