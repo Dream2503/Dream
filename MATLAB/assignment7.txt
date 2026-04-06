@@ -1,0 +1,1374 @@
+diary on
+help who
+ <strong>who</strong> - List variables in workspace
+    This MATLAB function lists in alphabetical order the names of all
+    variables in the currently active workspace.
+    
+    Syntax
+      <strong>who</strong>
+      <strong>who</strong> -file filename
+      <strong>who</strong> global
+      <strong>who</strong> ___ var1 ... varN
+      <strong>who</strong> ___ -regexp expr1 ... exprN
+      C = <strong>who</strong>(___)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/who.html#bqup003-20-variables">var1 ... varN</a> - Variables to display
+        character vectors | string scalars
+      <a href="matlab:web /MATLAB/help/matlab/ref/who.html#mw_e8653530-7082-4f1a-b4b0-66fb768401e1">expr1 ... exprN</a> - Regular expressions
+        character vectors | string scalars
+      <a href="matlab:web /MATLAB/help/matlab/ref/who.html#bqup003-20-filename">filename</a> - Name of MAT-file
+        character vector | string scalar
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/who.html#bqup003-20-C">C</a> - List of variables
+        cell array of character vector
+
+    Examples
+      <a href="matlab:openExample('matlab/DisplayWorkspaceVariablesExample')">Display Workspace Variable Names</a>
+      <a href="matlab:openExample('matlab/ListVariablesStoredInAMATFileExample')">List Names of Variables in a MAT-File</a>
+      <a href="matlab:openExample('matlab/StoreVariableListInCellArrayExample')">Store Variable List in Cell Array</a>
+      <a href="matlab:web /MATLAB/help/matlab/ref/who.html#bu3bgdy">List Workspace Variables Within Nested or Anonymous Function</a>
+
+    See also <a href="matlab:help assignin -displayBanner">assignin</a>, <a href="matlab:help clear -displayBanner">clear</a>, <a href="matlab:help clearvars -displayBanner">clearvars</a>, <a href="matlab:help exist -displayBanner">exist</a>, <a href="matlab:help inmem -displayBanner">inmem</a>, <a href="matlab:help load -displayBanner">load</a>, <a href="matlab:help save -displayBanner">save</a>, <a href="matlab:help what -displayBanner">what</a>,
+      <a href="matlab:help('Workspace Panel', '-displayBanner')">Workspace Panel</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc who">Documentation for who</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('who')">Other uses of who</a>
+
+help whos
+ <strong>whos</strong> - List variables in workspace, with sizes and types
+    This MATLAB function lists in alphabetical order the names, sizes, and
+    types of all variables in the currently active workspace.
+
+    Syntax
+      <strong>whos</strong>
+      <strong>whos</strong> -file filename
+      <strong>whos</strong> global
+      <strong>whos</strong> ___ var1 ... varN
+      <strong>whos</strong> ___ -regexp expr1 ... exprN
+      S = <strong>whos</strong>(___)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/whos.html#mw_9c437f83-26cb-42e2-9aae-2ee43dc8f67d">var1 ... varN</a> - Variables to display
+        character vectors | string scalars
+      <a href="matlab:web /MATLAB/help/matlab/ref/whos.html#mw_81c20e36-1c9d-4809-899d-b2b918a1278e">expr1 ... exprN</a> - Regular expressions
+        character vectors | string scalars
+      <a href="matlab:web /MATLAB/help/matlab/ref/whos.html#btngexw-1-filename">filename</a> - Name of MAT-file
+        character vector | string scalar
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/whos.html#btngexw-1-S">S</a> - Variable information
+        nested structure array
+
+    Examples
+      <a href="matlab:openExample('matlab/DisplayInformationAboutWorkspaceVariablesExample')">Display Workspace Variable Information</a>
+      <a href="matlab:openExample('matlab/DisplayVariablesStoredinaMATFileExample')">Display Information on Variables Stored in a MAT-File</a>
+      <a href="matlab:openExample('matlab/StoreVariableInformationinaStructureArrayExample')">Store Variable Information in a Structure Array</a>
+      <a href="matlab:openExample('matlab/DisplayVariableAttributeInformationExample')">Display Variable Attribute Information</a>
+      <a href="matlab:web /MATLAB/help/matlab/ref/whos.html#bu2_rvz">List Workspace Variables Within Nested or Anonymous Function</a>
+
+    See also <a href="matlab:help clear -displayBanner">clear</a>, <a href="matlab:help exist -displayBanner">exist</a>, <a href="matlab:help what -displayBanner">what</a>, <a href="matlab:help who -displayBanner">who</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc whos">Documentation for whos</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('whos')">Other uses of whos</a>
+
+help what
+ <strong>what</strong> - List MATLAB files in folder
+    This MATLAB function lists the path for the current folder and all the
+    MATLAB relevant files and folders in the current folder.
+
+    Syntax
+      <strong>what</strong>
+      <strong>what</strong> folderName
+      s = <strong>what</strong>(___)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/what.html#bsns_5x-folderName">folderName</a> - Name of folder
+        character vector | string scalar
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/what.html#bsns_5x-s">s</a> - List of path, files, and folders
+        structure array
+
+    Examples
+      <a href="matlab:web /MATLAB/help/matlab/ref/what.html#buvr2av-1">List Path, File, and Folder Information</a>
+      <a href="matlab:web /MATLAB/help/matlab/ref/what.html#buvr2av-2">Find Supporting Files for Toolbox</a>
+
+    See also <a href="matlab:help dir -displayBanner">dir</a>, <a href="matlab:help exist -displayBanner">exist</a>, <a href="matlab:help lookfor -displayBanner">lookfor</a>, <a href="matlab:help ls -displayBanner">ls</a>, <a href="matlab:help which -displayBanner">which</a>, <a href="matlab:help who -displayBanner">who</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc what">Documentation for what</a>
+
+help clear
+ <strong>clear</strong> - Remove items from workspace, freeing up system memory
+    This MATLAB function removes all variables from the current workspace,
+    releasing them from system memory.
+
+    Syntax
+      <strong>clear</strong>
+      <strong>clear</strong> name1 ... nameN
+      <strong>clear</strong> -regexp expr1 ... exprN
+      <strong>clear</strong> ItemType
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/clear.html#btdyzbv-1-name1nameN">name1 ... nameN</a> - Names of variables, scripts, functions, or MEX functions to clear
+        character vectors | string scalars
+      <a href="matlab:web /MATLAB/help/matlab/ref/clear.html#btdyzbv-1-expr1exprN">expr1 ... exprN</a> - Regular expressions matching names of variables to clear
+        character vectors | string scalars
+      <a href="matlab:web /MATLAB/help/matlab/ref/clear.html#btdyzbv-1-ItemType">ItemType</a> - Type of items to clear
+        all | classes | functions | global | import | java | mex | variables
+
+    Examples
+      <a href="matlab:openExample('matlab/ClearASingleVariableExample')">Clear a Single Variable</a>
+      <a href="matlab:openExample('matlab/ClearSpecificVariablesbyNameExample')">Clear Specific Variables by Name</a>
+      <a href="matlab:openExample('matlab/ClearSetOfVariablesExample')">Clear Set of Variables</a>
+      <a href="matlab:openExample('matlab/ClearAllCompiledScriptsFunctionsandMEXfunctionsExample')">Clear All Compiled Scripts, Functions, and MEX Functions</a>
+
+    See also <a href="matlab:help clc -displayBanner">clc</a>, <a href="matlab:help clearvars -displayBanner">clearvars</a>, <a href="matlab:help delete -displayBanner">delete</a>, <a href="matlab:help import -displayBanner">import</a>, <a href="matlab:help inmem -displayBanner">inmem</a>, <a href="matlab:help load -displayBanner">load</a>, <a href="matlab:help mlock -displayBanner">mlock</a>, <a href="matlab:help whos -displayBanner">whos</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc clear">Documentation for clear</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('clear')">Other uses of clear</a>
+
+help mlock
+ <strong>mlock</strong> - Prevent clearing function or script from memory
+    This MATLAB function locks the currently running function in memory.
+
+    Syntax
+      <strong>mlock</strong>
+
+    Examples
+      <a href="matlab:web /MATLAB/help/matlab/ref/mlock.html#mw_edc260d1-107b-48f0-8728-ebcc10a8bcc7">Lock Function with Persistent Variable</a>
+
+    See also <a href="matlab:help mislocked -displayBanner">mislocked</a>, <a href="matlab:help munlock -displayBanner">munlock</a>, <a href="matlab:help inmem -displayBanner">inmem</a>, <a href="matlab:help persistent -displayBanner">persistent</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc mlock">Documentation for mlock</a>
+
+help munlock
+ <strong>munlock</strong> - Allow clearing function or script from memory
+    This MATLAB function unlocks the MATLAB code file named fun.
+
+    Syntax
+      <strong>munlock</strong>(fun)
+      <strong>munlock</strong>
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/munlock.html#d126e1150389">fun</a> - Name of function or script
+        character vector | string scalar
+
+    Examples
+      <a href="matlab:web /MATLAB/help/matlab/ref/munlock.html#mw_dc182c92-1d3a-4313-931e-e00752447d3a">Unlock Function in Memory</a>
+
+    See also <a href="matlab:help mlock -displayBanner">mlock</a>, <a href="matlab:help mislocked -displayBanner">mislocked</a>, <a href="matlab:help inmem -displayBanner">inmem</a>, <a href="matlab:help persistent -displayBanner">persistent</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc munlock">Documentation for munlock</a>
+
+help home
+ <strong>home</strong> - Send cursor home
+    This MATLAB function moves the cursor to the upper-left corner of the
+    Command Window.
+
+    Syntax
+      <strong>home</strong>
+
+    Examples
+      <a href="matlab:web /MATLAB/help/matlab/ref/home.html#mw_df9c805c-41d4-4483-a64c-78fe61e12617">Move Cursor to Home Position</a>
+
+    See also <a href="matlab:help clc -displayBanner">clc</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc home">Documentation for home</a>
+
+help clc
+ <strong>clc</strong> - Clear Command Window
+    This MATLAB function clears all the text from the Command Window,
+    resulting in a clear screen.
+
+    Syntax
+      <strong>clc</strong>
+
+    Examples
+      <a href="matlab:web /MATLAB/help/matlab/ref/clc.html#mw_4b3159f1-ec8c-4161-9c9f-23c651024944">Clear All Output</a>
+
+    See also <a href="matlab:help clear -displayBanner">clear</a>, <a href="matlab:help clf -displayBanner">clf</a>, <a href="matlab:help close -displayBanner">close</a>, <a href="matlab:help home -displayBanner">home</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc clc">Documentation for clc</a>
+
+help pwd
+ <strong>pwd</strong> - Identify current folder
+    This MATLAB function returns the MATLAB current folder.
+
+    Syntax
+      <strong>pwd</strong>
+      currentFolder = <strong>pwd</strong>
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/pwd.html#br6eedu-1-currentFolder">currentFolder</a> - MATLAB current folder path
+        character vector
+
+    Examples
+      <a href="matlab:openExample('matlab/StoreThePathToTheMATLABRCurrentFolderExample')">Store Path to MATLAB® Current Folder</a>
+      <a href="matlab:web /MATLAB/help/matlab/ref/pwd.html#bvibujd-2">Alternative Functionality</a>
+
+    See also <a href="matlab:help cd -displayBanner">cd</a>, <a href="matlab:help dir -displayBanner">dir</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc pwd">Documentation for pwd</a>
+
+help cd
+ <strong>cd</strong> - Change current folder
+    This MATLAB function displays the current folder.
+
+    Syntax
+      <strong>cd</strong>
+      <strong>cd</strong> newFolder
+      oldFolder = <strong>cd</strong>(newFolder)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/cd.html#br5_wx9-1-newFolder">newFolder</a> - New folder path
+        character vector | string scalar
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/cd.html#br5_wx9-1-oldFolder">oldFolder</a> - Previous current folder
+        character vector
+
+    Examples
+      <a href="matlab:openExample('matlab/ChangeTheCurrentFolderUsingFullAndRelativePathsExample')">Change Current Folder Using Full and Relative Paths</a>
+      <a href="matlab:openExample('matlab/ChangeAndThenRestoreCurrentFolderExample')">Change, and then Restore Current Folder</a>
+      <a href="matlab:openExample('matlab/ChangeTheCurrentFolderToTheUserHomeDirectoryOnUnixExample')">Change Current Folder to User Home Folder on UNIX®</a>
+
+    See also <a href="matlab:help dir -displayBanner">dir</a>, <a href="matlab:help pwd -displayBanner">pwd</a>, <a href="matlab:help what -displayBanner">what</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc cd">Documentation for cd</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('cd')">Other uses of cd</a>
+
+help dir
+ <strong>dir</strong> - List folder contents
+    This MATLAB function lists files and folders in the current folder.
+
+    Syntax
+      <strong>dir</strong>
+      <strong>dir</strong> name
+      listing = <strong>dir</strong>(name)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/dir.html#mw_f4fa8f81-d12f-4a01-a796-f67d51622696">name</a> - File or folder name
+        string scalar | character vector
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/dir.html#mw_b339a90a-bc9f-49b1-95ad-c451c77cbd89">listing</a> - File attributes
+        structure array
+
+    Examples
+      <a href="matlab:web /MATLAB/help/matlab/ref/dir.html#mw_62bf6611-d11f-47a2-9bad-007faddb3479">View Contents of Folder</a>
+      <a href="matlab:web /MATLAB/help/matlab/ref/dir.html#mw_1ec6f8b5-b00b-4a07-b252-8b14bd33eef7">Search Subfolders</a>
+      <a href="matlab:web /MATLAB/help/matlab/ref/dir.html#mw_ec8bf9e7-4a89-4e7e-91d6-e7c183adea9a">Read Details</a>
+
+    See also <a href="matlab:help cd -displayBanner">cd</a>, <a href="matlab:help fileattrib -displayBanner">fileattrib</a>, <a href="matlab:help isfolder -displayBanner">isfolder</a>, <a href="matlab:help ls -displayBanner">ls</a>, <a href="matlab:help mkdir -displayBanner">mkdir</a>, <a href="matlab:help rmdir -displayBanner">rmdir</a>, <a href="matlab:help what -displayBanner">what</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc dir">Documentation for dir</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('dir')">Other uses of dir</a>
+
+help is
+--- help for <strong>matlab.ui.internal.componentframework.WebController/is</strong> ---
+
+  Converts 'on'/'off' values to logical.
+  RESULT = this.<strong>is</strong>(ONOFF) returns logical true if ONOFF is
+  'on', false otherwise.
+
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('matlab.ui.internal.componentframework.WebController/is')">Other uses of is</a>
+
+help path
+ <strong>path</strong> - View or change search path
+    This MATLAB function displays the current MATLAB search path.
+
+    Syntax
+      <strong>path</strong>
+      <strong>path</strong>(newpath)
+      <strong>path</strong>(oldpath,newfolder)
+      <strong>path</strong>(newfolder,oldpath)
+      p = <strong>path</strong>(___)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/path.html#d126e1285166">newpath</a> - New MATLAB search path
+        character array | string array
+      <a href="matlab:web /MATLAB/help/matlab/ref/path.html#d126e1285223">oldpath</a> - Existing MATLAB search path
+        character array | string array
+      <a href="matlab:web /MATLAB/help/matlab/ref/path.html#d126e1285259">newfolder</a> - New folder
+        character vector | string scalar
+
+    Examples
+      <a href="matlab:web /MATLAB/help/matlab/ref/path.html#mw_0c0e2413-45f6-4acc-8e05-1b1244bf7e2c">Display Search Path</a>
+      <a href="matlab:web /MATLAB/help/matlab/ref/path.html#mw_9bd0ad15-a7ec-40cb-871a-dfe618f710e9">Add New Folder to Search Path on Windows</a>
+      <a href="matlab:web /MATLAB/help/matlab/ref/path.html#mw_7aab9ca2-714b-490b-a4be-499371ed5d53">Add New Folder to Search Path on UNIX</a>
+      <a href="matlab:web /MATLAB/help/matlab/ref/path.html#mw_3fe3efae-85c7-4313-8bac-eaba3790a4e3">Temporarily Add Folder to Search Path</a>
+
+    See also <a href="matlab:help addpath -displayBanner">addpath</a>, <a href="matlab:help matlabroot -displayBanner">matlabroot</a>, <a href="matlab:help restoredefaultpath -displayBanner">restoredefaultpath</a>, <a href="matlab:help pathtool -displayBanner">pathtool</a>, <a href="matlab:help rehash -displayBanner">rehash</a>,
+      <a href="matlab:help rmpath -displayBanner">rmpath</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc path">Documentation for path</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('path')">Other uses of path</a>
+
+help exitpath
+exitpath not found.
+
+    <a href="matlab:docsearch exitpath">Search the documentation for exitpath</a>
+
+help copyfile
+ <strong>copyfile</strong> - Copy file or folder
+    This MATLAB function copies the file or folder source to the current
+    folder.
+
+    Syntax
+      <strong>copyfile</strong> source
+      <strong>copyfile</strong> source destination
+      <strong>copyfile</strong> source destination f
+
+      <strong>copyfile</strong>(source,destination,CopyLinkBehavior=slbehavior)
+
+      status = <strong>copyfile</strong>(___)
+      [status,msg] = <strong>copyfile</strong>(___)
+      [status,msg,msgID] = <strong>copyfile</strong>(___)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/copyfile.html#f3-467505-source">source</a> - File or folder to copy
+        string scalar | character vector
+      <a href="matlab:web /MATLAB/help/matlab/ref/copyfile.html#f3-467505-destination">destination</a> - File or folder destination
+        string scalar | character vector
+      <a href="matlab:web /MATLAB/help/matlab/ref/copyfile.html#mw_7698eb25-2e21-4a32-85bf-22ec6fd742f2">slbehavior</a> - Symbolic link behavior
+        "osdefault" (default) | "preserve" | "resolve"
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/copyfile.html#f3-467505-status">status</a> - Copy status
+        0 | 1
+      <a href="matlab:web /MATLAB/help/matlab/ref/copyfile.html#f3-467505-msg">msg</a> - Error message
+        character vector
+      <a href="matlab:web /MATLAB/help/matlab/ref/copyfile.html#f3-467505-msgID">msgID</a> - Error message identifier
+        character vector
+
+    Examples
+      <a href="matlab:openExample('matlab/CopyFileToAnotherFolderExample')">Copy File to Another Folder</a>
+      <a href="matlab:openExample('matlab/CreateACopyOfFileInCurrentFolderExample')">Create Copy of File in Current Folder</a>
+      <a href="matlab:openExample('matlab/CopyFilesAndFolderToANewFolderUsingWildcardsExample')">Copy Files and Folder to New Folder</a>
+      <a href="matlab:openExample('matlab/CopyAndRenameFileToReadOnlyFolderExample')">Copy File to Read-Only Folder</a>
+
+    See also <a href="matlab:help cd -displayBanner">cd</a>, <a href="matlab:help delete -displayBanner">delete</a>, <a href="matlab:help dir -displayBanner">dir</a>, <a href="matlab:help mkdir -displayBanner">mkdir</a>, <a href="matlab:help movefile -displayBanner">movefile</a>, <a href="matlab:help rmdir -displayBanner">rmdir</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc copyfile">Documentation for copyfile</a>
+
+help mkdir
+ <strong>mkdir</strong> - Make new folder
+    This MATLAB function creates the folder folderName.
+
+    Syntax
+      <strong>mkdir</strong> folderName
+      <strong>mkdir</strong> parentFolder folderName
+
+      status = <strong>mkdir</strong>(___)
+      [status,msg] = <strong>mkdir</strong>(___)
+      [status,msg,msgID] = <strong>mkdir</strong>(___)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/mkdir.html#f7-607707-folderName">folderName</a> - Folder name
+        character vector | string scalar
+      <a href="matlab:web /MATLAB/help/matlab/ref/mkdir.html#f7-607707-parentFolder">parentFolder</a> - Parent folder
+        character vector | string scalar
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/mkdir.html#f7-607707-status">status</a> - Folder creation status
+        0 | 1
+      <a href="matlab:web /MATLAB/help/matlab/ref/mkdir.html#f7-607707-msg">msg</a> - Error message
+        character vector
+      <a href="matlab:web /MATLAB/help/matlab/ref/mkdir.html#f7-607707-msgID">msgID</a> - Error message identifier
+        character vector
+
+    Examples
+      <a href="matlab:openExample('matlab/CreateASubfolderInTheCurrentFolderExample')">Create Subfolder in Current Folder</a>
+      <a href="matlab:openExample('matlab/CreateASubfolderInTheSpecifiedParentFolderExample')">Create Subfolder in Specified Parent Folder</a>
+      <a href="matlab:openExample('matlab/CreateAFolderThatAlreadyExistsExample')">Create Folder That Already Exists</a>
+
+    See also <a href="matlab:help cd -displayBanner">cd</a>, <a href="matlab:help copyfile -displayBanner">copyfile</a>, <a href="matlab:help dir -displayBanner">dir</a>, <a href="matlab:help movefile -displayBanner">movefile</a>, <a href="matlab:help rmdir -displayBanner">rmdir</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc mkdir">Documentation for mkdir</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('mkdir')">Other uses of mkdir</a>
+
+help computer
+ <strong>computer</strong> - Information about computer on which MATLAB is running
+    This MATLAB function returns the computer type on which MATLAB is
+    running.
+
+    Syntax
+      str = <strong>computer</strong>
+      archstr = <strong>computer</strong>('arch')
+      [str,maxsize] = <strong>computer</strong>
+      [str,maxsize,endian] = <strong>computer</strong>
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/computer.html#mw_3696ad34-b9ba-4806-b8c9-b0c5c80b416c">str</a> - Computer type
+        'PCWIN64' | 'GLNXA64' | 'MACI64' | 'MACA64'
+      <a href="matlab:web /MATLAB/help/matlab/ref/computer.html#mw_84beda3f-a155-4825-a5b3-0a6f460525f3">archstr</a> - System architecture
+        'win64' | 'glnxa64' | 'maci64' | 'maca64'
+      <a href="matlab:web /MATLAB/help/matlab/ref/computer.html#mw_8ff58239-4263-4b9f-a268-dca6d56922ac">maxsize</a> - Maximum allowed array elements
+        2^48 - 1
+      <a href="matlab:web /MATLAB/help/matlab/ref/computer.html#mw_58e0ab57-c262-417e-877b-ad92588fea92">endian</a> - Endian byte order format
+        'L' | 'B'
+
+    See also <a href="matlab:help getenv -displayBanner">getenv</a>, <a href="matlab:help setenv -displayBanner">setenv</a>, <a href="matlab:help ispc -displayBanner">ispc</a>, <a href="matlab:help isunix -displayBanner">isunix</a>, <a href="matlab:help ismac -displayBanner">ismac</a>, <a href="matlab:help winopen -displayBanner">winopen</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc computer">Documentation for computer</a>
+
+help clock
+ <strong>clock</strong> - (Not recommended; use datetime) Current date and time as date vector
+    This MATLAB function returns a six-element date vector containing the
+    current date and time in decimal form:
+
+    Syntax
+      c = <strong>clock</strong>
+      [c tf] = <strong>clock</strong>
+
+    Examples
+      <a href="matlab:openExample('matlab/RoundclockOutputtoIntegerDisplayExample')">Round clock Output to Integer Display</a>
+      <a href="matlab:openExample('matlab/TestWhetherCurrentTimeOccursDuringDSTExample')">Determine If Current Time Occurs During DST</a>
+
+    See also <a href="matlab:help tic -displayBanner">tic</a>, <a href="matlab:help toc -displayBanner">toc</a>, <a href="matlab:help cputime -displayBanner">cputime</a>, <a href="matlab:help double.fix -displayBanner">fix</a>, <a href="matlab:help timeit -displayBanner">timeit</a>, <a href="matlab:help datetime -displayBanner">datetime</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc clock">Documentation for clock</a>
+
+help date
+ <strong>date</strong> - (Not recommended; use datetime("today")) Current date as character vector
+    This MATLAB function returns the current date as a character vector in
+    the format dd-MMM-yyyy.
+
+    Syntax
+      c = <strong>date</strong>
+
+    Examples
+      <a href="matlab:openExample('matlab/ReturnCurrentDateAsCharacterVectorExample')">Return Current Date</a>
+
+    See also <a href="matlab:help datetime -displayBanner">datetime</a>, <a href="matlab:help string -displayBanner">string</a>, <a href="matlab:help char -displayBanner">char</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc date">Documentation for date</a>
+
+help quit
+ <strong>quit</strong> - Terminate MATLAB program
+    This MATLAB function terminates the MATLAB program.
+
+    Syntax
+      <strong>quit</strong>
+      <strong>quit</strong> cancel
+      <strong>quit</strong> force
+      <strong>quit</strong>(code)
+      <strong>quit</strong>(code,"force")
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/quit.html#mw_9b268df5-310a-4014-b3f1-825c96fda4c3">code</a> - Exit code
+        0 (default) | signed integer
+
+    See also <a href="matlab:help exit -displayBanner">exit</a>, <a href="matlab:help save -displayBanner">save</a>, <a href="matlab:help finish -displayBanner">finish</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc quit">Documentation for quit</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('quit')">Other uses of quit</a>
+
+help exit
+ <strong>exit</strong> - Terminate MATLAB program (same as quit)
+    This MATLAB function terminates the current session of MATLAB.
+
+    Syntax
+      <strong>exit</strong>
+
+    See also <a href="matlab:help quit -displayBanner">quit</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc exit">Documentation for exit</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('exit')">Other uses of exit</a>
+
+help all
+ <strong>all</strong> - Determine if all array elements are nonzero or true
+    This MATLAB function tests along the first array dimension of A whose
+    size does not equal 1, and determines if the elements are all nonzero or
+    logical 1 (true).
+
+    Syntax
+      B = <strong>all</strong>(A)
+      B = <strong>all</strong>(A,'<strong>all</strong>')
+      B = <strong>all</strong>(A,dim)
+      B = <strong>all</strong>(A,vecdim)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/all.html#btxm2ut-1-A">A</a> - Input Array
+        scalar | vector | matrix | multidimensional array
+      <a href="matlab:web /MATLAB/help/matlab/ref/all.html#btxm2ut-1-dim">dim</a> - Dimension to operate along
+        positive integer scalar
+      <a href="matlab:web /MATLAB/help/matlab/ref/all.html#mw_65b75832-c715-492f-987b-96b87c0ca393">vecdim</a> - Vector of dimensions
+        vector of positive integers
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/all.html#btxm2ut-1-B">B</a> - Logical array
+        scalar | vector | matrix | multidimensional array
+
+    Examples
+      <a href="matlab:openExample('matlab/TestMatrixColumnsExample')">Test Matrix Columns</a>
+      <a href="matlab:openExample('matlab/ReduceaLogicalVectortoaSingleConditionExample')">Reduce a Logical Vector to a Single Condition</a>
+      <a href="matlab:openExample('matlab/TestArraysofAnyDimensionExample')">Test Arrays of Any Dimension</a>
+      <a href="matlab:openExample('matlab/TestMatrixRowsExample')">Test Matrix Rows</a>
+      <a href="matlab:openExample('matlab/NonzeroElementsInArrayPageAllExample')">Nonzero Elements in Array Page</a>
+
+    See also <a href="matlab:help any -displayBanner">any</a>, <a href="matlab:help and -displayBanner">and</a>, <a href="matlab:help allunique -displayBanner">allunique</a>, <a href="matlab:help colon -displayBanner">colon</a>, <a href="matlab:help prod -displayBanner">prod</a>, <a href="matlab:help double.sum -displayBanner">sum</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc all">Documentation for all</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('all')">Other uses of all</a>
+
+help any
+ <strong>any</strong> - Determine if any array elements are nonzero
+    This MATLAB function tests along the first array dimension of A whose
+    size does not equal 1, and determines if any element is a nonzero number
+    or logical 1 (true).
+
+    Syntax
+      B = <strong>any</strong>(A)
+      B = <strong>any</strong>(A,'all')
+      B = <strong>any</strong>(A,dim)
+      B = <strong>any</strong>(A,vecdim)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/any.html#btwohgt-1-A">A</a> - Input array
+        scalar | vector | matrix | multidimensional array
+      <a href="matlab:web /MATLAB/help/matlab/ref/any.html#btwohgt-1-dim">dim</a> - Dimension to operate along
+        positive integer scalar
+      <a href="matlab:web /MATLAB/help/matlab/ref/any.html#mw_d4f38e84-f63a-4002-ad9b-9ce266aa26ad">vecdim</a> - Vector of dimensions
+        vector of positive integers
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/any.html#btwohgt-1-B">B</a> - Logical array
+        scalar | vector | matrix | multidimensional array
+
+    Examples
+      <a href="matlab:openExample('matlab/TestMatrixColumnsAnyExample')">Test Matrix Columns</a>
+      <a href="matlab:openExample('matlab/ReduceALogicalVectorToASingleConditionAnyExample')">Reduce a Logical Vector to a Single Condition</a>
+      <a href="matlab:openExample('matlab/TestArraysOfAnyDimensionAnyExample')">Test Arrays of Any Dimension</a>
+      <a href="matlab:openExample('matlab/TestMatrixRowsAnyExample')">Test Matrix Rows</a>
+      <a href="matlab:openExample('matlab/NonzeroElementsInArrayPageExample')">Nonzero Elements in Array Page</a>
+
+    See also <a href="matlab:help all -displayBanner">all</a>, <a href="matlab:help colon -displayBanner">colon</a>, <a href="matlab:help or -displayBanner">or</a>, <a href="matlab:help prod -displayBanner">prod</a>, <a href="matlab:help double.sum -displayBanner">sum</a>, <a href="matlab:help nnz -displayBanner">nnz</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc any">Documentation for any</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('any')">Other uses of any</a>
+
+help exist
+ <strong>exist</strong> - Check existence of variable, script, function, folder, or class
+    This MATLAB function returns the type of name as a number.
+
+    Syntax
+      <strong>exist</strong> name
+      <strong>exist</strong> name searchType
+      typeID = <strong>exist</strong>(___)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/exist.html#f5-453632-name">name</a> - Name of variable, script, function, folder, or class
+        string scalar | character vector
+      <a href="matlab:web /MATLAB/help/matlab/ref/exist.html#f5-453632-searchType">searchType</a> - Type of results to search for
+        builtin | class | dir | file | var
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/exist.html#mw_2f3d9e73-5a73-4d8c-9d8f-f61c15988ee3">typeID</a> - Identifier type
+        numeric value
+
+    Examples
+      <a href="matlab:openExample('matlab/CheckExistenceOfWorkspaceVariableExample')">Check Existence of Workspace Variable</a>
+      <a href="matlab:openExample('matlab/CheckExistenceOfFolderExample')">Check Existence of Folder</a>
+      <a href="matlab:openExample('matlab/CheckIfMATLABFunctionIsBuiltinFunctionExample')">Check If MATLAB Function Is Built-In Function</a>
+
+    See also <a href="matlab:help dir -displayBanner">dir</a>, <a href="matlab:help inmem -displayBanner">inmem</a>, <a href="matlab:help what -displayBanner">what</a>, <a href="matlab:help which -displayBanner">which</a>, <a href="matlab:help who -displayBanner">who</a>, <a href="matlab:help isfolder -displayBanner">isfolder</a>, <a href="matlab:help isfile -displayBanner">isfile</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc exist">Documentation for exist</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('exist')">Other uses of exist</a>
+
+help isempty
+ <strong>isempty</strong> - Determine whether array is empty
+    This MATLAB function returns logical 1 (true) if A is empty, and logical
+    0 (false) otherwise.
+
+    Syntax
+      TF = <strong>isempty</strong>(A)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.isempty.html#d126e921201">A</a> - Input array
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Examples
+      <a href="matlab:openExample('matlab/DetermineEmptyArrayExample')">Empty Multidimensional Array</a>
+      <a href="matlab:openExample('matlab/EmptyArraysAndMissingValuesExample')">Empty Arrays and Missing Values</a>
+      <a href="matlab:openExample('matlab/EmptyStringArraysExample')">Empty String Arrays</a>
+
+    See also <a href="matlab:help ismissing -displayBanner">ismissing</a>, <a href="matlab:help eq -displayBanner">eq</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc isempty">Documentation for isempty</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('isempty')">Other uses of isempty</a>
+
+help isinf
+ <strong>isinf</strong> - Determine which array elements are infinite
+    This MATLAB function returns a logical array containing 1 (true) where
+    the elements of the array A are Inf or -Inf, and 0 (false) where they
+    are not.
+
+    Syntax
+      TF = <strong>isinf</strong>(A)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.isinf.html#mw_0c0d8d79-3d05-4d0b-8256-8544ee6fcdd9">A</a> - Input array
+        scalar | vector | matrix | multidimensional array
+
+    Examples
+      <a href="matlab:openExample('matlab/InfiniteElementsOfVectorExample')">Determine Infinite Real Elements</a>
+      <a href="matlab:openExample('matlab/CheckIfComplexNumbersHaveInfiniteValuesExample')">Determine Infinite Complex Elements</a>
+
+    See also <a href="matlab:help isfinite -displayBanner">isfinite</a>, <a href="matlab:help isnan -displayBanner">isnan</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc isinf">Documentation for isinf</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('isinf')">Other uses of isinf</a>
+
+help isfinite
+ <strong>isfinite</strong> - Determine which array elements are finite
+    This MATLAB function returns a logical array containing 1 (true) where
+    the elements of the array A are finite, and 0 (false) where they are
+    infinite or NaN.
+
+    Syntax
+      TF = <strong>isfinite</strong>(A)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.isfinite.html#mw_b698ee9c-56bf-4c33-b5df-f498e7afa625">A</a> - Input array
+        scalar | vector | matrix | multidimensional array
+
+    Examples
+      <a href="matlab:openExample('matlab/FiniteElementsOfVectorExample')">Determine Finite Real Elements</a>
+      <a href="matlab:openExample('matlab/CheckIfComplexNumbersHaveFiniteValuesExample')">Determine Finite Complex Elements</a>
+
+    See also <a href="matlab:help allfinite -displayBanner">allfinite</a>, <a href="matlab:help isinf -displayBanner">isinf</a>, <a href="matlab:help isnan -displayBanner">isnan</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc isfinite">Documentation for isfinite</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('isfinite')">Other uses of isfinite</a>
+
+help isnan
+ <strong>isnan</strong> - Determine which array elements are NaN
+    This MATLAB function returns a logical array containing 1 (true) where
+    the elements of A are NaN, and 0 (false) where they are not.
+
+    Syntax
+      TF = <strong>isnan</strong>(A)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.isnan.html#mw_db2dcfa9-acb4-48e9-a017-ee0c39f1f741">A</a> - Input array
+        scalar | vector | matrix | multidimensional array
+
+    Examples
+      <a href="matlab:openExample('matlab/NaNElementsInVectorExample')">Determine NaN Elements in Real Numbers</a>
+      <a href="matlab:openExample('matlab/FindNaNInComplexNumbersExample')">Determine NaN Elements in Complex Numbers</a>
+      <a href="matlab:openExample('matlab/ReplaceNaNElementsInArrayExample')">Replace NaN Elements</a>
+
+    See also <a href="matlab:help isfinite -displayBanner">isfinite</a>, <a href="matlab:help ismissing -displayBanner">ismissing</a>, <a href="matlab:help isinf -displayBanner">isinf</a>, <a href="matlab:help NaN -displayBanner">NaN</a>, <a href="matlab:help anynan -displayBanner">anynan</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc isnan">Documentation for isnan</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('isnan')">Other uses of isnan</a>
+
+help find
+ <strong>find</strong> - Find indices and values of nonzero elements
+    This MATLAB function returns a vector containing the linear indices of
+    each nonzero element in array X.
+
+    Syntax
+      k = <strong>find</strong>(X)
+      k = <strong>find</strong>(X,n)
+      k = <strong>find</strong>(X,n,direction)
+
+      [row,col] = <strong>find</strong>(___)
+      [row,col,v] = <strong>find</strong>(___)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/find.html#budqulo-X">X</a> - Input array
+        scalar | vector | matrix | multidimensional array
+      <a href="matlab:web /MATLAB/help/matlab/ref/find.html#budqulo-n">n</a> - Number of nonzeros to find
+        positive integer scalar
+      <a href="matlab:web /MATLAB/help/matlab/ref/find.html#budqulo-direction">direction</a> - Search direction
+        'first' (default) | 'last'
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/find.html#budqulo-k">k</a> - Indices to nonzero elements
+        vector
+      <a href="matlab:web /MATLAB/help/matlab/ref/find.html#budqulo-row">row</a> - Row subscripts
+        vector
+      <a href="matlab:web /MATLAB/help/matlab/ref/find.html#budqulo-col">col</a> - Column subscripts
+        vector
+      <a href="matlab:web /MATLAB/help/matlab/ref/find.html#budqulo-v">v</a> - Nonzero elements of X
+        vector
+
+    Examples
+      <a href="matlab:openExample('matlab/ZeroAndNonzeroElementsInMatrixExample')">Zero and Nonzero Elements in Matrix</a>
+      <a href="matlab:openExample('matlab/ElementsSatisfyingAConditionExample')">Elements Satisfying a Condition</a>
+      <a href="matlab:openExample('matlab/ElementsEqualToSpecificValuesExample')">Elements Equal to Specific Values</a>
+      <a href="matlab:openExample('matlab/LastSeveralNonzeroElementsExample')">Last Several Nonzero Elements</a>
+      <a href="matlab:openExample('matlab/ElementsSatisfyingMultipleConditionsExample')">Elements Satisfying Multiple Conditions</a>
+      <a href="matlab:openExample('matlab/SubscriptsAndValuesForNonzeroElementsExample')">Subscripts and Values for Nonzero Elements</a>
+      <a href="matlab:openExample('matlab/SubscriptsOfMultidimensionalArrayExample')">Subscripts of Multidimensional Array</a>
+
+    See also <a href="matlab:help ind2sub -displayBanner">ind2sub</a>, <a href="matlab:help nonzeros -displayBanner">nonzeros</a>, <a href="matlab:help string.strfind -displayBanner">strfind</a>, <a href="matlab:help sub2ind -displayBanner">sub2ind</a>, <a href="matlab:help('Short-Circuit AND', '-displayBanner')">Short-Circuit AND</a>,
+      <a href="matlab:help('Short-Circuit OR', '-displayBanner')">Short-Circuit OR</a>, <a href="matlab:help ismember -displayBanner">ismember</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc find">Documentation for find</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('find')">Other uses of find</a>
+
+help isreal
+ <strong>isreal</strong> - Determine whether array uses complex storage
+    This MATLAB function returns logical 1 (true) when numeric array A does
+    not have an imaginary part, and logical 0 (false) otherwise.
+
+    Syntax
+      tf = <strong>isreal</strong>(A)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.isreal.html#bt4oz5d-1-A">A</a> - Input array
+        scalar | vector | matrix | multidimensional array
+
+    Examples
+      <a href="matlab:openExample('matlab/DetermineWhetherMatrixContainsAllRealValuesExample')">Determine Whether Matrix Contains All Real Values</a>
+      <a href="matlab:openExample('matlab/DefineComplexNumberwithZeroValuedImaginaryPartExample')">Define Complex Number with Zero-Valued Imaginary Part</a>
+      <a href="matlab:openExample('matlab/ComputationResultinginZeroValuedImaginaryPartExample')">Computation Resulting in Zero-Valued Imaginary Part</a>
+      <a href="matlab:openExample('matlab/FindRealElementsinCellArrayExample')">Find Real Elements in Cell Array</a>
+
+    See also <a href="matlab:help complex -displayBanner">complex</a>, <a href="matlab:help isnumeric -displayBanner">isnumeric</a>, <a href="matlab:help isnan -displayBanner">isnan</a>, <a href="matlab:help isprime -displayBanner">isprime</a>, <a href="matlab:help isfinite -displayBanner">isfinite</a>, <a href="matlab:help isinf -displayBanner">isinf</a>, <a href="matlab:help isa -displayBanner">isa</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc isreal">Documentation for isreal</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('isreal')">Other uses of isreal</a>
+
+help issparse
+ <strong>issparse</strong> - Determine whether input is sparse
+    This MATLAB function returns logical 1 (true) if the storage class of S
+    is sparse and logical 0 (false) otherwise.
+
+    Syntax
+      TF = <strong>issparse</strong>(S)
+
+    See also <a href="matlab:help sparse -displayBanner">sparse</a>, <a href="matlab:help full -displayBanner">full</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc issparse">Documentation for issparse</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('issparse')">Other uses of issparse</a>
+
+x = 1:10
+
+x =
+
+     1     2     3     4     5     6     7     8     9    10
+
+help exp
+ <strong>exp</strong> - Exponential
+    This MATLAB function returns the exponential ex for each element in
+    array X.
+
+    Syntax
+      Y = <strong>exp</strong>(X)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.exp.html#bt9_gkt-1-X">X</a> - Input array
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.exp.html#bt9_gkt-1-Y">Y</a> - Exponential values
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Examples
+      <a href="matlab:openExample('matlab/NumericRepresentationOfEExample')">Numeric Representation of e</a>
+      <a href="matlab:openExample('matlab/EulersIdentityExample')">Euler's Identity</a>
+      <a href="matlab:openExample('matlab/PlotRealValuedExponentialFunctionExample')">Plot Exponential Function</a>
+
+    See also <a href="matlab:help expm -displayBanner">expm</a>, <a href="matlab:help double.log -displayBanner">log</a>, <a href="matlab:help expm1 -displayBanner">expm1</a>, <a href="matlab:help log10 -displayBanner">log10</a>, <a href="matlab:help expint -displayBanner">expint</a>, <a href="matlab:help power -displayBanner">power</a>, <a href="matlab:help mpower -displayBanner">mpower</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc exp">Documentation for exp</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('exp')">Other uses of exp</a>
+
+exp(x)
+
+ans =
+
+   1.0e+04 *
+
+    0.0003    0.0007    0.0020    0.0055    0.0148    0.0403    0.1097    0.2981    0.8103    2.2026
+
+help log
+ <strong>log</strong> - Natural logarithm
+    This MATLAB function returns the natural logarithm ln(x) of each element
+    in array X.
+
+    Syntax
+      Y = <strong>log</strong>(X)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.log.html#bt962gk-1-X">X</a> - Input array
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.log.html#bt962gk-1-Y">Y</a> - Logarithm values
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Examples
+      <a href="matlab:openExample('matlab/NaturalLogarithmofNegativeNumberExample')">Natural Logarithm of Negative Number</a>
+
+    See also <a href="matlab:help log1p -displayBanner">log1p</a>, <a href="matlab:help log2 -displayBanner">log2</a>, <a href="matlab:help log10 -displayBanner">log10</a>, <a href="matlab:help exp -displayBanner">exp</a>, <a href="matlab:help logm -displayBanner">logm</a>, <a href="matlab:help reallog -displayBanner">reallog</a>, <a href="matlab:help loglog -displayBanner">loglog</a>, <a href="matlab:help semilogx -displayBanner">semilogx</a>,
+      <a href="matlab:help semilogy -displayBanner">semilogy</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc log">Documentation for log</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('log')">Other uses of log</a>
+
+log(x)
+
+ans =
+
+         0    0.6931    1.0986    1.3863    1.6094    1.7918    1.9459    2.0794    2.1972    2.3026
+
+help log10
+ <strong>log10</strong> - Common logarithm (base 10)
+    This MATLAB function returns the common logarithm of each element in
+    array X.
+
+    Syntax
+      Y = <strong>log10</strong>(X)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.log10.html#bua6cre-1-X">X</a> - Input array
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Examples
+      <a href="matlab:openExample('matlab/CalculateScalarCommonLogarithmValuesExample')">Calculate Scalar Common Logarithm Values</a>
+      <a href="matlab:openExample('matlab/RealValuedCommonLogarithmExample')">Real-Valued Common Logarithm</a>
+      <a href="matlab:openExample('matlab/ComplexValuedCommonLogarithmExample')">Complex-Valued Common Logarithm</a>
+
+    See also <a href="matlab:help exp -displayBanner">exp</a>, <a href="matlab:help double.log -displayBanner">log</a>, <a href="matlab:help log2 -displayBanner">log2</a>, <a href="matlab:help logm -displayBanner">logm</a>, <a href="matlab:help loglog -displayBanner">loglog</a>, <a href="matlab:help log1p -displayBanner">log1p</a>, <a href="matlab:help semilogx -displayBanner">semilogx</a>, <a href="matlab:help semilogy -displayBanner">semilogy</a>,
+      <a href="matlab:help reallog -displayBanner">reallog</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc log10">Documentation for log10</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('log10')">Other uses of log10</a>
+
+log10(x)
+
+ans =
+
+         0    0.3010    0.4771    0.6021    0.6990    0.7782    0.8451    0.9031    0.9542    1.0000
+
+help sqrt
+ <strong>sqrt</strong> - Square root
+    This MATLAB function returns the square root of each element of the
+    array X.
+
+    Syntax
+      B = <strong>sqrt</strong>(X)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.sqrt.html#bu57a5h-X">X</a> - Input array
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Examples
+      <a href="matlab:openExample('matlab/SquareRootOfVectorElementsExample')">Square Root of Vector Elements</a>
+
+    See also <a href="matlab:help nthroot -displayBanner">nthroot</a>, <a href="matlab:help sqrtm -displayBanner">sqrtm</a>, <a href="matlab:help realsqrt -displayBanner">realsqrt</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc sqrt">Documentation for sqrt</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('sqrt')">Other uses of sqrt</a>
+
+sqrt(x)
+
+ans =
+
+    1.0000    1.4142    1.7321    2.0000    2.2361    2.4495    2.6458    2.8284    3.0000    3.1623
+
+help nthroot
+ <strong>nthroot</strong> - Real nth root of real numbers
+    This MATLAB function returns the real nth root of X.
+
+    Syntax
+      Y = <strong>nthroot</strong>(X,N)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.nthroot.html#buchym2-X">X</a> - Input array
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.nthroot.html#buchym2-N">N</a> - Roots to calculate
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Examples
+      <a href="matlab:openExample('matlab/CalculateRealRootofNegativeNumberExample')">Real Root of Negative Number</a>
+      <a href="matlab:openExample('matlab/CalculateSeveralRealRootsofScalarExample')">Real Roots of Scalar</a>
+      <a href="matlab:openExample('matlab/CalculateSeveralRealRootsOfAVectorExample')">Real Roots of Vector</a>
+      <a href="matlab:openExample('matlab/ElementwiseRootsofMatrixExample')">Element-Wise Roots of Matrix</a>
+
+    See also <a href="matlab:help double.sqrt -displayBanner">sqrt</a>, <a href="matlab:help power -displayBanner">power</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc nthroot">Documentation for nthroot</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('nthroot')">Other uses of nthroot</a>
+
+nthroot(x, 2)
+
+ans =
+
+    1.0000    1.4142    1.7321    2.0000    2.2361    2.4495    2.6458    2.8284    3.0000    3.1623
+
+help log2
+ <strong>log2</strong> - Base 2 logarithm and floating-point number dissection
+    This MATLAB function computes the base 2 logarithm of the elements of X
+    such that 2Y=X.
+
+    Syntax
+      Y = <strong>log2</strong>(X)
+      [F,E] = <strong>log2</strong>(X)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.log2.html#d126e1015119">X</a> - Input matrix
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.log2.html#d126e1015190">Y</a> - Base 2 logarithm values
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.log2.html#d126e1015221">F</a> - Mantissa values
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.log2.html#d126e1015258">E</a> - Exponent values
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Examples
+      <a href="matlab:openExample('matlab/Base2LogarithmExample')">Base 2 Logarithm Values</a>
+      <a href="matlab:openExample('matlab/FloatingNumberDissectionExample')">Floating-Point Number Dissection</a>
+
+    See also <a href="matlab:help log10 -displayBanner">log10</a>, <a href="matlab:help double.log -displayBanner">log</a>, <a href="matlab:help double.pow2 -displayBanner">pow2</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc log2">Documentation for log2</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('log2')">Other uses of log2</a>
+
+log2(x)
+
+ans =
+
+         0    1.0000    1.5850    2.0000    2.3219    2.5850    2.8074    3.0000    3.1699    3.3219
+
+help abs
+ <strong>abs</strong> - Absolute value and complex magnitude
+    This MATLAB function returns the absolute value of each element in input
+    X.
+
+    Syntax
+      Y = <strong>abs</strong>(X)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.abs.html#bucsg6q-1-X">X</a> - Input array
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Examples
+      <a href="matlab:openExample('matlab/AbsoluteValueofScalarExample')">Absolute Value of Scalar</a>
+      <a href="matlab:openExample('matlab/AbsoluteValueofVectorExample')">Absolute Value of Vector</a>
+      <a href="matlab:openExample('matlab/MagnitudeofComplexNumberExample')">Magnitude of Complex Number</a>
+
+    See also <a href="matlab:help angle -displayBanner">angle</a>, <a href="matlab:help double.sign -displayBanner">sign</a>, <a href="matlab:help unwrap -displayBanner">unwrap</a>, <a href="matlab:help hypot -displayBanner">hypot</a>, <a href="matlab:help norm -displayBanner">norm</a>, <a href="matlab:help imag -displayBanner">imag</a>, <a href="matlab:help real -displayBanner">real</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc abs">Documentation for abs</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('abs')">Other uses of abs</a>
+
+abs(x)
+
+ans =
+
+     1     2     3     4     5     6     7     8     9    10
+
+help complex
+ <strong>complex</strong> - Create complex array
+    This MATLAB function creates a complex output, z, from two real inputs,
+    such that z = a + bi.
+
+    Syntax
+      z = <strong>complex</strong>(a,b)
+      z = <strong>complex</strong>(x)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/complex.html#bt4jyjw-1-a">a</a> - Real component
+        scalar | vector | matrix | multidimensional array
+      <a href="matlab:web /MATLAB/help/matlab/ref/complex.html#bt4jyjw-1-b">b</a> - Imaginary component
+        scalar | vector | matrix | multidimensional array
+      <a href="matlab:web /MATLAB/help/matlab/ref/complex.html#bt4jyjw-1-x">x</a> - Input array
+        scalar | vector | matrix | multidimensional array
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/complex.html#bt4jyjw-1-z">z</a> - Complex array
+        scalar | vector | matrix | multidimensional array
+
+    Examples
+      <a href="matlab:openExample('matlab/ComplexScalarfromTwoRealScalarsExample')">Complex Scalar from Two Real Scalars</a>
+      <a href="matlab:openExample('matlab/ComplexVectorfromTwoComplexVectorsExample')">Complex Vector from Two Real Vectors</a>
+      <a href="matlab:openExample('matlab/ComplexScalarfromOneRealScalarExample')">Complex Scalar from One Real Scalar</a>
+
+    See also <a href="matlab:help double.abs -displayBanner">abs</a>, <a href="matlab:help angle -displayBanner">angle</a>, <a href="matlab:help conj -displayBanner">conj</a>, <a href="matlab:help i -displayBanner"> i </a>, <a href="matlab:help imag -displayBanner">imag</a>, <a href="matlab:help isreal -displayBanner">isreal</a>, <a href="matlab:help j -displayBanner"> j </a>, <a href="matlab:help real -displayBanner">real</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc complex">Documentation for complex</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('complex')">Other uses of complex</a>
+
+complex(x)
+
+ans =
+
+  Columns 1 through 6
+
+   1.0000 + 0.0000i   2.0000 + 0.0000i   3.0000 + 0.0000i   4.0000 + 0.0000i   5.0000 + 0.0000i   6.0000 + 0.0000i
+
+  Columns 7 through 10
+
+   7.0000 + 0.0000i   8.0000 + 0.0000i   9.0000 + 0.0000i  10.0000 + 0.0000i
+
+help imag
+ <strong>imag</strong> - Imaginary part of complex number
+    This MATLAB function returns the imaginary part of each element in array
+    Z.
+
+    Syntax
+      Y = <strong>imag</strong>(Z)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/imag.html#mw_fd3bab83-96bf-4f2a-95a7-6e56b26b0ab2">Z</a> - Input array
+        scalar | vector | matrix | multidimensional array
+
+    Examples
+      <a href="matlab:openExample('matlab/ImaginaryPartOfComplexNumberExample')">Imaginary Part of Complex Number</a>
+      <a href="matlab:openExample('matlab/ImaginaryPartOfVectorOfComplexValuesExample')">Imaginary Part of Vector of Complex Values</a>
+
+    See also <a href="matlab:help conj -displayBanner">conj</a>, <a href="matlab:help i -displayBanner"> i </a>, <a href="matlab:help j -displayBanner"> j </a>, <a href="matlab:help real -displayBanner">real</a>, <a href="matlab:help double.abs -displayBanner">abs</a>, <a href="matlab:help complex -displayBanner">complex</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc imag">Documentation for imag</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('imag')">Other uses of imag</a>
+
+imag(x)
+
+ans =
+
+     0     0     0     0     0     0     0     0     0     0
+
+help real
+ <strong>real</strong> - Real part of complex number
+    This MATLAB function returns the real part of each element in array Z.
+
+    Syntax
+      X = <strong>real</strong>(Z)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/real.html#mw_2f265058-af02-4bbc-b8d6-30f588060fe5">Z</a> - Input array
+        scalar | vector | matrix | multidimensional array
+
+    Examples
+      <a href="matlab:openExample('matlab/RealPartOfComplexNumberExample')">Real Part of Complex Number</a>
+      <a href="matlab:openExample('matlab/RealPartOfVectorOfComplexValuesExample')">Real Part of Vector of Complex Values</a>
+
+    See also <a href="matlab:help double.abs -displayBanner">abs</a>, <a href="matlab:help conj -displayBanner">conj</a>, <a href="matlab:help imag -displayBanner">imag</a>, <a href="matlab:help i -displayBanner"> i </a>, <a href="matlab:help j -displayBanner"> j </a>, <a href="matlab:help complex -displayBanner">complex</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc real">Documentation for real</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('real')">Other uses of real</a>
+
+real(x)
+
+ans =
+
+     1     2     3     4     5     6     7     8     9    10
+
+help fix
+ <strong>fix</strong> - Round toward zero
+    This MATLAB function rounds each element of X to the nearest integer
+    toward zero.
+
+    Syntax
+      Y = <strong>fix</strong>(X)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.fix.html#bul3slv-X">X</a> - Input array
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Examples
+      <a href="matlab:openExample('matlab/RoundMatrixElementsTowardZeroExample')">Round Matrix Elements Toward Zero</a>
+      <a href="matlab:openExample('matlab/RoundComplexNumbersTowardZeroExample')">Round Complex Numbers Toward Zero</a>
+
+    See also <a href="matlab:help double.ceil -displayBanner">ceil</a>, <a href="matlab:help double.floor -displayBanner">floor</a>, <a href="matlab:help double.round -displayBanner">round</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc matlab/fix">Documentation for fix</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('fix')">Other uses of fix</a>
+
+fix(x)
+
+ans =
+
+     1     2     3     4     5     6     7     8     9    10
+
+help floor
+ <strong>floor</strong> - Round toward negative infinity
+    This MATLAB function rounds each element of X to the nearest integer
+    less than or equal to that element.
+
+    Syntax
+      Y = <strong>floor</strong>(X)
+
+      Y = <strong>floor</strong>(t)
+      Y = <strong>floor</strong>(t,unit)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.floor.html#bug_5mn-1-X">X</a> - Input array
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.floor.html#bug_5mn-1-t">t</a> - Input duration
+        duration array
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.floor.html#bug_5mn-1-unit">unit</a> - Unit of time
+        'seconds' (default) | 'minutes' | 'hours' | 'days' | 'years'
+
+    Examples
+      <a href="matlab:openExample('matlab/RoundMatrixElementsTowardNegativeInfinityExample')">Round Matrix Elements Toward Negative Infinity</a>
+      <a href="matlab:openExample('matlab/RoundDurationValuesTowardNegativeInfinityExample')">Round Duration Values Toward Negative Infinity</a>
+
+    See also <a href="matlab:help double.ceil -displayBanner">ceil</a>, <a href="matlab:help double.fix -displayBanner">fix</a>, <a href="matlab:help double.round -displayBanner">round</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc floor">Documentation for floor</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('floor')">Other uses of floor</a>
+
+floor(x)
+
+ans =
+
+     1     2     3     4     5     6     7     8     9    10
+
+help ceil
+ <strong>ceil</strong> - Round toward positive infinity
+    This MATLAB function rounds each element of X to the nearest integer
+    greater than or equal to that element.
+
+    Syntax
+      Y = <strong>ceil</strong>(X)
+
+      Y = <strong>ceil</strong>(t)
+      Y = <strong>ceil</strong>(t,unit)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.ceil.html#bug2ukg-1-X">X</a> - Input array
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.ceil.html#bug2ukg-1-t">t</a> - Input duration
+        duration array
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.ceil.html#bug2ukg-1-unit">unit</a> - Unit of time
+        'seconds' (default) | 'minutes' | 'hours' | 'days' | 'years'
+
+    Examples
+      <a href="matlab:openExample('matlab/RoundMatrixElementsTowardPositiveInfinityExample')">Round Matrix Elements Toward Positive Infinity</a>
+      <a href="matlab:openExample('matlab/RoundDurationValuesTowardPositiveInfinityExample')">Round Duration Values Toward Positive Infinity</a>
+
+    See also <a href="matlab:help double.fix -displayBanner">fix</a>, <a href="matlab:help double.floor -displayBanner">floor</a>, <a href="matlab:help double.round -displayBanner">round</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc ceil">Documentation for ceil</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('ceil')">Other uses of ceil</a>
+
+ceil(x)
+
+ans =
+
+     1     2     3     4     5     6     7     8     9    10
+
+help mod
+ <strong>mod</strong> - Remainder after division (modulo operation)
+    This MATLAB function returns the remainder after division of a by m,
+    where a is the dividend and m is the divisor.
+
+    Syntax
+      b = <strong>mod</strong>(a,m)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.mod.html#btvg3sl-1-a">a</a> - Dividend
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.mod.html#btvg3sl-1-m">m</a> - Divisor
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Examples
+      <a href="matlab:openExample('matlab/RemainderAfterDivisionofScalarExample')">Remainder After Division of Scalar</a>
+      <a href="matlab:openExample('matlab/RemainderAfterDivisionofVectorExample')">Remainder After Division of Vector</a>
+      <a href="matlab:openExample('matlab/RemainderAfterDivisionforPositiveandNegativeValuesExample')">Remainder After Division for Positive and Negative Values</a>
+      <a href="matlab:openExample('matlab/RemainderAfterDivisionforNegativeDivisorExample')">Remainder After Division for Negative Divisor</a>
+      <a href="matlab:openExample('matlab/RemainderAfterDivisionforFloatingPointValuesExample')">Remainder After Division for Floating-Point Values</a>
+
+    See also <a href="matlab:help rem -displayBanner">rem</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc mod">Documentation for mod</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('mod')">Other uses of mod</a>
+
+mod(x)
+{Error using <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('mod')" style="font-weight:bold">mod</a>
+Not enough input arguments.
+} 
+mod(x, 5)
+
+ans =
+
+     1     2     3     4     0     1     2     3     4     0
+
+help round
+ <strong>round</strong> - Round to nearest decimal or integer
+    This MATLAB function rounds each element of X to the nearest integer.
+
+    Syntax
+      Y = <strong>round</strong>(X)
+      Y = <strong>round</strong>(X,N)
+      Y = <strong>round</strong>(X,N,type)
+      Y = <strong>round</strong>(___,TieBreaker=direction)
+
+      Y = <strong>round</strong>(t)
+      Y = <strong>round</strong>(t,unit)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.round.html#buftmpz-X">X</a> - Input array
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.round.html#buftmpz-N">N</a> - Number of digits
+        scalar integer
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.round.html#buftmpz-type">type</a> - Rounding type
+        "decimals" (default) | "significant"
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.round.html#mw_e51282fd-7461-4bab-9f38-6106551bb8b2">direction</a> - Direction to break ties
+        "fromzero" (default) | "tozero" | "even" | "odd" | "plusinf" |
+        "minusinf"
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.round.html#buftmpz-t">t</a> - Input duration
+        duration array
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.round.html#buftmpz-unit">unit</a> - Unit of time
+        "seconds" (default) | "minutes" | "hours" | "days" | "years"
+
+    Examples
+      <a href="matlab:openExample('matlab/RoundMatrixElementsExample')">Round Matrix Elements</a>
+      <a href="matlab:openExample('matlab/RoundToSpecifiedNumberOfDecimalDigitsExample')">Round to Specified Number of Decimal Digits</a>
+      <a href="matlab:openExample('matlab/RoundtoNearestMultipleof100Example')">Round to Nearest Multiple of 100</a>
+      <a href="matlab:openExample('matlab/RoundElementstoSpecifiedNumberofSignificantDigitsExample')">Round Elements to Specified Number of Significant Digits</a>
+      <a href="matlab:openExample('matlab/ControllingNumberDisplayWhileRoundingExample')">Control Number Display While Rounding</a>
+      <a href="matlab:openExample('matlab/SpecifyRoundingDirectionForTiesExample')">Specify Rounding Direction for Ties</a>
+      <a href="matlab:openExample('matlab/RoundDurationValuesExample')">Round Duration Values</a>
+
+    See also <a href="matlab:help double.ceil -displayBanner">ceil</a>, <a href="matlab:help double.fix -displayBanner">fix</a>, <a href="matlab:help double.floor -displayBanner">floor</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc round">Documentation for round</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('round')">Other uses of round</a>
+
+round(x)
+
+ans =
+
+     1     2     3     4     5     6     7     8     9    10
+
+help rem
+ <strong>rem</strong> - Remainder after division
+    This MATLAB function returns the remainder after division of a by b,
+    where a is the dividend and b is the divisor.
+
+    Syntax
+      r = <strong>rem</strong>(a,b)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.rem.html#btvphck-1-a">a</a> - Dividend
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.rem.html#btvphck-1-b">b</a> - Divisor
+        scalar | vector | matrix | multidimensional array | table |
+        timetable
+
+    Examples
+      <a href="matlab:openExample('matlab/RemainderofTwoScalarsExample')">Remainder After Division of Scalar</a>
+      <a href="matlab:openExample('matlab/RemainderofaVectorExample')">Remainder After Division of Vector</a>
+      <a href="matlab:openExample('matlab/RemAfterDivisionForPositiveAndNegativeValuesExample')">Remainder After Division for Positive and Negative Values</a>
+      <a href="matlab:openExample('matlab/RemAfterDivisionForFloatingPointValuesExample')">Remainder After Division for Floating-Point Values</a>
+
+    See also <a href="matlab:help double.mod -displayBanner">mod</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc rem">Documentation for rem</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('rem')">Other uses of rem</a>
+
+rem(x, 2)
+
+ans =
+
+     1     0     1     0     1     0     1     0     1     0
+
+help sign
+ <strong>sign</strong> - Sign function (signum function)
+    This MATLAB function returns an array Y the same size as x, where each
+    element of Y is: 1 if the corresponding element of x is greater than 0.
+
+    Syntax
+      <strong>sign</strong>(x)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.sign.html#f96-998505-x">x</a> - Input
+        scalar | vector | matrix | multidimensional array
+
+    Examples
+      <a href="matlab:openExample('matlab/FindSignFunctionExample')">Find Sign Function</a>
+      <a href="matlab:openExample('matlab/PlotSignumFunctionExample')">Plot Sign Function</a>
+      <a href="matlab:openExample('matlab/PlotRealAndImaginaryPartsOfSignFunctionExample')">Plot Real and Imaginary Parts of Sign Function</a>
+
+    See also <a href="matlab:help double.abs -displayBanner">abs</a>, <a href="matlab:help conj -displayBanner">conj</a>, <a href="matlab:help imag -displayBanner">imag</a>, <a href="matlab:help real -displayBanner">real</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc sign">Documentation for sign</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('sign')">Other uses of sign</a>
+
+sign(x)
+
+ans =
+
+     1     1     1     1     1     1     1     1     1     1
+
+diary off
