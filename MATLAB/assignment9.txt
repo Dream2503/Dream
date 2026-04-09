@@ -1,0 +1,773 @@
+diary on
+% Q1. Create a 10x10 random matrix and do the following:
+A = rand(10)
+
+A =
+
+    0.8147    0.1576    0.6557    0.7060    0.4387    0.2760    0.7513    0.8407    0.3517    0.0759
+    0.9058    0.9706    0.0357    0.0318    0.3816    0.6797    0.2551    0.2543    0.8308    0.0540
+    0.1270    0.9572    0.8491    0.2769    0.7655    0.6551    0.5060    0.8143    0.5853    0.5308
+    0.9134    0.4854    0.9340    0.0462    0.7952    0.1626    0.6991    0.2435    0.5497    0.7792
+    0.6324    0.8003    0.6787    0.0971    0.1869    0.1190    0.8909    0.9293    0.9172    0.9340
+    0.0975    0.1419    0.7577    0.8235    0.4898    0.4984    0.9593    0.3500    0.2858    0.1299
+    0.2785    0.4218    0.7431    0.6948    0.4456    0.9597    0.5472    0.1966    0.7572    0.5688
+    0.5469    0.9157    0.3922    0.3171    0.6463    0.3404    0.1386    0.2511    0.7537    0.4694
+    0.9575    0.7922    0.6555    0.9502    0.7094    0.5853    0.1493    0.6160    0.3804    0.0119
+    0.9649    0.9595    0.1712    0.0344    0.7547    0.2238    0.2575    0.4733    0.5678    0.3371
+
+% i. Multiply all the elements by 100 and then round off all elements of the matrix to integers.
+A = round(A * 100)
+
+A =
+
+    81    16    66    71    44    28    75    84    35     8
+    91    97     4     3    38    68    26    25    83     5
+    13    96    85    28    77    66    51    81    59    53
+    91    49    93     5    80    16    70    24    55    78
+    63    80    68    10    19    12    89    93    92    93
+    10    14    76    82    49    50    96    35    29    13
+    28    42    74    69    45    96    55    20    76    57
+    55    92    39    32    65    34    14    25    75    47
+    96    79    66    95    71    59    15    62    38     1
+    96    96    17     3    75    22    26    47    57    34
+
+% ii. Replace all the elements of the matrix less than 10 to zeros.
+A(A < 10) = 0
+
+A =
+
+    81    16    66    71    44    28    75    84    35     0
+    91    97     0     0    38    68    26    25    83     0
+    13    96    85    28    77    66    51    81    59    53
+    91    49    93     0    80    16    70    24    55    78
+    63    80    68    10    19    12    89    93    92    93
+    10    14    76    82    49    50    96    35    29    13
+    28    42    74    69    45    96    55    20    76    57
+    55    92    39    32    65    34    14    25    75    47
+    96    79    66    95    71    59    15    62    38     0
+    96    96    17     0    75    22    26    47    57    34
+
+% iii. Extract all the elements of the matrix that are between 30 to 50 and put them in a vector
+B = A(A >= 30 & A <= 50)
+
+B =
+
+    49
+    42
+    39
+    32
+    44
+    38
+    49
+    45
+    50
+    34
+    35
+    47
+    35
+    38
+    47
+    34
+
+% Q2. Create a matrices A of size 12  10 & display it in command window.
+A = rand(12, 10)
+
+A =
+
+    0.1622    0.2290    0.8173    0.8693    0.1839    0.7803    0.8212    0.6868    0.5085    0.6225
+    0.7943    0.9133    0.8687    0.5797    0.2400    0.3897    0.0154    0.1835    0.5108    0.5870
+    0.3112    0.1524    0.0844    0.5499    0.4173    0.2417    0.0430    0.3685    0.8176    0.2077
+    0.5285    0.8258    0.3998    0.1450    0.0497    0.4039    0.1690    0.6256    0.7948    0.3012
+    0.1656    0.5383    0.2599    0.8530    0.9027    0.0965    0.6491    0.7802    0.6443    0.4709
+    0.6020    0.9961    0.8001    0.6221    0.9448    0.1320    0.7317    0.0811    0.3786    0.2305
+    0.2630    0.0782    0.4314    0.3510    0.4909    0.9421    0.6477    0.9294    0.8116    0.8443
+    0.6541    0.4427    0.9106    0.5132    0.4893    0.9561    0.4509    0.7757    0.5328    0.1948
+    0.6892    0.1067    0.1818    0.4018    0.3377    0.5752    0.5470    0.4868    0.3507    0.2259
+    0.7482    0.9619    0.2638    0.0760    0.9001    0.0598    0.2963    0.4359    0.9390    0.1707
+    0.4505    0.0046    0.1455    0.2399    0.3692    0.2348    0.7447    0.4468    0.8759    0.2277
+    0.0838    0.7749    0.1361    0.1233    0.1112    0.3532    0.1890    0.3063    0.5502    0.4357
+
+% Q3. Display the value of A(8,9), A(3,6), A(11,10), A(8,7), A( 12,9) of the above matrix.
+[ A(8, 9), A(3, 6), A(11, 10), A(8, 7), A(12, 9) ]
+
+ans =
+
+    0.5328    0.2417    0.2277    0.4509    0.5502
+
+% Q4. Make the above positions in A to 0.
+A(8, 9) = 0
+
+A =
+
+    0.1622    0.2290    0.8173    0.8693    0.1839    0.7803    0.8212    0.6868    0.5085    0.6225
+    0.7943    0.9133    0.8687    0.5797    0.2400    0.3897    0.0154    0.1835    0.5108    0.5870
+    0.3112    0.1524    0.0844    0.5499    0.4173    0.2417    0.0430    0.3685    0.8176    0.2077
+    0.5285    0.8258    0.3998    0.1450    0.0497    0.4039    0.1690    0.6256    0.7948    0.3012
+    0.1656    0.5383    0.2599    0.8530    0.9027    0.0965    0.6491    0.7802    0.6443    0.4709
+    0.6020    0.9961    0.8001    0.6221    0.9448    0.1320    0.7317    0.0811    0.3786    0.2305
+    0.2630    0.0782    0.4314    0.3510    0.4909    0.9421    0.6477    0.9294    0.8116    0.8443
+    0.6541    0.4427    0.9106    0.5132    0.4893    0.9561    0.4509    0.7757         0    0.1948
+    0.6892    0.1067    0.1818    0.4018    0.3377    0.5752    0.5470    0.4868    0.3507    0.2259
+    0.7482    0.9619    0.2638    0.0760    0.9001    0.0598    0.2963    0.4359    0.9390    0.1707
+    0.4505    0.0046    0.1455    0.2399    0.3692    0.2348    0.7447    0.4468    0.8759    0.2277
+    0.0838    0.7749    0.1361    0.1233    0.1112    0.3532    0.1890    0.3063    0.5502    0.4357
+
+A(3,6) = 0
+
+A =
+
+    0.1622    0.2290    0.8173    0.8693    0.1839    0.7803    0.8212    0.6868    0.5085    0.6225
+    0.7943    0.9133    0.8687    0.5797    0.2400    0.3897    0.0154    0.1835    0.5108    0.5870
+    0.3112    0.1524    0.0844    0.5499    0.4173         0    0.0430    0.3685    0.8176    0.2077
+    0.5285    0.8258    0.3998    0.1450    0.0497    0.4039    0.1690    0.6256    0.7948    0.3012
+    0.1656    0.5383    0.2599    0.8530    0.9027    0.0965    0.6491    0.7802    0.6443    0.4709
+    0.6020    0.9961    0.8001    0.6221    0.9448    0.1320    0.7317    0.0811    0.3786    0.2305
+    0.2630    0.0782    0.4314    0.3510    0.4909    0.9421    0.6477    0.9294    0.8116    0.8443
+    0.6541    0.4427    0.9106    0.5132    0.4893    0.9561    0.4509    0.7757         0    0.1948
+    0.6892    0.1067    0.1818    0.4018    0.3377    0.5752    0.5470    0.4868    0.3507    0.2259
+    0.7482    0.9619    0.2638    0.0760    0.9001    0.0598    0.2963    0.4359    0.9390    0.1707
+    0.4505    0.0046    0.1455    0.2399    0.3692    0.2348    0.7447    0.4468    0.8759    0.2277
+    0.0838    0.7749    0.1361    0.1233    0.1112    0.3532    0.1890    0.3063    0.5502    0.4357
+
+A(11,10) = 0
+
+A =
+
+    0.1622    0.2290    0.8173    0.8693    0.1839    0.7803    0.8212    0.6868    0.5085    0.6225
+    0.7943    0.9133    0.8687    0.5797    0.2400    0.3897    0.0154    0.1835    0.5108    0.5870
+    0.3112    0.1524    0.0844    0.5499    0.4173         0    0.0430    0.3685    0.8176    0.2077
+    0.5285    0.8258    0.3998    0.1450    0.0497    0.4039    0.1690    0.6256    0.7948    0.3012
+    0.1656    0.5383    0.2599    0.8530    0.9027    0.0965    0.6491    0.7802    0.6443    0.4709
+    0.6020    0.9961    0.8001    0.6221    0.9448    0.1320    0.7317    0.0811    0.3786    0.2305
+    0.2630    0.0782    0.4314    0.3510    0.4909    0.9421    0.6477    0.9294    0.8116    0.8443
+    0.6541    0.4427    0.9106    0.5132    0.4893    0.9561    0.4509    0.7757         0    0.1948
+    0.6892    0.1067    0.1818    0.4018    0.3377    0.5752    0.5470    0.4868    0.3507    0.2259
+    0.7482    0.9619    0.2638    0.0760    0.9001    0.0598    0.2963    0.4359    0.9390    0.1707
+    0.4505    0.0046    0.1455    0.2399    0.3692    0.2348    0.7447    0.4468    0.8759         0
+    0.0838    0.7749    0.1361    0.1233    0.1112    0.3532    0.1890    0.3063    0.5502    0.4357
+
+A(8,7) = 0
+
+A =
+
+    0.1622    0.2290    0.8173    0.8693    0.1839    0.7803    0.8212    0.6868    0.5085    0.6225
+    0.7943    0.9133    0.8687    0.5797    0.2400    0.3897    0.0154    0.1835    0.5108    0.5870
+    0.3112    0.1524    0.0844    0.5499    0.4173         0    0.0430    0.3685    0.8176    0.2077
+    0.5285    0.8258    0.3998    0.1450    0.0497    0.4039    0.1690    0.6256    0.7948    0.3012
+    0.1656    0.5383    0.2599    0.8530    0.9027    0.0965    0.6491    0.7802    0.6443    0.4709
+    0.6020    0.9961    0.8001    0.6221    0.9448    0.1320    0.7317    0.0811    0.3786    0.2305
+    0.2630    0.0782    0.4314    0.3510    0.4909    0.9421    0.6477    0.9294    0.8116    0.8443
+    0.6541    0.4427    0.9106    0.5132    0.4893    0.9561         0    0.7757         0    0.1948
+    0.6892    0.1067    0.1818    0.4018    0.3377    0.5752    0.5470    0.4868    0.3507    0.2259
+    0.7482    0.9619    0.2638    0.0760    0.9001    0.0598    0.2963    0.4359    0.9390    0.1707
+    0.4505    0.0046    0.1455    0.2399    0.3692    0.2348    0.7447    0.4468    0.8759         0
+    0.0838    0.7749    0.1361    0.1233    0.1112    0.3532    0.1890    0.3063    0.5502    0.4357
+
+A(12,9) = 0
+
+A =
+
+    0.1622    0.2290    0.8173    0.8693    0.1839    0.7803    0.8212    0.6868    0.5085    0.6225
+    0.7943    0.9133    0.8687    0.5797    0.2400    0.3897    0.0154    0.1835    0.5108    0.5870
+    0.3112    0.1524    0.0844    0.5499    0.4173         0    0.0430    0.3685    0.8176    0.2077
+    0.5285    0.8258    0.3998    0.1450    0.0497    0.4039    0.1690    0.6256    0.7948    0.3012
+    0.1656    0.5383    0.2599    0.8530    0.9027    0.0965    0.6491    0.7802    0.6443    0.4709
+    0.6020    0.9961    0.8001    0.6221    0.9448    0.1320    0.7317    0.0811    0.3786    0.2305
+    0.2630    0.0782    0.4314    0.3510    0.4909    0.9421    0.6477    0.9294    0.8116    0.8443
+    0.6541    0.4427    0.9106    0.5132    0.4893    0.9561         0    0.7757         0    0.1948
+    0.6892    0.1067    0.1818    0.4018    0.3377    0.5752    0.5470    0.4868    0.3507    0.2259
+    0.7482    0.9619    0.2638    0.0760    0.9001    0.0598    0.2963    0.4359    0.9390    0.1707
+    0.4505    0.0046    0.1455    0.2399    0.3692    0.2348    0.7447    0.4468    0.8759         0
+    0.0838    0.7749    0.1361    0.1233    0.1112    0.3532    0.1890    0.3063         0    0.4357
+
+% Q5. Display sub-matrix of A for the range A(2:3,1:5).
+A(2:3, 1:5)
+
+ans =
+
+    0.7943    0.9133    0.8687    0.5797    0.2400
+    0.3112    0.1524    0.0844    0.5499    0.4173
+
+% Q6. Display the whole matrix starting from the element A(2,3).
+A(2:end, 3:end)
+
+ans =
+
+    0.8687    0.5797    0.2400    0.3897    0.0154    0.1835    0.5108    0.5870
+    0.0844    0.5499    0.4173         0    0.0430    0.3685    0.8176    0.2077
+    0.3998    0.1450    0.0497    0.4039    0.1690    0.6256    0.7948    0.3012
+    0.2599    0.8530    0.9027    0.0965    0.6491    0.7802    0.6443    0.4709
+    0.8001    0.6221    0.9448    0.1320    0.7317    0.0811    0.3786    0.2305
+    0.4314    0.3510    0.4909    0.9421    0.6477    0.9294    0.8116    0.8443
+    0.9106    0.5132    0.4893    0.9561         0    0.7757         0    0.1948
+    0.1818    0.4018    0.3377    0.5752    0.5470    0.4868    0.3507    0.2259
+    0.2638    0.0760    0.9001    0.0598    0.2963    0.4359    0.9390    0.1707
+    0.1455    0.2399    0.3692    0.2348    0.7447    0.4468    0.8759         0
+    0.1361    0.1233    0.1112    0.3532    0.1890    0.3063         0    0.4357
+
+% Q7. Delete a specified row & column in the above matrix.
+A(5, :) = []
+
+A =
+
+    0.1622    0.2290    0.8173    0.8693    0.1839    0.7803    0.8212    0.6868    0.5085    0.6225
+    0.7943    0.9133    0.8687    0.5797    0.2400    0.3897    0.0154    0.1835    0.5108    0.5870
+    0.3112    0.1524    0.0844    0.5499    0.4173         0    0.0430    0.3685    0.8176    0.2077
+    0.5285    0.8258    0.3998    0.1450    0.0497    0.4039    0.1690    0.6256    0.7948    0.3012
+    0.6020    0.9961    0.8001    0.6221    0.9448    0.1320    0.7317    0.0811    0.3786    0.2305
+    0.2630    0.0782    0.4314    0.3510    0.4909    0.9421    0.6477    0.9294    0.8116    0.8443
+    0.6541    0.4427    0.9106    0.5132    0.4893    0.9561         0    0.7757         0    0.1948
+    0.6892    0.1067    0.1818    0.4018    0.3377    0.5752    0.5470    0.4868    0.3507    0.2259
+    0.7482    0.9619    0.2638    0.0760    0.9001    0.0598    0.2963    0.4359    0.9390    0.1707
+    0.4505    0.0046    0.1455    0.2399    0.3692    0.2348    0.7447    0.4468    0.8759         0
+    0.0838    0.7749    0.1361    0.1233    0.1112    0.3532    0.1890    0.3063         0    0.4357
+
+A(:, 2) = []
+
+A =
+
+    0.1622    0.8173    0.8693    0.1839    0.7803    0.8212    0.6868    0.5085    0.6225
+    0.7943    0.8687    0.5797    0.2400    0.3897    0.0154    0.1835    0.5108    0.5870
+    0.3112    0.0844    0.5499    0.4173         0    0.0430    0.3685    0.8176    0.2077
+    0.5285    0.3998    0.1450    0.0497    0.4039    0.1690    0.6256    0.7948    0.3012
+    0.6020    0.8001    0.6221    0.9448    0.1320    0.7317    0.0811    0.3786    0.2305
+    0.2630    0.4314    0.3510    0.4909    0.9421    0.6477    0.9294    0.8116    0.8443
+    0.6541    0.9106    0.5132    0.4893    0.9561         0    0.7757         0    0.1948
+    0.6892    0.1818    0.4018    0.3377    0.5752    0.5470    0.4868    0.3507    0.2259
+    0.7482    0.2638    0.0760    0.9001    0.0598    0.2963    0.4359    0.9390    0.1707
+    0.4505    0.1455    0.2399    0.3692    0.2348    0.7447    0.4468    0.8759         0
+    0.0838    0.1361    0.1233    0.1112    0.3532    0.1890    0.3063         0    0.4357
+
+% Q8. Create matrix using the following commands
+%     zeros, eyes, ones & write the purpose of the above commands.
+help zeros
+ <strong>zeros</strong> - Create array of all zeros
+    This MATLAB function returns the scalar 0.
+
+    Syntax
+      X = <strong>zeros</strong>
+      X = <strong>zeros</strong>(n)
+      X = <strong>zeros</strong>(sz1,...,szN)
+      X = <strong>zeros</strong>(sz)
+
+      X = <strong>zeros</strong>(___,typename)
+      X = <strong>zeros</strong>(___,like=p)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/zeros.html#btovuwl-n">n</a> - Size of square matrix
+        integer value
+      <a href="matlab:web /MATLAB/help/matlab/ref/zeros.html#btovuwl-sz1szN">sz1,...,szN</a> - Size of each dimension (as separate arguments)
+        integer values
+      <a href="matlab:web /MATLAB/help/matlab/ref/zeros.html#btovuwl-sz">sz</a> - Size of each dimension (as a row vector)
+        integer values
+      <a href="matlab:web /MATLAB/help/matlab/ref/zeros.html#btovuwl-typename">typename</a> - Data type (class) to create
+        "double" (default) | "single" | "logical" | "int8" | "uint8" | ...
+      <a href="matlab:web /MATLAB/help/matlab/ref/zeros.html#btovuwl-p">p</a> - Prototype of array to create
+        array
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/zeros.html#mw_96a7565e-f611-46e5-9c8e-634a6826ea1b">X</a> - Array of zeros
+        scalar | vector | matrix | multidimensional array
+
+    Examples
+      <a href="matlab:openExample('matlab/MatrixofZerosExample')">Matrix of Zeros</a>
+      <a href="matlab:openExample('matlab/DArrayOfZerosExample')">3-D Array of Zeros</a>
+      <a href="matlab:openExample('matlab/CloneSizeFromExistingArrayzerosExample')">Clone Size from Existing Array</a>
+      <a href="matlab:openExample('matlab/SpecifyDataTypeofZerosExample')">Specify Data Type of Zeros</a>
+      <a href="matlab:openExample('matlab/CloneComplexityfromExistingArrayExample')">Clone Complexity from Existing Array</a>
+      <a href="matlab:openExample('matlab/CloneSparsityfromExistingArrayExample')">Clone Sparsity from Existing Array</a>
+      <a href="matlab:openExample('matlab/CloneSizeAndDataTypeFromExistingArrayzerosExample')">Clone Size and Data Type from Existing Array</a>
+      <a href="matlab:web /MATLAB/help/matlab/ref/zeros.html#bujzhqj-1">Clone Distributed Array</a>
+
+    See also <a href="matlab:help eye -displayBanner">eye</a>, <a href="matlab:help ones -displayBanner">ones</a>, <a href="matlab:help rand -displayBanner">rand</a>, <a href="matlab:help createArray -displayBanner">createArray</a>, <a href="matlab:help complex -displayBanner">complex</a>, <a href="matlab:help false -displayBanner">false</a>, <a href="matlab:help double.size -displayBanner">size</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc zeros">Documentation for zeros</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('zeros')">Other uses of zeros</a>
+
+zeros(3, 3)
+
+ans =
+
+     0     0     0
+     0     0     0
+     0     0     0
+
+help eye
+ <strong>eye</strong> - Identity matrix
+    This MATLAB function returns the scalar 1.
+
+    Syntax
+      I = <strong>eye</strong>
+      I = <strong>eye</strong>(n)
+      I = <strong>eye</strong>(n,m)
+      I = <strong>eye</strong>(sz)
+
+      I = <strong>eye</strong>(___,typename)
+      I = <strong>eye</strong>(___,like=p)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/eye.html#btpi59x-1-n">n</a> - Size of first dimension of I
+        integer value
+      <a href="matlab:web /MATLAB/help/matlab/ref/eye.html#btpi59x-1-m">m</a> - Size of second dimension of I
+        integer value
+      <a href="matlab:web /MATLAB/help/matlab/ref/eye.html#btpi59x-1-sz">sz</a> - Size of I
+        row vector of no more than two integer values
+      <a href="matlab:web /MATLAB/help/matlab/ref/eye.html#btpi59x-1-classname">typename</a> - Output class
+        "double" (default) | "single" | "logical" | "int8" | "uint8" | ...
+      <a href="matlab:web /MATLAB/help/matlab/ref/eye.html#btpi59x-1-p">p</a> - Prototype
+        numeric variable
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/eye.html#mw_a7f1ea13-8871-4c75-bea1-b84e56d998cf">I</a> - Identity matrix
+        scalar | matrix
+
+    Examples
+      <a href="matlab:openExample('matlab/SquareIdentityMatrixExample')">Square Identity Matrix</a>
+      <a href="matlab:openExample('matlab/RectangularMatrixExample')">Rectangular Matrix</a>
+      <a href="matlab:openExample('matlab/IdentityVectorExample')">Identity Vector</a>
+      <a href="matlab:openExample('matlab/NondefaultNumericDataTypeExample')">Nondefault Numeric Data Type</a>
+      <a href="matlab:openExample('matlab/ComplexIdentityMatrixExample')">Complex Identity Matrix</a>
+      <a href="matlab:openExample('matlab/SparseIdentityMatrixExample')">Sparse Identity Matrix</a>
+      <a href="matlab:openExample('matlab/SizeandNumericDataTypeDefinedbyExistingArrayExample')">Size and Numeric Data Type Defined by Existing Array</a>
+
+    See also <a href="matlab:help speye -displayBanner">speye</a>, <a href="matlab:help ones -displayBanner">ones</a>, <a href="matlab:help zeros -displayBanner">zeros</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc eye">Documentation for eye</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('eye')">Other uses of eye</a>
+
+eye(3)
+
+ans =
+
+     1     0     0
+     0     1     0
+     0     0     1
+
+help ones
+ <strong>ones</strong> - Create array of all ones
+    This MATLAB function returns the scalar 1.
+
+    Syntax
+      X = <strong>ones</strong>
+      X = <strong>ones</strong>(n)
+      X = <strong>ones</strong>(sz1,...,szN)
+      X = <strong>ones</strong>(sz)
+
+      X = <strong>ones</strong>(___,typename)
+      X = <strong>ones</strong>(___,like=p)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/ones.html#btpizpg-1-n">n</a> - Size of square matrix
+        integer value
+      <a href="matlab:web /MATLAB/help/matlab/ref/ones.html#btpizpg-1-sz1szN">sz1,...,szN</a> - Size of each dimension
+        two or more integer values
+      <a href="matlab:web /MATLAB/help/matlab/ref/ones.html#btpizpg-1-sz">sz</a> - Output size
+        row vector of integer values
+      <a href="matlab:web /MATLAB/help/matlab/ref/ones.html#btpizpg-1-classname">typename</a> - Output class
+        "double" (default) | "single" | "logical" | "int8" | "uint8" | ...
+      <a href="matlab:web /MATLAB/help/matlab/ref/ones.html#btpizpg-1-p">p</a> - Prototype
+        variable
+
+    Output Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/ones.html#mw_bc9eb40d-14ab-405e-a2ef-6cb23b9b13a7">X</a> - Array of ones
+        scalar | vector | matrix | multidimensional array
+
+    Examples
+      <a href="matlab:openExample('matlab/SquareArrayofOnesExample')">Square Array of Ones</a>
+      <a href="matlab:openExample('matlab/ThreeDArrayOfOnesExample')">3-D Array of Ones</a>
+      <a href="matlab:openExample('matlab/SizeDefinedbyExistingArrayExample')">Size Defined by Existing Array</a>
+      <a href="matlab:openExample('matlab/NondefaultNumericDataTypeOnesExample')">Nondefault Numeric Data Type</a>
+      <a href="matlab:openExample('matlab/ComplexOneExample')">Complex One</a>
+      <a href="matlab:openExample('matlab/SizeandNumericDataTypeofDefinedbyExistingArrayExample')">Size and Numeric Data Type Defined by Existing Array</a>
+
+    See also <a href="matlab:help eye -displayBanner">eye</a>, <a href="matlab:help zeros -displayBanner">zeros</a>, <a href="matlab:help rand -displayBanner">rand</a>, <a href="matlab:help randn -displayBanner">randn</a>, <a href="matlab:help createArray -displayBanner">createArray</a>, <a href="matlab:help complex -displayBanner">complex</a>, <a href="matlab:help false -displayBanner">false</a>, <a href="matlab:help double.size -displayBanner">size</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc ones">Documentation for ones</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('ones')">Other uses of ones</a>
+
+ones(3, 3)
+
+ans =
+
+     1     1     1
+     1     1     1
+     1     1     1
+
+% Q9. Create an Identity Matrix.
+eye(3)
+
+ans =
+
+     1     0     0
+     0     1     0
+     0     0     1
+
+% Q10. Create diagonal matrix.
+diag([ 1, 2, 3, 4, 5 ])
+
+ans =
+
+     1     0     0     0     0
+     0     2     0     0     0
+     0     0     3     0     0
+     0     0     0     4     0
+     0     0     0     0     5
+
+% Q11. Create a matrix of all elements same.
+ones(3, 3)
+
+ans =
+
+     1     1     1
+     1     1     1
+     1     1     1
+
+% Q12. Create a vector using command linspace & logspace. Write the syntax and purpose of these commands..
+linspace(0, 10, 5)
+
+ans =
+
+         0    2.5000    5.0000    7.5000   10.0000
+
+logspace(1, 3, 3)
+
+ans =
+
+          10         100        1000
+
+% Q13. Check the following arithmetic expression for matrix.(True/False)
+A = rand(3)
+
+A =
+
+    0.3111    0.1848    0.4389
+    0.9234    0.9049    0.1111
+    0.4302    0.9797    0.2581
+
+B = rand(3)
+
+B =
+
+    0.4087    0.6028    0.1174
+    0.5949    0.7112    0.2967
+    0.2622    0.2217    0.3188
+
+C = rand(3)
+
+C =
+
+    0.4242    0.2625    0.9289
+    0.5079    0.8010    0.7303
+    0.0855    0.0292    0.4886
+
+% i. A + B = = B + A
+A + B == B + A
+
+ans =
+
+  3×3 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   1   1   1
+   1   1   1
+   1   1   1
+
+% ii. A - B = = B - A
+A - B == B - A
+
+ans =
+
+  3×3 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   0   0   0
+   0   0   0
+   0   0   0
+
+% iii. A + (B + C) == (A + B) + C
+A + (B + C) == (A + B) + C
+
+ans =
+
+  3×3 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   1   1   1
+   1   1   1
+   1   1   1
+
+% iv. A * (B + C) == A*B + A*C
+A * (B + C) == A * B + A * C
+
+ans =
+
+  3×3 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   0   1   0
+   1   0   1
+   0   1   0
+
+% v. (B + C) / A == B/A + C/A
+(B + C) ./ A == B ./ A + C ./ A
+
+ans =
+
+  3×3 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   1   1   1
+   1   1   1
+   1   1   1
+
+% vi. A*B == B*A
+A * B == B * A
+
+ans =
+
+  3×3 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   0   0   0
+   0   0   0
+   0   0   0
+
+% vii. A*1 == A
+A * 1 == A
+
+ans =
+
+  3×3 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   1   1   1
+   1   1   1
+   1   1   1
+
+% viii. A*A^-1 == 1
+round(A * A ^ -1) == 1
+
+ans =
+
+  3×3 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   1   0   0
+   0   1   0
+   0   0   1
+
+% ix. A == A^T
+A == transpose(A)
+
+ans =
+
+  3×3 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   1   1   0
+   1   1   0
+   0   0   1
+
+% x. A == -A^T
+A == -transpose(A)
+
+ans =
+
+  3×3 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   0   0   0
+   0   0   0
+   0   0   0
+
+% Q14. A = [1 2; 3 4; 5 6], B = [1 2 3; 4 5 6]
+A = [ 1, 2; 3, 4; 5, 6 ]
+
+A =
+
+     1     2
+     3     4
+     5     6
+
+B = [ 1, 2, 3; 4, 5, 6 ]
+
+B =
+
+     1     2     3
+     4     5     6
+
+% i. Compute (AB)^20
+(A * B) ^ 20
+
+ans =
+
+   1.0e+38 *
+
+    0.4510    0.6183    0.7857
+    0.9833    1.3483    1.7132
+    1.5156    2.0782    2.6407
+
+% ii. Find the eigen values for (BA)^6 and for each eigen value a corresponding eigen vector.
+[V, D] = eig((B * A) ^ 6)
+
+V =
+
+   -0.7921   -0.4030
+    0.6104   -0.9152
+
+
+D =
+
+   1.0e+11 *
+
+    0.0000         0
+         0    3.9284
+
+diag(D)
+
+ans =
+
+   1.0e+11 *
+
+    0.0000
+    3.9284
+
+% Q15. Create a 20 X 20 matrix with the command A= ones(20).
+A = ones(20)
+
+A =
+
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+
+% Now replace the 10 X 10 sub-matrix between rows 6:15 and columns 6:15 with zeros.
+A(6:15, 6:15) = 0
+
+A =
+
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+
+% See the structure of the matrix in terms of non-zero entries.
+spy(A)
+
+% Set the 5 X 5 sub-matrices in the top right corner
+A(1:5, 16:20) = 0
+
+A =
+
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+
+% and bottom left corner to zeros.
+A(16:20, 1:5) = 0
+
+A =
+
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     1     1     1     1     1     0     0     0     0     0     0     0     0     0     0     1     1     1     1     1
+     0     0     0     0     0     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     0     0     0     0     0     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     0     0     0     0     0     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     0     0     0     0     0     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+     0     0     0     0     0     1     1     1     1     1     1     1     1     1     1     1     1     1     1     1
+
+% Q16. Store a name in a matrix.
+A = [ 'Dream' ]
+
+A = 
+
+    'Dream'
+
+% Q17. Store five names of same length in a matrix.
+A = [ 'James', 'Alice', 'Kevin', 'Sarah', 'Blake' ]
+
+A = 
+
+  1×5 <a href="matlab:helpPopup('string')" style="font-weight:bold">string</a> array
+
+    'James'    'Alice'    'Kevin'    'Sarah'    'Blake'
+
+% Q18. Store five names of variable length in a matrix .
+A = ['Leo', 'Alexander', 'Mia', 'Sebastian', 'Jo']
+
+A = 
+
+  1×5 <a href="matlab:helpPopup('string')" style="font-weight:bold">string</a> array
+
+    'Leo'    'Alexander'    'Mia'    'Sebastian'    'Jo'
+
+% Q19. Use the command "char" to convert string to a matrix.
+A = char('James', 'Alice', 'Kevin', 'Sarah', 'Blake')
+
+A =
+
+  5×5 <a href="matlab:helpPopup('char')" style="font-weight:bold">char</a> array
+
+    'James'
+    'Alice'
+    'Kevin'
+    'Sarah'
+    'Blake'
+
+diary off
