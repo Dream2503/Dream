@@ -426,11 +426,67 @@ ans =
      1     1     1
 
 % Q12. Create a vector using command linspace & logspace. Write the syntax and purpose of these commands..
+help linspace
+ <strong>linspace</strong> - Generate linearly spaced vector
+    This MATLAB function returns a row vector of evenly spaced points
+    between x1 and x2.
+
+    Syntax
+      y = <strong>linspace</strong>(x1,x2)
+      y = <strong>linspace</strong>(x1,x2,n)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.linspace.html#bud27em-x1x2">x1,x2</a> - Point interval
+        pair of scalars
+      <a href="matlab:web /MATLAB/help/matlab/ref/double.linspace.html#bud27em-n">n</a> - Number of points
+        100 (default) | real numeric scalar | NaN
+
+    Examples
+      <a href="matlab:openExample('matlab/VectorofEvenlySpacedNumbersExample')">Vector of Evenly Spaced Numbers</a>
+      <a href="matlab:openExample('matlab/VectorWithSpecifiedNumberOfValuesLinspaceExample')">Vector with Specified Number of Values</a>
+      <a href="matlab:openExample('matlab/VectorofEvenlySpacedComplexNumbersExample')">Vector of Evenly Spaced Complex Numbers</a>
+
+    See also <a href="matlab:help logspace -displayBanner">logspace</a>, <a href="matlab:help colon -displayBanner">colon</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc linspace">Documentation for linspace</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('linspace')">Other uses of linspace</a>
+
 linspace(0, 10, 5)
 
 ans =
 
          0    2.5000    5.0000    7.5000   10.0000
+
+help logspace
+ <strong>logspace</strong> - Generate logarithmically spaced vector
+    This MATLAB function generates a row vector y of 50 logarithmically
+    spaced points between decades 10^a and 10^b.
+
+    Syntax
+      y = <strong>logspace</strong>(a,b)
+      y = <strong>logspace</strong>(a,b,n)
+      y = <strong>logspace</strong>(a,pi)
+      y = <strong>logspace</strong>(a,pi,n)
+
+    Input Arguments
+      <a href="matlab:web /MATLAB/help/matlab/ref/logspace.html#f89-998709-a">a</a> - First bound
+        numeric scalar
+      <a href="matlab:web /MATLAB/help/matlab/ref/logspace.html#f89-998709-b">b</a> - Second bound
+        numeric scalar
+      <a href="matlab:web /MATLAB/help/matlab/ref/logspace.html#f89-998709-n">n</a> - Number of points
+        50 (default) | real numeric scalar
+
+    Examples
+      <a href="matlab:openExample('matlab/VectorofLogarithmicallySpacedNumbersExample')">Vector of Logarithmically Spaced Numbers</a>
+      <a href="matlab:openExample('matlab/VectorWithSpecifiedNumberofValuesExample')">Vector with Specified Number of Values</a>
+      <a href="matlab:openExample('matlab/VectorofLogarithmicallySpacedComplexNumbersExample')">Vector of Logarithmically Spaced Complex Numbers</a>
+
+    See also <a href="matlab:help linspace -displayBanner">linspace</a>, <a href="matlab:help colon -displayBanner">colon</a>
+
+    Introduced in MATLAB before R2006a
+    <a href="matlab:doc logspace">Documentation for logspace</a>
+    <a href="matlab:matlab.lang.internal.introspective.overloads.displayOverloads('logspace')">Other uses of logspace</a>
 
 logspace(1, 3, 3)
 
@@ -503,9 +559,9 @@ ans =
 
   3×3 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
 
-   0   1   0
-   1   0   1
-   0   1   0
+   1   1   1
+   1   1   1
+   1   1   1
 
 % v. (B + C) / A == B/A + C/A
 (B + C) ./ A == B ./ A + C ./ A
@@ -541,7 +597,7 @@ ans =
    1   1   1
 
 % viii. A*A^-1 == 1
-round(A * A ^ -1) == 1
+A * A ^ -1 == 1
 
 ans =
 
@@ -558,9 +614,9 @@ ans =
 
   3×3 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
 
-   1   1   0
-   1   1   0
-   0   0   1
+   0   0   0
+   0   0   0
+   0   0   0
 
 % x. A == -A^T
 A == -transpose(A)
@@ -615,15 +671,6 @@ D =
 
     0.0000         0
          0    3.9284
-
-diag(D)
-
-ans =
-
-   1.0e+11 *
-
-    0.0000
-    3.9284
 
 % Q15. Create a 20 X 20 matrix with the command A= ones(20).
 A = ones(20)
