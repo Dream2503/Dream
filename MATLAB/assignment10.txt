@@ -1,0 +1,309 @@
+diary on
+%Q1. Create a matrix A = [ 1 2 3; 4 5 6; 7 8 9 ]. Compute the following operations:
+A = [ 1, 2, 3; 4, 5, 6; 7, 8, 9 ]
+
+A =
+
+     1     2     3
+     4     5     6
+     7     8     9
+
+%i. Transpose the 1st row and store it in vector x.
+x = A(1, :)'
+
+x =
+
+     1
+     2
+     3
+
+%ii. x' * x
+x' * x
+
+ans =
+
+    14
+
+%iii. x*x'
+x * x'
+
+ans =
+
+     1     2     3
+     2     4     6
+     3     6     9
+
+%iv. A*x
+A * x
+
+ans =
+
+    14
+    32
+    50
+
+%v. A^2
+A ^ 2
+
+ans =
+
+    30    36    42
+    66    81    96
+   102   126   150
+
+%vi. A.^2
+A .^ 2
+
+ans =
+
+     1     4     9
+    16    25    36
+    49    64    81
+
+%Q2. Create a 5x6 random integer matrix.
+R = randi([1, 100], 5, 6)
+
+R =
+
+    71    83    44    49    28    50
+     4    70    39    45    68    96
+    28    32    77    65    66    35
+     5    96    80    71    17    59
+    10     4    19    76    12    23
+
+%Q3. Create an upper triangle & lower triangle of the above matrix.
+triu(R)
+
+ans =
+
+    71    83    44    49    28    50
+     0    70    39    45    68    96
+     0     0    77    65    66    35
+     0     0     0    71    17    59
+     0     0     0     0    12    23
+
+tril(R)
+
+ans =
+
+    71     0     0     0     0     0
+     4    70     0     0     0     0
+    28    32    77     0     0     0
+     5    96    80    71     0     0
+    10     4    19    76    12     0
+
+%Q4. Create a matrix using sub matrices made up of elementary matrices ones, zeros & identity matrix of the specified sizes 5x5. Determine the diagonal of the above matrix.
+M = [ ones(5), zeros(5); eye(5), ones(5) ]
+
+M =
+
+     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     0     0     0     0     0
+     1     1     1     1     1     0     0     0     0     0
+     1     0     0     0     0     1     1     1     1     1
+     0     1     0     0     0     1     1     1     1     1
+     0     0     1     0     0     1     1     1     1     1
+     0     0     0     1     0     1     1     1     1     1
+     0     0     0     0     1     1     1     1     1     1
+
+diag(M)
+
+ans =
+
+     1
+     1
+     1
+     1
+     1
+     1
+     1
+     1
+     1
+     1
+
+%Q5. Create vectors d, d1, d2 of length 4,3,2 respectively. Create a matrix D by putting d on the main diagonal, d1 on the first upper diagonal and d2 on the 2 nd lower diagonal.
+diag([ 1, 2, 3, 4 ]) + diag([ 5, 6, 7 ], 1) + diag([ 8, 9 ], -2)
+
+ans =
+
+     1     5     0     0
+     0     2     6     0
+     8     0     3     7
+     0     9     0     4
+
+%Q6. Create two vectors x=[0 5 3 7] & y=[0 2 8 7] & perform the followingoperations.
+x = [ 0, 5, 3, 7 ]
+
+x =
+
+     0     5     3     7
+
+y = [ 0, 2, 8, 7 ]
+
+y =
+
+     0     2     8     7
+
+%i. M=(x>y) & (x>4)
+(x > y) & (x > 4)
+
+ans =
+
+  1×4 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   0   1   0   0
+
+%ii. N=x|y
+x | y
+
+ans =
+
+  1×4 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   0   1   1   1
+
+%iii. M=~(x|y)
+~(x | y)
+
+ans =
+
+  1×4 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   1   0   0   0
+
+%iv. P=xor(x,y)
+xor(x, y)
+
+ans =
+
+  1×4 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   0   0   0   0
+
+%Q7. If x=[1 5 3 7] and y=[0 2 8 7 ] then execute the followings:
+x = [ 1, 5, 3, 7 ]
+
+x =
+
+     1     5     3     7
+
+y = [ 0, 2, 8, 7 ]
+
+y =
+
+     0     2     8     7
+
+%i. K=x<y
+x < y
+
+ans =
+
+  1×4 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   0   0   1   0
+
+%ii. K=x<=y
+x <= y
+
+ans =
+
+  1×4 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   0   0   1   1
+
+%iii. K=x>y
+x > y
+
+ans =
+
+  1×4 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   1   1   0   0
+
+%iv. K=x>=y 
+x >= y
+
+ans =
+
+  1×4 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   1   1   0   1
+
+%v. K=x==y
+x == y
+
+ans =
+
+  1×4 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   0   0   0   1
+
+%vi. K=x~=y
+x ~= y
+
+ans =
+
+  1×4 <a href="matlab:helpPopup('logical')" style="font-weight:bold">logical</a> array
+
+   1   1   1   0
+
+%       | 1 0 0 |                  | 2 |
+%Q8. A= | 0 1 0 | u=[5 6 7] and v= | 3 |
+%       | 0 0 1 |                  | 4 |
+A = eye(3)
+
+A =
+
+     1     0     0
+     0     1     0
+     0     0     1
+
+u = [ 5, 6, 7 ]
+
+u =
+
+     5     6     7
+
+v = [ 2; 3; 4 ]
+
+v =
+
+     2
+     3
+     4
+
+%i. Concatenate u to the matrix A
+[ A; u ]
+
+ans =
+
+     1     0     0
+     0     1     0
+     0     0     1
+     5     6     7
+
+%ii. Concatenate v to the matrix A
+[ A, v ]
+
+ans =
+
+     1     0     0     2
+     0     1     0     3
+     0     0     1     4
+
+%iii. B=[]
+B = []
+
+B =
+
+     []
+
+B = [ B; 1, 2, 3]
+
+B =
+
+     1     2     3
+
+diary off
