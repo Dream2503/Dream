@@ -1,6 +1,12 @@
 api.key
 model*
-Building Applications with Large Language Models Techniques, Implementation, and Applications (Bhawna Singh) (Z-Library)/constants.py
-Building Large Language Models (LLM) A Step-by-Step Guide to Practical LLM Development (SaberiKamarposhti, Morteza) (Z-Library)/api.key
-Building Large Language Models (LLM) A Step-by-Step Guide to Practical LLM Development (SaberiKamarposhti, Morteza) (Z-Library)/fine-tuned-bert
-Building Large Language Models (LLM) A Step-by-Step Guide to Practical LLM Development (SaberiKamarposhti, Morteza) (Z-Library)/results
+data
+results
+books/Building Applications with Large Language Models Techniques, Implementation, and Applications (Bhawna Singh) (Z-Library)/constants.py
+books/Building Large Language Models (LLM) A Step-by-Step Guide to Practical LLM Development (SaberiKamarposhti, Morteza) (Z-Library)/api.key
+books/Building Large Language Models (LLM) A Step-by-Step Guide to Practical LLM Development (SaberiKamarposhti, Morteza) (Z-Library)/fine-tuned-bert
+books/Building Large Language Models (LLM) A Step-by-Step Guide to Practical LLM Development (SaberiKamarposhti, Morteza) (Z-Library)/results
+books/Building LLMs with Pytorch A step-by-step guide to building advanced AI models with PyTorch (Trivedi, Anand) (Z-Library)/brain-tumor-mri-dataset
+books/Building LLMs with Pytorch A step-by-step guide to building advanced AI models with PyTorch (Trivedi, Anand) (Z-Library)/caltech-101
+books/Building LLMs with Pytorch A step-by-step guide to building advanced AI models with PyTorch (Trivedi, Anand) (Z-Library)/chest_xray
+books/Building LLMs with Pytorch A step-by-step guide to building advanced AI models with PyTorch (Trivedi, Anand) (Z-Library)/data
