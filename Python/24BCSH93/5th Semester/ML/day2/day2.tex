@@ -1164,6 +1164,181 @@ array([['France', 44.0, 72000.0],
         \end{Verbatim}
     \end{tcolorbox}
 
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{35}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{compose}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{ColumnTransformer}
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{OneHotEncoder}
+\PY{c+c1}{\PYZsh{} ct = ColumnTransformer(transformers=[(\PYZdq{}encode\PYZdq{}, \PYZdq{}drop\PYZdq{}, [0])], remainder=\PYZdq{}passthrough\PYZdq{})}
+\PY{n}{ct} \PY{o}{=} \PY{n}{ColumnTransformer}\PY{p}{(}\PY{n}{transformers}\PY{o}{=}\PY{p}{[}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{encode}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{OneHotEncoder}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{remainder}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{passthrough}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} ct = ColumnTransformer(transformers=[(\PYZdq{}encode\PYZdq{}, OneHotEncoder(), [0])])}
+\PY{n}{X} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{ct}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{36}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[1.0 0.0 0.0 44.0 72000.0]
+ [0.0 0.0 1.0 27.0 48000.0]
+ [0.0 1.0 0.0 30.0 54000.0]
+ [0.0 0.0 1.0 38.0 61000.0]
+ [0.0 1.0 0.0 40.0 63777.77777777778]
+ [1.0 0.0 0.0 35.0 58000.0]
+ [0.0 0.0 1.0 38.77777777777778 52000.0]
+ [1.0 0.0 0.0 48.0 79000.0]
+ [0.0 1.0 0.0 50.0 83000.0]
+ [1.0 0.0 0.0 37.0 67000.0]]
+    \end{Verbatim}
+
+    \hypertarget{encoding-the-dependent-variable}{%
+        \subsection{Encoding the Dependent
+        Variable}\label{encoding-the-dependent-variable}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{37}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{LabelEncoder}  \PY{c+c1}{\PYZsh{} used to convert the categorical target labels into numerical labels}
+\PY{n}{le} \PY{o}{=} \PY{n}{LabelEncoder}\PY{p}{(}\PY{p}{)}
+\PY{n}{y} \PY{o}{=} \PY{n}{le}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{38}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0 1 0 0 1 1 0 1 0 1]
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{39}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{le}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{india}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{paris}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{paris}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tokyo}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{amsterdam}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{le}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{india}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{amsterdam}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{tokyo}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{paris}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[1 0 3 2]
+    \end{Verbatim}
+
+    \hypertarget{spliting-the-dataset-into-training-set-and-test-set}{%
+        \subsection{Spliting the dataset into Training set and Test
+        set}\label{spliting-the-dataset-into-training-set-and-test-set}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{40}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}    \PY{c+c1}{\PYZsh{} random\PYZhy{}state is used for reproducibility}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{41}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[0.0 0.0 1.0 38.77777777777778 52000.0]
+ [0.0 1.0 0.0 40.0 63777.77777777778]
+ [1.0 0.0 0.0 44.0 72000.0]
+ [0.0 0.0 1.0 38.0 61000.0]
+ [0.0 0.0 1.0 27.0 48000.0]
+ [1.0 0.0 0.0 48.0 79000.0]
+ [0.0 1.0 0.0 50.0 83000.0]
+ [1.0 0.0 0.0 35.0 58000.0]]
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{42}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[0.0 1.0 0.0 30.0 54000.0]
+ [1.0 0.0 0.0 37.0 67000.0]]
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{43}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{y\PYZus{}train}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0 1 0 0 1 1 0 1]
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{44}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0 1]
+    \end{Verbatim}
+
+    \hypertarget{features-scaling}{%
+        \subsection{Features Scaling}\label{features-scaling}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{45}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{StandardScaler}    \PY{c+c1}{\PYZsh{} Z\PYZus{}score = [(x \PYZhy{} x\PYZus{}bar) / s] or [(x \PYZhy{} mu) / sigma]}
+\PY{n}{sc} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}                               \PY{c+c1}{\PYZsh{} x \PYZhy{}\PYZgt{} data}
+\PY{n}{X\PYZus{}train}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{sc}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{:}\PY{p}{]}\PY{p}{)}   \PY{c+c1}{\PYZsh{} x\PYZus{}bar / mu \PYZhy{}\PYZgt{} sample / population mean}
+\PY{n}{X\PYZus{}test}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{sc}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{:}\PY{p}{]}\PY{p}{)}         \PY{c+c1}{\PYZsh{} s / sigma \PYZhy{}\PYZgt{} sample / population  standard deviation}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{46}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[0.0 0.0 1.0 -0.19159184384578545 -1.0781259408412425]
+ [0.0 1.0 0.0 -0.014117293757057777 -0.07013167641635372]
+ [1.0 0.0 0.0 0.566708506533324 0.633562432710455]
+ [0.0 0.0 1.0 -0.30453019390224867 -0.30786617274297867]
+ [0.0 0.0 1.0 -1.9018011447007988 -1.420463615551582]
+ [1.0 0.0 0.0 1.1475343068237058 1.232653363453549]
+ [0.0 1.0 0.0 1.4379472069688968 1.5749910381638885]
+ [1.0 0.0 0.0 -0.7401495441200351 -0.5646194287757332]]
+    \end{Verbatim}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{47}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[0.0 1.0 0.0 -1.4661817944830124 -0.9069571034860727]
+ [1.0 0.0 0.0 -0.44973664397484414 0.2056403393225306]]
+    \end{Verbatim}
+
 
     % Add a bibliography block to the postdoc
 
