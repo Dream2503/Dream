@@ -7,12 +7,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-/*
-Name: Swapnaraj Mohanty
-SIC:  24BCSH93
-Sec:  B-2
-*/
-
 void error(const char* msg) {
     perror(msg);
     exit(0);

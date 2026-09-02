@@ -1,9 +1,3 @@
-/*
-    Name: Swapnaraj Mohanty
-    SIC:  24BCSH93
-    Sec:  B-2
-*/
-
 #include <netdb.h>
 #include <netinet/in.h>
 #include <stdio.h>

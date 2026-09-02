@@ -11,21 +11,21 @@ typedef struct Socket {
 
 void print_socket(const Socket* socket) {
     printf("Socket {\n");
-    printf("\tsocket_id=%s\n", socket->socket_id);
-    printf("\tsocket_type=%s\n", socket->socket_type);
-    printf("\thost_id=%s\n", socket->host_id);
-    printf("\tdest_id=%s\n", socket->dest_id);
-    printf("\tport_no=%d\n", socket->port_no);
-    printf("\tstatus=%c\n", socket->status);
-    printf("}");
+    printf("\tsocket_id=%s,\n", socket->socket_id);
+    printf("\tsocket_type=%s,\n", socket->socket_type);
+    printf("\thost_id=%s,\n", socket->host_id);
+    printf("\tdest_id=%s,\n", socket->dest_id);
+    printf("\tport_no=%d,\n", socket->port_no);
+    printf("\tstatus=%c,\n", socket->status);
+    printf("}\n");
 }
 
 int main() {
     const Socket socket = {
         .socket_id = "2503",
         .socket_type = "TCP",
-        .host_id = "192.168.1.1",
-        .dest_id = "192.168.1.2",
+        .host_id = "192.168.20.111",
+        .dest_id = "192.168.20.112",
         .port_no = 8080,
         .status = 'Y',
     };

@@ -6,34 +6,26 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-/*
-Name: Swapnaraj Mohanty
-SIC:  24BCSH93
-Sec:  B-2
-*/
-
 void error(const char* msg) {
     perror(msg);
     exit(1);
 }
 
-int main(int argc, char* argv[]) {
-    int sockfd, newsockfd, portno, clilen;
+int main(const int argc, char* argv[]) {
     char buffer[256];
     struct sockaddr_in serv_addr, cli_addr;
-    int n;
 
     if (argc < 2) {
         fprintf(stderr, "ERROR, no port provided\n");
         exit(1);
     }
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    const int sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
     if (sockfd < 0) {
         error("ERROR opening socket");
     }
     bzero((char*)&serv_addr, sizeof(serv_addr));
-    portno = atoi(argv[1]);
+    const int portno = atoi(argv[1]);
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = INADDR_ANY;
     serv_addr.sin_port = htons(portno);
@@ -42,15 +34,15 @@ int main(int argc, char* argv[]) {
         error("ERROR on binding");
     }
     listen(sockfd, 5);
-    clilen = sizeof(cli_addr);
-    newsockfd = accept(sockfd, (struct sockaddr*)&cli_addr, &clilen);
+    int clilen = sizeof(cli_addr);
+    int newsockfd = accept(sockfd, (struct sockaddr*)&cli_addr, &clilen);
 
     while (1) {
         if (newsockfd < 0) {
             error("ERROR on accept");
         }
         bzero(buffer, 256);
-        n = read(newsockfd, buffer, 255);
+        int n = read(newsockfd, buffer, 255);
 
         if (n < 0) {
             error("Error reading from socket");
@@ -64,6 +56,7 @@ int main(int argc, char* argv[]) {
         printf("Enter your message: ");
         bzero(buffer, 256);
         fgets(buffer, 256, stdin);
+
         if (buffer[0] == 'b' && buffer[1] == 'y' && buffer[2] == 'e') {
             close(sockfd);
             close(newsockfd);
