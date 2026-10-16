@@ -1,0 +1,506 @@
+<mxfile host="drawio-plugin" modified="2026-10-16T14:36:29.941Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36" version="22.1.22" etag="JiVE8MyI9D2RJBo_IhYg" type="embed">
+  <diagram name="Page-1" id="_ppCsJ5OzndLY6AU_xQB">
+    <mxGraphModel dx="1127" dy="892" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c2" value="Storage user&lt;br&gt;(web browser)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry y="170" width="100" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c3" value="System admin&lt;br&gt;(privileged)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="275" width="110" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="Telegram Bot API&lt;br&gt;(private channel)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="543" y="230" width="117" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" value="0.0&lt;br&gt;Telegram-backed&lt;br&gt;hybrid cloud storage&lt;br&gt;management system" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=13;fontStyle=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="220" y="170" width="220" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" value="File actions, chunks" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="102" y="194" as="sourcePoint" />
+            <mxPoint x="260" y="194" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c7" value="Registration, login" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="102" y="218" as="sourcePoint" />
+            <mxPoint x="238" y="218" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c8" value="Folder actions" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="102" y="242" as="sourcePoint" />
+            <mxPoint x="225" y="242" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c9" value="Search, UI prefs" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="102" y="266" as="sourcePoint" />
+            <mxPoint x="219" y="266" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c10" value="JWT session token" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="223" y="298" as="sourcePoint" />
+            <mxPoint x="104" y="298" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c11" value="Dashboard view" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="230" y="322" as="sourcePoint" />
+            <mxPoint x="104" y="322" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c12" value="Upload % + errors" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="244" y="346" as="sourcePoint" />
+            <mxPoint x="104" y="346" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c13" value="Streamed binary file" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="268" y="370" as="sourcePoint" />
+            <mxPoint x="104" y="370" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c14" value="Export request&lt;br&gt;+ admin credentials" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="305" y="58" as="sourcePoint" />
+            <mxPoint x="305" y="171" as="targetPoint" />
+            <mxPoint x="-71" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c15" value="SQL backup file" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="355" y="171" as="sourcePoint" />
+            <mxPoint x="355" y="58" as="targetPoint" />
+            <mxPoint x="59" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c16" value="Binary blocks" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="438" y="252" as="sourcePoint" />
+            <mxPoint x="543" y="252" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c17" value="file_id" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="543" y="280" as="sourcePoint" />
+            <mxPoint x="442" y="280" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c18" value="429, API status" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="543" y="308" as="sourcePoint" />
+            <mxPoint x="438" y="308" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3" value="Storage user&lt;br&gt;(browser)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry y="552" width="76" height="720" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="System admin" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="577" y="444" width="88" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="Telegram Bot API&lt;br&gt;(private channel)" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="572" y="1042" width="92" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="D1&lt;br&gt;SQL metadata database&lt;br&gt;Users, Folders, Files" style="shape=partialRectangle;whiteSpace=wrap;html=1;top=0;bottom=0;fillColor=none;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="392" y="562" width="90" height="430" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="D1 (same store)" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=0;right=0;fillColor=none;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="152" y="1302" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="&lt;b&gt;7.0&lt;/b&gt;&lt;br&gt;Admin&lt;br&gt;operations" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="393" y="430" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="&lt;b&gt;1.0&lt;/b&gt;&lt;br&gt;User auth&lt;br&gt;management" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="188" y="548" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="&lt;b&gt;6.0&lt;/b&gt;&lt;br&gt;Workspace&lt;br&gt;search" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="188" y="668" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="&lt;b&gt;2.0&lt;/b&gt;&lt;br&gt;Dashboard &amp;&lt;br&gt;directory" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="188" y="788" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="&lt;b&gt;4.0&lt;/b&gt;&lt;br&gt;Metadata&lt;br&gt;indexing" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="188" y="908" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="&lt;b&gt;3.0&lt;/b&gt;&lt;br&gt;Streamed&lt;br&gt;upload proxy" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="188" y="1048" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="&lt;b&gt;5.0&lt;/b&gt;&lt;br&gt;Secure&lt;br&gt;download" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="188" y="1178" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="credentials" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="78" y="580" as="sourcePoint" />
+            <mxPoint x="187" y="580" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="16" value="JWT token" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="604" as="sourcePoint" />
+            <mxPoint x="80" y="604" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="17" value="search, prefs" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="78" y="700" as="sourcePoint" />
+            <mxPoint x="187" y="700" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="18" value="matching records" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="724" as="sourcePoint" />
+            <mxPoint x="80" y="724" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="19" value="JWT, folder cmds" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="78" y="820" as="sourcePoint" />
+            <mxPoint x="187" y="820" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="20" value="dashboard view" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="844" as="sourcePoint" />
+            <mxPoint x="80" y="844" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="21" value="binary chunks" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="78" y="1080" as="sourcePoint" />
+            <mxPoint x="187" y="1080" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="22" value="upload %, errors" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="1104" as="sourcePoint" />
+            <mxPoint x="80" y="1104" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="23" value="download request" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="78" y="1210" as="sourcePoint" />
+            <mxPoint x="187" y="1210" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="24" value="streamed file" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="1234" as="sourcePoint" />
+            <mxPoint x="80" y="1234" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="25" value="user record" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;startArrow=classic;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="592" as="sourcePoint" />
+            <mxPoint x="390" y="592" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" value="name search" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;startArrow=classic;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="712" as="sourcePoint" />
+            <mxPoint x="390" y="712" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="27" value="folder records" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;startArrow=classic;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="832" as="sourcePoint" />
+            <mxPoint x="390" y="832" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="28" value="commit entry" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="952" as="sourcePoint" />
+            <mxPoint x="390" y="952" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="29" value="refresh" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="232" y="908" as="sourcePoint" />
+            <mxPoint x="232" y="878" as="targetPoint" />
+            <mxPoint x="35" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="30" value="file_id, details" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="232" y="1048" as="sourcePoint" />
+            <mxPoint x="232" y="998" as="targetPoint" />
+            <mxPoint x="62" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31" value="schema dump" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="437" y="560" as="sourcePoint" />
+            <mxPoint x="437" y="520" as="targetPoint" />
+            <mxPoint x="47" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32" value="export request" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="575" y="462" as="sourcePoint" />
+            <mxPoint x="482" y="462" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="33" value="backup file" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="482" y="486" as="sourcePoint" />
+            <mxPoint x="575" y="486" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" value="streamed blocks" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="274" y="1074" as="sourcePoint" />
+            <mxPoint x="570" y="1074" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="35" value="file_id, HTTP 429" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="570" y="1110" as="sourcePoint" />
+            <mxPoint x="275" y="1110" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="36" value="file_id request" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="276" y="1204" as="sourcePoint" />
+            <mxPoint x="570" y="1204" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="37" value="binary packets" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="570" y="1240" as="sourcePoint" />
+            <mxPoint x="276" y="1240" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="38" value="ownership, file_id" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;startArrow=classic;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="232" y="1268" as="sourcePoint" />
+            <mxPoint x="232" y="1300" as="targetPoint" />
+            <mxPoint x="68" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="39" value="Storage user" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1" y="1394" width="68" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="40" value="Telegram Bot API" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="573" y="1664" width="92" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="41" value="D1 SQL metadata" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=0;right=0;fillColor=none;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="493" y="1414" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="42" value="&lt;b&gt;3.1&lt;/b&gt;&lt;br&gt;Validate &amp;&lt;br&gt;size broker" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="309" y="1390" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="43" value="&lt;b&gt;3.2&lt;/b&gt;&lt;br&gt;Memory buffer&lt;br&gt;streamer" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="309" y="1540" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="44" value="&lt;b&gt;3.3&lt;/b&gt;&lt;br&gt;Rate-limit&lt;br&gt;interceptor" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="309" y="1690" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="45" value="&lt;b&gt;3.4&lt;/b&gt;&lt;br&gt;Progress&lt;br&gt;broadcaster" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="139" y="1540" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="46" value="&lt;b&gt;4.0&lt;/b&gt;&lt;br&gt;Metadata&lt;br&gt;indexing" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="309" y="1840" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="47" value="binary chunks" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="71" y="1434" as="sourcePoint" />
+            <mxPoint x="307" y="1434" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="48" value="folder check" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;startArrow=classic;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="397" y="1434" as="sourcePoint" />
+            <mxPoint x="491" y="1434" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="49" value="≤ 50 MB: standard&lt;br&gt;&gt; 50 MB: streaming" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="353" y="1478" as="sourcePoint" />
+            <mxPoint x="353" y="1538" as="targetPoint" />
+            <mxPoint x="68" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="50" value="total file size" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="320" y="1463" as="sourcePoint" />
+            <mxPoint x="216" y="1555" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="51" value="bytes pushed" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="307" y="1584" as="sourcePoint" />
+            <mxPoint x="229" y="1584" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="52" value="progress %" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="137" y="1584" as="sourcePoint" />
+            <mxPoint x="71" y="1584" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="53" value="multipart blocks" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="368" y="1627" as="sourcePoint" />
+            <mxPoint x="368" y="1690" as="targetPoint" />
+            <mxPoint x="62" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="54" value="pause + retry" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="338" y="1690" as="sourcePoint" />
+            <mxPoint x="338" y="1627" as="targetPoint" />
+            <mxPoint x="-53" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="55" value="multipart blocks" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="395" y="1722" as="sourcePoint" />
+            <mxPoint x="571" y="1722" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="56" value="file_id, HTTP 429" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="571" y="1746" as="sourcePoint" />
+            <mxPoint x="395" y="1746" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="57" value="connection error" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="309" y="1734" as="sourcePoint" />
+            <mxPoint x="71" y="1734" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="58" value="file_id + details" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="353" y="1778" as="sourcePoint" />
+            <mxPoint x="353" y="1838" as="targetPoint" />
+            <mxPoint x="65" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="59" value="Storage user" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="1" y="1974" width="68" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="60" value="Telegram Bot API" style="rounded=0;whiteSpace=wrap;html=1;fontSize=12;fontStyle=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="573" y="2254" width="92" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="61" value="D1&lt;br&gt;SQL metadata&lt;br&gt;database" style="shape=partialRectangle;whiteSpace=wrap;html=1;top=0;bottom=0;fillColor=none;strokeWidth=2;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="463" y="1974" width="90" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="62" value="&lt;b&gt;5.1&lt;/b&gt;&lt;br&gt;Ownership&lt;br&gt;checker" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="249" y="1970" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="63" value="&lt;b&gt;5.2&lt;/b&gt;&lt;br&gt;Relational&lt;br&gt;key retriever" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="249" y="2120" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="64" value="&lt;b&gt;5.3&lt;/b&gt;&lt;br&gt;Response&lt;br&gt;stream proxy" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fontSize=11;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="249" y="2270" width="88" height="88" as="geometry" />
+        </mxCell>
+        <mxCell id="65" value="download request + JWT" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="71" y="2002" as="sourcePoint" />
+            <mxPoint x="249" y="2002" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="66" value="deny access error" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="251" y="2026" as="sourcePoint" />
+            <mxPoint x="73" y="2026" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="67" value="ownership check" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;startArrow=classic;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="337" y="2014" as="sourcePoint" />
+            <mxPoint x="461" y="2014" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="68" value="authorized request" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="293" y="2058" as="sourcePoint" />
+            <mxPoint x="293" y="2120" as="targetPoint" />
+            <mxPoint x="68" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="69" value="file_id lookup" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="461" y="2164" as="sourcePoint" />
+            <mxPoint x="337" y="2164" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="70" value="internal file_id&lt;br&gt;(never sent to browser)" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="293" y="2208" as="sourcePoint" />
+            <mxPoint x="293" y="2270" as="targetPoint" />
+            <mxPoint x="83" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="71" value="streamed file response" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="249" y="2314" as="sourcePoint" />
+            <mxPoint x="71" y="2314" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="72" value="file_id request" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="335" y="2302" as="sourcePoint" />
+            <mxPoint x="571" y="2302" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="73" value="binary packets" style="endArrow=classic;html=1;rounded=0;strokeWidth=1;fontSize=10;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="571" y="2326" as="sourcePoint" />
+            <mxPoint x="335" y="2326" as="targetPoint" />
+            <mxPoint y="-9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
