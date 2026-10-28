@@ -1,0 +1,871 @@
+\documentclass[1pt]{article}
+
+\usepackage[breakable]{tcolorbox}
+\usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
+
+
+% Basic figure setup, for now with no caption control since it's done
+% automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+\usepackage{graphicx}
+% Keep aspect ratio if custom image width or height is specified
+\setkeys{Gin}{keepaspectratio}
+% Maintain compatibility with old templates. Remove in nbconvert 6.0
+\let\Oldincludegraphics\includegraphics
+% Ensure that by default, figures have no caption (until we provide a
+% proper Figure object with a Caption API and a way to capture that
+% in the conversion process - todo).
+\usepackage{caption}
+\DeclareCaptionFormat{nocaption}{}
+\captionsetup{format=nocaption,aboveskip=0pt,belowskip=0pt}
+
+\usepackage{float}
+\floatplacement{figure}{H} % forces figures to be placed at the correct location
+\usepackage{xcolor} % Allow colors to be defined
+\usepackage{enumerate} % Needed for markdown enumerations to work
+\usepackage{geometry} % Used to adjust the document margins
+\usepackage{amsmath} % Equations
+\usepackage{amssymb} % Equations
+\usepackage{textcomp} % defines textquotesingle
+% Hack from http://tex.stackexchange.com/a/47451/13684:
+\AtBeginDocument{%
+    \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+}
+\usepackage{upquote} % Upright quotes for verbatim code
+\usepackage{eurosym} % defines \euro
+
+\usepackage{iftex}
+\ifPDFTeX
+\usepackage[T1]{fontenc}
+\IfFileExists{alphabeta.sty}{
+    \usepackage{alphabeta}
+}{
+    \usepackage[mathletters]{ucs}
+    \usepackage[utf8x]{inputenc}
+}
+\else
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{JetBrains Mono}
+\fi
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyfoot[R]{%
+    \parbox[b]{5cm}{%
+        \normalfont\normalsize
+        \raggedright
+        Name: Swapnaraj Mohanty\\
+        SIC No: 24BCSH93\\
+        Lab Roll No: 11\\
+        Date: 26$^{\mathrm{th}}$ October 2026
+    }%
+}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\usepackage{fancyvrb} % verbatim replacement that allows latex
+\usepackage{grffile} % extends the file name processing of package graphics
+% to support a larger range
+\makeatletter % fix for old versions of grffile with XeLaTeX
+\@ifpackagelater{grffile}{2019/11/01}
+{
+% Do nothing on new versions
+}
+{
+    \def\Gread@@xetex#1{%
+    \IfFileExists{"\Gin@base".bb}%
+    {\Gread@eps{\Gin@base.bb}}%
+    {\Gread@@xetex@aux#1}%
+}
+}
+\makeatother
+\usepackage[Export]{adjustbox} % Used to constrain images to a maximum size
+\adjustboxset{max size={0.9\linewidth}{0.9\paperheight}}
+
+% The hyperref package gives us a pdf with properly built
+% internal navigation ('pdf bookmarks' for the table of contents,
+% internal cross-reference links, web links for URLs, etc.)
+\usepackage{hyperref}
+% The default LaTeX title has an obnoxious amount of whitespace. By default,
+% titling removes some of it. It also provides customization options.
+\usepackage{titling}
+\usepackage{longtable} % longtable support required by pandoc >1.10
+\usepackage{booktabs}  % table support for pandoc > 1.12.2
+\usepackage{array}     % table support for pandoc >= 2.11.3
+\usepackage{calc}      % table minipage width calculation for pandoc >= 2.11.1
+\usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+\usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+% normalem makes italics be italics, not underlines
+\usepackage{soul}      % strikethrough (\st) support for pandoc >= 3.0.0
+\usepackage{mathrsfs}
+
+
+% Colors for the hyperref package
+\definecolor{urlcolor}{rgb}{0,.145,.698}
+\definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+\definecolor{citecolor}{rgb}{.12,.54,.11}
+
+% ANSI colors
+\definecolor{ansi-black}{HTML}{3E424D}
+\definecolor{ansi-black-intense}{HTML}{282C36}
+\definecolor{ansi-red}{HTML}{E75C58}
+\definecolor{ansi-red-intense}{HTML}{B22B31}
+\definecolor{ansi-green}{HTML}{00A250}
+\definecolor{ansi-green-intense}{HTML}{007427}
+\definecolor{ansi-yellow}{HTML}{DDB62B}
+\definecolor{ansi-yellow-intense}{HTML}{B27D12}
+\definecolor{ansi-blue}{HTML}{208FFB}
+\definecolor{ansi-blue-intense}{HTML}{0065CA}
+\definecolor{ansi-magenta}{HTML}{D160C4}
+\definecolor{ansi-magenta-intense}{HTML}{A03196}
+\definecolor{ansi-cyan}{HTML}{60C6C8}
+\definecolor{ansi-cyan-intense}{HTML}{258F8F}
+\definecolor{ansi-white}{HTML}{C5C1B4}
+\definecolor{ansi-white-intense}{HTML}{A1A6B2}
+\definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+\definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+% common color for the border for error outputs.
+\definecolor{outerrorbackground}{HTML}{FFDFDF}
+
+% commands and environments needed by pandoc snippets
+% extracted from the output of `pandoc -s`
+\providecommand{\tightlist}{%
+    \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+
+% Additional commands for more recent versions of Pandoc
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{%
+    \sbox\pandoc@box{#1}%
+    % scaling factors for width and height
+    \Gscale@div\@tempa\textheight{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+    \Gscale@div\@tempb\linewidth{\wd\pandoc@box}%
+% select the smaller of both
+    \ifdim
+        \@tempb\p@<\@tempa\p@
+        \let\@tempa\@tempb
+    \fi
+% scaling accordingly (\@tempa < 1)
+    \ifdim
+        \@tempa\p@<\p@
+        \scalebox{\@tempa}{\usebox\pandoc@box}%
+    % scaling not needed, use as it is
+    \else
+        \usebox{\pandoc@box}%
+    \fi
+}
+\makeatother
+
+% Define a nice break command that doesn't care if a line doesn't already
+% exist.
+\def\br{\hspace*{\fill} \\* }
+% Math Jax compatibility definitions
+\def\gt{>}
+\def\lt{<}
+\let\Oldtex\TeX
+\let\Oldlatex\LaTeX
+\renewcommand{\TeX}{\textrm{\Oldtex}}
+\renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+% Document parameters
+% Document title
+\title{best\_subset}
+
+
+% Pygments definitions
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+\let\PY@ul=\relax \let\PY@tc=\relax%
+\let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx
+                    \relax#1\empty\else%
+                    \PY@tok{#1}\expandafter\PY@toks
+\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.61,0.40,0.00}{##1}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@ne}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.80,0.25,0.22}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\@namedef{PY@tok@nl}{\def\PY@tc##1{\textcolor[rgb]{0.46,0.46,0.00}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.41,0.47,0.13}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@nd}{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.36,0.12}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.64,0.35,0.47}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.52,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{0.89,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@ges}{\let\PY@bf=\textbf\let\PY@it=\textit}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.44,0.44,0.44}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+\@namedef{PY@tok@cs}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.24,0.48,0.48}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+% For linebreaks inside Verbatim environment from package fancyvrb.
+\makeatletter
+\newbox\Wrappedcontinuationbox
+\newbox\Wrappedvisiblespacebox
+\newcommand*\Wrappedvisiblespace {\textcolor{red}{\textvisiblespace}}
+\newcommand*\Wrappedcontinuationsymbol {\textcolor{red}{\llap{\tiny$\m@th\hookrightarrow$}}}
+\newcommand*\Wrappedcontinuationindent {3ex }
+\newcommand*\Wrappedafterbreak {\kern\Wrappedcontinuationindent\copy\Wrappedcontinuationbox}
+% Take advantage of the already applied Pygments mark-up to insert
+% potential linebreaks for TeX processing.
+%        {, <, #, %, $, ' and ": go to next line.
+%        _, }, ^, &, >, - and ~: stay at end of broken line.
+% Use of \textquotesingle for straight quote.
+\newcommand*\Wrappedbreaksatspecials {%
+    \def\PYGZus{\discretionary{\char`\_}{\Wrappedafterbreak}{\char`\_}}%
+    \def\PYGZob{\discretionary{}{\Wrappedafterbreak\char`\{}{\char`\{}}%
+    \def\PYGZcb{\discretionary{\char`\}}{\Wrappedafterbreak}{\char`\}}}%
+    \def\PYGZca{\discretionary{\char`\^}{\Wrappedafterbreak}{\char`\^}}%
+    \def\PYGZam{\discretionary{\char`\&}{\Wrappedafterbreak}{\char`\&}}%
+    \def\PYGZlt{\discretionary{}{\Wrappedafterbreak\char`\<}{\char`\<}}%
+    \def\PYGZgt{\discretionary{\char`\>}{\Wrappedafterbreak}{\char`\>}}%
+    \def\PYGZsh{\discretionary{}{\Wrappedafterbreak\char`\#}{\char`\#}}%
+    \def\PYGZpc{\discretionary{}{\Wrappedafterbreak\char`\%}{\char`\%}}%
+    \def\PYGZdl{\discretionary{}{\Wrappedafterbreak\char`\$}{\char`\$}}%
+    \def\PYGZhy{\discretionary{\char`\-}{\Wrappedafterbreak}{\char`\-}}%
+    \def\PYGZsq{\discretionary{}{\Wrappedafterbreak\textquotesingle}{\textquotesingle}}%
+    \def\PYGZdq{\discretionary{}{\Wrappedafterbreak\char`\"}{\char`\"}}%
+    \def\PYGZti{\discretionary{\char`\~}{\Wrappedafterbreak}{\char`\~}}%
+}
+% Some characters . , ; ? ! / are not pygmentized.
+% This macro makes them "active" and they will insert potential linebreaks
+\newcommand*\Wrappedbreaksatpunct {%
+    \lccode`\~`\.\lowercase{\def~}{\discretionary{\hbox{\char`\.}}{\Wrappedafterbreak}{\hbox{\char`\.}}}%
+    \lccode`\~`\,\lowercase{\def~}{\discretionary{\hbox{\char`\,}}{\Wrappedafterbreak}{\hbox{\char`\,}}}%
+    \lccode`\~`\;\lowercase{\def~}{\discretionary{\hbox{\char`\;}}{\Wrappedafterbreak}{\hbox{\char`\;}}}%
+    \lccode`\~`\:\lowercase{\def~}{\discretionary{\hbox{\char`\:}}{\Wrappedafterbreak}{\hbox{\char`\:}}}%
+    \lccode`\~`\?\lowercase{\def~}{\discretionary{\hbox{\char`\?}}{\Wrappedafterbreak}{\hbox{\char`\?}}}%
+    \lccode`\~`\!\lowercase{\def~}{\discretionary{\hbox{\char`\!}}{\Wrappedafterbreak}{\hbox{\char`\!}}}%
+    \lccode`\~`\/\lowercase{\def~}{\discretionary{\hbox{\char`\/}}{\Wrappedafterbreak}{\hbox{\char`\/}}}%
+    \catcode`\.\active
+    \catcode`\,\active
+    \catcode`\;\active
+    \catcode`\:\active
+    \catcode`\?\active
+    \catcode`\!\active
+    \catcode`\/\active
+    \lccode`\~`\~
+}
+\makeatother
+
+\let\OriginalVerbatim=\Verbatim
+\makeatletter
+\renewcommand{\Verbatim}[1][1]{%
+%\parskip\z@skip
+    \sbox\Wrappedcontinuationbox {\Wrappedcontinuationsymbol}%
+    \sbox\Wrappedvisiblespacebox {\FV@SetupFont\Wrappedvisiblespace}%
+    \def\FancyVerbFormatLine ##1{\hsize\linewidth
+    \vtop{\raggedright\hyphenpenalty\z@\exhyphenpenalty\z@
+    \doublehyphendemerits\z@\finalhyphendemerits\z@
+    \strut ##1\strut}%
+    }%
+% If the linebreak is at a space, the latter will be displayed as visible
+% space at end of first line, and a continuation symbol starts next line.
+% Stretch/shrink are however usually zero for typewriter font.
+    \def\FV@Space {%
+        \nobreak\hskip\z@ plus\fontdimen3\font minus\fontdimen4\font
+        \discretionary{\copy\Wrappedvisiblespacebox}{\Wrappedafterbreak}
+        {\kern\fontdimen2\font}%
+    }%
+
+    % Allow breaks at special characters using \PYG... macros.
+    \Wrappedbreaksatspecials
+    % Breaks at punctuation characters . , ; ? ! and / need catcode=\active
+    \OriginalVerbatim[#1,codes*=\Wrappedbreaksatpunct]%
+}
+\makeatother
+
+% Exact colors from NB
+\definecolor{incolor}{HTML}{303F9F}
+\definecolor{outcolor}{HTML}{D84315}
+\definecolor{cellborder}{HTML}{CFCFCF}
+\definecolor{cellbackground}{HTML}{F7F7F7}
+
+% prompt
+\makeatletter
+\newcommand{\boxspacing}{\kern\kvtcb@left@rule\kern\kvtcb@boxsep}
+\makeatother
+\newcommand{\prompt}[4]{
+        {\ttfamily\llap{{\color{#2}[#3]:\hspace{3pt}#4}}\vspace{-\baselineskip}}
+}
+
+
+% Prevent overflowing lines due to hard-to-break entities
+\sloppy
+% Setup hyperref package
+\hypersetup{
+    breaklinks=true,  % so long urls are correctly broken across lines
+    colorlinks=true,
+    urlcolor=urlcolor,
+    linkcolor=linkcolor,
+    citecolor=citecolor,
+}
+% Slightly bigger margins than the latex defaults
+
+\geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+
+
+
+\begin{document}
+    \hypertarget{best-subset-selection-with-ridge-regression}{%
+        \section{Best Subset Selection with Ridge
+        Regression}\label{best-subset-selection-with-ridge-regression}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{1}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Import the libraries needed for data handling, subset generation, calculations, and plots.}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{math}
+\PY{k+kn}{from}\PY{+w}{ }\PY{n+nn}{itertools}\PY{+w}{ }\PY{k+kn}{import} \PY{n}{combinations}
+
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{plt}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{numpy}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{np}
+\PY{k+kn}{import}\PY{+w}{ }\PY{n+nn}{pandas}\PY{+w}{ }\PY{k}{as}\PY{+w}{ }\PY{n+nn}{pd}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \hypertarget{load-the-dataset}{%
+        \subsection{1. Load the dataset}\label{load-the-dataset}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{2}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Cell 2: Load the CSV file and show a small preview before doing any modelling.}
+\PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{YachtHydrodynamics.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of rows: }\PY{l+s+si}{\PYZob{}}\PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of columns: }\PY{l+s+si}{\PYZob{}}\PY{n}{df}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{display}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Number of rows: 308
+Number of columns: 7
+    \end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   Longitudinal position of the center of buoyancy, adimensional  \textbackslash{}
+0                                               -2.3               
+1                                               -2.3               
+2                                               -2.3               
+3                                               -2.3               
+4                                               -2.3               
+
+   Prismatic coefficient  Length-displacement ratio  Beam-draught ratio  \textbackslash{}
+0                  0.568                       4.78                3.99   
+1                  0.568                       4.78                3.99   
+2                  0.568                       4.78                3.99   
+3                  0.568                       4.78                3.99   
+4                  0.568                       4.78                3.99   
+
+   Length-beam ratio  Froude number  \textbackslash{}
+0               3.17          0.125   
+1               3.17          0.150   
+2               3.17          0.175   
+3               3.17          0.200   
+4               3.17          0.225   
+
+   Residuary resistance per unit weight of displacement  
+0                                               0.11     
+1                                               0.27     
+2                                               0.47     
+3                                               0.78     
+4                                               1.18
+    \end{Verbatim}
+
+
+    \hypertarget{inspect-the-data}{%
+        \subsection{2. Inspect the data}\label{inspect-the-data}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{3}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Inspect column names, data types, and missing\PYZhy{}value counts.}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Column names:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{k}{for} \PY{n}{column\PYZus{}number}\PY{p}{,} \PY{n}{column\PYZus{}name} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{p}{,} \PY{n}{start}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}}\PY{n}{column\PYZus{}number}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{. }\PY{l+s+si}{\PYZob{}}\PY{n}{column\PYZus{}name}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Column names:
+1. Longitudinal position of the center of buoyancy, adimensional
+2. Prismatic coefficient
+3. Length-displacement ratio
+4. Beam-draught ratio
+5. Length-beam ratio
+6. Froude number
+7. Residuary resistance per unit weight of displacement
+    \end{Verbatim}
+
+    \hypertarget{separate-predictors-and-response}{%
+        \subsection{3. Separate predictors and
+        response}\label{separate-predictors-and-response}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{4}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Split the dataframe into predictor matrix X and response vector y.}
+\PY{n}{feature\PYZus{}names} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\PY{n}{target\PYZus{}name} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+
+\PY{n}{X} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{to\PYZus{}numpy}\PY{p}{(}\PY{n}{dtype}\PY{o}{=}\PY{n+nb}{float}\PY{p}{)}
+\PY{n}{y} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{to\PYZus{}numpy}\PY{p}{(}\PY{n}{dtype}\PY{o}{=}\PY{n+nb}{float}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Predictor matrix X shape:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Response vector y shape:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Target column:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{target\PYZus{}name}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of candidate predictors:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{feature\PYZus{}names}\PY{p}{)}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Target summary statistics:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{name}\PY{o}{=}\PY{n}{target\PYZus{}name}\PY{p}{)}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Predictor matrix X shape: (308, 6)
+Response vector y shape: (308,)
+Target column: Residuary resistance per unit weight of displacement
+Number of candidate predictors: 6
+
+Target summary statistics:
+count    308.000000
+mean      10.495357
+std       15.160490
+min        0.010000
+25\%        0.777500
+50\%        3.065000
+75\%       12.815000
+max       62.420000
+Name: Residuary resistance per unit weight of displacement, dtype: float64
+    \end{Verbatim}
+
+    \hypertarget{define-the-ridge-regression-rss-function}{%
+        \subsection{4. Define the ridge-regression RSS
+        function}\label{define-the-ridge-regression-rss-function}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{5}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{RIDGE\PYZus{}ALPHA} \PY{o}{=} \PY{l+m+mf}{0.001}  \PY{c+c1}{\PYZsh{} Regularization strength used in the original notebook.}
+
+
+\PY{k}{def}\PY{+w}{ }\PY{n+nf}{ridge\PYZus{}regression\PYZus{}rss}\PY{p}{(}\PY{n}{X\PYZus{}subset}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{n}{RIDGE\PYZus{}ALPHA}\PY{p}{)}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{} Convert a feature subset to a 2\PYZhy{}D matrix, including when the subset is empty.}
+    \PY{n}{X\PYZus{}subset} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{X\PYZus{}subset}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n+nb}{float}\PY{p}{)}
+    \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{asarray}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n+nb}{float}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+
+    \PY{k}{if} \PY{n}{X\PYZus{}subset}\PY{o}{.}\PY{n}{ndim} \PY{o}{!=} \PY{l+m+mi}{2}\PY{p}{:}
+        \PY{k}{raise} \PY{n+ne}{ValueError}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X\PYZus{}subset must be a two\PYZhy{}dimensional array.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+    \PY{k}{if} \PY{n}{X\PYZus{}subset}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{!=} \PY{n}{y}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{:}
+        \PY{k}{raise} \PY{n+ne}{ValueError}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{X\PYZus{}subset and y must contain the same number of rows.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} Add an intercept column so that the model can learn a constant offset.}
+    \PY{n}{X\PYZus{}design} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{column\PYZus{}stack}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{n}{X\PYZus{}subset}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{X\PYZus{}subset}\PY{p}{)}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} Penalize feature coefficients only; leave the intercept unpenalized.}
+    \PY{n}{penalty\PYZus{}matrix} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{n}{X\PYZus{}design}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+    \PY{n}{penalty\PYZus{}matrix}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{0.0}
+
+    \PY{c+c1}{\PYZsh{} Solve (X\PYZsq{}X + alpha * P) beta = X\PYZsq{}y for the ridge coefficients.}
+    \PY{n}{system\PYZus{}matrix} \PY{o}{=} \PY{n}{X\PYZus{}design}\PY{o}{.}\PY{n}{T} \PY{o}{@} \PY{n}{X\PYZus{}design} \PY{o}{+} \PY{n}{alpha} \PY{o}{*} \PY{n}{penalty\PYZus{}matrix}
+    \PY{n}{right\PYZus{}hand\PYZus{}side} \PY{o}{=} \PY{n}{X\PYZus{}design}\PY{o}{.}\PY{n}{T} \PY{o}{@} \PY{n}{y}
+    \PY{n}{coefficients} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{solve}\PY{p}{(}\PY{n}{system\PYZus{}matrix}\PY{p}{,} \PY{n}{right\PYZus{}hand\PYZus{}side}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} Calculate predictions and their residual sum of squares.}
+    \PY{n}{y\PYZus{}predicted} \PY{o}{=} \PY{n}{X\PYZus{}design} \PY{o}{@} \PY{n}{coefficients}
+    \PY{n}{rss} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{(}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{n}{y\PYZus{}predicted}\PY{p}{)} \PY{o}{*}\PY{o}{*} \PY{l+m+mi}{2}\PY{p}{)}
+    \PY{k}{return} \PY{n+nb}{float}\PY{p}{(}\PY{n}{rss}\PY{p}{)}
+
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Ridge RSS function is ready (alpha = }\PY{l+s+si}{\PYZob{}}\PY{n}{RIDGE\PYZus{}ALPHA}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{).}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Ridge RSS function is ready (alpha = 0.001).
+    \end{Verbatim}
+
+    \hypertarget{enumerate-feature-subsets}{%
+        \subsection{5. Enumerate feature
+        subsets}\label{enumerate-feature-subsets}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{6}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Find the lowest\PYZhy{}RSS subset for every model size, from zero features to all features.}
+\PY{n}{p} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+\PY{n}{all\PYZus{}feature\PYZus{}indices} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{n}{p}\PY{p}{)}
+\PY{n}{best\PYZus{}models} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+\PY{k}{for} \PY{n}{subset\PYZus{}size} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{p} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{} Evaluate every combination containing exactly subset\PYZus{}size predictors.}
+    \PY{n}{subset\PYZus{}results} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+    \PY{k}{for} \PY{n}{subset} \PY{o+ow}{in} \PY{n}{combinations}\PY{p}{(}\PY{n}{all\PYZus{}feature\PYZus{}indices}\PY{p}{,} \PY{n}{subset\PYZus{}size}\PY{p}{)}\PY{p}{:}
+        \PY{n}{X\PYZus{}subset} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{subset}\PY{p}{]}
+        \PY{n}{rss} \PY{o}{=} \PY{n}{ridge\PYZus{}regression\PYZus{}rss}\PY{p}{(}\PY{n}{X\PYZus{}subset}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+        \PY{n}{subset\PYZus{}results}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{(}\PY{n}{subset}\PY{p}{,} \PY{n}{rss}\PY{p}{)}\PY{p}{)}
+
+    \PY{c+c1}{\PYZsh{} Keep only the subset with the minimum RSS for this model size.}
+    \PY{n}{best\PYZus{}subset}\PY{p}{,} \PY{n}{best\PYZus{}rss} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{subset\PYZus{}results}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{result}\PY{p}{:} \PY{n}{result}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+    \PY{n}{best\PYZus{}models}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{\PYZob{}}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{model\PYZus{}size}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{subset\PYZus{}size}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{subset}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{best\PYZus{}subset}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{best\PYZus{}rss}\PY{p}{,}
+    \PY{p}{\PYZcb{}}\PY{p}{)}
+    \PY{n}{selected\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{n}{feature\PYZus{}names}\PY{p}{[}\PY{n}{index}\PY{p}{]} \PY{k}{for} \PY{n}{index} \PY{o+ow}{in} \PY{n}{best\PYZus{}subset}\PY{p}{]}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Model size }\PY{l+s+si}{\PYZob{}}\PY{n}{subset\PYZus{}size}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{: RSS = }\PY{l+s+si}{\PYZob{}}\PY{n}{best\PYZus{}rss}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{  Selected predictors:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{selected\PYZus{}names}\PY{p}{)} \PY{k}{if} \PY{n}{selected\PYZus{}names} \PY{k}{else} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{(intercept only)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Model size 0: RSS = 70561.021261
+  Selected predictors: (intercept only)
+Model size 1: RSS = 24255.397307
+  Selected predictors: Froude number
+Model size 2: RSS = 24197.807833
+  Selected predictors: Prismatic coefficient, Froude number
+Model size 3: RSS = 24172.171786
+  Selected predictors: Longitudinal position of the center of buoyancy,
+adimensional, Prismatic coefficient, Froude number
+Model size 4: RSS = 24170.905355
+  Selected predictors: Longitudinal position of the center of buoyancy,
+adimensional, Prismatic coefficient, Length-displacement ratio, Froude number
+Model size 5: RSS = 24164.346947
+  Selected predictors: Longitudinal position of the center of buoyancy,
+adimensional, Length-displacement ratio, Beam-draught ratio, Length-beam ratio,
+Froude number
+Model size 6: RSS = 24162.650846
+  Selected predictors: Longitudinal position of the center of buoyancy,
+adimensional, Prismatic coefficient, Length-displacement ratio, Beam-draught
+ratio, Length-beam ratio, Froude number
+    \end{Verbatim}
+
+    \hypertarget{compare-the-best-subset-at-each-model-size}{%
+        \subsection{6. Compare the best subset at each model
+        size}\label{compare-the-best-subset-at-each-model-size}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{7}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Create a readable results table showing the best subset for each model size.}
+\PY{n}{subset\PYZus{}results\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}
+    \PY{p}{\PYZob{}}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Predictors}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{model\PYZus{}size}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Selected Predictors}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{(}
+            \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{feature\PYZus{}names}\PY{p}{[}\PY{n}{index}\PY{p}{]} \PY{k}{for} \PY{n}{index} \PY{o+ow}{in} \PY{n}{model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{subset}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+            \PY{k}{if} \PY{n}{model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{subset}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{k}{else} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{(intercept only)}\PY{l+s+s2}{\PYZdq{}}
+        \PY{p}{)}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{RSS}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+    \PY{p}{\PYZcb{}}
+    \PY{k}{for} \PY{n}{model} \PY{o+ow}{in} \PY{n}{best\PYZus{}models}
+\PY{p}{]}\PY{p}{)}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Best subset for each model size:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{display}\PY{p}{(}\PY{n}{subset\PYZus{}results\PYZus{}df}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{RSS}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{6}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Best subset for each model size:
+    \end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   Number of Predictors                                Selected Predictors  \textbackslash{}
+0                     0                                   (intercept only)   
+1                     1                                      Froude number   
+2                     2               Prismatic coefficient, Froude number   
+3                     3  Longitudinal position of the center of buoyanc{\ldots}   
+4                     4  Longitudinal position of the center of buoyanc{\ldots}   
+5                     5  Longitudinal position of the center of buoyanc{\ldots}   
+6                     6  Longitudinal position of the center of buoyanc{\ldots}   
+
+            RSS  
+0  70561.021261  
+1  24255.397307  
+2  24197.807833  
+3  24172.171786  
+4  24170.905355  
+5  24164.346947  
+6  24162.650846
+    \end{Verbatim}
+
+
+    \hypertarget{calculate-aic-for-the-candidate-models}{%
+        \subsection{7. Calculate AIC for the candidate
+        models}\label{calculate-aic-for-the-candidate-models}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{8}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Calculate an AIC approximation for every best\PYZhy{}by\PYZhy{}size model.}
+\PY{n}{n} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{y}\PY{p}{)}
+\PY{n}{aic\PYZus{}results} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+
+\PY{k}{for} \PY{n}{model} \PY{o+ow}{in} \PY{n}{best\PYZus{}models}\PY{p}{:}
+    \PY{n}{rss} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{n}{model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{finfo}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{o}{.}\PY{n}{tiny}\PY{p}{)}  \PY{c+c1}{\PYZsh{} Protect the logarithm from a zero RSS.}
+    \PY{n}{parameter\PYZus{}count} \PY{o}{=} \PY{l+m+mi}{1} \PY{o}{+} \PY{n}{model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{model\PYZus{}size}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}  \PY{c+c1}{\PYZsh{} One intercept plus the selected predictors.}
+    \PY{n}{aic} \PY{o}{=} \PY{n}{n} \PY{o}{*} \PY{n}{math}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{rss} \PY{o}{/} \PY{n}{n}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{parameter\PYZus{}count}
+    \PY{n}{aic\PYZus{}results}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{\PYZob{}}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{model\PYZus{}size}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{model\PYZus{}size}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{subset}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{subset}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{parameter\PYZus{}count}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{parameter\PYZus{}count}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{aic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{aic}\PY{p}{,}
+    \PY{p}{\PYZcb{}}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Display every candidate model\PYZsq{}s RSS and AIC so the selection can be checked.}
+\PY{n}{aic\PYZus{}results\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{[}
+    \PY{p}{\PYZob{}}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of Predictors}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{result}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{model\PYZus{}size}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Selected Predictors}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{(}
+            \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{feature\PYZus{}names}\PY{p}{[}\PY{n}{index}\PY{p}{]} \PY{k}{for} \PY{n}{index} \PY{o+ow}{in} \PY{n}{result}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{subset}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+            \PY{k}{if} \PY{n}{result}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{subset}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{k}{else} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{(intercept only)}\PY{l+s+s2}{\PYZdq{}}
+        \PY{p}{)}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{RSS}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{result}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Parameter Count}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{result}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{parameter\PYZus{}count}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{AIC}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{result}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{aic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+    \PY{p}{\PYZcb{}}
+    \PY{k}{for} \PY{n}{result} \PY{o+ow}{in} \PY{n}{aic\PYZus{}results}
+\PY{p}{]}\PY{p}{)}
+
+\PY{n}{display}\PY{p}{(}\PY{n}{aic\PYZus{}results\PYZus{}df}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{RSS}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{AIC}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{4}\PY{p}{\PYZcb{}}\PY{p}{)}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+   Number of Predictors                                Selected Predictors  \textbackslash{}
+0                     0                                   (intercept only)   
+1                     1                                      Froude number   
+2                     2               Prismatic coefficient, Froude number   
+3                     3  Longitudinal position of the center of buoyanc{\ldots}   
+4                     4  Longitudinal position of the center of buoyanc{\ldots}   
+5                     5  Longitudinal position of the center of buoyanc{\ldots}   
+6                     6  Longitudinal position of the center of buoyanc{\ldots}   
+
+            RSS  Parameter Count        AIC  
+0  70561.021261                1  1675.7131  
+1  24255.397307                2  1348.8188  
+2  24197.807833                3  1350.0866  
+3  24172.171786                4  1351.7601  
+4  24170.905355                5  1353.7440  
+5  24164.346947                6  1355.6604  
+6  24162.650846                7  1357.6388
+    \end{Verbatim}
+
+
+    \hypertarget{select-the-model-with-the-lowest-aic}{%
+        \subsection{8. Select the model with the lowest
+        AIC}\label{select-the-model-with-the-lowest-aic}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{9}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Identify and report the lowest\PYZhy{}AIC candidate model.}
+\PY{n}{best\PYZus{}aic\PYZus{}model} \PY{o}{=} \PY{n+nb}{min}\PY{p}{(}\PY{n}{aic\PYZus{}results}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{k}{lambda} \PY{n}{result}\PY{p}{:} \PY{n}{result}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{aic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\PY{n}{best\PYZus{}feature\PYZus{}names} \PY{o}{=} \PY{p}{[}\PY{n}{feature\PYZus{}names}\PY{p}{[}\PY{n}{index}\PY{p}{]} \PY{k}{for} \PY{n}{index} \PY{o+ow}{in} \PY{n}{best\PYZus{}aic\PYZus{}model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{subset}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Best model according to the AIC approximation}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of predictors:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{best\PYZus{}aic\PYZus{}model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{model\PYZus{}size}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Selected predictors:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{best\PYZus{}feature\PYZus{}names}\PY{p}{)} \PY{k}{if} \PY{n}{best\PYZus{}feature\PYZus{}names} \PY{k}{else} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{(intercept only)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{RSS: }\PY{l+s+si}{\PYZob{}}\PY{n}{best\PYZus{}aic\PYZus{}model}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rss}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.6f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+sa}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{AIC: }\PY{l+s+si}{\PYZob{}}\PY{n}{best\PYZus{}aic\PYZus{}model}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{aic}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{l+s+si}{:}\PY{l+s+s2}{.4f}\PY{l+s+si}{\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Best model according to the AIC approximation
+------------------------------------------------
+Number of predictors: 1
+Selected predictors: Froude number
+RSS: 24255.397307
+AIC: 1348.8188
+    \end{Verbatim}
+
+    \hypertarget{visualize-rss-and-aic}{%
+        \subsection{9. Visualize RSS and AIC}\label{visualize-rss-and-aic}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{10}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Plot RSS against the number of selected predictors.}
+\PY{n}{model\PYZus{}sizes} \PY{o}{=} \PY{p}{[}\PY{n}{model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{model\PYZus{}size}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{k}{for} \PY{n}{model} \PY{o+ow}{in} \PY{n}{best\PYZus{}models}\PY{p}{]}
+\PY{n}{rss\PYZus{}values} \PY{o}{=} \PY{p}{[}\PY{n}{model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rss}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{k}{for} \PY{n}{model} \PY{o+ow}{in} \PY{n}{best\PYZus{}models}\PY{p}{]}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{model\PYZus{}sizes}\PY{p}{,} \PY{n}{rss\PYZus{}values}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of predictors}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Residual Sum of Squares (RSS)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Best Subset Selection: RSS by Model Size}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{model\PYZus{}sizes}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{center}
+        \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{best_subset_files/best_subset_19_0.png}
+    \end{center}
+        { \hspace*{\fill} \\}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+        \prompt{In}{incolor}{11}{\boxspacing}
+        \begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} Plot AIC against the number of predictors and mark the selected model.}
+\PY{n}{aic\PYZus{}values} \PY{o}{=} \PY{p}{[}\PY{n}{result}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{aic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{k}{for} \PY{n}{result} \PY{o+ow}{in} \PY{n}{aic\PYZus{}results}\PY{p}{]}
+\PY{n}{best\PYZus{}size} \PY{o}{=} \PY{n}{best\PYZus{}aic\PYZus{}model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{model\PYZus{}size}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+
+\PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{model\PYZus{}sizes}\PY{p}{,} \PY{n}{aic\PYZus{}values}\PY{p}{,} \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{o}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}
+    \PY{p}{[}\PY{n}{best\PYZus{}size}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{best\PYZus{}aic\PYZus{}model}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{aic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,}
+    \PY{n}{marker}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{*}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{180}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Lowest AIC}\PY{l+s+s2}{\PYZdq{}}
+\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of predictors}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{AIC (approximation)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Best Subset Selection: AIC by Model Size}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{model\PYZus{}sizes}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+        \end{Verbatim}
+    \end{tcolorbox}
+
+    \begin{center}
+        \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{best_subset_files/best_subset_20_0.png}
+    \end{center}
+        { \hspace*{\fill} \\}
+
+
+    % Add a bibliography block to the postdoc
+
+
+
+\end{document}
