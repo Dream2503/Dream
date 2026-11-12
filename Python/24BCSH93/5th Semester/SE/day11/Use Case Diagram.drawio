@@ -1,0 +1,133 @@
+<mxfile host="drawio-plugin" modified="2026-11-12T09:27:03.189Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36" version="22.1.22" etag="7Z8jq5BHQOhh2MkXEIWE" type="embed">
+  <diagram name="Use Case Diagram" id="d1">
+    <mxGraphModel dx="1571" dy="892" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1492" pageHeight="1040" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c3" value="Telegram Backed Hybrid Cloud Storage Management System" style="text;html=1;align=center;fontSize=20;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="260" y="26" width="975" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="Use Case Diagram | Unified Modeling Language (UML)" style="text;html=1;align=center;fontSize=12;fontColor=#5A6472;" parent="1" vertex="1">
+          <mxGeometry x="260" y="60" width="975" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" value="" style="rounded=1;arcSize=1;html=1;verticalAlign=top;fontStyle=1;fontSize=13;fillColor=#FBFBFD;strokeColor=#2C3A47;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="233" y="122" width="997" height="853" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" value="Unauthenticated Visitor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontStyle=1;fontSize=12;fillColor=#D5E8D4;strokeColor=#222;" parent="1" vertex="1">
+          <mxGeometry x="92" y="254" width="42" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" value="Storage User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontStyle=1;fontSize=12;fillColor=#D5E8D4;strokeColor=#222;" parent="1" vertex="1">
+          <mxGeometry x="92" y="546" width="42" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" value="Telegram Bot API" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontStyle=1;fontSize=12;fillColor=#D5E8D4;strokeColor=#222;" parent="1" vertex="1">
+          <mxGeometry x="1358" y="413" width="42" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" value="System Admin" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontStyle=1;fontSize=12;fillColor=#D5E8D4;strokeColor=#222;" parent="1" vertex="1">
+          <mxGeometry x="1358" y="777" width="42" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" value="Register account" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="310" y="224" width="179" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" value="Log in" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="310" y="326" width="179" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" value="Upload file" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="632" y="224" width="198" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c13" value="View upload progress and transfer errors" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="632" y="326" width="198" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c14" value="View dashboard" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="310" y="463" width="203" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c15" value="Download file" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="632" y="454" width="198" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c16" value="Manage virtual folders (open, create, nest, go back, delete empty)" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="310" y="800" width="203" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="c17" value="Delete file record" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="632" y="564" width="198" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c18" value="Search files" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="310" y="699" width="203" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c19" value="Toggle light / dark mode (optional)" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="632" y="699" width="198" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c20" value="Validate folder and size" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="943" y="224" width="214" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c21" value="Stream upload chunks to Telegram" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="943" y="343" width="214" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c22" value="Index metadata after successful transfer" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="943" y="463" width="214" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c23" value="Verify file ownership" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="943" y="588" width="214" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c24" value="Retrieve remote file and stream to browser" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="943" y="707" width="214" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c25" value="Export SQL metadata backup" style="ellipse;html=1;fillColor=#E8DCEF;strokeColor=#9673A6;fontStyle=1;fontSize=11;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="943" y="824" width="214" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="c26" value="" style="endArrow=none;html=1;strokeColor=#222;rounded=0;" parent="1" source="c6" target="c10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c27" value="" style="endArrow=none;html=1;strokeColor=#222;rounded=0;" parent="1" source="c6" target="c11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c28" value="" style="endArrow=none;html=1;strokeColor=#222;rounded=0;" parent="1" source="c7" target="c12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c29" value="" style="endArrow=none;html=1;strokeColor=#222;rounded=0;" parent="1" source="c7" target="c14" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c30" value="" style="endArrow=none;html=1;strokeColor=#222;rounded=0;" parent="1" source="c7" target="c15" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c31" value="" style="endArrow=none;html=1;strokeColor=#222;rounded=0;" parent="1" source="c7" target="c16" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c32" value="" style="endArrow=none;html=1;strokeColor=#222;rounded=0;" parent="1" source="c7" target="c17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c33" value="" style="endArrow=none;html=1;strokeColor=#222;rounded=0;" parent="1" source="c7" target="c18" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c34" value="" style="endArrow=none;html=1;strokeColor=#222;rounded=0;" parent="1" source="c7" target="c19" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c35" value="" style="endArrow=none;html=1;strokeColor=#222;rounded=0;" parent="1" source="c8" target="c21" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c36" value="" style="endArrow=none;html=1;strokeColor=#222;rounded=0;" parent="1" source="c8" target="c24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c37" value="" style="endArrow=none;html=1;strokeColor=#222;rounded=0;" parent="1" source="c9" target="c25" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c38" value="«include»" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#222;rounded=0;fontSize=10;labelBackgroundColor=#FBFBFD;" parent="1" source="c12" target="c20" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c39" value="«include»" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#222;rounded=0;fontSize=10;labelBackgroundColor=#FBFBFD;" parent="1" source="c12" target="c21" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c40" value="«include»" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#222;rounded=0;fontSize=10;labelBackgroundColor=#FBFBFD;" parent="1" source="c12" target="c22" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c41" value="«include»" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#222;rounded=0;fontSize=10;labelBackgroundColor=#FBFBFD;" parent="1" source="c15" target="c23" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c42" value="«include»" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#222;rounded=0;fontSize=10;labelBackgroundColor=#FBFBFD;" parent="1" source="c15" target="c24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c43" value="«extend»" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#222;rounded=0;fontSize=10;labelBackgroundColor=#FBFBFD;" parent="1" source="c13" target="c12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

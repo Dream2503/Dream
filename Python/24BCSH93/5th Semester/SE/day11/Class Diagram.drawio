@@ -1,0 +1,160 @@
+<mxfile host="drawio-plugin" modified="2026-11-12T09:26:30.665Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36" version="22.1.22" etag="0crepCtJLh0uIedVFRcI" type="embed">
+  <diagram name="Class Diagram" id="d1">
+    <mxGraphModel dx="1571" dy="892" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1547" pageHeight="1007" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c3" value="Telegram Backed Hybrid Cloud Storage Management System" style="text;html=1;align=center;fontSize=20;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="390" y="23" width="780" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c4" value="Class Diagram | Unified Modeling Language (UML)" style="text;html=1;align=center;fontSize=12;fontColor=#5A6472;" parent="1" vertex="1">
+          <mxGeometry x="390" y="55" width="780" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="c5" value="DOMAIN / DATA CLASSES" style="text;html=1;align=center;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="614" y="91" width="320" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="c6" value="APPLICATION / CONTROL CLASSES" style="text;html=1;align=center;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="614" y="416" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="c7" value="«entity»&lt;br&gt;&lt;b&gt;User&lt;/b&gt;" style="swimlane;html=1;startSize=36;fillColor=#E8DCEF;strokeColor=#9673A6;fontSize=12;fontStyle=0;align=center;rounded=1;arcSize=3;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="62" y="144" width="320" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="c8" value="+ User_ID: INTEGER {PK, auto}&lt;br&gt;+ Username: VARCHAR(50) {UNIQUE, NOT NULL}&lt;br&gt;+ Password_Hash: VARCHAR(255) {NOT NULL}&lt;br&gt;+ Role: VARCHAR(10) {user | admin} *&lt;br&gt;+ Created_At: DATETIME {NOT NULL}" style="text;html=1;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=9;spacingLeft=6;spacingTop=4;whiteSpace=wrap;" parent="c7" vertex="1">
+          <mxGeometry y="36" width="320" height="166" as="geometry" />
+        </mxCell>
+        <mxCell id="c9" value="«entity»&lt;br&gt;&lt;b&gt;Folder&lt;/b&gt;" style="swimlane;html=1;startSize=36;fillColor=#E8DCEF;strokeColor=#9673A6;fontSize=12;fontStyle=0;align=center;rounded=1;arcSize=3;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="614" y="144" width="320" height="211" as="geometry" />
+        </mxCell>
+        <mxCell id="c10" value="+ Folder_ID: INTEGER {PK, auto}&lt;br&gt;+ User_ID: INTEGER {FK}&lt;br&gt;+ Parent_Folder_ID: INTEGER? {FK, NULL=root}&lt;br&gt;+ Folder_Name: VARCHAR(255) {NOT NULL}&lt;br&gt;+ Created_At: DATETIME {NOT NULL}" style="text;html=1;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=9;spacingLeft=6;spacingTop=4;whiteSpace=wrap;" parent="c9" vertex="1">
+          <mxGeometry y="36" width="320" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="c11" value="«entity»&lt;br&gt;&lt;b&gt;FileRecord&lt;/b&gt;" style="swimlane;html=1;startSize=36;fillColor=#E8DCEF;strokeColor=#9673A6;fontSize=12;fontStyle=0;align=center;rounded=1;arcSize=3;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1165" y="144" width="320" height="228" as="geometry" />
+        </mxCell>
+        <mxCell id="c12" value="+ File_Record_ID: INTEGER {PK, auto}&lt;br&gt;+ User_ID: INTEGER {FK}&lt;br&gt;+ Folder_ID: INTEGER {FK}&lt;br&gt;+ Telegram_File_ID: VARCHAR(255) {backend-only}&lt;br&gt;+ File_Name: VARCHAR(255) {NOT NULL}&lt;br&gt;+ File_Size: BIGINT {bytes}&lt;br&gt;+ Upload_Date: DATETIME {NOT NULL}" style="text;html=1;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=9;spacingLeft=6;spacingTop=4;whiteSpace=wrap;" parent="c11" vertex="1">
+          <mxGeometry y="36" width="320" height="192" as="geometry" />
+        </mxCell>
+        <mxCell id="c13" value="«control»&lt;br&gt;&lt;b&gt;AuthService&lt;/b&gt;" style="swimlane;html=1;startSize=36;fillColor=#DAE8F5;strokeColor=#6C8EBF;fontSize=12;fontStyle=0;align=center;rounded=1;arcSize=3;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="67.5" y="464" width="309" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="c14" value="+ registerUser(credentials): User&lt;br&gt;+ validateCredentials(credentials): Boolean&lt;br&gt;+ issueJWT(user): JWT_Token&lt;br&gt;+ authorizeSession(token): Boolean" style="text;html=1;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=9;spacingLeft=6;spacingTop=4;whiteSpace=wrap;" parent="c13" vertex="1">
+          <mxGeometry y="36" width="309" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="c15" value="«control»&lt;br&gt;&lt;b&gt;FolderService&lt;/b&gt;" style="swimlane;html=1;startSize=36;fillColor=#DAE8F5;strokeColor=#6C8EBF;fontSize=12;fontStyle=0;align=center;rounded=1;arcSize=3;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="438" y="464" width="320" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="c16" value="+ getCurrentContents(userId, folderId)&lt;br&gt;+ createFolder(name, parentId?)&lt;br&gt;+ openFolder(folderId)&lt;br&gt;+ goToParent(folderId)&lt;br&gt;+ deleteEmptyFolder(folderId)" style="text;html=1;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=9;spacingLeft=6;spacingTop=4;whiteSpace=wrap;" parent="c15" vertex="1">
+          <mxGeometry y="36" width="320" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="c17" value="«control»&lt;br&gt;&lt;b&gt;FileTransferService&lt;/b&gt;" style="swimlane;html=1;startSize=36;fillColor=#DAE8F5;strokeColor=#6C8EBF;fontSize=12;fontStyle=0;align=center;rounded=1;arcSize=3;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="814" y="464" width="335" height="181" as="geometry" />
+        </mxCell>
+        <mxCell id="c18" value="+ validateFolderAndSize(...)&lt;br&gt;+ selectTransferMode(size): TransferMode&lt;br&gt;+ streamMultipartChunks(file)&lt;br&gt;+ handleHTTP429(coolDown) and continue&lt;br&gt;+ publishProgress(percent)&lt;br&gt;+ verifyOwnership(userId, fileRecordId)&lt;br&gt;+ streamDownloadToBrowser()" style="text;html=1;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=9;spacingLeft=6;spacingTop=4;whiteSpace=wrap;" parent="c17" vertex="1">
+          <mxGeometry y="36" width="335" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="c19" value="«control»&lt;br&gt;&lt;b&gt;MetadataService&lt;/b&gt;" style="swimlane;html=1;startSize=36;fillColor=#DAE8F5;strokeColor=#6C8EBF;fontSize=12;fontStyle=0;align=center;rounded=1;arcSize=3;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1206" y="466.5" width="330" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="c20" value="+ captureTelegramFileId(response)&lt;br&gt;+ saveFileMetadata(details): FileRecord&lt;br&gt;+ getFileMetadata(fileRecordId)&lt;br&gt;+ deleteFileMetadata(fileRecordId)&lt;br&gt;+ refreshDashboard()" style="text;html=1;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=9;spacingLeft=6;spacingTop=4;whiteSpace=wrap;" parent="c19" vertex="1">
+          <mxGeometry y="36" width="330" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="c21" value="«control»&lt;br&gt;&lt;b&gt;WorkspaceSearch&lt;/b&gt;" style="swimlane;html=1;startSize=36;fillColor=#DAE8F5;strokeColor=#6C8EBF;fontSize=12;fontStyle=0;align=center;rounded=1;arcSize=3;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="232" y="717" width="309" height="129" as="geometry" />
+        </mxCell>
+        <mxCell id="c22" value="+ searchFiles(userId, searchText)&lt;br&gt;+ returnMatchingFileRecords()" style="text;html=1;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=9;spacingLeft=6;spacingTop=4;whiteSpace=wrap;" parent="c21" vertex="1">
+          <mxGeometry y="36" width="309" height="93" as="geometry" />
+        </mxCell>
+        <mxCell id="c23" value="«control»&lt;br&gt;&lt;b&gt;AdminOperations&lt;/b&gt;" style="swimlane;html=1;startSize=36;fillColor=#DAE8F5;strokeColor=#6C8EBF;fontSize=12;fontStyle=0;align=center;rounded=1;arcSize=3;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="619" y="717" width="309" height="129" as="geometry" />
+        </mxCell>
+        <mxCell id="c24" value="+ authorizeAdmin(userId)&lt;br&gt;+ exportMetadataBackup(from D1): BackupFile" style="text;html=1;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=9;spacingLeft=6;spacingTop=4;whiteSpace=wrap;" parent="c23" vertex="1">
+          <mxGeometry y="36" width="309" height="93" as="geometry" />
+        </mxCell>
+        <mxCell id="c25" value="«external system»&lt;br&gt;&lt;b&gt;TelegramBotAPI&lt;/b&gt;" style="swimlane;html=1;startSize=36;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;fontStyle=0;align=center;rounded=1;arcSize=3;swimlaneFillColor=#FFFFFF;" parent="1" vertex="1">
+          <mxGeometry x="1155" y="717" width="330" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="c26" value="+ uploadChunk(binaryChunk): TelegramResponse&lt;br&gt;+ getFile(telegramFileId): BinaryPacketStream&lt;br&gt;+ return file_id / API status / HTTP 429" style="text;html=1;align=left;verticalAlign=top;fontFamily=Courier New;fontSize=9;spacingLeft=6;spacingTop=4;whiteSpace=wrap;" parent="c25" vertex="1">
+          <mxGeometry y="36" width="330" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="c28" value="" style="endArrow=none;html=1;strokeColor=#222;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=1;exitY=0.475;entryX=0;entryY=0.45;" parent="1" source="c7" target="c9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c29" value="" style="endArrow=none;html=1;strokeColor=#222;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=1;exitY=0.54;entryX=0;entryY=0.5;" parent="1" source="c9" target="c11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c30" value="" style="endArrow=none;html=1;strokeColor=#222;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.22;exitY=0;entryX=0.78;entryY=0;" parent="1" source="c9" target="c9" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="683" y="124" />
+              <mxPoint x="864" y="124" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c31" value="" style="endArrow=open;endFill=0;html=1;strokeColor=#222;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=1;" parent="1" source="c11" target="c7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1325" y="389" />
+              <mxPoint x="222" y="389" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c32" value="" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#222;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="c13" target="c7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c33" value="" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#222;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="c15" target="c9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c34" value="" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#222;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="c19" target="c11" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1372" y="416" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c35" value="" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#222;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="c17" target="c19" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c36" value="" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#222;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="c17" target="c25" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="982" y="693" />
+              <mxPoint x="1320" y="693" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c37" value="" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#222;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" parent="1" source="c21" target="c19" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="387" y="670" />
+              <mxPoint x="1372" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c38" value="1" style="text;html=1;fontSize=9;fontColor=#5A6472;" parent="1" vertex="1">
+          <mxGeometry x="392" y="223" width="52" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c39" value="0..*" style="text;html=1;fontSize=9;fontColor=#5A6472;" parent="1" vertex="1">
+          <mxGeometry x="592" y="223" width="52" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c40" value="1" style="text;html=1;fontSize=9;fontColor=#5A6472;" parent="1" vertex="1">
+          <mxGeometry x="944" y="240" width="52" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c41" value="0..*" style="text;html=1;fontSize=9;fontColor=#5A6472;" parent="1" vertex="1">
+          <mxGeometry x="1145" y="240" width="52" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c42" value="1" style="text;html=1;fontSize=9;fontColor=#5A6472;" parent="1" vertex="1">
+          <mxGeometry x="232" y="376" width="52" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c43" value="0..*" style="text;html=1;fontSize=9;fontColor=#5A6472;" parent="1" vertex="1">
+          <mxGeometry x="1335" y="376" width="52" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c44" value="0..1 parent" style="text;html=1;fontSize=9;fontColor=#5A6472;" parent="1" vertex="1">
+          <mxGeometry x="691" y="112" width="52" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="c45" value="0..* children" style="text;html=1;fontSize=9;fontColor=#5A6472;" parent="1" vertex="1">
+          <mxGeometry x="779" y="112" width="52" height="12" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
